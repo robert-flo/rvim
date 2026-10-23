@@ -65,3 +65,4 @@ rvim
 | `<Space> + cc` | Visual | Copy selection formatted as Markdown code block |
 | `<Space> + j` | Normal | Open `package.json` in floating window |
 | `<Space> + bd` | Normal | Close hidden buffers not visible in any window |
+| `<Space> + i` | Normal | Toggle LSP inlay hints |
