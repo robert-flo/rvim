@@ -104,10 +104,42 @@ Completely independent of external packages:
   - Contains documented patches for upstream Neovim bugs, isolated so they can be removed once resolved in newer releases.
 
 ### Layer 2: Services and Utilities (`lua/rvim/utils/`)
-Reusable toolkit for plugins and keymaps:
-- **`icons.lua`**: Single source of truth for Nerd Font glyphs (LSP diagnostics, Git status, completion symbols). To update icons or typography, only this file is modified.
-- **`editor.lua`**: Utility functions such as `yank_relative_path_with_line()` (copies format like `src/app.ts:42` for PRs and chats) and `open_package_json()` (opens an 80% centered floating buffer).
-- **`lazygit.lua`**: Launches LazyGit TUI inside a native floating terminal without heavy external terminal plugins.
+Reusable toolkit and service layer decoupled from external plugins, exposed globally via `_G.Rvim`:
+
+- **`init.lua` (The Aggregator & Singleton)**:
+  - Consolidates and re-exports `icons`, `lualine`, `tabline`, and `editor`.
+  - Injected directly into the Lua global table as `_G.Rvim = require("rvim.utils")` during boot in `init.lua`, giving all commands, keymaps, and UI components zero-overhead access without redundant `require()` calls.
+
+- **`icons.lua` (Centralized Nerd Font Dictionary)**:
+  - Structured, categorized glyph tables for:
+    - `diagnostics`: `Error` (), `Warn` (), `Hint` (), `Info` ().
+    - `git`: `added` (), `modified` (), `removed` ().
+    - `kinds`: Comprehensive LSP completion item symbols (Function, Method, Variable, Class, Interface, Copilot, etc.).
+    - `dap`: Debugger breakpoints, stopped lines, and condition indicators.
+  - Centralizing icons ensures typography and glyph updates require modifying exactly one file.
+
+- **`editor.lua` (Editing & Buffer Mechanics)**:
+  - **Project Root Discovery**: Upward traversal searching for `root_patterns` (`.git`, `lua`, `package.json`, `Makefile`, `Cargo.toml`, `go.mod`, `pyproject.toml`) with path normalization across symlinks.
+  - **`open_package_json()`**: Calculates dynamic floating window dimensions (80% width/height of the editor grid), centers the window, loads `package.json`, and attaches buffer-local `<Esc>` / `q` close mappings.
+  - **`copy_as_codeblock()`**: Converts visual selection into a GitHub/GitLab-ready Markdown code fence with language detection, relative filename, and starting line number metadata (e.g., ````tsx filename="src/App.tsx" line=42````).
+  - **`delete_hidden_buffers()`**: Queries `vim.api.nvim_list_bufs()`, checks active visibility against `vim.api.nvim_list_wins()`, and safely deletes inactive buffers while guarding dirty/unwritten buffers.
+  - **`toggle_formatter()`**: Flips the buffer-local flag `vim.b[bufnr].disable_autoformat`, consumed downstream by formatting engines like Conform.nvim.
+  - **Path Permalinks**: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes for instant sharing in code reviews.
+
+- **`lazygit.lua` (RPC-Aware Terminal Integration)**:
+  - **Origin Window Preservation**: Remembers the exact window ID (`origin_win`) from which LazyGit was triggered.
+  - **IPC Communication**: Leverages Neovim's active socket via `nvim --server "$NVIM"` to send RPC commands (`--remote-send`, `--remote`). When a file is selected for editing inside LazyGit (`e`), LazyGit signals the parent Neovim instance to focus `origin_win` and open the file in the existing pane rather than spawning duplicate tabs.
+
+- **`lualine.lua` (Statusline Component Primitives)**:
+  - **`pretty_path()`**: Condenses file paths relative to project root or cwd, truncates deep hierarchies with an ellipsis (`src/…/components/Button.tsx`), highlights directories separately from filenames, and dynamically reflects modified / readonly states.
+  - **`root_dir()`**: Renders project root basename with conditional visibility (hides when cwd equals root, shows when navigating subdirectories).
+  - **`macro_recording()`**: Reactive macro indicator tied to `RecordingEnter`/`RecordingLeave` events.
+
+- **`tabline.lua` (Headless Tabline Renderer)**:
+  - Independent tabline renderer (`tabline.render()`) implementing powerline lower triangles (``, ``).
+  - Encodes clickable tab page indices (`%1T...%T`).
+  - Introspects buffers per tab, resolves filetype icons via `mini.icons`, and cleanly displays special buffer titles (e.g., `[Terminal]`, truncated Oil directory paths).
+
 
 ### Layer 3: Plugins (`lua/rvim/plugins/`)
 - **`init.lua` (`vim.pack.add`)**:
