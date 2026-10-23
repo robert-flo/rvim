@@ -7,6 +7,7 @@ end
 -- end
 -- vim.print = _G.dd
 
+_G.Rvim = require("rvim.utils")
 require("rvim.config.options")
 require("rvim.config.keymaps")
 require("rvim.config.autocmds")
