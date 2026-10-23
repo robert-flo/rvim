@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Wrapper para invocar Neovim usando la configuración aislada 'rvim'
-# Utiliza NVIM_APPNAME para separar configuración, plugins, caché y estado.
+# Wrapper to launch Neovim using the isolated 'rvim' configuration.
+# Uses NVIM_APPNAME to isolate configuration, plugins, cache, and state.
 NVIM_APPNAME="rvim" exec nvim "$@"
