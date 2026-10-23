@@ -30,11 +30,22 @@ else
     echo "[OK] Symlink created: $CONFIG_DIR -> $REPO_DIR"
 fi
 
-# 3. Install executable to ~/.local/bin/rvim
+# 3. Symlink plugin pack directory if available from standard nvim
+NVIM_PACK_DIR="$HOME/.local/share/nvim/site/pack"
+RVIM_SITE_DIR="$HOME/.local/share/rvim/site"
+if [ -d "$NVIM_PACK_DIR" ]; then
+    mkdir -p "$RVIM_SITE_DIR"
+    if [ ! -e "$RVIM_SITE_DIR/pack" ]; then
+        ln -s "$NVIM_PACK_DIR" "$RVIM_SITE_DIR/pack"
+        echo "[OK] Plugin pack symlink created: $RVIM_SITE_DIR/pack -> $NVIM_PACK_DIR"
+    fi
+fi
+
+# 4. Install executable to ~/.local/bin/rvim
 install -m 755 "$REPO_DIR/bin/rvim" "$TARGET_BIN"
 echo "[OK] Binary installed to: $TARGET_BIN"
 
-# 4. Verify PATH and startup
+# 5. Verify PATH and startup
 if command -v rvim >/dev/null 2>&1; then
     echo "[OK] 'rvim' detected in current PATH."
     rvim --headless -c "echo '[OK] rvim loaded successfully!'" -c "qa"
