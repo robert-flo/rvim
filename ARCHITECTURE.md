@@ -1,56 +1,73 @@
-# 🏛️ rvim Architecture: Technical and Conceptual Guide
+# 🏛️ rvim Architecture: The Complete Technical Guide
 
-Reference documentation to understand the internal architecture, lifecycle, dependency flow, and design decisions in `rvim`.
-
----
-
-## 🎯 Design Philosophy
-
-1. **Native Neovim 0.12+**: Avoids external plugin managers (`lazy.nvim`, `packer`). Uses native declarative `vim.pack.add` and bytecode compiler `vim.loader`.
-2. **Decoupled Layered Architecture**: The editor must remain 100% usable, fast, and comfortable without any external plugins (Vanilla Core mode). Plugins are enhancements, not mandatory foundations.
-3. **Strict Namespace Isolation (`lua/rvim/`)**: All internal modules live under the `rvim/` prefix within `runtimepath`, preventing naming collisions with third-party libraries or plugins.
-4. **Resilience & Performance**: Cold startup time under 5 ms via bytecode caching and lazy-loading of heavier utilities.
+Reference manual detailing the architecture, execution lifecycle, dependency graph, internal mechanisms, and design decisions of `rvim`.
 
 ---
 
-## 🗺️ Project Topological Map
+## 🎯 1. Architectural Philosophy
+
+1. **Native Neovim 0.12+ (Zero Third-Party Manager Overhead)**:
+   - Eliminates external managers like `lazy.nvim` or `packer`.
+   - Relies on Neovim's native package manager (`vim.pack.add`) paired with `nvim-pack-lock.json` for deterministic revision locking.
+   - Uses `vim.loader.enable()` for persistent bytecode compilation, achieving cold boot times under 5 ms.
+2. **Decoupled 4-Tier Layer Architecture**:
+   - The editor is structured into four distinct, independent layers.
+   - The core configuration (Layer 1) has **zero plugin dependencies**—if plugins fail or are disabled, Neovim remains completely functional, responsive, and comfortable.
+3. **Strict Namespace Encapsulation (`lua/rvim/`)**:
+   - Every internal file lives under the `rvim/` subdirectory within Neovim's `runtimepath`. This eliminates naming collisions with external plugins.
+4. **Upstream Parity & Minimal Diff**:
+   - Code files mirror the upstream Craftzdog configuration 1:1, modifying only the `craftzdog` $\to$ `rvim` namespace string.
+   - All code comments and documentation are maintained in English to facilitate clean git rebases, cherry-picks, and upstream syncs.
+
+---
+
+## 🗺️ 2. Complete Project Topology
 
 ```text
 rvim/
-├── init.lua                          # 🚪 Neovim lifecycle bootstrapper
-├── ARCHITECTURE.md                   # 📖 This architecture document
-├── README.md                         # ⌨️ Usage docs and active keymaps table
-├── install.sh                        # 📦 Installer and symlink script (~/.config/rvim)
-├── bin/rvim                          # 🚀 Launcher wrapper with NVIM_APPNAME="rvim"
-├── after/                            # ⏱️ Late Runtime (post-plugin initialization)
-│   └── lsp/                          # 🔌 Per-server language configurations (lua_ls, vtsls, etc.)
-└── lua/rvim/                         # 🛡️ Private namespace
-    ├── config/                       # ⚙️ LAYER 1: NATIVE CORE (Zero plugins, vanilla Neovim)
-    │   ├── options.lua               # Global vim.opt settings and environment variables
-    │   ├── keymaps.lua               # Native keymaps (splits, tabs, buffers, safe registers)
-    │   ├── autocmds.lua              # Lifecycle events (TextYankPost, reactive CursorLine)
+├── init.lua                          # 🚪 Lifecycle bootstrapper & global API injector
+├── ARCHITECTURE.md                   # 📖 Complete technical architecture guide
+├── README.md                         # ⌨️ Installation guide & complete keymaps manual
+├── install.sh                        # 📦 Automated installer (symlinks config & pack directories)
+├── bin/rvim                          # 🚀 Shell wrapper enforcing NVIM_APPNAME="rvim"
+├── nvim-pack-lock.json               # 🔒 Pinned git commit hashes for all vim.pack plugins
+│
+├── after/                            # ⏱️ LAYER 4: LATE RUNTIME OVERRIDES
+│   └── lsp/                          # Per-server LSP configuration files
+│       ├── cssls.lua                 # CSS / SCSS / Less lint settings
+│       ├── lua_ls.lua                # Neovim runtime library & Lua diagnostics
+│       ├── oxlint.lua                # Oxlint high-speed Rust linter daemon
+│       └── vtsls.lua                 # TypeScript language server optimization & inlay hints
+│
+└── lua/rvim/                         # 🛡️ PRIVATE NAMESPACE
+    ├── config/                       # ⚙️ LAYER 1: NATIVE CORE (Zero external plugins)
+    │   ├── options.lua               # Global vim.opt settings, vim._core.ui2 floating cmdline
+    │   ├── keymaps.lua               # 29 native keymaps with register isolation ("_, "0)
+    │   ├── autocmds.lua              # Lifecycle events (UserConfig, CursorLine, TextYankPost)
     │   ├── commands.lua              # User commands (:ToggleFormatter)
-    │   └── workarounds.lua           # Upstream bug workarounds
-    ├── utils/                        # 🧰 LAYER 2: GLOBAL SERVICES AND HELPERS
-    │   ├── init.lua                  # Exposes `_G.Rvim` as global API
-    │   ├── icons.lua                 # Centralized Nerd Font glyphs dictionary
-    │   ├── editor.lua                # Path manipulation, floating buffers, markdown copy
-    │   ├── lazygit.lua               # Decoupled floating terminal for LazyGit
-    │   ├── lualine.lua               # Reactive statusline components
-    │   └── tabline.lua               # Top tabline rendering
-    └── plugins/                      # 📦 LAYER 3: ECOSYSTEM & PLUGINS MANAGEMENT
-        ├── init.lua                  # Declarative package sources via vim.pack.add
-        ├── ui.lua                    # Solarized Osaka, Lualine, Incline, Trouble
-        ├── treesitter.lua            # AST parsers, syntax highlighting, and folding
-        ├── editor.lua                # Blink.cmp (Rust), Conform.nvim, Mini.pairs, Gitsigns
-        ├── lsp.lua                   # Mason, Mason-tool-installer, Nvim-lspconfig
-        ├── util.lua                  # Oil.nvim (directory as buffer), Copilot
-        └── keymaps.lua               # Plugin-dependent keymaps only
+    │   └── workarounds.lua           # Upstream Neovim bug workarounds (Treesitter fold #40290)
+    │
+    ├── utils/                        # 🧰 LAYER 2: UTILITIES & SERVICES TOOLKIT
+    │   ├── init.lua                  # Aggregator exporting _G.Rvim singleton
+    │   ├── icons.lua                 # Centralized Nerd Font glyphs catalog
+    │   ├── editor.lua                # Root detection, package.json popup, codeblock copy, permalinks
+    │   ├── lazygit.lua               # RPC-aware Lazygit terminal wrapper preserving origin pane
+    │   ├── lualine.lua               # Reactive statusline components (pretty_path, root_dir, macro)
+    │   └── tabline.lua               # Headless tabline renderer with powerline arrow glyphs
+    │
+    └── plugins/                      # 📦 LAYER 3: PLUGINS ECOSYSTEM
+        ├── init.lua                  # vim.pack.add declaration and submodule orchestrator
+        ├── ui.lua                    # Solarized Osaka, mini.icons, snacks, incline, codediff
+        ├── treesitter.lua            # 40+ AST parsers, MDX support, syntax highlighter autocommands
+        ├── editor.lua                # Blink.cmp, Conform formatting, mini.pairs, Gitsigns, mini.diff
+        ├── lsp.lua                   # Mason tool installer, Blink LSP capability bridge, lsp.enable
+        ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
+        └── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
 ```
 
 ---
 
-## ⚡ Lifecycle and Startup Flow
+## ⚡ 3. Boot Lifecycle & Execution Order
 
 ```
 [bin/rvim]
@@ -58,119 +75,150 @@ rvim/
     ▼
 [init.lua]
     │  1. vim.loader.enable()  ---> Compiles Lua to bytecode & caches &rtp (~/.cache/rvim/luacache)
-    │  2. _G.Rvim = require("rvim.utils") ---> Injects global helper API
+    │  2. _G.Rvim = require("rvim.utils") ---> Exposes global services singleton
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> Native keymaps and safe registers ("0, "_)
+    │  • rvim.config.keymaps   ---> 29 native keymaps & safe registers ("0, "_)
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter)
     │  • rvim.config.workarounds -> Upstream patches
     ▼
-[Layer 3: Plugins (vim.pack.add)]
-    │  Clones / links packages into ~/.local/share/rvim/site/pack/core/opt/
-    │  • ui (Colors, status, floating windows)
-    │  • treesitter (AST syntax parsers)
-    │  • editor (Completion, formatting, autopairs)
-    │  • lsp (Mason, Language Servers)
-    │  • util (Oil.nvim, Copilot)
-    │  • plugins.keymaps (Plugin-dependent keymaps: Snacks, LSP, Oil)
+[Layer 3: Plugins Ecosystem (vim.pack.add)]
+    │  Resolves git repositories from ~/.local/share/rvim/site/pack/core/opt/
+    │  • ui         ---> Theme, Lualine, Incline, Snacks setup
+    │  • treesitter ---> AST grammars & dynamic syntax start
+    │  • editor     ---> Blink.cmp engine, Conform formatter, Gitsigns, Mini.pairs
+    │  • lsp        ---> Mason package installer, Blink LSP capability injection
+    │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
+    │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
     ▼
-[Layer 4: Late Runtime (&rtp: after/lsp/)]
+[Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
 ```
 
 ---
 
-## 🧩 Detailed Layer Breakdown
+## 🧩 4. In-Depth Layer Breakdown
 
 ### Layer 0: Bootstrapping & Caching (`init.lua`)
-- **`vim.loader.enable()`**: Enables Neovim's built-in bytecode loader. Instead of reading, parsing, and compiling `.lua` files from disk on every launch, Neovim validates timestamps and reads compiled bytecode, dramatically reducing startup time.
-- **Global Injection `_G.Rvim`**: Defined before plugins load to eliminate redundant `require()` calls across hot paths such as statusline components and frequent keymaps.
+- **`vim.loader.enable()`**: Compiles all Lua modules on first run into bytecode stored in `~/.cache/rvim/luacache`. On subsequent runs, Neovim validates file modification timestamps and directly loads bytecode, eliminating Lua interpretation overhead and cutting boot time down to < 5 ms.
+- **Global Injection `_G.Rvim`**: Initialized immediately after `vim.loader`. Components across the editor access `_G.Rvim.icons` or `_G.Rvim.editor` directly without repeated filesystem lookups via `require()`.
+
+---
 
 ### Layer 1: Native Core (`lua/rvim/config/`)
-Completely independent of external packages:
+Provides a zero-plugin vanilla editing environment:
 - **`options.lua`**:
-  - Standard 2-space indentation (`tabstop`, `shiftwidth`, `expandtab`).
-  - Persistent undo across sessions (`undofile` in `~/.cache/nvim/undodir`).
-  - Enables modern floating UI via `vim._core.ui2` (messages, command line, and dialogs in native floating windows).
+  - Indentation: 2 spaces (`tabstop = 2`, `shiftwidth = 2`, `expandtab = true`, `smartindent = true`).
+  - Persistent undo: `undofile = true`, storing history across reboots in `~/.cache/nvim/undodir`.
+  - Native Floating UI (`vim._core.ui2`): Neovim 0.12+ experimental UI capturing command line, messages, and pagers into floating dialogs.
+  - Viewports: `scrolloff = 10`, `sidescrolloff = 8`, `cursorline = true`, `termguicolors = true`.
 - **`keymaps.lua`**:
-  - **Register Isolation**: In Vim, standard deletion (`d`, `x`) overwrites the default clipboard. Here, destructive operations target the black hole register (`"_`), while safe pasting pulls from register `"0` (the last genuine yank).
-  - **Window Navigation**: Splits created with `ss` (horizontal) and `sv` (vertical); focus shifted using `sh`, `sj`, `sk`, `sl`.
+  - **Register Isolation**: Remaps destructive deletions (`d`, `x`, `c`) to the black hole register (`"_`), preventing clipboard pollution.
+  - **Prioritized Pasting**: `<Space> + p` pastes from register `"0` (the last deliberate yank).
+  - **Window Splits**: `ss` (horizontal), `sv` (vertical), navigation via `sh`, `sj`, `sk`, `sl`.
+  - **Tabs**: `te` (`:tabedit`), `<Tab>` (next), `<S-Tab>` (previous).
 - **`autocmds.lua`**:
-  - Instant visual feedback on copied text (`vim.highlight.on_yank`).
-  - Dynamic `CursorLine`: line highlight is active only in the focused window and disabled on `WinLeave` to minimize visual noise.
-- **`workarounds.lua`**:
-  - Contains documented patches for upstream Neovim bugs, isolated so they can be removed once resolved in newer releases.
+  - `TextYankPost`: High-visibility flash on copied text (`vim.highlight.on_yank()`).
+  - `CursorLine`: Automatically toggles `cursorline` on only the currently focused window (`WinEnter` / `WinLeave`), eliminating visual clutter.
+  - `InsertLeave`: Resets `nopaste` mode upon leaving insert mode.
+- **`commands.lua`**: Defines `:ToggleFormatter` command.
+- **`workarounds.lua`**: Intercepts `OptionSet` to delete broken Treesitter fold refresh autocmds triggering upstream bug `#40290`.
+
+---
 
 ### Layer 2: Services and Utilities (`lua/rvim/utils/`)
-Reusable toolkit and service layer decoupled from external plugins, exposed globally via `_G.Rvim`:
-
-- **`init.lua` (The Aggregator & Singleton)**:
-  - Consolidates and re-exports `icons`, `lualine`, `tabline`, and `editor`.
-  - Injected directly into the Lua global table as `_G.Rvim = require("rvim.utils")` during boot in `init.lua`, giving all commands, keymaps, and UI components zero-overhead access without redundant `require()` calls.
-
-- **`icons.lua` (Centralized Nerd Font Dictionary)**:
-  - Structured, categorized glyph tables for:
-    - `diagnostics`: `Error` (), `Warn` (), `Hint` (), `Info` ().
-    - `git`: `added` (), `modified` (), `removed` ().
-    - `kinds`: Comprehensive LSP completion item symbols (Function, Method, Variable, Class, Interface, Copilot, etc.).
-    - `dap`: Debugger breakpoints, stopped lines, and condition indicators.
-  - Centralizing icons ensures typography and glyph updates require modifying exactly one file.
-
-- **`editor.lua` (Editing & Buffer Mechanics)**:
-  - **Project Root Discovery**: Upward traversal searching for `root_patterns` (`.git`, `lua`, `package.json`, `Makefile`, `Cargo.toml`, `go.mod`, `pyproject.toml`) with path normalization across symlinks.
-  - **`open_package_json()`**: Calculates dynamic floating window dimensions (80% width/height of the editor grid), centers the window, loads `package.json`, and attaches buffer-local `<Esc>` / `q` close mappings.
-  - **`copy_as_codeblock()`**: Converts visual selection into a GitHub/GitLab-ready Markdown code fence with language detection, relative filename, and starting line number metadata (e.g., ````tsx filename="src/App.tsx" line=42````).
-  - **`delete_hidden_buffers()`**: Queries `vim.api.nvim_list_bufs()`, checks active visibility against `vim.api.nvim_list_wins()`, and safely deletes inactive buffers while guarding dirty/unwritten buffers.
-  - **`toggle_formatter()`**: Flips the buffer-local flag `vim.b[bufnr].disable_autoformat`, consumed downstream by formatting engines like Conform.nvim.
-  - **Path Permalinks**: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes for instant sharing in code reviews.
-
-- **`lazygit.lua` (RPC-Aware Terminal Integration)**:
-  - **Origin Window Preservation**: Remembers the exact window ID (`origin_win`) from which LazyGit was triggered.
-  - **IPC Communication**: Leverages Neovim's active socket via `nvim --server "$NVIM"` to send RPC commands (`--remote-send`, `--remote`). When a file is selected for editing inside LazyGit (`e`), LazyGit signals the parent Neovim instance to focus `origin_win` and open the file in the existing pane rather than spawning duplicate tabs.
-
-- **`lualine.lua` (Statusline Component Primitives)**:
-  - **`pretty_path()`**: Condenses file paths relative to project root or cwd, truncates deep hierarchies with an ellipsis (`src/…/components/Button.tsx`), highlights directories separately from filenames, and dynamically reflects modified / readonly states.
-  - **`root_dir()`**: Renders project root basename with conditional visibility (hides when cwd equals root, shows when navigating subdirectories).
-  - **`macro_recording()`**: Reactive macro indicator tied to `RecordingEnter`/`RecordingLeave` events.
-
-- **`tabline.lua` (Headless Tabline Renderer)**:
-  - Independent tabline renderer (`tabline.render()`) implementing powerline lower triangles (``, ``).
-  - Encodes clickable tab page indices (`%1T...%T`).
-  - Introspects buffers per tab, resolves filetype icons via `mini.icons`, and cleanly displays special buffer titles (e.g., `[Terminal]`, truncated Oil directory paths).
-
-
-### Layer 3: Plugins (`lua/rvim/plugins/`)
-- **`init.lua` (`vim.pack.add`)**:
-  - Declarative list of GitHub plugin sources.
-  - Neovim manages packages following standard Vim/Neovim pack conventions without background daemons or intermediate databases.
-- **Keymaps Separation**:
-  - Keymaps referencing `Snacks.picker`, `Oil`, or `vim.lsp.buf` reside in `plugins/keymaps.lua`. If a plugin is disabled or troubleshooting occurs, native keymaps in `config/keymaps.lua` continue to work without throwing Lua errors.
-
-### Layer 4: Late LSP Configuration (`after/lsp/`)
-- Neovim evaluates the `after/` directory after processing the main configuration.
-- Storing configurations like `after/lsp/vtsls.lua` or `after/lsp/lua_ls.lua` keeps individual Language Server tweaks isolated, avoiding huge single-file LSP configs.
+Reusable service layer decoupled from plugins:
+- **`init.lua`**: Consolidates `icons`, `lualine`, `tabline`, and `editor` into the singleton table `_G.Rvim`.
+- **`icons.lua`**: Centralized Nerd Font glyph catalog for LSP types, diagnostics, and git changes.
+- **`editor.lua`**:
+  - Project root detection via upward directory traversal looking for markers (`.git`, `lua`, `package.json`, `Makefile`, etc.).
+  - `open_package_json()`: Opens project `package.json` in a centered floating window taking up 80% of screen dimensions, with buffer-local `<Esc>` / `q` close handlers.
+  - `copy_as_codeblock()`: Formats visual selections into GitHub-ready Markdown blocks with language metadata and line numbers (` ```tsx filename="src/App.tsx" line=42 `).
+  - `delete_hidden_buffers()`: Iterates `vim.api.nvim_list_bufs()`, checks visibility against `vim.api.nvim_list_wins()`, and safely closes inactive unedited buffers.
+  - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat`.
+  - Path permalinks: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes.
+- **`lazygit.lua`**:
+  - Preserves `origin_win` before opening LazyGit in a floating terminal.
+  - Implements an IPC mechanism using Neovim's active socket (`nvim --server "$NVIM"`). When a file is selected inside LazyGit (`e`), it signals Neovim to refocus `origin_win` and open the file in the existing pane.
+- **`lualine.lua`**: Provides `pretty_path()` (path truncation with `…`), `root_dir()` (context-aware project basename display), and `macro_recording()` indicator.
+- **`tabline.lua`**: Renders clickable tab headers using powerline triangles (``, ``) and buffer icons.
 
 ---
 
-## 🔒 Keymap Conventions and Rules
-
-1. **`<Leader>` is mapped to Space (`<Space>`)**.
-2. **Keymaps with `<Space>`**: Reserved for global actions, safe destructive workflows, diagnostics, and major tools (`<Space> + f` for formatting, `<Space> + ca` for Code Actions).
-3. **Direct Keymaps (Without `<Space>`)**: Tailored for high-frequency navigation:
-   - `;f`: File picker
-   - `;r`: Live Grep
-   - `sf`: File explorer (Oil)
-   - `ss` / `sv`: Window split
-   - `sh` / `sj` / `sk` / `sl`: Window focus shift
-   - `te`: New tab
+### Layer 3: Plugins Ecosystem (`lua/rvim/plugins/`)
+Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`:
+- **`init.lua`**: Declaratively registers all 24 plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
+- **`ui.lua`**:
+  - `solarized-osaka.nvim`: Vivid, transparent color scheme.
+  - `mini.icons`: Lightweight icons library with `mock_nvim_web_devicons()`.
+  - `snacks.nvim`: Notifier, statuscolumn, smooth indent guides, and word highlight.
+  - `incline.nvim`: Subtle floating pill in the top-right corner of each window displaying filename and modified status.
+  - `codediff.nvim`: Two-way interactive diff comparison viewer.
+  - `lualine.nvim`: Statusline configured with mode, branch, root directory, pretty path, macro status, diagnostics, and git hunks.
+- **`treesitter.lua`**:
+  - Installs 40+ grammars (`astro`, `bash`, `c`, `css`, `html`, `javascript`, `json`, `lua`, `markdown`, `python`, `rust`, `tsx`, `typescript`, etc.).
+  - Binds MDX to Markdown parser.
+  - Automatically starts highlighter and indentation expression on `FileType` events.
+  - Binds `PackChanged` event to run `TSUpdate`.
+- **`editor.lua`**:
+  - `blink.cmp`: High-performance completion engine written in Rust, configured with auto-brackets, cmdline completion, and `Rvim.icons.kinds`.
+  - `conform.nvim`: Format-on-save pipeline with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, and `fish_indent`.
+  - `mini.pairs`: Autocloses parentheses, quotes, and markdown backticks, with Treesitter string node awareness.
+  - `gitsigns.nvim` & `mini.diff`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb`), and hunk staging.
+  - `nvim-highlight-colors`: Real-time color preview (hex, rgb, hsl).
+  - `todo-comments.nvim`: Highlights and searches `TODO:`, `FIXME:`, `NOTE:` tags.
+- **`lsp.lua`**:
+  - `mason.nvim` & `mason-tool-installer.nvim`: Automates installation of LSP servers and formatters (`vtsls`, `lua-language-server`, `prettier`, `oxlint`, `rust-analyzer`, etc.).
+  - Bridges Blink.cmp completion capabilities into all LSP servers via `vim.lsp.config("*", ...)`.
+  - Enables active language servers (`eslint`, `oxlint`, `lua_ls`, `cssls`, `vtsls`, `tailwindcss`, `rust_analyzer`).
+- **`util.lua`**:
+  - `oil.nvim`: File manager that lets you edit filesystem directories just like normal text buffers (`sf`).
+  - `copilot.lua`: Inline AI code completion suggestions with `<C-l>` accept.
+- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
 
 ---
 
-## 🛠️ Maintaining and Extending the Configuration
+### Layer 4: Late LSP Runtime Overrides (`after/lsp/`)
+Neovim automatically evaluates the `after/` directory at the end of its startup cycle. Files named `<server>.lua` in `after/lsp/` automatically inject fine-tuned settings into their corresponding LSP servers:
+- **`vtsls.lua`**: Enables inlay hints (enum member values, return types, parameter names), automatic import updating on file move, and optimizes semantic tokens.
+- **`lua_ls.lua`**: Configures Neovim runtime library indexing (`vim.env.VIMRUNTIME`), enables inlay hints, and silences noise for internal variables (`_*`).
+- **`oxlint.lua`**: Configures the ultra-fast Rust-based linter daemon with `--lsp`.
+- **`cssls.lua`**: Silences empty rule lint warnings for CSS, SCSS, and Less.
 
-- **Add a native setting**: Edit `lua/rvim/config/options.lua`.
-- **Add a native keymap**: Edit `lua/rvim/config/keymaps.lua`.
-- **Install a plugin**: Add `{ src = gh("author/repository") }` to `lua/rvim/plugins/init.lua` and configure it in its respective category file (`ui.lua`, `editor.lua`, etc.).
-- **Add an LSP server**: Register it in `mason` inside `lua/rvim/plugins/lsp.lua` and optionally add fine-tuned overrides under `after/lsp/<server_name>.lua`.
+---
+
+## 🔒 5. Keymap Rules & Mental Model
+
+1. **Space Leader (`<Space>`)**:
+   - Reserved for major actions, formatting, diagnostics, safe destructive operations, and git commands:
+   - `<Space> + f`: Format code
+   - `<Space> + ca`: Code actions
+   - `<Space> + cr`: Rename symbol
+   - `<Space> + p`: Safe paste from register `"0`
+   - `<Space> + gb` / `gs` / `gh`: Git blame and staging
+2. **Direct Prefix Keys (No Space)**:
+   - Reserved for ultra-fast, high-frequency navigation:
+   - `;f` (files), `;r` (live grep), `\\` (open buffers), `;;` (resume search), `;g` (lazygit)
+   - `sf` (oil file explorer)
+   - `ss` / `sv` (horizontal/vertical split), `sh`/`sj`/`sk`/`sl` (focus navigation)
+   - `te` (new tab), `<Tab>` / `<S-Tab>` (cycle tabs)
+   - `gd` (definition), `gr` (references), `K` (hover doc)
+
+---
+
+## 🛠️ 6. Maintenance & Extension Playbook
+
+- **Add or change native settings**: Edit `lua/rvim/config/options.lua`.
+- **Add native keymaps**: Edit `lua/rvim/config/keymaps.lua`.
+- **Install a new plugin**:
+  1. Add `{ src = gh("owner/repo") }` to `vim.pack.add` in `lua/rvim/plugins/init.lua`.
+  2. Configure it in its respective category file (`ui.lua`, `editor.lua`, etc.).
+  3. Lock the commit hash in `nvim-pack-lock.json`.
+- **Add or fine-tune an LSP server**:
+  1. Add to `ensure_installed` in `lua/rvim/plugins/lsp.lua`.
+  2. Add the server name to `vim.lsp.enable({ ... })`.
+  3. Create `after/lsp/<server_name>.lua` to supply custom server settings.
+- **Syncing with upstream**:
+  Because code divergence is strictly restricted to the `rvim` namespace, upstream changes from Craftzdog can be incorporated via git patch or merge with minimal conflict resolution.
