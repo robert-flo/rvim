@@ -1,0 +1,9 @@
+# Archivos locales o temporales
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Bloqueos de paquetes si usas vim.pack o lazy en el futuro
+# lazy-lock.json
+# nvim-pack-lock.json
