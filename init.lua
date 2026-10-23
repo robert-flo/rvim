@@ -1,12 +1,14 @@
-vim.g.mapleader = " "
+if vim.loader then
+	vim.loader.enable()
+end
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.clipboard = "unnamedplus"
+-- _G.dd = function(...)
+--     require("util.debug").dump(...)
+-- end
+-- vim.print = _G.dd
 
-local map = vim.keymap.set
-map("n", "<leader>w", "<cmd>w<cr>")
-map("n", "<leader>q", "<cmd>q<cr>")
+require("rvim.config.options")
+require("rvim.config.keymaps")
+require("rvim.config.autocmds")
+require("rvim.config.commands")
+require("rvim.config.workarounds")
