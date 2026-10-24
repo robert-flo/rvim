@@ -343,18 +343,18 @@ When launched with an empty buffer (`rvim`), an advanced multi-pane interactive 
 | **`z`** | **Force Quit** | Discard all changes and exit immediately (`:q!`) |
 | **`q`** | **Quit** | Cleanly exit Neovim (`:qa`) |
 
-#### Pane 2 (Right): Live Telemetry, GitHub CLI & Git Status
+#### Pane 2 (Right): Live Telemetry, Universal GitHub CLI & Workspace Status
 | Key | Action | Description |
 | :---: | :--- | :--- |
 | — | **Color Script** | Vibrant 3-line terminal square palette without exit artifacts |
 | — | **Live Weather** | Compact single-line weather telemetry (`wttr.in`) |
 | **`n`** | **Notifications** | View sanitized, readable GitHub notifications with web jump (`:lua vim.ui.open(...)`) |
 | **`B`** | **Browse Repo** | Open repository directly on GitHub (`Snacks.gitbrowse()`) *(Git only)* |
-| **`i`** | **Open Issues** | Display 5 latest repository issues and open in browser (`gh issue list --web`) *(Git only)* |
-| **`P`** | **Open PRs** | Display 5 latest repository pull requests and open in browser (`gh pr list --web`) *(Git only)* |
-| — | **Git Status** | Real-time working tree diff statistics (`git diff --stat -B -M -C`) *(Git only)* |
-| — | **Recent Files** | Instant list of 5 (in git) or 10 (outside git) recently opened files |
-| — | **Projects** | Instant list of 8 recent project workspaces *(outside git only)* |
+| **`i`** | **Open Issues** | Universal priority issues: repo issues (in git) or assigned GitHub issues (outside git) |
+| **`P`** | **Open PRs** | Universal priority PRs: repo PRs (in git) or authored GitHub PRs (outside git) |
+| — | **Git Status & Workspace** | Working tree diff or clean branch commits (in git) / system status (outside git) |
+| — | **Recent Files** | Instant list of 8 recently opened files |
+| — | **Projects** | Instant list of 6 recent project workspaces |
 
 ---
 

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Universal & Intelligent Git / Workspace Status Widget for RVIM Dashboard
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    diff=$(git --no-pager diff --stat -B -M -C 2>/dev/null)
+    branch=$(git branch --show-current 2>/dev/null || echo "HEAD")
+    if [ -n "$diff" ]; then
+        echo -e "\033[33mGit Working Tree Diff (\033[1;36m$branch\033[0m\033[33m)\033[0m"
+        echo "$diff"
+    else
+        echo -e "\033[32m✔ Working tree clean\033[0m on branch \033[1;36m$branch\033[0m"
+        git --no-pager log -n 3 --oneline --color=always 2>/dev/null
+    fi
+else
+    echo -e "\033[38;2;147;161;161mSystem & Workspace Status\033[0m"
+    echo -e "User: \033[1;36m$USER\033[0m • Host: \033[33m$(uname -n)\033[0m • Kernel: \033[35m$(uname -r)\033[0m"
+    uptime -p 2>/dev/null || true
+fi
