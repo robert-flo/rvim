@@ -82,6 +82,7 @@ which_key.add({
 	{ "<leader>c", group = "Code" },
 	{ "<leader>d", group = "Diff" },
 	{ "<leader>s", group = "Split / Window" },
+	{ "<leader>y", group = " Yank" },
 
 	-- Git Suite (<leader>g) - Normal Mode
 	mode = { "n" },
@@ -231,13 +232,26 @@ which_key.add({
 	{ "<leader>gtn", "<cmd>Gitsigns toggle_numhl<cr>", desc = "Number HL" },
 	{ "<leader>gts", "<cmd>Gitsigns toggle_signs<cr>", desc = "Signs" },
 	{ "<leader>gtw", "<cmd>Gitsigns toggle_word_diff<cr>", desc = "Word Diff" },
+	-- Yank Suite (<leader>y) - Normal Mode
+	{ "<leader>y", group = " Yank" },
+	{ "<leader>ya", ":%y+<cr>", desc = "Copy Whole File" },
+	{ "<leader>yf", "<cmd>CopyFileName<cr>", desc = "File Name" },
+	{ "<leader>yg", "<cmd>CopyGitUrl<cr>", desc = "Copy Git URL" },
+	{ "<leader>yl", "<cmd>CopyRelativePathWithLine<cr>", desc = "Relative Path with Line" },
+	{ "<leader>yL", "<cmd>CopyAbsolutePathWithLine<cr>", desc = "Absolute Path with Line" },
+	{ "<leader>yp", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
+	{ "<leader>yP", "<cmd>CopyAbsolutePath<cr>", desc = "Absolute Path" },
 })
 
--- Git Suite (<leader>g) - Visual Mode
+-- Visual Mode
 which_key.add({
 	mode = { "v" },
 	{ "<leader>g", group = "󰊢 Git" },
 	{ "<leader>ga", ":'<,'>Gitsigns stage_hunk<cr>", desc = "Stage Hunk" },
 	{ "<leader>gr", ":'<,'>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
 	{ "<leader>gu", ":'<,'>Gitsigns undo_stage_hunk<cr>", desc = "Undo Stage Hunk" },
+
+	-- Yank Suite (<leader>y) - Visual Mode
+	{ "<leader>y", group = " Yank" },
+	{ "<leader>yg", ":CopyGitUrl<cr>", desc = "Copy Git URL" },
 })
