@@ -97,13 +97,6 @@ which_key.add({
 	{ "<leader>gC", "<cmd>CoAuthor<cr>", desc = "Co-Authors" },
 	{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
 	{
-		"<leader>gD",
-		function()
-			require("mini.diff").toggle_overlay()
-		end,
-		desc = "Toggle MiniDiff overlay",
-	},
-	{
 		"<leader>gf",
 		function()
 			Snacks.picker.git_log_file()
@@ -158,42 +151,6 @@ which_key.add({
 			require("snacks").gitbrowse()
 		end,
 		desc = "Git Browse",
-	},
-	{
-		"<leader>gO",
-		function()
-			local async = require("gitsigns.async")
-			local cache = require("gitsigns.cache").cache
-
-			async.run(function()
-				local bufnr = vim.api.nvim_get_current_buf()
-				local lnum = vim.api.nvim_win_get_cursor(0)[1]
-				local bcache = cache[bufnr]
-				if not bcache then
-					return
-				end
-
-				bcache:get_blame(lnum)
-				local blame = bcache.blame
-				if not blame or not blame.entries or not blame.entries[lnum] then
-					return
-				end
-
-				local info = blame.entries[lnum]
-				local sha = info.commit.sha
-
-				if tonumber("0x" .. sha:sub(1, 8)) == 0 then
-					vim.notify("Line not committed yet", vim.log.levels.WARN)
-					return
-				end
-
-				vim.cmd.tabnew()
-				require("gitsigns.actions.diffthis").show(bufnr, sha, info.filename)
-				async.schedule()
-				pcall(vim.api.nvim_win_set_cursor, 0, { info.orig_lnum or lnum, 0 })
-			end)
-		end,
-		desc = "Open file from blamed commit (Gitsigns)",
 	},
 
 	-- GitHub subgroup (<leader>gh)

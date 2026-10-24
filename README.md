@@ -125,7 +125,6 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gc`** | Normal | **Commit Staged** in floating terminal |
 | ✅ **YES** | **`<Space> + gC`** | Normal | **Co-Authors** picker (`co-author.nvim` + `Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gd`** | Normal | **Git Diff** against HEAD (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gD`** | Normal | Toggle inline overlay diff view (`MiniDiff`) |
 | ✅ **YES** | **`<Space> + gf`** | Normal | **File Commits** history picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gg`** | Normal | **Launch Lazygit** |
 | ✅ **YES** | **`<Space> + gi`** | Normal | **Hunk Info** / preview floating window |
@@ -140,7 +139,6 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gu`** | Normal / Visual | **Undo Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gv`** | Normal | **Select Hunk** visual range (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gw`** | Normal | **Git Browse** repository / file on web (`Snacks.gitbrowse`) |
-| ✅ **YES** | **`<Space> + gO`** | Normal | Open file in new tab at commit of line blame |
 | ✅ **YES** | **`<Space> + dv`** | Normal | Interactive code comparison (`CodeDiff`) |
 | ✅ **YES** | **`<Space> + dh`** | Normal | Git commit history for current file |
 | ✅ **YES** | **`<Space> + dH`** | Normal | Git commit history for entire repository |
