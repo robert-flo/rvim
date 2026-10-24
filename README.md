@@ -60,9 +60,27 @@ rvim
 
 ### 🔍 1.1 Pickers Suite (`<Space> + ;`) & Express Shortcuts (`;*`)
 
-Two-tier interaction model: WhichKey serves as the **interactive single source of truth** under `<Space> + ;`, while direct `;*` bindings act as **express muscle-memory shortcuts** without touching Space:
+#### 🎯 The Two-Tier Architecture
 
-| WhichKey (`<Space> + ;`) | Express Shortcut | Action | Description |
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│  Tier 1: Interactive Discovery Hub (Which-Key)                  │
+│  <Space> + ;                                                    │
+│  → Visual, documented, colored, and grouped under " Pickers"   │
+└─────────────────────────────────┬───────────────────────────────┘
+                                  │ 1:1 Key & Function Parity
+┌─────────────────────────────────▼───────────────────────────────┐
+│  Tier 2: Express Muscle-Memory Shortcuts                        │
+│  Direct ;* (e.g. ;f, ;r, ;s, ;b, ;w, \\)                        │
+│  → Instant 2-key execution without pressing Space               │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### 📋 Complete Parity Matrix
+
+Every single action in the Pickers suite shares the identical key mnemonic between Which-Key and the direct shortcut:
+
+| Which-Key (`<Space> + ;`) | Express Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
 | **`<Space> + ;;`** | **`;;`** | **Resume Picker** | Reopens last closed search picker session |
 | **`<Space> + ;b`** | **`;b`** / **`\\`** | **List Buffers** | Fuzzy search open buffers (jumps to existing window) |
@@ -76,6 +94,24 @@ Two-tier interaction model: WhichKey serves as the **interactive single source o
 | **`<Space> + ;r`** | **`;r`** | **Live Grep** | Search project text with ripgrep (`Snacks.picker.grep`) |
 | **`<Space> + ;s`** | **`;s`** | **Document Symbols** | Fuzzy search functions, variables, classes |
 | **`<Space> + ;w`** | **`;w`** | **Grep Word** | Grep word under cursor across repository |
+
+#### 🎨 Visual Layout in Which-Key
+
+```text
+                Pickers
+; → Resume Picker
+b → List Buffers
+c → Incoming Calls
+e → Diagnostics
+f → Find Files
+g → Lazygit
+h → Git Diff Hunks
+n → Notifications
+o → Recent Files
+r → Live Grep
+s → Document Symbols
+w → Grep Word
+```
 
 ---
 
@@ -270,7 +306,7 @@ When launched with an empty buffer (`rvim`), an interactive dashboard opens with
 | ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Normal | Move focus Left / Down / Up / Right |
 | ❌ **NO** | **`te`** | Normal | Open clean tab (`:tabedit`) |
 | ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Normal | Navigate next / previous tab |
-| ❌ **NO** | **`\\`** | Normal | List open buffers and switch |
+| ❌ **NO** | **`\\`** / **`;b`** | Normal | List open buffers and switch (or **`<Space> + ;b`** in Which-Key) |
 | ✅ **YES** | **`<Space> + bd`** | Normal | Delete all hidden buffers not displayed in any window |
 
 ---
