@@ -29,6 +29,10 @@
       "rev": "683137003522aebd6948358334164a6ba2ca7cd5",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "homegrown.nvim": {
+      "rev": "da0f8f1b8b1afbeca0253ed2a330580644e9c237",
+      "src": "https://github.com/2kabhishek/homegrown.nvim"
+    },
     "incline.nvim": {
       "rev": "debd628e9395f7a9da57bdc31ce75ca6b40a880b",
       "src": "https://github.com/b0o/incline.nvim"
@@ -81,6 +85,10 @@
     "pickme.nvim": {
       "rev": "c5c52b4d1690e0cdbd41e5e223ab3e0540e23bad",
       "src": "https://github.com/2kabhishek/pickme.nvim"
+    },
+    "seeker.nvim": {
+      "rev": "5aa8e1174b11418a1270631b02c4f42ff9620425",
+      "src": "https://github.com/2kabhishek/seeker.nvim"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
