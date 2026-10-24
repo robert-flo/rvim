@@ -83,6 +83,7 @@ which_key.add({
 	{ "<leader>d", group = "Diff" },
 	{ "<leader>s", group = "Split / Window" },
 	{ "<leader>y", group = " Yank" },
+	{ "<leader>;", group = " Pickers" },
 
 	-- Git Suite (<leader>g) - Normal Mode
 	mode = { "n" },
@@ -242,6 +243,93 @@ which_key.add({
 	{ "<leader>yL", "<cmd>CopyAbsolutePathWithLine<cr>", desc = "Absolute Path with Line" },
 	{ "<leader>yp", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
 	{ "<leader>yP", "<cmd>CopyAbsolutePath<cr>", desc = "Absolute Path" },
+
+	-- Pickers Suite (<leader>;) - Normal Mode
+	{ "<leader>;", group = " Pickers" },
+	{
+		"<leader>;;",
+		function()
+			Snacks.picker.resume()
+		end,
+		desc = "Resume Picker",
+	},
+	{
+		"<leader>;b",
+		function()
+			require("rvim.utils.editor").pick_buffers()
+		end,
+		desc = "List Buffers",
+	},
+	{
+		"<leader>;c",
+		function()
+			Snacks.picker.lsp_incoming_calls()
+		end,
+		desc = "Incoming Calls",
+	},
+	{
+		"<leader>;e",
+		function()
+			Snacks.picker.diagnostics()
+		end,
+		desc = "Diagnostics",
+	},
+	{
+		"<leader>;f",
+		function()
+			Snacks.picker.files()
+		end,
+		desc = "Find Files",
+	},
+	{
+		"<leader>;g",
+		function()
+			require("rvim.utils.lazygit").open()
+		end,
+		desc = "Lazygit",
+	},
+	{
+		"<leader>;h",
+		function()
+			Snacks.picker.git_diff()
+		end,
+		desc = "Git Diff Hunks",
+	},
+	{
+		"<leader>;n",
+		function()
+			Snacks.picker.notifications()
+		end,
+		desc = "Notifications",
+	},
+	{
+		"<leader>;o",
+		function()
+			Snacks.picker.recent()
+		end,
+		desc = "Recent Files",
+	},
+	{
+		"<leader>;r",
+		function()
+			Snacks.picker.grep()
+		end,
+		desc = "Live Grep",
+	},
+	{
+		"<leader>;s",
+		function()
+			Snacks.picker.lsp_symbols()
+		end,
+		desc = "Document Symbols",
+	},
+	{
+		"<leader>;w",
+		function()
+			Snacks.picker.grep_word()
+		end,
+		desc = "Grep Word",
+	},
 })
 
 -- Visual Mode
