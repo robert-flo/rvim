@@ -29,6 +29,9 @@ vim.pack.add({
 	-- Util
 	{ src = gh("stevearc/oil.nvim") },
 	{ src = gh("zbirenbaum/copilot.lua") },
+	{ src = gh("2kabhishek/utils.nvim") },
+	{ src = gh("2kabhishek/pickme.nvim") },
+	{ src = gh("2kabhishek/octohub.nvim") },
 })
 
 if #vim.api.nvim_get_runtime_file("lua/rvim/plugins/local.lua", false) > 0 then
@@ -40,4 +43,5 @@ require("rvim.plugins.treesitter")
 require("rvim.plugins.editor")
 require("rvim.plugins.lsp")
 require("rvim.plugins.util")
+require("rvim.plugins.octohub")
 require("rvim.plugins.keymaps")

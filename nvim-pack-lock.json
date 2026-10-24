@@ -66,9 +66,17 @@
       "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
+    "octohub.nvim": {
+      "rev": "cc347c1563a3500fdeed3a892518cb548a196fa9",
+      "src": "https://github.com/2kabhishek/octohub.nvim"
+    },
     "oil.nvim": {
       "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "pickme.nvim": {
+      "rev": "c5c52b4d1690e0cdbd41e5e223ab3e0540e23bad",
+      "src": "https://github.com/2kabhishek/pickme.nvim"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
@@ -89,6 +97,10 @@
     "trouble.nvim": {
       "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
       "src": "https://github.com/folke/trouble.nvim"
+    },
+    "utils.nvim": {
+      "rev": "d80602c9f912f1d11c12b041f49fd8bf2d65530d",
+      "src": "https://github.com/2kabhishek/utils.nvim"
     }
   }
 }
