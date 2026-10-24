@@ -56,9 +56,9 @@ function M.open_package_json()
 		return
 	end
 
-	-- Calculate 80% dimensions
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
+	-- Calculate 90% dimensions
+	local width = math.floor(vim.o.columns * 0.9)
+	local height = math.floor(vim.o.lines * 0.9)
 
 	-- Center the window
 	local col = math.floor((vim.o.columns - width) / 2)
