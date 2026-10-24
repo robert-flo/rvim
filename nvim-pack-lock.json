@@ -86,6 +86,10 @@
       "rev": "c5c52b4d1690e0cdbd41e5e223ab3e0540e23bad",
       "src": "https://github.com/2kabhishek/pickme.nvim"
     },
+    "render-markdown.nvim": {
+      "rev": "8e8795368391036643b622875a6da6a51bcd33f4",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
     "seeker.nvim": {
       "rev": "5aa8e1174b11418a1270631b02c4f42ff9620425",
       "src": "https://github.com/2kabhishek/seeker.nvim"

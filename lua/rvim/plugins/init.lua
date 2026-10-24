@@ -36,6 +36,7 @@ vim.pack.add({
 	{ src = gh("2kabhishek/octohub.nvim") },
 	{ src = gh("2kabhishek/seeker.nvim") },
 	{ src = gh("2kabhishek/homegrown.nvim") },
+	{ src = gh("MeanderingProgrammer/render-markdown.nvim") },
 })
 
 if #vim.api.nvim_get_runtime_file("lua/rvim/plugins/local.lua", false) > 0 then
@@ -50,5 +51,6 @@ require("rvim.plugins.util")
 require("rvim.plugins.octohub")
 require("rvim.plugins.seeker")
 require("rvim.plugins.homegrown")
+require("rvim.plugins.render-markdown")
 require("rvim.plugins.keymaps")
 require("rvim.plugins.which-key")

@@ -394,6 +394,10 @@ function M.pick_files_and_dirs(opts)
 		picker_opts.ignored = opts.ignored
 	end
 
+	if opts.win then
+		picker_opts.win = opts.win
+	end
+
 	snacks.picker.files(picker_opts)
 end
 
@@ -408,7 +412,23 @@ end
 function M.pick_markdown_files()
 	local ok, snacks = pcall(require, "snacks")
 	local root = ok and (snacks.git.get_root() or vim.fn.getcwd()) or vim.fn.getcwd()
-	M.pick_files_and_dirs({ cwd = root, ft = { "md", "markdown" }, title = "Markdown Files (Repo Root)" })
+	M.pick_files_and_dirs({
+		cwd = root,
+		ft = { "md", "markdown" },
+		title = "Markdown Files (Repo Root)",
+		win = {
+			preview = {
+				wo = {
+					number = false,
+					relativenumber = false,
+					signcolumn = "no",
+					wrap = true,
+					conceallevel = 2,
+					concealcursor = "nvc",
+				},
+			},
+		},
+	})
 end
 
 --- Search files and directories across drive /z/
