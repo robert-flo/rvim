@@ -112,22 +112,59 @@ rvim
 
 ---
 
-### 🌿 4. Git & Version Control
+### 🌿 4. Git & Version Control (`which-key` `<Space> + g`)
+
+Pressing `<Space> + g` opens an interactive centered popup menu powered by `which-key.nvim`:
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
-| ❌ **NO** | **`;g`** | Normal | **Launch Lazygit** (reusing origin pane on file open) |
-| ❌ **NO** | **`;h`** | Normal | Interactive Git hunks picker (`Snacks.picker.git_diff`) |
-| ✅ **YES** | **`<Space> + gb`** | Normal | Blame current line |
-| ✅ **YES** | **`<Space> + gB`** | Normal | Blame entire buffer |
-| ✅ **YES** | **`<Space> + gO`** | Normal | Open file in new tab at commit of line blame (Gitsigns) |
-| ✅ **YES** | **`<Space> + gs`** | Normal | Toggle stage / unstage for entire file |
-| ✅ **YES** | **`<Space> + gh`** | Normal | Toggle stage / unstage for current hunk |
-| ✅ **YES** | **`<Space> + gd`** | Normal | Toggle overlay diff view (`MiniDiff`) |
+| ✅ **YES** | **`<Space> + ga`** | Normal / Visual | **Stage Hunk** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gA`** | Normal | **Stage Buffer** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame** line with full author and commit info |
+| ✅ **YES** | **`<Space> + gB`** | Normal | **Detailed Blame** line popup (`Snacks.git`) |
+| ✅ **YES** | **`<Space> + gc`** | Normal | **Commit Staged** in floating terminal |
+| ✅ **YES** | **`<Space> + gC`** | Normal | **Co-Authors** picker (`co-author.nvim` + `Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gd`** | Normal | **Git Diff** against HEAD (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gD`** | Normal | Toggle inline overlay diff view (`MiniDiff`) |
+| ✅ **YES** | **`<Space> + gf`** | Normal | **File Commits** history picker (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gg`** | Normal | **Launch Lazygit** |
+| ✅ **YES** | **`<Space> + gi`** | Normal | **Hunk Info** / preview floating window |
+| ✅ **YES** | **`<Space> + gj`** | Normal | Jump to **Next Hunk** |
+| ✅ **YES** | **`<Space> + gk`** | Normal | Jump to **Prev Hunk** |
+| ✅ **YES** | **`<Space> + gl`** | Normal | **Line Commits** history picker (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gL`** | Normal | **Git Commit Log** repository history (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gr`** | Normal / Visual | **Reset Hunk** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gR`** | Normal | **Reset Buffer** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gs`** | Normal | **Git Branches** picker & checkout (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gS`** | Normal | **Git Stash** picker (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gu`** | Normal / Visual | **Undo Stage Hunk** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gv`** | Normal | **Select Hunk** visual range (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gw`** | Normal | **Git Browse** repository / file on web (`Snacks.gitbrowse`) |
+| ✅ **YES** | **`<Space> + gO`** | Normal | Open file in new tab at commit of line blame |
 | ✅ **YES** | **`<Space> + dv`** | Normal | Interactive code comparison (`CodeDiff`) |
 | ✅ **YES** | **`<Space> + dh`** | Normal | Git commit history for current file |
 | ✅ **YES** | **`<Space> + dH`** | Normal | Git commit history for entire repository |
+| ❌ **NO** | **`;g`** | Normal | Direct shortcut to launch Lazygit |
+| ❌ **NO** | **`;h`** | Normal | Direct shortcut to interactive Git hunks picker |
 | ❌ **NO** | **`]c`** / **`[c`** | Normal | Jump to next / previous git diff hunk in file |
+
+#### 🌐 GitHub Submenu (`<Space> + gh`)
+| Keymap | Action |
+| :--- | :--- |
+| **`<Space> + ghi`** | GitHub Issues (open) fuzzy picker |
+| **`<Space> + ghI`** | GitHub Issues (all) fuzzy picker |
+| **`<Space> + ghp`** | GitHub Pull Requests (open) fuzzy picker |
+| **`<Space> + ghP`** | GitHub Pull Requests (all) fuzzy picker |
+
+#### 🎚️ Git Toggles Submenu (`<Space> + gt`)
+| Keymap | Action |
+| :--- | :--- |
+| **`<Space> + gtb`** | Toggle virtual line blame |
+| **`<Space> + gtd`** | Toggle deleted lines view |
+| **`<Space> + gtl`** | Toggle line highlight |
+| **`<Space> + gtn`** | Toggle number highlight |
+| **`<Space> + gts`** | Toggle signs in signcolumn |
+| **`<Space> + gtw`** | Toggle word diff |
 
 ---
 
