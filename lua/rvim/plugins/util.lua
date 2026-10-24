@@ -15,13 +15,18 @@ require("oil").setup({
 		show_hidden = true,
 	},
 	float = {
-		padding = 2,
+		padding = 0,
 		border = "rounded",
 		win_options = {
 			winblend = 0,
 		},
-		max_width = 0.9,
-		max_height = 0.9,
+		max_width = 0,
+		max_height = 0.98,
+		override = function(conf)
+			conf.row = 0
+			conf.col = 0
+			return conf
+		end,
 	},
 	preview_win = {
 		update_on_cursor_moved = true,
