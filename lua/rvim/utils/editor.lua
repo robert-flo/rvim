@@ -169,16 +169,135 @@ function M.toggle_formatter()
 	end
 end
 
+--- Copy content to the system clipboard ('+' register) with notification
+---@param content string
+local function copy_to_clipboard(content)
+	vim.fn.setreg("+", content)
+	vim.notify('Copied "' .. content .. '" to the clipboard!', vim.log.levels.INFO)
+end
+M.copy_to_clipboard = copy_to_clipboard
+
+--- Copy relative path of current buffer to clipboard
+function M.copy_relative_path()
+	local path = vim.fn.expand("%")
+	if path == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(path)
+end
+
+--- Copy absolute path of current buffer to clipboard
+function M.copy_absolute_path()
+	local path = vim.fn.expand("%:p")
+	if path == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(path)
+end
+
+--- Copy relative path with current line number to clipboard
+function M.copy_relative_path_with_line()
+	local path = vim.fn.expand("%")
+	if path == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(path .. ":" .. vim.fn.line("."))
+end
+
+--- Copy absolute path with current line number to clipboard
+function M.copy_absolute_path_with_line()
+	local path = vim.fn.expand("%:p")
+	if path == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(path .. ":" .. vim.fn.line("."))
+end
+
+--- Copy current buffer file name to clipboard
+function M.copy_file_name()
+	local name = vim.fn.expand("%:t")
+	if name == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(name)
+end
+
+--- Copy entire buffer contents to clipboard
+function M.copy_whole_file()
+	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+	local content = table.concat(lines, "\n")
+	copy_to_clipboard(content)
+end
+
+--- Copy GitHub/Git remote URL of current file and line range to clipboard
+---@param mode string "n" for normal mode or "v" for visual mode
+---@param line1 integer start line
+---@param line2 integer end line
+function M.copy_git_url(mode, line1, line2)
+	local full_path = vim.fn.expand("%:p")
+	if full_path == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+
+	local repo_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", ""):gsub("%.git$", "")
+	if repo_url == "" then
+		vim.notify("Not a git repository", vim.log.levels.WARN)
+		return
+	end
+
+	-- Convert SSH format to HTTPS url
+	repo_url = repo_url:gsub("^git@github%.com:", "https://github.com/")
+	repo_url = repo_url:gsub("^git@([^:]+):", "https://%1/")
+	repo_url = repo_url:gsub("^ssh://git@", "https://")
+
+	local branch = vim.fn.system("git branch --show-current"):gsub("\n", "")
+	if branch == "" then
+		branch = vim.fn.system("git rev-parse --short HEAD"):gsub("\n", "")
+	end
+
+	-- Get relative path to repository root if possible
+	local relative_file = vim.fn.expand("%:.")
+	local repo_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
+	if vim.v.shell_error == 0 and repo_root ~= "" then
+		if full_path:sub(1, #repo_root) == repo_root then
+			local rel = full_path:sub(#repo_root + 2)
+			if rel ~= "" then
+				relative_file = rel
+			end
+		end
+	end
+
+	local start_line = line1
+	local end_line = line2
+	if mode == "n" then
+		start_line = vim.fn.line(".")
+		end_line = start_line
+	end
+
+	if start_line > end_line then
+		start_line, end_line = end_line, start_line
+	end
+
+	local url = string.format("%s/blob/%s/%s#L%d", repo_url, branch, relative_file, start_line)
+	if mode == "v" and start_line ~= end_line then
+		url = string.format("%s-L%d", url, end_line)
+	end
+	copy_to_clipboard(url)
+end
+
+-- Backward compatibility aliases
 function M.yank_relative_path_with_line()
-	local path = vim.fn.expand("%:.") .. "#L" .. vim.fn.line(".")
-	vim.fn.setreg("+", path)
-	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
+	M.copy_relative_path_with_line()
 end
 
 function M.yank_absolute_path_with_line()
-	local path = vim.fn.expand("%:p") .. "#L" .. vim.fn.line(".")
-	vim.fn.setreg("+", path)
-	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
+	M.copy_absolute_path_with_line()
 end
 
 return M
