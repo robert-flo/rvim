@@ -126,6 +126,7 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 | **`<Space> + ;m`** | **`;m`** | **Git Status** | List modified/staged files with live diff preview |
 | **`<Space> + ;C`** | **`;C`** | **Commands** | Fuzzy search and run Neovim & plugin commands |
 | **`<Space> + ;u`** | **`;u`** | **Undo History** | Visual interactive undo tree explorer |
+| **`<Space> + ;t`** | **`;t`** | **Terminal File Manager** | Launch integrated floating Elio file manager (`:Tfm`) |
 | **`<Space> + ;?`** | **`;?`** | **Help Tags** | Fuzzy search official Neovim documentation |
 
 #### 🎨 Visual Layout in Which-Key
