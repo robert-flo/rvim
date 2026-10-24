@@ -12,12 +12,14 @@ local ensure_installed = {
 	"gitignore",
 	"go",
 	"graphql",
+	"groovy",
 	"html",
 	"http",
 	"java",
 	"javascript",
 	"jsdoc",
 	"json",
+	"kotlin",
 	"lua",
 	"luadoc",
 	"luap",
@@ -25,7 +27,9 @@ local ensure_installed = {
 	"markdown_inline",
 	"php",
 	"printf",
+	"properties",
 	"python",
+	"qmljs",
 	"query",
 	"regex",
 	"rust",
@@ -43,13 +47,15 @@ local ensure_installed = {
 
 TS.install(ensure_installed)
 
--- MDX has no parser of its own; render it with the Markdown one.
+-- Filetype and Treesitter parser registrations
 vim.filetype.add({
 	extension = {
 		mdx = "mdx",
+		qml = "qml",
 	},
 })
 vim.treesitter.language.register("markdown", "mdx")
+vim.treesitter.language.register("qmljs", "qml")
 
 local treesitter_group = vim.api.nvim_create_augroup("TreesitterStart", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
