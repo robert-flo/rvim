@@ -145,6 +145,20 @@ which_key.add({
 	{ "<leader>P", '"0P', desc = "Paste Before Cursor" },
 	{ "<leader>o", "o<Esc>^Da", desc = "Clean Line Below" },
 	{ "<leader>O", "O<Esc>^Da", desc = "Clean Line Above" },
+	{
+		"<leader>u",
+		function()
+			Snacks.picker.undo()
+		end,
+		desc = "Undo History",
+	},
+	{
+		"<leader>?",
+		function()
+			Snacks.picker.help()
+		end,
+		desc = "Help Tags",
+	},
 
 	-- Git Suite (<leader>g) - Normal Mode
 	{ "<leader>g", group = "󰊢 Git" },
@@ -155,14 +169,14 @@ which_key.add({
 		function()
 			require("gitsigns").blame_line({ full = true })
 		end,
-		desc = "Blame",
+		desc = "Blame Line",
 	},
 	{
 		"<leader>gB",
 		function()
-			require("snacks").git.blame_line()
+			Snacks.picker.git_branches()
 		end,
-		desc = "Detailed Blame",
+		desc = "Git Branches",
 	},
 	{
 		"<leader>gc",
@@ -209,9 +223,9 @@ which_key.add({
 	{
 		"<leader>gs",
 		function()
-			Snacks.picker.git_branches()
+			Snacks.picker.git_status()
 		end,
-		desc = "Git Branches",
+		desc = "Git Status",
 	},
 	{
 		"<leader>gS",
@@ -389,6 +403,41 @@ which_key.add({
 			Snacks.picker.grep_word()
 		end,
 		desc = "Grep Word",
+	},
+	{
+		"<leader>;l",
+		function()
+			Snacks.picker.lines()
+		end,
+		desc = "Buffer Lines",
+	},
+	{
+		"<leader>;m",
+		function()
+			Snacks.picker.git_status()
+		end,
+		desc = "Git Status",
+	},
+	{
+		"<leader>;C",
+		function()
+			Snacks.picker.commands()
+		end,
+		desc = "Commands",
+	},
+	{
+		"<leader>;u",
+		function()
+			Snacks.picker.undo()
+		end,
+		desc = "Undo History",
+	},
+	{
+		"<leader>;?",
+		function()
+			Snacks.picker.help()
+		end,
+		desc = "Help Tags",
 	},
 	-- Buffers Suite (<leader>b)
 	{ "<leader>b", group = "󰈔 Buffers" },

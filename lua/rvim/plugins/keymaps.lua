@@ -163,6 +163,11 @@ map({
 		Snacks.picker.git_diff,
 		desc = "Git Diff (Hunks)",
 	},
+	{ ";l", Snacks.picker.lines, desc = "Buffer Lines" },
+	{ ";m", Snacks.picker.git_status, desc = "Git Status (Modified Files)" },
+	{ ";C", Snacks.picker.commands, desc = "Commands" },
+	{ ";u", Snacks.picker.undo, desc = "Undo History" },
+	{ ";?", Snacks.picker.help, desc = "Help Tags" },
 	{
 		"]]",
 		function()
