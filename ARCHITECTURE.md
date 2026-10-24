@@ -180,7 +180,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`util.lua`**:
   - `oil.nvim`: File manager that lets you edit filesystem directories just like normal text buffers (`sf`).
   - `copilot.lua`: Inline AI code completion suggestions with `<C-l>` accept.
-- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`/`<Leader>fs`, recent files `;o`/`<Leader>fr`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
+- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
 
 ---
 

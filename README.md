@@ -36,8 +36,8 @@ rvim
 | :---: | :--- | :--- |
 | ❌ **NO** | **`;f`** | **Find files** in project (`Snacks.picker.files`) |
 | ❌ **NO** | **`;r`** | **Live Grep** across project text (`Snacks.picker.grep`) |
-| ❌ **NO** | **`;s`** *(or `<Space> + fs`)* | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
-| ❌ **NO** | **`;o`** *(or `<Space> + fr`)* | **Recent files** picker (`Snacks.picker.recent`) |
+| ❌ **NO** | **`;s`** | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
+| ❌ **NO** | **`;o`** | **Recent files** picker (`Snacks.picker.recent`) |
 | ❌ **NO** | **`sf`** | **Floating file explorer** (`Oil.nvim`) |
 | ❌ **NO** | **`\\`** | **List open buffers** (`Snacks.picker.buffers`) |
 | ❌ **NO** | **`;;`** | **Resume** last closed search picker |
@@ -104,8 +104,8 @@ rvim
 | ❌ **NO** | **`gK`** | Normal | Display signature help |
 | ❌ **NO** | **`<Ctrl> + k`** | Insert | Show function arguments popup while typing |
 | ❌ **NO** | **`<Ctrl> + j`** | Normal | Jump to next error or diagnostic in buffer |
-| ❌ **NO** | **`;s`** *(or `<Space> + fs`)* | Normal | **Document Symbols** picker (functions, classes, methods via `Snacks.picker.lsp_symbols`) |
-| ❌ **NO** | **`;o`** *(or `<Space> + fr`)* | Normal | **Recent files** picker (`Snacks.picker.recent`) |
+| ❌ **NO** | **`;s`** | Normal | **Document Symbols** picker (functions, classes, methods via `Snacks.picker.lsp_symbols`) |
+| ❌ **NO** | **`;o`** | Normal | **Recent files** picker (`Snacks.picker.recent`) |
 | ❌ **NO** | **`;e`** | Normal | List all diagnostics across project (`Snacks.picker.diagnostics`) |
 | ❌ **NO** | **`;c`** | Normal | List incoming calls to function under cursor |
 | ❌ **NO** | **`]]`** / **`[[`** | Normal | Jump to next / previous reference of symbol under cursor |
