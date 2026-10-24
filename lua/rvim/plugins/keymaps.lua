@@ -114,6 +114,14 @@ map({
 		desc = "Format code",
 		mode = { "n", "x" },
 	},
+	{
+		"<leader>cf",
+		function()
+			require("conform").format()
+		end,
+		desc = "Format code",
+		mode = { "n", "x" },
+	},
 })
 
 -- Snacks
