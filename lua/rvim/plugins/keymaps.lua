@@ -128,7 +128,39 @@ map({
 map({
 	{ "<leader>cl", Snacks.picker.lsp_config, desc = "Lsp Info" },
 	{ "<leader>cR", Snacks.rename.rename_file, desc = "Rename File" },
-	{ ";f", Snacks.picker.files, desc = "Find files" },
+	{
+		";f",
+		function()
+			require("rvim.utils.editor").pick_repo_files_and_dirs()
+		end,
+		desc = "Find repo files & dirs",
+	},
+	{
+		";M",
+		function()
+			require("rvim.utils.editor").pick_markdown_files()
+		end,
+		desc = "Find repo markdown files",
+	},
+	{
+		";z",
+		function()
+			require("rvim.utils.editor").pick_z_drive()
+		end,
+		desc = "Find /z/ files & dirs",
+	},
+	{
+		";H",
+		function()
+			require("rvim.utils.editor").pick_home_dir()
+		end,
+		desc = "Find Home files & dirs",
+	},
+	{ ";a", "<cmd>Seeker files<cr>", desc = "Seeker files" },
+	{ ";F", "<cmd>Seeker git_files<cr>", desc = "Seeker git files" },
+	{ ";G", "<cmd>Seeker grep<cr>", desc = "Seeker grep" },
+	{ ";W", "<cmd>Seeker grep_word<cr>", desc = "Seeker grep word" },
+	{ ";R", "<cmd>Replace<cr>", desc = "Project search & replace" },
 	{ ";r", Snacks.picker.grep, desc = "Live grep" },
 	{ ";s", Snacks.picker.lsp_symbols, desc = "LSP Document Symbols" },
 	{ ";o", Snacks.picker.recent, desc = "Recent files" },
