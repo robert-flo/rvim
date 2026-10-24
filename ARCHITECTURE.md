@@ -34,6 +34,7 @@ rvim/
 │
 ├── after/                            # ⏱️ LAYER 4: LATE RUNTIME OVERRIDES
 │   └── lsp/                          # Per-server LSP configuration files
+│       ├── clangd.lua                # C / C++ (NDK) background indexing & UTF-16 offsetEncoding
 │       ├── cssls.lua                 # CSS / SCSS / Less lint settings
 │       ├── lua_ls.lua                # Neovim runtime library & Lua diagnostics
 │       ├── oxlint.lua                # Oxlint high-speed Rust linter daemon
@@ -158,21 +159,21 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `codediff.nvim`: Two-way interactive diff comparison viewer.
   - `lualine.nvim`: Statusline configured with mode, branch, root directory, pretty path, macro status, diagnostics, and git hunks.
 - **`treesitter.lua`**:
-  - Installs 40+ grammars (`astro`, `bash`, `c`, `css`, `html`, `javascript`, `json`, `lua`, `markdown`, `python`, `rust`, `tsx`, `typescript`, etc.).
-  - Binds MDX to Markdown parser.
+  - Installs 45+ grammars (`astro`, `bash`, `c`, `cmake`, `cpp`, `css`, `diff`, `fish`, `gitignore`, `go`, `graphql`, `groovy`, `html`, `http`, `java`, `javascript`, `jsdoc`, `json`, `kotlin`, `lua`, `luadoc`, `luap`, `markdown`, `markdown_inline`, `php`, `printf`, `properties`, `python`, `qmljs`, `query`, `regex`, `rust`, `scss`, `sql`, `svelte`, `toml`, `tsx`, `typescript`, `vim`, `vimdoc`, `xml`, `yaml`).
+  - Registers filetype and language mappings for MDX (`markdown`) and QML (`qmljs`).
   - Automatically starts highlighter and indentation expression on `FileType` events.
   - Binds `PackChanged` event to run `TSUpdate`.
 - **`editor.lua`**:
   - `blink.cmp`: High-performance completion engine written in Rust, configured with auto-brackets, cmdline completion, and `Rvim.icons.kinds`.
-  - `conform.nvim`: Format-on-save pipeline with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, and `fish_indent`.
+  - `conform.nvim`: Format-on-save pipeline with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, `fish_indent`, `clang-format` (C/C++), `ktlint` (Kotlin), `google-java-format` (Java), `xmlformatter` (XML / Android layouts), `npm-groovy-lint` (Gradle / Groovy), and `black` / `ruff_format` (Python).
   - `mini.pairs`: Autocloses parentheses, quotes, and markdown backticks, with Treesitter string node awareness.
   - `gitsigns.nvim` & `mini.diff`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb`), and hunk staging.
   - `nvim-highlight-colors`: Real-time color preview (hex, rgb, hsl).
   - `todo-comments.nvim`: Highlights and searches `TODO:`, `FIXME:`, `NOTE:` tags.
 - **`lsp.lua`**:
-  - `mason.nvim` & `mason-tool-installer.nvim`: Automates installation of LSP servers and formatters (`vtsls`, `lua-language-server`, `prettier`, `oxlint`, `rust-analyzer`, etc.).
+  - `mason.nvim` & `mason-tool-installer.nvim`: Automates installation of LSP servers, linters, and formatters (`vtsls`, `lua-language-server`, `prettier`, `oxlint`, `rust-analyzer`, `kotlin-language-server`, `ktlint`, `jdtls`, `google-java-format`, `lemminx`, `xmlformatter`, `bash-language-server`, `pyright`, `clangd`, `clang-format`, etc.).
   - Bridges Blink.cmp completion capabilities into all LSP servers via `vim.lsp.config("*", ...)`.
-  - Enables active language servers (`eslint`, `oxlint`, `lua_ls`, `cssls`, `vtsls`, `tailwindcss`, `rust_analyzer`).
+  - Enables active language servers (`eslint`, `oxlint`, `lua_ls`, `cssls`, `vtsls`, `tailwindcss`, `glsl_analyzer`, `rust_analyzer`, `clangd`, `bashls`, `pyright`, `kotlin_language_server`, `jdtls`, `lemminx`, `qmlls`).
 - **`util.lua`**:
   - `oil.nvim`: File manager that lets you edit filesystem directories just like normal text buffers (`sf`).
   - `copilot.lua`: Inline AI code completion suggestions with `<C-l>` accept.
@@ -182,6 +183,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 
 ### Layer 4: Late LSP Runtime Overrides (`after/lsp/`)
 Neovim automatically evaluates the `after/` directory at the end of its startup cycle. Files named `<server>.lua` in `after/lsp/` automatically inject fine-tuned settings into their corresponding LSP servers:
+- **`clangd.lua`**: Sets UTF-16 offset encoding (`offsetEncoding = { "utf-16" }`) to eliminate client-server offset mismatches, enables background AST indexing, Clang-Tidy static analysis, IWYU header insertion, and detailed completion documentation for C/C++ and Android NDK.
 - **`vtsls.lua`**: Enables inlay hints (enum member values, return types, parameter names), automatic import updating on file move, and optimizes semantic tokens.
 - **`lua_ls.lua`**: Configures Neovim runtime library indexing (`vim.env.VIMRUNTIME`), enables inlay hints, and silences noise for internal variables (`_*`).
 - **`oxlint.lua`**: Configures the ultra-fast Rust-based linter daemon with `--lsp`.

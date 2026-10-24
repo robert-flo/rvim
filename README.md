@@ -171,3 +171,24 @@ rvim
 | ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Normal | Navigate next / previous tab |
 | ❌ **NO** | **`\\`** | Normal | List open buffers and switch |
 | ✅ **YES** | **`<Space> + bd`** | Normal | Delete all hidden buffers not displayed in any window |
+
+---
+
+### 📱 9. Language Support & Toolchains
+
+rvim provides an out-of-the-box development environment for modern Android applications, native systems programming, and scripting:
+
+| Ecosystem / Language | Filetypes | Treesitter Parser | Language Server (LSP) | Formatter / Linter |
+| :--- | :--- | :--- | :--- | :--- |
+| **Android Kotlin** | `.kt`, `.kts` | `kotlin` | `kotlin_language_server` | `ktlint` |
+| **Android Java** | `.java` | `java` | `jdtls` | `google-java-format` / `clang-format` |
+| **Android Layouts / XML** | `AndroidManifest.xml`, `res/**/*.xml`, `.xml` | `xml` | `lemminx` | `xmlformatter` / `prettier` |
+| **Gradle Build System** | `build.gradle`, `settings.gradle`, `*.properties` | `groovy`, `kotlin`, `properties` | — | `npm-groovy-lint` |
+| **Android NDK / C / C++** | `.c`, `.cpp`, `.cc`, `.h`, `.hpp`, `CMakeLists.txt` | `c`, `cpp`, `cmake` | `clangd` (with background indexing) | `clang-format` |
+| **Qt / QML** | `.qml` | `qmljs` | `qmlls` | Native / LSP |
+| **Shell Scripting** | `.sh`, `gradlew` | `bash` | `bashls` | `shellcheck`, `shfmt` |
+| **Python** | `.py` | `python` | `pyright` | `black` / `ruff` |
+| **Web & TypeScript** | `.ts`, `.tsx`, `.js`, `.jsx`, `.json` | `typescript`, `tsx`, `javascript`, `json` | `vtsls`, `eslint` | `oxfmt` / `prettierd` / `prettier` |
+| **Styling & Markup** | `.css`, `.scss`, `.html`, `.md`, `.mdx` | `css`, `scss`, `html`, `markdown` | `cssls`, `tailwindcss` | `oxfmt` / `prettier` |
+| **Systems & Config** | `.rs`, `.lua`, `.toml`, `.yaml` | `rust`, `lua`, `toml`, `yaml` | `rust_analyzer`, `lua_ls` | `stylua` |
+

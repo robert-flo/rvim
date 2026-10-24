@@ -70,7 +70,7 @@ vim.g.netrw_localcopydircmd = "cp -r" -- Enable recursive copy of directories
 
 -- Command-line completion
 vim.opt.wildmode = "longest:full,full"
-vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar", "*.apk", "*.aab", "*.dex", "*.aar" })
 
 -- Diff view
 vim.opt.fillchars:append("diff:╱")
