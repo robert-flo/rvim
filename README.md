@@ -144,7 +144,7 @@ F → Seeker Git Files    W → Seeker Grep Word
 g → Lazygit             z → Drive /z/ (Files & Dirs)
 G → Seeker Grep         H → Home ~/ (Files & Dirs)
 h → Git Diff Hunks      ? → Help Tags
-l → Buffer Lines
+l → Buffer Lines        t → Terminal File Manager (Elio)
 m → Git Status
 n → Notifications
 ```
@@ -162,8 +162,9 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + /`** | `/ Search History` | **Search History** | Interactive fuzzy search of past search patterns (`Snacks.picker.search_history`) |
 | **`<Space> + :`** | `: Command History` | **Command History** | Interactive fuzzy search of recent `:` commands (`Snacks.picker.command_history`) |
 | **`<Space> + x`** | `x Save and Quit` | **Save & Quit** | Write all modified buffers and exit Neovim (`:xa<CR>`) |
+| **`<Space> + z`** | `z Force Quit` | **Force Quit All** | Close all buffers and exit immediately without saving (`:qa!<CR>`) |
 | **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
-| **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered floating modal |
+| **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in full-width floating modal |
 | **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
 | **`<Space> + p`** / **`P`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
@@ -185,7 +186,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | ✅ **YES** | **`<Space> + o`** | Normal | Insert clean line below without auto-continuing comments |
 | ✅ **YES** | **`<Space> + O`** | Normal | Insert clean line above without auto-continuing comments |
 | ✅ **YES** | **`<Space> + cc`** | Visual | Copy selection formatted as Markdown code block |
-| ✅ **YES** | **`<Space> + j`** | Normal | Open project `package.json` in centered 80% floating window |
+| ✅ **YES** | **`<Space> + j`** | Normal | Open project `package.json` in full-width floating modal |
 | ❌ **NO** | **`x`** | Normal | Delete single character into black hole register (`"_x`) |
 | ❌ **NO** | **`dw`** | Normal | Delete word backward without polluting clipboard (`vb"_d`) |
 | ❌ **NO** | **`<Ctrl> + a`** | Normal | Select entire buffer (`gg<S-v>G`) |
@@ -410,13 +411,35 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
 | **`<Space> + ee`** | **`sf`** | **File Explorer** | Open Oil floating file explorer with preview |
+| **`<Space> + et`** / **`el`** | **`;t`** | **TFM (Elio)** | Launch integrated full-width Elio terminal file manager (`:Tfm`) |
 | **`<Space> + em`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
 | **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
 | **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
 | **`<Space> + er`** | — | **Ranger Picker** | Open floating Ranger file manager (`:RangerPicker`) |
-| **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in centered 80% floating window |
+| **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in full-width floating modal |
 | **`<Space> + en`** | — | **New File** | Open a new empty buffer (`:enew`) |
 | **`<Space> + es`** | **`<Ctrl> + s`** | **Save File** | Save active buffer immediately (`:w`) |
+
+---
+
+### 󰉋 9.1 Terminal File Manager (`elio` & `tfm.nvim`)
+
+rvim integrates [`tfm.nvim`](https://github.com/rolv-apneseth/tfm.nvim) natively configured with [`elio`](https://elio-fm.github.io) (`/usr/bin/elio`), opening in a full-width, 98% height floating modal:
+
+| Space? | Keymap | User Command | Description |
+| :---: | :--- | :--- | :--- |
+| ✅ **YES** | **`<Space> + mm`** / **`<Space> + me`** | `:Tfm` | **Open Elio** at current file or directory |
+| ✅ **YES** | **`<Space> + mh`** | `:TfmSplit` | **Open in Horizontal Split** |
+| ✅ **YES** | **`<Space> + mv`** | `:TfmVsplit` | **Open in Vertical Split** |
+| ✅ **YES** | **`<Space> + mt`** | `:TfmTabedit` | **Open in New Tab** |
+| ✅ **YES** | **`<Space> + et`** / **`<Space> + el`** | `:Tfm` | **TFM (Elio)** from Explorer suite |
+| ❌ **NO** | **`;t`** / **`<Space> + ;t`** | `:Tfm` | **Direct Express Shortcut** |
+
+#### In-buffer TFM terminal shortcuts:
+- **`<C-v>`**: Force opening selected file in vertical split
+- **`<C-x>`**: Force opening selected file in horizontal split
+- **`<C-t>`**: Force opening selected file in new tab
+- **`<Esc>`**: Exit Elio (`q`)
 
 ---
 
