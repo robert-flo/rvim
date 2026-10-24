@@ -316,4 +316,32 @@ function M.yank_absolute_path_with_line()
 	M.copy_absolute_path_with_line()
 end
 
+--- Open Snacks buffer picker jumping to existing window if buffer is already visible
+function M.pick_buffers()
+	local ok, snacks = pcall(require, "snacks")
+	if not ok then
+		return
+	end
+	snacks.picker.buffers({
+		confirm = function(picker, item)
+			picker:close()
+			if not item then
+				return
+			end
+			vim.schedule(function()
+				for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+					for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+						if vim.api.nvim_win_get_buf(win) == item.buf then
+							vim.api.nvim_set_current_tabpage(tab)
+							vim.api.nvim_set_current_win(win)
+							return
+						end
+					end
+				end
+				vim.api.nvim_set_current_buf(item.buf)
+			end)
+		end,
+	})
+end
+
 return M

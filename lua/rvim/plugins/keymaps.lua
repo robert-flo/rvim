@@ -128,34 +128,21 @@ map({
 	{
 		"\\\\",
 		function()
-			Snacks.picker.buffers({
-				confirm = function(picker, item)
-					picker:close()
-					if not item then
-						return
-					end
-					-- If the buffer is already shown in a window (any tab),
-					-- jump to that window instead of opening it here.
-					vim.schedule(function()
-						for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
-							for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
-								if vim.api.nvim_win_get_buf(win) == item.buf then
-									vim.api.nvim_set_current_tabpage(tab)
-									vim.api.nvim_set_current_win(win)
-									return
-								end
-							end
-						end
-						vim.api.nvim_set_current_buf(item.buf)
-					end)
-				end,
-			})
+			require("rvim.utils.editor").pick_buffers()
+		end,
+		desc = "List buffers",
+	},
+	{
+		";b",
+		function()
+			require("rvim.utils.editor").pick_buffers()
 		end,
 		desc = "List buffers",
 	},
 	{ ";e", Snacks.picker.diagnostics, desc = "Diagnostics" },
 	{ ";c", Snacks.picker.lsp_incoming_calls, desc = "LSP incoming calls" },
 	{ ";n", Snacks.picker.notifications, desc = "Notifications" },
+	{ ";w", Snacks.picker.grep_word, desc = "Grep word under cursor" },
 	{
 		";g",
 		function()
