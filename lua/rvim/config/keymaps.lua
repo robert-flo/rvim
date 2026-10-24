@@ -55,8 +55,6 @@ keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
-
-
 keymap.set("v", "<leader>cc", ":<C-u>lua require('rvim.utils.editor').copy_as_codeblock()<CR>")
 
 keymap.set("n", "<leader>j", function()
@@ -66,3 +64,5 @@ end, { desc = "Open package.json in floating window" })
 keymap.set("n", "<leader>bd", function()
 	require("rvim.utils.editor").delete_hidden_buffers()
 end, { desc = "Delete hidden buffers" })
+
+keymap.set("n", "<Leader>z", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })

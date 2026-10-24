@@ -126,6 +126,11 @@ which_key.add({
 		desc = "Save and Quit",
 	},
 	{
+		"<leader>z",
+		"<cmd>qa!<cr>",
+		desc = "Force Quit (Without Saving)",
+	},
+	{
 		"<leader>f",
 		function()
 			require("conform").format()
