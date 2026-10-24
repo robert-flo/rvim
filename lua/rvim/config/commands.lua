@@ -22,6 +22,14 @@ vim.api.nvim_create_user_command("CopyFileName", function()
 	require("rvim.utils.editor").copy_file_name()
 end, { desc = "Copy file name to clipboard" })
 
+vim.api.nvim_create_user_command("CopyFileDirectory", function()
+	require("rvim.utils.editor").copy_file_directory()
+end, { desc = "Copy file directory path to clipboard" })
+
+vim.api.nvim_create_user_command("CopyDirectory", function()
+	require("rvim.utils.editor").copy_directory()
+end, { desc = "Copy file directory path to clipboard" })
+
 vim.api.nvim_create_user_command("CopyWholeFile", function()
 	require("rvim.utils.editor").copy_whole_file()
 end, { desc = "Copy whole file to clipboard" })
