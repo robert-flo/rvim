@@ -30,7 +30,7 @@ local setup = {
 		separator = icons.ui.Arrow,
 		group = "",
 		keys = {
-			Space = "",
+			Space = "🚀 ",
 		},
 		rules = false,
 	},
@@ -91,7 +91,40 @@ which_key.add({
 	-- Normal Mode
 	mode = { "n" },
 
-	-- Root Single Actions
+	-- Express Root Actions
+	{
+		"<leader><space>",
+		function()
+			Snacks.picker.files()
+		end,
+		desc = "Files",
+	},
+	{
+		"<leader>,",
+		function()
+			require("rvim.utils.editor").pick_buffers()
+		end,
+		desc = "Buffers",
+	},
+	{
+		"<leader>/",
+		function()
+			Snacks.picker.search_history()
+		end,
+		desc = "Search History",
+	},
+	{
+		"<leader>:",
+		function()
+			Snacks.picker.command_history()
+		end,
+		desc = "Command History",
+	},
+	{
+		"<leader>x",
+		"<cmd>xa<cr>",
+		desc = "Save and Quit",
+	},
 	{
 		"<leader>f",
 		function()

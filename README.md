@@ -34,6 +34,11 @@ rvim
 
 | Space? | Keymap | Action |
 | :---: | :--- | :--- |
+| ✅ **YES** | **`<Space> + <Space>`** | **Find files** in project (`Snacks.picker.files`) |
+| ✅ **YES** | **`<Space> + ,`** | **List open buffers** (`Snacks.picker.buffers`) |
+| ✅ **YES** | **`<Space> + /`** | **Search History** fuzzy picker (`Snacks.picker.search_history`) |
+| ✅ **YES** | **`<Space> + :`** | **Command History** fuzzy picker (`Snacks.picker.command_history`) |
+| ✅ **YES** | **`<Space> + x`** | **Save & Quit** all modified buffers (`:xa`) |
 | ❌ **NO** | **`;f`** | **Find files** in project (`Snacks.picker.files`) |
 | ❌ **NO** | **`;r`** | **Live Grep** across project text (`Snacks.picker.grep`) |
 | ❌ **NO** | **`;s`** | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
@@ -112,6 +117,24 @@ r → Live Grep
 s → Document Symbols
 w → Grep Word
 ```
+
+---
+
+### 🚀 1.2 Express Root Actions (`<Space>` + Single Key)
+
+High-productivity single-stroke actions accessible directly at the root of Which-Key:
+
+| Keymap | Which-Key Label | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + <Space>`** | `🚀 Files` | **Find Files** | Instant project file fuzzy search (`Snacks.picker.files`) |
+| **`<Space> + ,`** | `, Buffers` | **Open Buffers** | Ergonomic right-hand buffer picker (`Snacks.picker.buffers`) |
+| **`<Space> + /`** | `/ Search History` | **Search History** | Interactive fuzzy search of past search patterns (`Snacks.picker.search_history`) |
+| **`<Space> + :`** | `: Command History` | **Command History** | Interactive fuzzy search of recent `:` commands (`Snacks.picker.command_history`) |
+| **`<Space> + x`** | `x Save and Quit` | **Save & Quit** | Write all modified buffers and exit Neovim (`:xa<CR>`) |
+| **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
+| **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered floating modal |
+| **`<Space> + p`** / **`P`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
+| **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
 
 ---
 

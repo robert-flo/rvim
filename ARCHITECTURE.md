@@ -65,7 +65,7 @@ rvim/
         ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
         ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
-        └── which-key.lua             # Keymap visual popup guide & unified suites: Git (g), Yank (y), Pickers (;), Buffers (b), Code (c), Diff (d), Explorer (e), Splits (s), Tabs (t)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x) & 9 unified suites (b, c, d, e, g, s, t, y, ;)
 ```
 
 ---
@@ -96,7 +96,7 @@ rvim/
     │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
     │  • octohub    ---> GitHub repository manager, stats & pickme bridge to snacks
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
-    │  • which-key  ---> WhichKey visual menu & 9 interactive suites (b, c, d, e, g, s, t, y, ;)
+    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x) & 9 interactive suites (b, c, d, e, g, s, t, y, ;)
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
