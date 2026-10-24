@@ -18,12 +18,96 @@ vim.o.tabline = "%!v:lua.require('rvim.utils.tabline').render()"
 
 local Snacks = require("snacks")
 
+local function set_dashboard_highlights()
+	local colors = {
+		blue = "#268bd2",
+		cyan = "#2aa198",
+		green = "#859900",
+		yellow = "#b58900",
+		orange = "#cb4b16",
+		magenta = "#d33682",
+		violet = "#6c71c4",
+		base0 = "#839496",
+		base1 = "#93a1a1",
+	}
+
+	vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = colors.cyan, bold = true })
+	vim.api.nvim_set_hl(0, "SnacksDashboardTitle", { fg = colors.violet, bold = true })
+	vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = colors.orange, bold = true })
+	vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.blue, bold = false })
+	vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = colors.base1 })
+	vim.api.nvim_set_hl(0, "SnacksDashboardSpecial", { fg = colors.green, italic = true, bold = true })
+end
+
+set_dashboard_highlights()
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
+	callback = set_dashboard_highlights,
+})
+
+-- Dashboard cursor hiding and clean empty lines (eob: " ")
+local function setup_dashboard_cursor()
+	local function cursor_blend(value)
+		local hl = vim.api.nvim_get_hl(0, { name = "Cursor", create = true })
+		hl.blend = value
+		pcall(vim.api.nvim_set_hl, 0, "Cursor", hl)
+		pcall(vim.cmd, "set guicursor+=a:Cursor/lCursor")
+	end
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "SnacksDashboardOpened",
+		callback = function()
+			cursor_blend(100)
+			pcall(function()
+				vim.opt_local.fillchars:append("eob: ")
+			end)
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function()
+			if vim.bo.filetype == "snacks_dashboard" then
+				cursor_blend(100)
+				pcall(function()
+					vim.opt_local.fillchars:append("eob: ")
+				end)
+			end
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("BufLeave", {
+		callback = function()
+			if vim.bo.filetype == "snacks_dashboard" then
+				cursor_blend(0)
+			end
+		end,
+	})
+end
+
+setup_dashboard_cursor()
+
+local function dashboard_greeting()
+	local hour = tonumber(vim.fn.strftime("%H")) or 12
+	local time_greeting = "Buenas noches"
+	local time_icon = "󰖝 "
+	if hour >= 6 and hour < 12 then
+		time_greeting = "Buenos días"
+		time_icon = "󰖙 "
+	elseif hour >= 12 and hour < 19 then
+		time_greeting = "Buenas tardes"
+		time_icon = "󰖚 "
+	end
+	local user = os.getenv("USER") or os.getenv("USERNAME") or "developer"
+	local date_str = vim.fn.strftime("%d/%m/%Y")
+	return string.format("%s %s, %s  •  %s", time_icon, time_greeting, user, date_str)
+end
+
 -- Pre-seed dashboard startup stats for native vim.pack.add
 local elapsed_ms = math.floor((vim.uv.hrtime() - (_G._rvim_start_time or vim.uv.hrtime())) / 1e6 * 100 + 0.5) / 100
 Snacks.dashboard.lazy_stats = {
 	startuptime = math.max(elapsed_ms, 3.5),
-	count = 24,
-	loaded = 24,
+	count = 31,
+	loaded = 31,
 }
 
 Snacks.setup({
@@ -64,6 +148,12 @@ Snacks.setup({
 					action = ":lua require('rvim.utils.lazygit').open()",
 				},
 				{
+					icon = icons.ui.Package,
+					key = "m",
+					desc = "Mason Tools",
+					action = ":Mason",
+				},
+				{
 					icon = icons.ui.Gear,
 					key = "c",
 					desc = "Config",
@@ -75,11 +165,27 @@ Snacks.setup({
 		sections = {
 			{ section = "header" },
 			{
+				align = "center",
+				padding = 1,
+				text = {
+					{ dashboard_greeting(), hl = "SnacksDashboardSpecial" },
+				},
+			},
+			{
 				pane = 2,
 				section = "terminal",
 				cmd = "colorscript -e square",
 				height = 5,
 				padding = 1,
+				ttl = 24 * 3600,
+			},
+			{
+				pane = 2,
+				section = "terminal",
+				cmd = "curl -s --connect-timeout 2 'wttr.in/?0&format=3' 2>/dev/null || true",
+				height = 1,
+				padding = 1,
+				ttl = 3600,
 			},
 			{ section = "keys", gap = 1, padding = 1 },
 			{
@@ -133,7 +239,7 @@ Snacks.setup({
 						icon = " ",
 						title = "Git Status",
 						cmd = "git --no-pager diff --stat -B -M -C",
-						height = 10,
+						height = 8,
 					},
 				}
 				return vim.tbl_map(function(cmd)

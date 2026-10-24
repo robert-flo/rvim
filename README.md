@@ -319,9 +319,13 @@ Full two-pane code comparison and commit history explorer powered by `codediff.n
 
 ### 🏠 5. Startup Dashboard (`Snacks.dashboard`)
 
-When launched with an empty buffer (`rvim`), an advanced multi-pane interactive dashboard opens with direct one-key actions, terminal color script decorations, and live GitHub CLI integration:
+When launched with an empty buffer (`rvim`), an advanced multi-pane interactive dashboard opens with direct one-key actions, dynamic time-of-day greeting, live weather telemetry, terminal color script decorations, Solarized Osaka theme synchronization, and GitHub CLI integration:
 
-#### Pane 1 (Left): Navigation & Quick Keys
+- **Visual Polishing & Cursor Hiding**: Hides the blinking block cursor on dashboard entry (`cursor_blend = 100`) and removes trailing empty-line tildes (`eob: " "`), automatically restoring them on buffer leave.
+- **Dynamic Greeting**: Time-aware greeting banner (`󰖙 Buenos días` / `󰖚 Buenas tardes` / `󰖝 Buenas noches, <user> • <fecha>`) rendered in Solarized green italics.
+- **Solarized Osaka Theme Sync**: Custom highlights for `SnacksDashboardHeader` (Cyan), `SnacksDashboardTitle` (Violet), `SnacksDashboardKey` (Orange), `SnacksDashboardIcon` (Blue), and `SnacksDashboardDesc` (Base fg).
+
+#### Pane 1 (Left): Navigation & Maintenance Hub
 | Key | Action | Description |
 | :---: | :--- | :--- |
 | **`f`** | **Find files** (`;f`) | Fuzzy search repository files & directories with Oil float |
@@ -329,13 +333,15 @@ When launched with an empty buffer (`rvim`), an advanced multi-pane interactive 
 | **`r`** | **Live Grep** (`;r`) | Search project text with ripgrep (`Snacks.picker.grep`) |
 | **`o`** | **Recent files** (`;o`) | Fuzzy search recently edited files (`Snacks.picker.oldfiles`) |
 | **`g`** | **Open Lazygit** (`;g`) | Launch integrated floating Lazygit terminal |
+| **`m`** | **Mason Tools** | Open Mason package installer for LSP, linters, and formatters (`:Mason`) |
 | **`c`** | **Config** | Browse Neovim configuration files (`~/.config/rvim`) |
 | **`q`** | **Quit** | Exit Neovim immediately (`:qa`) |
 
-#### Pane 2 (Right): GitHub CLI & Live Repository Hub
+#### Pane 2 (Right): Live Telemetry, GitHub CLI & Git Status
 | Key | Action | Description |
 | :---: | :--- | :--- |
 | — | **Color Script** | Vibrant terminal palette banner (`colorscript -e square`) |
+| — | **Live Weather** | Compact single-line weather telemetry (`curl -s 'wttr.in/?0&format=3'`) |
 | **`b`** | **Browse Repo** | Open repository directly on GitHub (`Snacks.gitbrowse()`) |
 | **`n`** | **Notifications** | View unread notifications (`gh notify -s -a -n5`) and jump to GitHub |
 | **`i`** | **Open Issues** | Display latest repository issues and open in browser (`gh issue list --web`) |

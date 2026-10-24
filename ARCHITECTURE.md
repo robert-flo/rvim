@@ -169,7 +169,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`ui.lua`**:
   - `solarized-osaka.nvim`: Vivid, transparent color scheme.
   - `mini.icons`: Lightweight icons library with `mock_nvim_web_devicons()`.
-  - `snacks.nvim`: Notifier, statuscolumn, smooth indent guides, word highlight, and declarative multi-pane startup dashboard (RVIM ANSI shadow banner, fast keymaps, terminal color scripts, GitHub CLI notifications, issues, PRs, and live git status).
+  - `snacks.nvim`: Notifier, statuscolumn, smooth indent guides, word highlight, and declarative multi-pane startup dashboard (RVIM ANSI shadow banner, dynamic time greeting, cursor hiding/virgulillas suppression, Solarized Osaka theme synchronization, fast navigation/maintenance keys, terminal color scripts, wttr.in weather telemetry, GitHub CLI notifications, issues, PRs, and live git status).
   - `incline.nvim`: Subtle floating pill in the top-right corner of each window displaying filename and modified status.
   - `codediff.nvim`: Two-way interactive diff comparison viewer.
   - `lualine.nvim`: Statusline configured with mode, branch, root directory, pretty path, macro status, diagnostics, and git hunks.
