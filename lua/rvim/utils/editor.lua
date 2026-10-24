@@ -56,13 +56,12 @@ function M.open_package_json()
 		return
 	end
 
-	-- Calculate 90% dimensions
-	local width = math.floor(vim.o.columns * 0.9)
-	local height = math.floor(vim.o.lines * 0.9)
+	-- Calculate dimensions (full width edge-to-edge, 98% height)
+	local width = vim.o.columns - 2
+	local height = math.floor(vim.o.lines * 0.98)
 
-	-- Center the window
-	local col = math.floor((vim.o.columns - width) / 2)
-	local row = math.floor((vim.o.lines - height) / 2)
+	local col = 0
+	local row = 0
 
 	-- Create buffer and load file
 	local buf = vim.fn.bufadd(package_json)

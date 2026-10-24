@@ -102,20 +102,26 @@ Snacks.setup({
 		layouts = {
 			default = {
 				layout = {
-					width = 0.9,
-					height = 0.9,
+					width = 0,
+					height = 0.98,
+					col = 0,
+					row = 0,
 				},
 			},
 			vertical = {
 				layout = {
-					width = 0.9,
-					height = 0.9,
+					width = 0,
+					height = 0.98,
+					col = 0,
+					row = 0,
 				},
 			},
 			telescope = {
 				layout = {
-					width = 0.9,
-					height = 0.9,
+					width = 0,
+					height = 0.98,
+					col = 0,
+					row = 0,
 				},
 			},
 		},
@@ -134,12 +140,16 @@ Snacks.setup({
 	},
 	styles = {
 		terminal = {
-			width = 0.9,
-			height = 0.9,
+			width = 0,
+			height = 0.98,
+			col = 0,
+			row = 0,
 		},
 		lazygit = {
-			width = 0.9,
-			height = 0.9,
+			width = 0,
+			height = 0.98,
+			col = 0,
+			row = 0,
 		},
 	},
 	notifier = { enabled = true },
@@ -149,8 +159,10 @@ Snacks.setup({
 		enabled = true,
 		configure = true, -- auto-sets nvim-remote preset & syncs theme
 		win = {
-			width = 0.9,
-			height = 0.9,
+			width = 0,
+			height = 0.98,
+			col = 0,
+			row = 0,
 		},
 		config = {
 			-- Open files selected in lazygit in the pane it was launched from,
