@@ -29,7 +29,9 @@ rvim/
 ├── ARCHITECTURE.md                   # 📖 Complete technical architecture guide
 ├── README.md                         # ⌨️ Installation guide & complete keymaps manual
 ├── install.sh                        # 📦 Automated installer (symlinks config & pack directories)
-├── bin/rvim                          # 🚀 Shell wrapper enforcing NVIM_APPNAME="rvim"
+├── bin/
+│   ├── rvim                          # 🚀 Shell wrapper enforcing NVIM_APPNAME="rvim"
+│   └── rvim-dashboard-notify         # 🔔 High-contrast GitHub notification sanitizer for dashboard
 ├── nvim-pack-lock.json               # 🔒 Pinned git commit hashes for all vim.pack plugins
 │
 ├── after/                            # ⏱️ LAYER 4: LATE RUNTIME OVERRIDES
@@ -58,7 +60,7 @@ rvim/
     │
     └── plugins/                      # 📦 LAYER 3: PLUGINS ECOSYSTEM
         ├── init.lua                  # vim.pack.add declaration and submodule orchestrator
-        ├── ui.lua                    # Solarized Osaka, mini.icons, snacks, incline, codediff
+        ├── ui.lua                    # Solarized Osaka, mini.icons, snacks (98% dashboard, picker), incline, codediff
         ├── treesitter.lua            # 40+ AST parsers, MDX support, syntax highlighter autocommands
         ├── editor.lua                # Blink.cmp, Conform formatting, mini.pairs, Gitsigns, mini.diff
         ├── lsp.lua                   # Mason tool installer, Blink LSP capability bridge, lsp.enable

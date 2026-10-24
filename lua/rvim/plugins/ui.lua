@@ -84,7 +84,47 @@ local function setup_dashboard_cursor()
 	})
 end
 
+local function calc_dashboard_width()
+	local cols = vim.o.columns
+	local gap = 4
+	local target_total = math.floor(cols * 0.98)
+	return math.max(60, math.floor((target_total - gap) / 2))
+end
+
+vim.api.nvim_create_autocmd("VimResized", {
+	group = vim.api.nvim_create_augroup("rvim_dashboard_resize", { clear = true }),
+	callback = function()
+		if Snacks and Snacks.config and Snacks.config.dashboard then
+			Snacks.config.dashboard.width = calc_dashboard_width()
+		end
+	end,
+})
+
 setup_dashboard_cursor()
+
+local _weather_cache = nil
+local function get_weather()
+	if _weather_cache then
+		return _weather_cache
+	end
+	local cache_file = vim.fn.stdpath("cache") .. "/rvim_weather.txt"
+	local stat = vim.uv.fs_stat(cache_file)
+	if stat and stat.type == "file" and stat.size > 0 and (os.time() - stat.mtime.sec < 3600) then
+		local f = io.open(cache_file, "r")
+		if f then
+			local content = f:read("*a")
+			f:close()
+			if content and #content > 0 then
+				_weather_cache = vim.trim(content):gsub(", .-:", ":")
+				return _weather_cache
+			end
+		end
+	end
+	pcall(function()
+		vim.fn.jobstart({ "sh", "-c", "curl -s --connect-timeout 2 'wttr.in/?0&format=3' > " .. cache_file }, { detach = true })
+	end)
+	return _weather_cache or ""
+end
 
 local function dashboard_greeting()
 	local hour = tonumber(vim.fn.strftime("%H")) or 12
@@ -99,7 +139,9 @@ local function dashboard_greeting()
 	end
 	local user = os.getenv("USER") or os.getenv("USERNAME") or "developer"
 	local date_str = vim.fn.strftime("%d/%m/%Y")
-	return string.format("%s %s, %s  •  %s", time_icon, time_greeting, user, date_str)
+	local weather = get_weather()
+	local weather_part = (weather and weather ~= "") and ("  •  󰖐 " .. weather) or ""
+	return string.format("%s %s, %s  •  %s%s", time_icon, time_greeting, user, date_str, weather_part)
 end
 
 -- Pre-seed dashboard startup stats for native vim.pack.add
@@ -110,9 +152,28 @@ Snacks.dashboard.lazy_stats = {
 	loaded = 31,
 }
 
+local function make_key_item(icon, key, desc, action)
+	return {
+		key = key,
+		action = action,
+		desc = desc,
+		icon = icon,
+		text = {
+			{ icon .. "  ", hl = "SnacksDashboardIcon" },
+			{ desc, hl = "SnacksDashboardDesc", width = 34 },
+			{ key, hl = "SnacksDashboardKey" },
+		},
+	}
+end
+
+local dashboard_pane_width = calc_dashboard_width()
+
 Snacks.setup({
 	dashboard = {
 		enabled = true,
+		width = dashboard_pane_width,
+		row = 2,
+		pane_gap = 4,
 		preset = {
 			header = [[
 ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗
@@ -122,44 +183,18 @@ Snacks.setup({
 ██║  ██║  ╚████╔╝  ██║ ██║ ╚═╝ ██║
 ╚═╝  ╚═╝   ╚═══╝   ╚═╝ ╚═╝     ╚═╝]],
 			keys = {
-				{
-					icon = icons.ui.Search,
-					key = "f",
-					desc = "Find File (;f)",
-					action = ":lua Snacks.dashboard.pick('files')",
-				},
-				{ icon = icons.ui.NewFile, key = "e", desc = "New File", action = ":ene | startinsert" },
-				{
-					icon = icons.ui.List,
-					key = "r",
-					desc = "Live Grep (;r)",
-					action = ":lua Snacks.dashboard.pick('live_grep')",
-				},
-				{
-					icon = icons.documents.Files,
-					key = "o",
-					desc = "Recent Files (;o)",
-					action = ":lua Snacks.dashboard.pick('oldfiles')",
-				},
-				{
-					icon = icons.git.Branch,
-					key = "g",
-					desc = "Lazygit (;g)",
-					action = ":lua require('rvim.utils.lazygit').open()",
-				},
-				{
-					icon = icons.ui.Package,
-					key = "m",
-					desc = "Mason Tools",
-					action = ":Mason",
-				},
-				{
-					icon = icons.ui.Gear,
-					key = "c",
-					desc = "Config",
-					action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })",
-				},
-				{ icon = icons.ui.SignOut, key = "q", desc = "Quit", action = ":qa" },
+				make_key_item(icons.ui.Search, "f", "Find File (;f)", ":lua Snacks.dashboard.pick('files')"),
+				make_key_item(icons.ui.NewFile, "e", "New File", ":ene | startinsert"),
+				make_key_item(icons.ui.List, "r", "Live Grep (;r)", ":lua Snacks.dashboard.pick('live_grep')"),
+				make_key_item(icons.documents.Files, "o", "Recent Files (;o)", ":lua Snacks.dashboard.pick('oldfiles')"),
+				make_key_item(icons.documents.OpenFolder, "t", "File Manager (elio / ;e)", ":lua require('tfm').open()"),
+				make_key_item(icons.documents.File, "b", "Buffers (;b)", ":lua Snacks.dashboard.pick('buffers')"),
+				make_key_item(icons.git.Branch, "g", "Lazygit (;g)", ":lua require('rvim.utils.lazygit').open()"),
+				make_key_item(icons.git.Diff, "d", "Code Diff", ":CodeDiff"),
+				make_key_item(icons.ui.Package, "m", "Mason Tools", ":Mason"),
+				make_key_item(icons.ui.Gear, "c", "Config", ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })"),
+				make_key_item(icons.ui.Fire, "z", "Force Quit (q!)", ":q!"),
+				make_key_item(icons.ui.SignOut, "q", "Quit", ":qa"),
 			},
 		},
 		sections = {
@@ -171,29 +206,39 @@ Snacks.setup({
 					{ dashboard_greeting(), hl = "SnacksDashboardSpecial" },
 				},
 			},
+			function(self)
+				local pane_w = self.opts.width or 60
+				local color_indent = math.max(0, math.floor((pane_w - 59) / 2))
+				return {
+					pane = 2,
+					section = "terminal",
+					cmd = "colorscript -e square | sed '/^$/d'",
+					height = 3,
+					indent = color_indent,
+					padding = 1,
+					ttl = 24 * 3600,
+				}
+			end,
 			{
 				pane = 2,
+				title = "Notifications",
+				key = "n",
+				icon = " ",
 				section = "terminal",
-				cmd = "colorscript -e square",
-				height = 5,
+				cmd = vim.fn.stdpath("config") .. "/bin/rvim-dashboard-notify",
+				height = 7,
 				padding = 1,
-				ttl = 24 * 3600,
+				action = function()
+					vim.ui.open("https://github.com/notifications")
+				end,
+				enabled = true,
 			},
-			{
-				pane = 2,
-				section = "terminal",
-				cmd = "curl -s --connect-timeout 2 'wttr.in/?0&format=3' 2>/dev/null || true",
-				height = 1,
-				padding = 1,
-				ttl = 3600,
-			},
-			{ section = "keys", gap = 1, padding = 1 },
 			{
 				pane = 2,
 				icon = " ",
 				desc = "Browse Repo",
 				padding = 1,
-				key = "b",
+				key = "B",
 				action = function()
 					Snacks.gitbrowse()
 				end,
@@ -205,19 +250,8 @@ Snacks.setup({
 				local in_git = Snacks.git.get_root() ~= nil
 				local cmds = {
 					{
-						title = "Notifications",
-						cmd = "gh notify -s -a -n5",
-						action = function()
-							vim.ui.open("https://github.com/notifications")
-						end,
-						key = "n",
-						icon = " ",
-						height = 5,
-						enabled = true,
-					},
-					{
 						title = "Open Issues",
-						cmd = "gh issue list -L 3",
+						cmd = "gh issue list -L 5",
 						key = "i",
 						action = function()
 							vim.fn.jobstart("gh issue list --web", { detach = true })
@@ -228,7 +262,7 @@ Snacks.setup({
 					{
 						icon = " ",
 						title = "Open PRs",
-						cmd = "gh pr list -L 3",
+						cmd = "gh pr list -L 5",
 						key = "P",
 						action = function()
 							vim.fn.jobstart("gh pr list --web", { detach = true })
@@ -249,7 +283,7 @@ Snacks.setup({
 						enabled = in_git,
 						padding = 1,
 						ttl = 5 * 60,
-						indent = 3,
+						indent = 2,
 					}, cmd)
 				end, cmds)
 			end,
@@ -258,6 +292,19 @@ Snacks.setup({
 				icon = icons.documents.File,
 				title = "Recent Files",
 				section = "recent_files",
+				limit = 5,
+				indent = 2,
+				padding = 1,
+				enabled = function()
+					return Snacks.git.get_root() ~= nil
+				end,
+			},
+			{
+				pane = 2,
+				icon = icons.documents.File,
+				title = "Recent Files",
+				section = "recent_files",
+				limit = 10,
 				indent = 2,
 				padding = 1,
 				enabled = function()
@@ -269,12 +316,22 @@ Snacks.setup({
 				icon = icons.documents.OpenFolder,
 				title = "Projects",
 				section = "projects",
+				limit = 8,
 				indent = 2,
 				padding = 1,
 				enabled = function()
 					return Snacks.git.get_root() == nil
 				end,
 			},
+			function(self)
+				local pane_w = self.opts.width or 60
+				local key_indent = math.max(2, math.floor((pane_w - 40) / 2))
+				return vim.tbl_map(function(item)
+					local it = vim.deepcopy(item)
+					it.indent = key_indent
+					return it
+				end, self.opts.preset.keys)
+			end,
 			{ section = "startup" },
 		},
 	},
