@@ -64,7 +64,8 @@ rvim/
         ├── lsp.lua                   # Mason tool installer, Blink LSP capability bridge, lsp.enable
         ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
         ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
-        └── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
+        ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
+        └── which-key.lua             # Keymap visual popup guide & unified Git suite (which-key + co-author)
 ```
 
 ---
@@ -95,6 +96,7 @@ rvim/
     │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
     │  • octohub    ---> GitHub repository manager, stats & pickme bridge to snacks
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
+    │  • which-key  ---> WhichKey visual menu & interactive Git (<Space>g) suite
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
@@ -187,6 +189,10 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `pickme.nvim`: Bridges picker requests directly to `snacks.picker` for unified fuzzy search and selection.
   - `utils.nvim`: Provides asynchronous shell execution, caching, and notification utilities.
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
+- **`which-key.lua`**:
+  - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
+  - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with 22 top-level actions, GitHub issue/PR submenus, Octohub repository browsing, and Gitsigns visual toggles.
+  - `co-author.nvim`: Fuzzy picker integrating with `snacks.picker` to insert co-authors from repository commit history (`<Space> + gC`).
 
 ---
 
