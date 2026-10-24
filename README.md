@@ -225,6 +225,7 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
 | ✅ **YES** | **`<Space> + cm`** | Normal | **Markdown Live Preview** in web browser without external server (`:MDPreview`) |
+| ✅ **YES** | **`<Space> + cM`** | Normal | **Toggle Markdown Render** in active buffer (`:RenderMarkdown toggle`) |
 | ✅ **YES** | **`<Space> + ce`** | Normal / Visual | **Execute Code** buffer or visual selection (`:Runner`) |
 | ✅ **YES** | **`<Space> + cp`** | Normal | **Project Search & Replace** with Ripgrep & Quickfix (`:Replace`) |
 | ✅ **YES** | **`<Space> + cD`** | Normal | **Set Root Directory** to detected Git root (`:RootDir`) |
@@ -495,6 +496,25 @@ rvim integrates [`seeker.nvim`](https://github.com/2kabhishek/seeker.nvim) and [
 - **Conflict & Line Motions**:
   - **`[x` / `]x`**: Instantly jump to the previous / next Git merge conflict marker (`<<<<<<<`, `=======`, `>>>>>>>`).
   - **`[<space>` / `]<space>`**: Insert blank line above / below cursor without moving the cursor.
+
+---
+
+### 🎨 13. Markdown Rendering & Notes Suite (`render-markdown.nvim`)
+
+rvim integrates [`render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) to transform raw Markdown source code into formatted, beautifully rendered documents inside Neovim buffers and picker previews:
+
+#### ⚡ Highlights & Rendering Capabilities
+- **Picker Preview Integration**: Works seamlessly with `Snacks.picker.files` (`<Space>em` / `;M`). Preview windows automatically disable line numbers (`number = false`), enable line wrapping (`wrap = true`), and enforce concealment (`conceallevel = 2`) so markdown notes preview like rendered pages rather than raw source code.
+- **Obsidian & GitHub Callouts**: Renders all standard callout blocks (`> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`, `> [!IMPORTANT]`, `> [!CAUTION]`, `> [!BUG]`, `> [!EXAMPLE]`, `> [!QUOTE]`) into styled, colored alert boxes with icons.
+- **Header Badges**: Hides raw `#` characters and displays styled heading level icons (`󰲡`, `󰲣`, `󰲥`, `󰲧`, `󰲩`, `󰲫`) with colored accent banners.
+- **Unicode Tables**: Formats pipe tables with clean Unicode box-drawing borders (`┌─┬─┐`, `│ │ │`, `└─┴─┘`).
+- **Interactive Checkboxes**: Converts `- [ ]` and `- [x]` into visual checkbox icons (`󰄱`, `󰄲`).
+- **Clean Bullets & Code Blocks**: Renders multi-level bullet points (`●`, `○`, `◆`) and shaded code block containers.
+
+| Keymap | Mode | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + cM`** | Normal | **Toggle Markdown Render** | Toggle between rendered and raw markdown in active buffer (`:RenderMarkdown toggle`) |
+| **`<Space> + cm`** | Normal | **Markdown Live Preview** | Open live-sync preview in web browser (`:MDPreview`) |
 
 
 
