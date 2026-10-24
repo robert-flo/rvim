@@ -69,8 +69,6 @@ rvim
 | ✅ **YES** | **`<Space> + D`** | Normal / Visual | Delete to end of line into black hole register (`"_D`) |
 | ✅ **YES** | **`<Space> + o`** | Normal | Insert clean line below without auto-continuing comments |
 | ✅ **YES** | **`<Space> + O`** | Normal | Insert clean line above without auto-continuing comments |
-| ✅ **YES** | **`<Space> + yf`** | Normal | Copy relative path with line number (e.g., `src/app.ts:42`) |
-| ✅ **YES** | **`<Space> + yp`** | Normal | Copy absolute path with line number |
 | ✅ **YES** | **`<Space> + cc`** | Visual | Copy selection formatted as Markdown code block |
 | ✅ **YES** | **`<Space> + j`** | Normal | Open project `package.json` in centered 80% floating window |
 | ❌ **NO** | **`x`** | Normal | Delete single character into black hole register (`"_x`) |
@@ -81,6 +79,22 @@ rvim
 | ❌ **NO** | **`K`** | Visual | Move selected block up 1 line maintaining indentation (`:m '<-2<CR>gv=gv`) |
 | ❌ **NO** | **`+`** / **`-`** | Normal | Increment / decrement number under cursor |
 | ❌ **NO** | **`<Ctrl> + m`** | Normal | Jump forward in jumplist |
+
+---
+
+### 📋 2.1 Yank & Path Clipboard Suite (`<Space> + y`)
+
+Comprehensive clipboard operations integrated with WhichKey and user commands:
+
+| Space? | Keymap | Mode | User Command | Description |
+| :---: | :--- | :---: | :--- | :--- |
+| ✅ **YES** | **`<Space> + ya`** | Normal | `:%y+` | **Copy Whole File** into clipboard register `+` |
+| ✅ **YES** | **`<Space> + yf`** | Normal | `:CopyFileName` | **File Name** (e.g. `which-key.lua`) |
+| ✅ **YES** | **`<Space> + yg`** | Normal / Visual | `:CopyGitUrl` | **Copy Git URL** with remote, branch, relative path, and `#L<line>` or `#L<start>-L<end>` |
+| ✅ **YES** | **`<Space> + yl`** | Normal | `:CopyRelativePathWithLine` | **Relative Path with Line** (e.g. `lua/rvim/plugins/which-key.lua:42`) |
+| ✅ **YES** | **`<Space> + yL`** | Normal | `:CopyAbsolutePathWithLine` | **Absolute Path with Line** (e.g. `/path/to/project/file.lua:42`) |
+| ✅ **YES** | **`<Space> + yp`** | Normal | `:CopyRelativePath` | **Relative Path** |
+| ✅ **YES** | **`<Space> + yP`** | Normal | `:CopyAbsolutePath` | **Absolute Path** |
 
 ---
 

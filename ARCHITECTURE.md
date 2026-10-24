@@ -45,13 +45,13 @@ rvim/
     │   ├── options.lua               # Global vim.opt settings, vim._core.ui2 floating cmdline
     │   ├── keymaps.lua               # 29 native keymaps with register isolation ("_, "0)
     │   ├── autocmds.lua              # Lifecycle events (UserConfig, CursorLine, TextYankPost)
-    │   ├── commands.lua              # User commands (:ToggleFormatter)
+    │   ├── commands.lua              # User commands (:ToggleFormatter, :Copy* clipboard suite)
     │   └── workarounds.lua           # Upstream Neovim bug workarounds (Treesitter fold #40290)
     │
     ├── utils/                        # 🧰 LAYER 2: UTILITIES & SERVICES TOOLKIT
     │   ├── init.lua                  # Aggregator exporting _G.Rvim singleton
     │   ├── icons.lua                 # Centralized Nerd Font glyphs catalog
-    │   ├── editor.lua                # Root detection, package.json popup, codeblock copy, permalinks
+    │   ├── editor.lua                # Root detection, package.json popup, codeblock copy, yank & path clipboard utilities
     │   ├── lazygit.lua               # RPC-aware Lazygit terminal wrapper preserving origin pane
     │   ├── lualine.lua               # Reactive statusline components (pretty_path, root_dir, macro)
     │   └── tabline.lua               # Headless tabline renderer with powerline arrow glyphs
@@ -65,7 +65,7 @@ rvim/
         ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
         ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
-        └── which-key.lua             # Keymap visual popup guide & unified Git suite (which-key + co-author)
+        └── which-key.lua             # Keymap visual popup guide & unified Git (<Space>g) and Yank (<Space>y) suites
 ```
 
 ---
@@ -82,9 +82,9 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> 29 native keymaps & safe registers ("0, "_)
+    │  • rvim.config.keymaps   ---> 27 native keymaps & safe registers ("0, "_)
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
-    │  • rvim.config.commands  ---> User commands (:ToggleFormatter)
+    │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
     ▼
 [Layer 3: Plugins Ecosystem (vim.pack.add)]
@@ -96,7 +96,7 @@ rvim/
     │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
     │  • octohub    ---> GitHub repository manager, stats & pickme bridge to snacks
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
-    │  • which-key  ---> WhichKey visual menu & interactive Git (<Space>g) suite
+    │  • which-key  ---> WhichKey visual menu, Git (<Space>g) & Yank (<Space>y) suites
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
