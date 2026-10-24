@@ -63,6 +63,7 @@ rvim/
         ├── editor.lua                # Blink.cmp, Conform formatting, mini.pairs, Gitsigns, mini.diff
         ├── lsp.lua                   # Mason tool installer, Blink LSP capability bridge, lsp.enable
         ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
+        ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
         └── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
 ```
 
@@ -92,6 +93,7 @@ rvim/
     │  • editor     ---> Blink.cmp engine, Conform formatter, Gitsigns, Mini.pairs
     │  • lsp        ---> Mason package installer, Blink LSP capability injection
     │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
+    │  • octohub    ---> GitHub repository manager, stats & pickme bridge to snacks
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
@@ -180,6 +182,10 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`util.lua`**:
   - `oil.nvim`: File manager that lets you edit filesystem directories just like normal text buffers (`sf`).
   - `copilot.lua`: Inline AI code completion suggestions with `<C-l>` accept.
+- **`octohub.lua`**:
+  - `octohub.nvim`: Manages and explores GitHub repositories directly inside Neovim, caching repositories, stats, and contribution graphs.
+  - `pickme.nvim`: Bridges picker requests directly to `snacks.picker` for unified fuzzy search and selection.
+  - `utils.nvim`: Provides asynchronous shell execution, caching, and notification utilities.
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
 
 ---
