@@ -5,6 +5,10 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "co-author.nvim": {
+      "rev": "f07e2ec7b4267c1c38cecf5f209c0844373bc1cc",
+      "src": "https://github.com/2kabhishek/co-author.nvim"
+    },
     "codediff.nvim": {
       "rev": "09d9ebef2cc5a5c04db7a349cd6c61bdf84ecc8e",
       "src": "https://github.com/esmuellert/codediff.nvim"
@@ -101,6 +105,10 @@
     "utils.nvim": {
       "rev": "d80602c9f912f1d11c12b041f49fd8bf2d65530d",
       "src": "https://github.com/2kabhishek/utils.nvim"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

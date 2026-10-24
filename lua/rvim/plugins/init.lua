@@ -6,6 +6,7 @@ vim.pack.add({
 	-- UI
 	{ src = gh("craftzdog/solarized-osaka.nvim") },
 	{ src = gh("nvim-mini/mini.icons") },
+	{ src = gh("folke/which-key.nvim") },
 	{ src = gh("folke/snacks.nvim") },
 	{ src = gh("folke/trouble.nvim") },
 	{ src = gh("nvim-lualine/lualine.nvim") },
@@ -29,6 +30,7 @@ vim.pack.add({
 	-- Util
 	{ src = gh("stevearc/oil.nvim") },
 	{ src = gh("zbirenbaum/copilot.lua") },
+	{ src = gh("2kabhishek/co-author.nvim") },
 	{ src = gh("2kabhishek/utils.nvim") },
 	{ src = gh("2kabhishek/pickme.nvim") },
 	{ src = gh("2kabhishek/octohub.nvim") },
@@ -45,3 +47,4 @@ require("rvim.plugins.lsp")
 require("rvim.plugins.util")
 require("rvim.plugins.octohub")
 require("rvim.plugins.keymaps")
+require("rvim.plugins.which-key")
