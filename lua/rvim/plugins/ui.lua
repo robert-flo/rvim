@@ -99,6 +99,26 @@ Snacks.setup({
 			files = { hidden = true },
 			grep = { hidden = true },
 		},
+		layouts = {
+			default = {
+				layout = {
+					width = 0.9,
+					height = 0.9,
+				},
+			},
+			vertical = {
+				layout = {
+					width = 0.9,
+					height = 0.9,
+				},
+			},
+			telescope = {
+				layout = {
+					width = 0.9,
+					height = 0.9,
+				},
+			},
+		},
 		win = {
 			preview = {
 				wo = {
@@ -112,12 +132,26 @@ Snacks.setup({
 			},
 		},
 	},
+	styles = {
+		terminal = {
+			width = 0.9,
+			height = 0.9,
+		},
+		lazygit = {
+			width = 0.9,
+			height = 0.9,
+		},
+	},
 	notifier = { enabled = true },
 	statuscolumn = { enabled = true },
 	words = { enabled = true },
 	lazygit = {
 		enabled = true,
 		configure = true, -- auto-sets nvim-remote preset & syncs theme
+		win = {
+			width = 0.9,
+			height = 0.9,
+		},
 		config = {
 			-- Open files selected in lazygit in the pane it was launched from,
 			-- instead of the nvim-remote preset's new tab. See utils/lazygit.lua.
