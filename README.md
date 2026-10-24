@@ -34,12 +34,20 @@ rvim
 
 | Space? | Keymap | Action |
 | :---: | :--- | :--- |
-| ✅ **YES** | **`<Space> + <Space>`** | **Find files** in project (`Snacks.picker.files`) |
+| ✅ **YES** | **`<Space> + <Space>`** | **Repo Files & Dirs** (Files $\to$ Buffer, Dirs $\to$ Oil.nvim float) |
 | ✅ **YES** | **`<Space> + ,`** | **List open buffers** (`Snacks.picker.buffers`) |
 | ✅ **YES** | **`<Space> + /`** | **Search History** fuzzy picker (`Snacks.picker.search_history`) |
 | ✅ **YES** | **`<Space> + :`** | **Command History** fuzzy picker (`Snacks.picker.command_history`) |
 | ✅ **YES** | **`<Space> + x`** | **Save & Quit** all modified buffers (`:xa`) |
-| ❌ **NO** | **`;f`** | **Find files** in project (`Snacks.picker.files`) |
+| ❌ **NO** | **`;f`** | **Repo Files & Dirs** anchored to repo root (`editor.pick_repo_files_and_dirs`) |
+| ❌ **NO** | **`;M`** | **Repo Markdown Files** (`editor.pick_markdown_files`) |
+| ❌ **NO** | **`;z`** | **Drive /z/** files & directories (`editor.pick_z_drive`) |
+| ❌ **NO** | **`;H`** | **Home ~/** files & directories (`editor.pick_home_dir`) |
+| ❌ **NO** | **`;a`** | **Seeker Files** with `<C-e>` toggle to grep (`:Seeker files`) |
+| ❌ **NO** | **`;F`** | **Seeker Git Files** (`:Seeker git_files`) |
+| ❌ **NO** | **`;G`** | **Seeker Grep** (`:Seeker grep`) |
+| ❌ **NO** | **`;W`** | **Seeker Grep Word** under cursor / selection (`:Seeker grep_word`) |
+| ❌ **NO** | **`;R`** | **Project Search & Replace** via ripgrep & quickfix (`:Replace`) |
 | ❌ **NO** | **`;r`** | **Live Grep** across project text (`Snacks.picker.grep`) |
 | ❌ **NO** | **`;s`** | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
 | ❌ **NO** | **`;o`** | **Recent files** picker (`Snacks.picker.recent`) |
@@ -59,11 +67,14 @@ rvim
 | ❌ **NO** | **`gc`** *(Visual)* | Toggle block comment |
 | ❌ **NO** | **`ss`** | Split window horizontally (`:split`) |
 | ❌ **NO** | **`sv`** | Split window vertically (`:vsplit`) |
+| ✅ **YES** | **`<Space> + sa`** | **AutoTile split** window according to aspect ratio (`:AutoTile`) |
 | ✅ **YES** | **`<Space> + se`** | Equalize all split window dimensions (`<C-w>=`) |
 | ✅ **YES** | **`<Space> + sx`** | Close current split window (`:close`) |
 | ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Focus window Left / Down / Up / Right |
 | ❌ **NO** | **`te`** | Open new clean tab (`:tabedit`) |
 | ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Switch to next / previous tab |
+| ❌ **NO** | **`[x`** / **`]x`** | Jump to previous / next **Git merge conflict marker** |
+| ❌ **NO** | **`[<space>`** / **`]<space>`** | Insert blank line above / below cursor without moving |
 
 ---
 
@@ -95,7 +106,15 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 | **`<Space> + ;b`** | **`;b`** / **`\\`** | **List Buffers** | Fuzzy search open buffers (jumps to existing window) |
 | **`<Space> + ;c`** | **`;c`** | **Incoming Calls** | LSP incoming call hierarchy |
 | **`<Space> + ;e`** | **`;e`** | **Diagnostics** | Project diagnostic errors and warnings |
-| **`<Space> + ;f`** | **`;f`** | **Find Files** | Fuzzy find project files (`Snacks.picker.files`) |
+| **`<Space> + ;f`** | **`;f`** | **Repo Files & Dirs** | Search repo root; opens files in buffer or dirs in floating Oil.nvim |
+| **`<Space> + ;M`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
+| **`<Space> + ;z`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
+| **`<Space> + ;H`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
+| **`<Space> + ;a`** | **`;a`** | **Seeker Files** | File search with instant `<C-e>` bidirectional toggle to ripgrep |
+| **`<Space> + ;F`** | **`;F`** | **Seeker Git Files** | Git-tracked file search with Seeker mode toggling |
+| **`<Space> + ;G`** | **`;G`** | **Seeker Grep** | Ripgrep search with instant `<C-e>` toggle back to file list |
+| **`<Space> + ;W`** | **`;W`** | **Seeker Grep Word** | Seeker search for word under cursor or visual selection |
+| **`<Space> + ;R`** | **`;R`** | **Search & Replace** | Interactive project-wide find and replace (`:Replace`) |
 | **`<Space> + ;g`** | **`;g`** | **Lazygit** | Launch integrated floating Lazygit terminal |
 | **`<Space> + ;h`** | **`;h`** | **Git Diff Hunks** | Interactive Git diff hunks picker |
 | **`<Space> + ;n`** | **`;n`** | **Notifications** | View Snacks notification history |
@@ -113,23 +132,20 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 
 ```text
                 Pickers
-; → Resume Picker
-b → List Buffers
-c → Incoming Calls
-C → Commands
-e → Diagnostics
-f → Find Files
-g → Lazygit
-h → Git Diff Hunks
+; → Resume Picker       M → Repo Markdown Files
+a → Seeker Files        o → Recent Files
+b → List Buffers        r → Live Grep
+c → Incoming Calls      R → Project Search & Replace
+C → Commands            s → Document Symbols
+e → Diagnostics         u → Undo History
+f → Repo Files & Dirs   w → Grep Word
+F → Seeker Git Files    W → Seeker Grep Word
+g → Lazygit             z → Drive /z/ (Files & Dirs)
+G → Seeker Grep         H → Home ~/ (Files & Dirs)
+h → Git Diff Hunks      ? → Help Tags
 l → Buffer Lines
 m → Git Status
 n → Notifications
-o → Recent Files
-r → Live Grep
-s → Document Symbols
-u → Undo History
-w → Grep Word
-? → Help Tags
 ```
 
 ---
@@ -140,7 +156,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 
 | Keymap | Which-Key Label | Action | Description |
 | :--- | :---: | :--- | :--- |
-| **`<Space> + <Space>`** | `🚀 Files` | **Find Files** | Instant project file fuzzy search (`Snacks.picker.files`) |
+| **`<Space> + <Space>`** | `🚀 Repo Files & Dirs` | **Repo Files & Dirs** | Search repo root files & dirs (Dirs $\to$ Oil float, Files $\to$ Buffer) |
 | **`<Space> + ,`** | `, Buffers` | **Open Buffers** | Ergonomic right-hand buffer picker (`Snacks.picker.buffers`) |
 | **`<Space> + /`** | `/ Search History` | **Search History** | Interactive fuzzy search of past search patterns (`Snacks.picker.search_history`) |
 | **`<Space> + :`** | `: Command History` | **Command History** | Interactive fuzzy search of recent `:` commands (`Snacks.picker.command_history`) |
@@ -208,6 +224,10 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | — | **`:ToggleFormatter`** | Command | Toggle automatic code formatting on save for active buffer |
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
+| ✅ **YES** | **`<Space> + cm`** | Normal | **Markdown Live Preview** in web browser without external server (`:MDPreview`) |
+| ✅ **YES** | **`<Space> + ce`** | Normal / Visual | **Execute Code** buffer or visual selection (`:Runner`) |
+| ✅ **YES** | **`<Space> + cp`** | Normal | **Project Search & Replace** with Ripgrep & Quickfix (`:Replace`) |
+| ✅ **YES** | **`<Space> + cD`** | Normal | **Set Root Directory** to detected Git root (`:RootDir`) |
 | ✅ **YES** | **`<Space> + cc`** | Normal | Run CodeLens under cursor |
 | ✅ **YES** | **`<Space> + cC`** | Normal | Refresh CodeLens in buffer |
 | ✅ **YES** | **`<Space> + cd`** | Normal | Show line diagnostics floating window |
@@ -367,6 +387,7 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | :--- | :---: | :--- | :--- |
 | **`<Space> + ss`** | **`ss`** | **Horizontal Split** | Split window horizontally (`:split`) |
 | **`<Space> + sv`** | **`sv`** | **Vertical Split** | Split window vertically (`:vsplit`) |
+| **`<Space> + sa`** | — | **AutoTile Split** | Dynamically split window horizontally/vertically by aspect ratio (`:AutoTile`) |
 | **`<Space> + se`** | — | **Equalize Splits** | Equalize all split dimensions (`<C-w>=`) |
 | **`<Space> + sx`** | — | **Close Split** | Close current split window (`:close`) |
 | **`<Space> + sh`** | **`sh`** | **Focus Left** | Move focus to left split (`<C-w>h`) |
@@ -387,6 +408,10 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
 | **`<Space> + ee`** | **`sf`** | **File Explorer** | Open Oil floating file explorer with preview |
+| **`<Space> + em`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
+| **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
+| **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
+| **`<Space> + er`** | — | **Ranger Picker** | Open floating Ranger file manager (`:RangerPicker`) |
 | **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in centered 80% floating window |
 | **`<Space> + en`** | — | **New File** | Open a new empty buffer (`:enew`) |
 | **`<Space> + es`** | **`<Ctrl> + s`** | **Save File** | Save active buffer immediately (`:w`) |
@@ -442,5 +467,34 @@ rvim integrates [`octohub.nvim`](https://github.com/2kabhishek/octohub.nvim) alo
 | ✅ **YES** | **`<Space> + got`** | View **complete profile & repository stats** |
 | ✅ **YES** | **`<Space> + gow`** | Open current repository on GitHub in web browser |
 | ✅ **YES** | **`<Space> + gop`** | Open authenticated user's profile in web browser |
+
+---
+
+### 🛠️ 12. Seeker & Homegrown Plugins Suite
+
+rvim integrates [`seeker.nvim`](https://github.com/2kabhishek/seeker.nvim) and [`homegrown.nvim`](https://github.com/2kabhishek/homegrown.nvim) to provide seamless search transitions and high-performance native editor extensions without external daemon dependencies:
+
+#### 🔍 Seeker: Bidirectional File & Grep Bridge
+- **Instant Search Mode Switching**: When searching files in `:Seeker files` or `:Seeker git_files`, press `<Ctrl> + e` to immediately transition to ripgrep scoped exclusively to the matched files (`toggle_to_grep`). Press `<Ctrl> + e` again in grep mode to jump back to the file list (`toggle_to_file`).
+- **Exclude Filter**: Press `<Ctrl> + x` to toggle excluding highlighted files from the search set.
+
+| Keymap | Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + ;a`** | **`;a`** | **Seeker Files** | File search with instant `<C-e>` toggle to ripgrep |
+| **`<Space> + ;F`** | **`;F`** | **Seeker Git Files** | Git-tracked file search with Seeker mode toggling |
+| **`<Space> + ;G`** | **`;G`** | **Seeker Grep** | Live grep search with instant `<C-e>` toggle back to file list |
+| **`<Space> + ;W`** | **`;W`** | **Seeker Grep Word** | Grep word under cursor or visual selection |
+
+#### 🌿 Homegrown: Lightweight Editor Utilities
+- **`:MDPreview` (`<Space> + cm`)**: Browser-based real-time markdown preview without Node.js or external servers. Automatically creates a standalone bundle in `/tmp/nvim_md/` and live-syncs on `TextChanged` and `TextChangedI`.
+- **`:Runner` (`<Space> + ce`)**: Asynchronous code execution for active buffer or visual selection (`lua`, `vim`, `python`, `node`, `ts-node`, `bash`, `go`, `ruby`, `elixir`, `java`).
+- **`:AutoTile` (`<Space> + sa`)**: Smart autotiling split that evaluates the active window's aspect ratio (`width >= height * 2.0` $\to$ vertical split, otherwise horizontal split).
+- **`:Replace` (`<Space> + cp` / `;R`)**: Project-wide search and replace using Ripgrep and Quickfix with interactive confirmation modes (`cfdo %s/.../.../g | update`).
+- **`:RootDir` (`<Space> + cD`)**: Automatically changes the current buffer window directory (`lcd`) to the Git repository root.
+- **`:RangerPicker` (`<Space> + er`)**: Opens the Ranger file manager in a centered floating window powered by `Snacks.terminal`.
+- **Conflict & Line Motions**:
+  - **`[x` / `]x`**: Instantly jump to the previous / next Git merge conflict marker (`<<<<<<<`, `=======`, `>>>>>>>`).
+  - **`[<space>` / `]<space>`**: Insert blank line above / below cursor without moving the cursor.
+
 
 
