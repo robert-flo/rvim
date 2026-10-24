@@ -319,17 +319,30 @@ Full two-pane code comparison and commit history explorer powered by `codediff.n
 
 ### 🏠 5. Startup Dashboard (`Snacks.dashboard`)
 
-When launched with an empty buffer (`rvim`), an interactive dashboard opens with one-key quick actions, recent files, and projects:
+When launched with an empty buffer (`rvim`), an advanced multi-pane interactive dashboard opens with direct one-key actions, terminal color script decorations, and live GitHub CLI integration:
 
-| Key | Action |
-| :---: | :--- |
-| **`f`** | **Find files** in project (`;f`) |
-| **`n`** | **New file** in clean buffer and enter insert mode |
-| **`r`** | **Live Grep** across project text (`;r`) |
-| **`o`** | **Recent files** picker (`;o`) |
-| **`g`** | **Open Lazygit** in integrated floating terminal (`;g`) |
-| **`c`** | **Browse configuration** files (`~/.config/rvim`) |
-| **`q`** | **Quit** Neovim |
+#### Pane 1 (Left): Navigation & Quick Keys
+| Key | Action | Description |
+| :---: | :--- | :--- |
+| **`f`** | **Find files** (`;f`) | Fuzzy search repository files & directories with Oil float |
+| **`e`** | **New file** | Open clean buffer and enter insert mode (`:ene \| startinsert`) |
+| **`r`** | **Live Grep** (`;r`) | Search project text with ripgrep (`Snacks.picker.grep`) |
+| **`o`** | **Recent files** (`;o`) | Fuzzy search recently edited files (`Snacks.picker.oldfiles`) |
+| **`g`** | **Open Lazygit** (`;g`) | Launch integrated floating Lazygit terminal |
+| **`c`** | **Config** | Browse Neovim configuration files (`~/.config/rvim`) |
+| **`q`** | **Quit** | Exit Neovim immediately (`:qa`) |
+
+#### Pane 2 (Right): GitHub CLI & Live Repository Hub
+| Key | Action | Description |
+| :---: | :--- | :--- |
+| — | **Color Script** | Vibrant terminal palette banner (`colorscript -e square`) |
+| **`b`** | **Browse Repo** | Open repository directly on GitHub (`Snacks.gitbrowse()`) |
+| **`n`** | **Notifications** | View unread notifications (`gh notify -s -a -n5`) and jump to GitHub |
+| **`i`** | **Open Issues** | Display latest repository issues and open in browser (`gh issue list --web`) |
+| **`P`** | **Open PRs** | Display latest repository pull requests and open in browser (`gh pr list --web`) |
+| — | **Git Status** | Real-time working tree diff statistics (`git diff --stat -B -M -C`) |
+
+*Note: In non-git directories, Pane 2 automatically falls back to displaying Recent Files and Projects.*
 
 ---
 
