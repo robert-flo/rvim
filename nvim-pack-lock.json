@@ -102,6 +102,10 @@
       "rev": "a21176efde15fab21fabda0bf2ba123ed6d7332d",
       "src": "https://github.com/craftzdog/solarized-osaka.nvim"
     },
+    "tfm.nvim": {
+      "rev": "a74ac5333f030db3603d9f076d220e8d24621365",
+      "src": "https://github.com/rolv-apneseth/tfm.nvim"
+    },
     "tiny-cmdline.nvim": {
       "rev": "d83700b48d8ff5625dbef4029af071db559544e5",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"

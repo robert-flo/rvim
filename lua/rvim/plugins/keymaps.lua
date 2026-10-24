@@ -165,6 +165,13 @@ map({
 	{ ";s", Snacks.picker.lsp_symbols, desc = "LSP Document Symbols" },
 	{ ";o", Snacks.picker.recent, desc = "Recent files" },
 	{ ";;", Snacks.picker.resume, desc = "Resume picker" },
+	{ ";t", "<cmd>Tfm<cr>", desc = "Terminal File Manager (Elio)" },
+	{ "<leader>me", "<cmd>Tfm<cr>", desc = "Open Elio" },
+	{ "<leader>mm", "<cmd>Tfm<cr>", desc = "Open Elio" },
+	{ "<leader>mh", "<cmd>TfmSplit<cr>", desc = "TFM - Horizontal Split" },
+	{ "<leader>mv", "<cmd>TfmVsplit<cr>", desc = "TFM - Vertical Split" },
+	{ "<leader>mt", "<cmd>TfmTabedit<cr>", desc = "TFM - New Tab" },
+	{ "<leader>et", "<cmd>Tfm<cr>", desc = "TFM (Elio)" },
 	{
 		"\\\\",
 		function()

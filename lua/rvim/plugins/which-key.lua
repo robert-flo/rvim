@@ -83,6 +83,7 @@ which_key.add({
 	{ "<leader>c", group = "󰘦 Code" },
 	{ "<leader>d", group = " Diff" },
 	{ "<leader>e", group = "󰉋 Explorer & Files" },
+	{ "<leader>m", group = "󰉋 TFM (Elio)" },
 	{ "<leader>s", group = " Split / Window" },
 	{ "<leader>t", group = "󰓩 Tabs" },
 	{ "<leader>y", group = " Yank" },
@@ -470,6 +471,16 @@ which_key.add({
 		end,
 		desc = "Help Tags",
 	},
+	{
+		"<leader>;t",
+		"<cmd>Tfm<cr>",
+		desc = "Terminal File Manager (Elio)",
+	},
+	{
+		";t",
+		"<cmd>Tfm<cr>",
+		desc = "Terminal File Manager (Elio)",
+	},
 	-- Buffers Suite (<leader>b)
 	{ "<leader>b", group = "󰈔 Buffers" },
 	{
@@ -606,6 +617,16 @@ which_key.add({
 		desc = "Browse Home (~/)",
 	},
 	{ "<leader>er", "<cmd>RangerPicker<cr>", desc = "Ranger Picker" },
+	{ "<leader>et", "<cmd>Tfm<cr>", desc = "TFM (Elio)" },
+	{ "<leader>el", "<cmd>Tfm<cr>", desc = "Elio File Manager" },
+
+	-- TFM / Terminal File Manager Suite (<leader>m)
+	{ "<leader>m", group = "󰉋 TFM (Elio)" },
+	{ "<leader>me", "<cmd>Tfm<cr>", desc = "Open Elio" },
+	{ "<leader>mm", "<cmd>Tfm<cr>", desc = "Open Elio" },
+	{ "<leader>mh", "<cmd>TfmSplit<cr>", desc = "TFM - Horizontal Split" },
+	{ "<leader>mv", "<cmd>TfmVsplit<cr>", desc = "TFM - Vertical Split" },
+	{ "<leader>mt", "<cmd>TfmTabedit<cr>", desc = "TFM - New Tab" },
 
 	-- Split / Window Suite (<leader>s)
 	{ "<leader>s", group = " Split / Window" },
