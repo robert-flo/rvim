@@ -78,15 +78,40 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 which_key.add({
-	-- Groups
-	{ "<leader>c", group = "Code" },
-	{ "<leader>d", group = "Diff" },
-	{ "<leader>s", group = "Split / Window" },
+	-- Root Groups
+	{ "<leader>b", group = "󰈔 Buffers" },
+	{ "<leader>c", group = "󰘦 Code" },
+	{ "<leader>d", group = " Diff" },
+	{ "<leader>e", group = "󰉋 Explorer & Files" },
+	{ "<leader>s", group = " Split / Window" },
+	{ "<leader>t", group = "󰓩 Tabs" },
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>;", group = " Pickers" },
 
-	-- Git Suite (<leader>g) - Normal Mode
+	-- Normal Mode
 	mode = { "n" },
+
+	-- Root Single Actions
+	{
+		"<leader>f",
+		function()
+			require("conform").format()
+		end,
+		desc = "Format Code",
+	},
+	{
+		"<leader>j",
+		function()
+			require("rvim.utils.editor").open_package_json()
+		end,
+		desc = "Open package.json",
+	},
+	{ "<leader>p", '"0p', desc = "Paste Last Yank" },
+	{ "<leader>P", '"0P', desc = "Paste Before Cursor" },
+	{ "<leader>o", "o<Esc>^Da", desc = "Clean Line Below" },
+	{ "<leader>O", "O<Esc>^Da", desc = "Clean Line Above" },
+
+	-- Git Suite (<leader>g) - Normal Mode
 	{ "<leader>g", group = "󰊢 Git" },
 	{ "<leader>ga", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage Hunk" },
 	{ "<leader>gA", "<cmd>Gitsigns stage_buffer<cr>", desc = "Stage Buffer" },
@@ -330,6 +355,134 @@ which_key.add({
 		end,
 		desc = "Grep Word",
 	},
+	-- Buffers Suite (<leader>b)
+	{ "<leader>b", group = "󰈔 Buffers" },
+	{
+		"<leader>bb",
+		function()
+			require("rvim.utils.editor").pick_buffers()
+		end,
+		desc = "List Buffers",
+	},
+	{
+		"<leader>bd",
+		function()
+			require("rvim.utils.editor").delete_hidden_buffers()
+		end,
+		desc = "Delete Hidden Buffers",
+	},
+	{ "<leader>bx", "<cmd>bdelete<cr>", desc = "Close Current Buffer" },
+	{ "<leader>bo", "<cmd>%bd|e#|bd#<cr>", desc = "Close Other Buffers" },
+
+	-- Code Suite (<leader>c)
+	{ "<leader>c", group = "󰘦 Code" },
+	{
+		"<leader>ca",
+		function()
+			vim.lsp.buf.code_action()
+		end,
+		desc = "Code Action",
+	},
+	{
+		"<leader>cc",
+		function()
+			vim.lsp.codelens.run()
+		end,
+		desc = "Run CodeLens",
+	},
+	{
+		"<leader>cC",
+		function()
+			vim.lsp.codelens.refresh()
+		end,
+		desc = "Refresh CodeLens",
+	},
+	{
+		"<leader>cd",
+		function()
+			vim.diagnostic.open_float()
+		end,
+		desc = "Line Diagnostics",
+	},
+	{
+		"<leader>cf",
+		function()
+			require("conform").format()
+		end,
+		desc = "Format Code",
+	},
+	{
+		"<leader>ci",
+		function()
+			require("snacks").toggle.inlay_hints():toggle()
+		end,
+		desc = "Toggle Inlay Hints",
+	},
+	{
+		"<leader>cl",
+		function()
+			Snacks.picker.lsp_config()
+		end,
+		desc = "LSP Info",
+	},
+	{
+		"<leader>cr",
+		function()
+			vim.lsp.buf.rename()
+		end,
+		desc = "Rename Symbol",
+	},
+	{
+		"<leader>cR",
+		function()
+			Snacks.rename.rename_file()
+		end,
+		desc = "Rename File",
+	},
+
+	-- Diff Suite (<leader>d)
+	{ "<leader>d", group = " Diff" },
+	{ "<leader>dv", "<cmd>CodeDiff<cr>", desc = "Toggle CodeDiff" },
+	{ "<leader>dh", "<cmd>CodeDiff history %<cr>", desc = "File History" },
+	{ "<leader>dH", "<cmd>CodeDiff history<cr>", desc = "Repo History" },
+
+	-- Explorer & Files Suite (<leader>e)
+	{ "<leader>e", group = "󰉋 Explorer & Files" },
+	{
+		"<leader>ee",
+		function()
+			require("oil").open_float(nil, { preview = {} })
+		end,
+		desc = "File Explorer (Oil)",
+	},
+	{
+		"<leader>ep",
+		function()
+			require("rvim.utils.editor").open_package_json()
+		end,
+		desc = "Open package.json",
+	},
+	{ "<leader>en", "<cmd>enew<cr>", desc = "New File" },
+	{ "<leader>es", "<cmd>w<cr>", desc = "Save File" },
+
+	-- Split / Window Suite (<leader>s)
+	{ "<leader>s", group = " Split / Window" },
+	{ "<leader>se", "<C-w>=", desc = "Equalize Splits" },
+	{ "<leader>sx", "<cmd>close<cr>", desc = "Close Current Split" },
+	{ "<leader>ss", "<cmd>split<cr>", desc = "Horizontal Split" },
+	{ "<leader>sv", "<cmd>vsplit<cr>", desc = "Vertical Split" },
+	{ "<leader>sh", "<C-w>h", desc = "Focus Left" },
+	{ "<leader>sj", "<C-w>j", desc = "Focus Down" },
+	{ "<leader>sk", "<C-w>k", desc = "Focus Up" },
+	{ "<leader>sl", "<C-w>l", desc = "Focus Right" },
+	{ "<leader>so", "<C-w>o", desc = "Close Other Splits" },
+
+	-- Tabs Suite (<leader>t)
+	{ "<leader>t", group = "󰓩 Tabs" },
+	{ "<leader>te", "<cmd>tabedit<cr>", desc = "New Clean Tab" },
+	{ "<leader>tx", "<cmd>tabclose<cr>", desc = "Close Tab" },
+	{ "<leader>tl", "<cmd>tabnext<cr>", desc = "Next Tab" },
+	{ "<leader>th", "<cmd>tabprev<cr>", desc = "Previous Tab" },
 })
 
 -- Visual Mode
@@ -343,4 +496,28 @@ which_key.add({
 	-- Yank Suite (<leader>y) - Visual Mode
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>yg", ":CopyGitUrl<cr>", desc = "Copy Git URL" },
+
+	-- Code Suite (<leader>c) - Visual Mode
+	{ "<leader>c", group = "󰘦 Code" },
+	{
+		"<leader>ca",
+		function()
+			vim.lsp.buf.code_action()
+		end,
+		desc = "Code Action",
+	},
+	{
+		"<leader>cf",
+		function()
+			require("conform").format()
+		end,
+		desc = "Format Code",
+	},
+	{
+		"<leader>cc",
+		function()
+			require("rvim.utils.editor").copy_as_codeblock()
+		end,
+		desc = "Copy as Codeblock",
+	},
 })

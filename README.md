@@ -121,10 +121,10 @@ w → Grep Word
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + p`** | Normal / Visual | **Paste last yank**: uses register `0`, ignoring deletions with `d` or `x` |
 | ✅ **YES** | **`<Space> + P`** | Normal | Paste before cursor from register `0` |
-| ✅ **YES** | **`<Space> + c`** | Normal / Visual | Change text into black hole register (`"_c`) without overwriting clipboard |
 | ✅ **YES** | **`<Space> + C`** | Normal / Visual | Change to end of line into black hole register (`"_C`) |
-| ✅ **YES** | **`<Space> + d`** | Normal / Visual | Delete text into black hole register (`"_d`) |
 | ✅ **YES** | **`<Space> + D`** | Normal / Visual | Delete to end of line into black hole register (`"_D`) |
+| ✅ **YES** | **`<Space> + c`** | Visual | Change text into black hole register (`"_c`) without overwriting clipboard |
+| ✅ **YES** | **`<Space> + d`** | Visual | Delete text into black hole register (`"_d`) |
 | ✅ **YES** | **`<Space> + o`** | Normal | Insert clean line below without auto-continuing comments |
 | ✅ **YES** | **`<Space> + O`** | Normal | Insert clean line above without auto-continuing comments |
 | ✅ **YES** | **`<Space> + cc`** | Visual | Copy selection formatted as Markdown code block |
@@ -157,17 +157,21 @@ Comprehensive clipboard operations integrated with WhichKey and user commands:
 
 ---
 
-### 🧠 3. LSP, Diagnostics & Code Intelligence
+### 🧠 3. LSP, Diagnostics & Code Intelligence (`<Space> + c`)
+
+Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ca`** | Normal / Visual | **Code Actions** (Quick fixes, refactors) |
+| ✅ **YES** | **`<Space> + cf`** *(or `<Space> + f`)* | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
-| ✅ **YES** | **`<Space> + cc`** | Normal / Visual | Run CodeLens under cursor |
+| ✅ **YES** | **`<Space> + cc`** | Normal | Run CodeLens under cursor |
 | ✅ **YES** | **`<Space> + cC`** | Normal | Refresh CodeLens in buffer |
+| ✅ **YES** | **`<Space> + cd`** | Normal | Show line diagnostics floating window |
+| ✅ **YES** | **`<Space> + ci`** | Normal | Toggle LSP inlay hints |
 | ✅ **YES** | **`<Space> + cl`** | Normal | Show active LSP servers information |
-| ✅ **YES** | **`<Space> + i`** | Normal | Toggle LSP inlay hints |
 | ❌ **NO** | **`gd`** | Normal | **Goto definition** under cursor (`Snacks.picker.lsp_definitions`) |
 | ❌ **NO** | **`gD`** | Normal | Goto declaration |
 | ❌ **NO** | **`gy`** | Normal | Goto type definition |
@@ -177,10 +181,10 @@ Comprehensive clipboard operations integrated with WhichKey and user commands:
 | ❌ **NO** | **`gK`** | Normal | Display signature help |
 | ❌ **NO** | **`<Ctrl> + k`** | Insert | Show function arguments popup while typing |
 | ❌ **NO** | **`<Ctrl> + j`** | Normal | Jump to next error or diagnostic in buffer |
-| ❌ **NO** | **`;s`** | Normal | **Document Symbols** picker (functions, classes, methods via `Snacks.picker.lsp_symbols`) |
-| ❌ **NO** | **`;o`** | Normal | **Recent files** picker (`Snacks.picker.recent`) |
-| ❌ **NO** | **`;e`** | Normal | List all diagnostics across project (`Snacks.picker.diagnostics`) |
-| ❌ **NO** | **`;c`** | Normal | List incoming calls to function under cursor |
+| ❌ **NO** | **`;s`** / **`<Space> + ;s`** | Normal | **Document Symbols** picker (functions, classes, methods) |
+| ❌ **NO** | **`;o`** / **`<Space> + ;o`** | Normal | **Recent files** picker |
+| ❌ **NO** | **`;e`** / **`<Space> + ;e`** | Normal | List all diagnostics across project |
+| ❌ **NO** | **`;c`** / **`<Space> + ;c`** | Normal | List incoming calls to function under cursor |
 | ❌ **NO** | **`]]`** / **`[[`** | Normal | Jump to next / previous reference of symbol under cursor |
 
 ---
@@ -297,17 +301,44 @@ When launched with an empty buffer (`rvim`), an interactive dashboard opens with
 
 ### 🪟 9. Windows, Tabs & Buffers
 
-| Space? | Keymap | Mode | Action |
-| :---: | :--- | :---: | :--- |
-| ❌ **NO** | **`ss`** | Normal | Split window horizontally (`:split`) |
-| ❌ **NO** | **`sv`** | Normal | Split window vertically (`:vsplit`) |
-| ✅ **YES** | **`<Space> + se`** | Normal | Equalize all split window dimensions (`<C-w>=`) |
-| ✅ **YES** | **`<Space> + sx`** | Normal | Close current split window (`:close`) |
-| ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Normal | Move focus Left / Down / Up / Right |
-| ❌ **NO** | **`te`** | Normal | Open clean tab (`:tabedit`) |
-| ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Normal | Navigate next / previous tab |
-| ❌ **NO** | **`\\`** / **`;b`** | Normal | List open buffers and switch (or **`<Space> + ;b`** in Which-Key) |
-| ✅ **YES** | **`<Space> + bd`** | Normal | Delete all hidden buffers not displayed in any window |
+Comprehensive window management, split controls, tabs, and buffer operations with full Which-Key integration:
+
+#### 󰈔 Buffers Suite (`<Space> + b`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + bb`** | **`\\`** / **`;b`** | **List Buffers** | Fuzzy search open buffers and switch |
+| **`<Space> + bd`** | — | **Delete Hidden Buffers** | Close all unlisted/hidden buffers with unsaved-change protection |
+| **`<Space> + bx`** | — | **Close Current Buffer** | Close active buffer (`:bdelete`) |
+| **`<Space> + bo`** | — | **Close Other Buffers** | Close all buffers except current (`:%bd\|e#\|bd#`) |
+
+####  Split / Window Suite (`<Space> + s`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + ss`** | **`ss`** | **Horizontal Split** | Split window horizontally (`:split`) |
+| **`<Space> + sv`** | **`sv`** | **Vertical Split** | Split window vertically (`:vsplit`) |
+| **`<Space> + se`** | — | **Equalize Splits** | Equalize all split dimensions (`<C-w>=`) |
+| **`<Space> + sx`** | — | **Close Split** | Close current split window (`:close`) |
+| **`<Space> + sh`** | **`sh`** | **Focus Left** | Move focus to left split (`<C-w>h`) |
+| **`<Space> + sj`** | **`sj`** | **Focus Down** | Move focus to lower split (`<C-w>j`) |
+| **`<Space> + sk`** | **`sk`** | **Focus Up** | Move focus to upper split (`<C-w>k`) |
+| **`<Space> + sl`** | **`sl`** | **Focus Right** | Move focus to right split (`<C-w>l`) |
+| **`<Space> + so`** | — | **Close Others** | Close all other split windows (`<C-w>o`) |
+
+#### 󰓩 Tabs Suite (`<Space> + t`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + te`** | **`te`** | **New Tab** | Open a new clean tab (`:tabedit`) |
+| **`<Space> + tx`** | — | **Close Tab** | Close active tab (`:tabclose`) |
+| **`<Space> + tl`** | **`<Tab>`** | **Next Tab** | Switch to next tab (`:tabnext`) |
+| **`<Space> + th`** | **`<S-Tab>`** | **Previous Tab** | Switch to previous tab (`:tabprev`) |
+
+#### 󰉋 Explorer & Files Suite (`<Space> + e`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + ee`** | **`sf`** | **File Explorer** | Open Oil floating file explorer with preview |
+| **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in centered 80% floating window |
+| **`<Space> + en`** | — | **New File** | Open a new empty buffer (`:enew`) |
+| **`<Space> + es`** | **`<Ctrl> + s`** | **Save File** | Save active buffer immediately (`:w`) |
 
 ---
 
