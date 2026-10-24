@@ -550,6 +550,7 @@ which_key.add({
 		desc = "Rename File",
 	},
 	{ "<leader>cm", "<cmd>MDPreview<cr>", desc = "Markdown Live Preview" },
+	{ "<leader>cM", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
 	{ "<leader>ce", "<cmd>%Runner<cr>", desc = "Execute Buffer / File" },
 	{ "<leader>cp", "<cmd>Replace<cr>", desc = "Search & Replace All" },
 	{ "<leader>cD", "<cmd>RootDir<cr>", desc = "Set Root Directory" },

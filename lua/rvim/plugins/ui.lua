@@ -31,12 +31,37 @@ Snacks.setup({
 		enabled = true,
 		preset = {
 			keys = {
-				{ icon = icons.ui.Search, key = "f", desc = "Find File (;f)", action = ":lua Snacks.dashboard.pick('files')" },
+				{
+					icon = icons.ui.Search,
+					key = "f",
+					desc = "Find File (;f)",
+					action = ":lua Snacks.dashboard.pick('files')",
+				},
 				{ icon = icons.ui.NewFile, key = "n", desc = "New File", action = ":ene | startinsert" },
-				{ icon = icons.ui.List, key = "r", desc = "Live Grep (;r)", action = ":lua Snacks.dashboard.pick('live_grep')" },
-				{ icon = icons.documents.Files, key = "o", desc = "Recent Files (;o)", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-				{ icon = icons.git.Branch, key = "g", desc = "Lazygit (;g)", action = ":lua require('rvim.utils.lazygit').open()" },
-				{ icon = icons.ui.Gear, key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })" },
+				{
+					icon = icons.ui.List,
+					key = "r",
+					desc = "Live Grep (;r)",
+					action = ":lua Snacks.dashboard.pick('live_grep')",
+				},
+				{
+					icon = icons.documents.Files,
+					key = "o",
+					desc = "Recent Files (;o)",
+					action = ":lua Snacks.dashboard.pick('oldfiles')",
+				},
+				{
+					icon = icons.git.Branch,
+					key = "g",
+					desc = "Lazygit (;g)",
+					action = ":lua require('rvim.utils.lazygit').open()",
+				},
+				{
+					icon = icons.ui.Gear,
+					key = "c",
+					desc = "Config",
+					action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })",
+				},
 				{ icon = icons.ui.SignOut, key = "q", desc = "Quit", action = ":qa" },
 			},
 		},
@@ -73,6 +98,18 @@ Snacks.setup({
 		sources = {
 			files = { hidden = true },
 			grep = { hidden = true },
+		},
+		win = {
+			preview = {
+				wo = {
+					number = false,
+					relativenumber = false,
+					signcolumn = "no",
+					wrap = true,
+					conceallevel = 2,
+					concealcursor = "nvc",
+				},
+			},
 		},
 	},
 	notifier = { enabled = true },

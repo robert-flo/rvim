@@ -66,6 +66,7 @@ rvim/
         ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
         ├── seeker.lua                # Seeker.nvim bidirectional file & grep search bridge (Snacks picker)
         ├── homegrown.lua             # Homegrown.nvim suite (live MD preview, code runner, autotiling, bracket nav, replace)
+        ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
         └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x) & 9 unified suites (b, c, d, e, g, s, t, y, ;)
 ```
@@ -194,6 +195,8 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `seeker.nvim`: Bidirectional search bridge between file lists and ripgrep queries in `snacks.picker`. Pressing `<Ctrl> + e` switches between matched files and a ripgrep search restricted to those exact files.
 - **`homegrown.lua`**:
   - `homegrown.nvim`: Lightweight, zero-dependency suite providing real-time browser markdown preview without external servers (`:MDPreview`), asynchronous code runner (`:Runner`), aspect-ratio window autotiling (`:AutoTile`), project-wide search and replace (`:Replace`), git root switcher (`:RootDir`), and conflict/line bracket motions (`[x`/`]x`, `[<space>`/`]<space>`).
+- **`render-markdown.lua`**:
+  - `render-markdown.nvim`: In-buffer and Snacks picker preview document renderer. Formats callouts, boxes, checkboxes, Unicode tables, and headers with live concealment and no line numbers in picker previews.
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
