@@ -26,11 +26,11 @@ local setup = {
 		},
 	},
 	icons = {
-		breadcrumb = icons.ui.ArrowOpen,
+		breadcrumb = "",
 		separator = icons.ui.Arrow,
 		group = "",
 		keys = {
-			Space = icons.ui.Rocket,
+			Space = "",
 		},
 		rules = false,
 	},
@@ -62,6 +62,21 @@ local setup = {
 
 which_key.setup(setup)
 
+local function set_which_key_highlights()
+	vim.api.nvim_set_hl(0, "WhichKey", { fg = "#e06c75", bold = true })
+	vim.api.nvim_set_hl(0, "WhichKeyDesc", { fg = "#70b0ff" })
+	vim.api.nvim_set_hl(0, "WhichKeyGroup", { fg = "#e5c07b", bold = true })
+	vim.api.nvim_set_hl(0, "WhichKeySeparator", { fg = "#586e75" })
+	vim.api.nvim_set_hl(0, "WhichKeyTitle", { fg = "#2aa198", bold = true })
+end
+
+set_which_key_highlights()
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
+	callback = set_which_key_highlights,
+})
+
 which_key.add({
 	-- Groups
 	{ "<leader>c", group = "Code" },
@@ -70,7 +85,7 @@ which_key.add({
 
 	-- Git Suite (<leader>g) - Normal Mode
 	mode = { "n" },
-	{ "<leader>g", group = "Git", icon = { icon = "󰊢", color = "cyan" } },
+	{ "<leader>g", group = "󰊢 Git" },
 	{ "<leader>ga", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage Hunk" },
 	{ "<leader>gA", "<cmd>Gitsigns stage_buffer<cr>", desc = "Stage Buffer" },
 	{
@@ -221,7 +236,7 @@ which_key.add({
 -- Git Suite (<leader>g) - Visual Mode
 which_key.add({
 	mode = { "v" },
-	{ "<leader>g", group = "Git", icon = { icon = "󰊢", color = "cyan" } },
+	{ "<leader>g", group = "󰊢 Git" },
 	{ "<leader>ga", ":'<,'>Gitsigns stage_hunk<cr>", desc = "Stage Hunk" },
 	{ "<leader>gr", ":'<,'>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
 	{ "<leader>gu", ":'<,'>Gitsigns undo_stage_hunk<cr>", desc = "Undo Stage Hunk" },
