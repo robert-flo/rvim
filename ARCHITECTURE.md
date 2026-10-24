@@ -135,7 +135,7 @@ Provides a zero-plugin vanilla editing environment:
 ### Layer 2: Services and Utilities (`lua/rvim/utils/`)
 Reusable service layer decoupled from plugins:
 - **`init.lua`**: Consolidates `icons`, `lualine`, `tabline`, and `editor` into the singleton table `_G.Rvim`.
-- **`icons.lua`**: Centralized Nerd Font glyph catalog for LSP types, diagnostics, and git changes.
+- **`icons.lua`**: Comprehensive Nerd Font glyph catalog (UI, documents, types, LSP kinds, diagnostics, and git changes) integrated from nvim2k.
 - **`editor.lua`**:
   - Project root detection via upward directory traversal looking for markers (`.git`, `lua`, `package.json`, `Makefile`, etc.).
   - `open_package_json()`: Opens project `package.json` in a centered floating window taking up 80% of screen dimensions, with buffer-local `<Esc>` / `q` close handlers.
