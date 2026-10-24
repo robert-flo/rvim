@@ -16,7 +16,56 @@ require("rvim.utils.tabline").setup()
 vim.o.showtabline = 1
 vim.o.tabline = "%!v:lua.require('rvim.utils.tabline').render()"
 
-require("snacks").setup({
+local Snacks = require("snacks")
+
+-- Pre-seed dashboard startup stats for native vim.pack.add
+local elapsed_ms = math.floor((vim.uv.hrtime() - (_G._rvim_start_time or vim.uv.hrtime())) / 1e6 * 100 + 0.5) / 100
+Snacks.dashboard.lazy_stats = {
+	startuptime = math.max(elapsed_ms, 3.5),
+	count = 24,
+	loaded = 24,
+}
+
+Snacks.setup({
+	dashboard = {
+		enabled = true,
+		preset = {
+			keys = {
+				{ icon = " ", key = "f", desc = "Find File (;f)", action = ":lua Snacks.dashboard.pick('files')" },
+				{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+				{ icon = " ", key = "r", desc = "Live Grep (;r)", action = ":lua Snacks.dashboard.pick('live_grep')" },
+				{ icon = " ", key = "o", desc = "Recent Files (;o)", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+				{ icon = " ", key = "g", desc = "Lazygit (;g)", action = ":lua require('rvim.utils.lazygit').open()" },
+				{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })" },
+				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+			},
+		},
+		sections = {
+			{ section = "header" },
+			{
+				icon = "  ",
+				title = "Keymaps",
+				section = "keys",
+				indent = 2,
+				padding = 1,
+			},
+			{
+				icon = " ",
+				title = "Recent Files",
+				section = "recent_files",
+				indent = 2,
+				padding = 1,
+			},
+			{
+				icon = " ",
+				title = "Projects",
+				section = "projects",
+				indent = 2,
+				padding = 1,
+			},
+			{ section = "startup" },
+		},
+	},
 	indent = { enabled = true },
 	scroll = { enabled = false },
 	picker = {
