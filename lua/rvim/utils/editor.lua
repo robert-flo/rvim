@@ -344,4 +344,81 @@ function M.pick_buffers()
 	})
 end
 
+--- Open a Snacks file picker that includes directories and dispatches appropriately:
+--- If a directory is confirmed: opens in Oil floating window.
+--- If a file is confirmed: edits the file in buffer.
+---@param opts? table { cwd?: string, title?: string, ft?: string|string[], hidden?: boolean, ignored?: boolean }
+function M.pick_files_and_dirs(opts)
+	opts = opts or {}
+	local ok, snacks = pcall(require, "snacks")
+	if not ok then
+		vim.notify("snacks.nvim is required for pick_files_and_dirs", vim.log.levels.ERROR)
+		return
+	end
+
+	local cwd = opts.cwd or snacks.git.get_root() or vim.fn.getcwd()
+	local picker_opts = {
+		cwd = cwd,
+		title = opts.title or "Files & Dirs",
+		args = { "--type", "d" },
+		confirm = function(picker, item)
+			picker:close()
+			if not item then
+				return
+			end
+			local item_cwd = item.cwd or cwd
+			local target = item.file or item.path or item.text
+			local full_path = vim.fs.joinpath(item_cwd, target)
+			vim.schedule(function()
+				if vim.fn.isdirectory(full_path) == 1 then
+					local oil_ok, oil = pcall(require, "oil")
+					if oil_ok then
+						oil.open_float(full_path, { preview = {} })
+					else
+						vim.cmd.edit(vim.fn.fnameescape(full_path))
+					end
+				else
+					vim.cmd.edit(vim.fn.fnameescape(full_path))
+				end
+			end)
+		end,
+	}
+
+	if opts.ft then
+		picker_opts.ft = opts.ft
+	end
+	if opts.hidden ~= nil then
+		picker_opts.hidden = opts.hidden
+	end
+	if opts.ignored ~= nil then
+		picker_opts.ignored = opts.ignored
+	end
+
+	snacks.picker.files(picker_opts)
+end
+
+--- Search files and directories anchored to repository root
+function M.pick_repo_files_and_dirs()
+	local ok, snacks = pcall(require, "snacks")
+	local root = ok and (snacks.git.get_root() or vim.fn.getcwd()) or vim.fn.getcwd()
+	M.pick_files_and_dirs({ cwd = root, title = "Repo Root (Files & Dirs)" })
+end
+
+--- Search markdown files anchored to repository root
+function M.pick_markdown_files()
+	local ok, snacks = pcall(require, "snacks")
+	local root = ok and (snacks.git.get_root() or vim.fn.getcwd()) or vim.fn.getcwd()
+	M.pick_files_and_dirs({ cwd = root, ft = { "md", "markdown" }, title = "Markdown Files (Repo Root)" })
+end
+
+--- Search files and directories across drive /z/
+function M.pick_z_drive()
+	M.pick_files_and_dirs({ cwd = "/z", title = "Drive /z/ (Files & Dirs)" })
+end
+
+--- Search files and directories across user $HOME
+function M.pick_home_dir()
+	M.pick_files_and_dirs({ cwd = vim.env.HOME, title = "Home ~/ (Files & Dirs)" })
+end
+
 return M

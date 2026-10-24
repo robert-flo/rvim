@@ -95,9 +95,9 @@ which_key.add({
 	{
 		"<leader><space>",
 		function()
-			Snacks.picker.files()
+			require("rvim.utils.editor").pick_repo_files_and_dirs()
 		end,
-		desc = "Files",
+		desc = "Repo Files & Dirs",
 	},
 	{
 		"<leader>,",
@@ -351,10 +351,36 @@ which_key.add({
 	{
 		"<leader>;f",
 		function()
-			Snacks.picker.files()
+			require("rvim.utils.editor").pick_repo_files_and_dirs()
 		end,
-		desc = "Find Files",
+		desc = "Repo Files & Dirs",
 	},
+	{
+		"<leader>;M",
+		function()
+			require("rvim.utils.editor").pick_markdown_files()
+		end,
+		desc = "Repo Markdown Files",
+	},
+	{
+		"<leader>;z",
+		function()
+			require("rvim.utils.editor").pick_z_drive()
+		end,
+		desc = "Drive /z/ (Files & Dirs)",
+	},
+	{
+		"<leader>;H",
+		function()
+			require("rvim.utils.editor").pick_home_dir()
+		end,
+		desc = "Home ~/ (Files & Dirs)",
+	},
+	{ "<leader>;a", "<cmd>Seeker files<cr>", desc = "Seeker Files" },
+	{ "<leader>;F", "<cmd>Seeker git_files<cr>", desc = "Seeker Git Files" },
+	{ "<leader>;G", "<cmd>Seeker grep<cr>", desc = "Seeker Grep" },
+	{ "<leader>;W", "<cmd>Seeker grep_word<cr>", desc = "Seeker Grep Word" },
+	{ "<leader>;R", "<cmd>Replace<cr>", desc = "Project Search & Replace" },
 	{
 		"<leader>;g",
 		function()
@@ -523,6 +549,10 @@ which_key.add({
 		end,
 		desc = "Rename File",
 	},
+	{ "<leader>cm", "<cmd>MDPreview<cr>", desc = "Markdown Live Preview" },
+	{ "<leader>ce", "<cmd>%Runner<cr>", desc = "Execute Buffer / File" },
+	{ "<leader>cp", "<cmd>Replace<cr>", desc = "Search & Replace All" },
+	{ "<leader>cD", "<cmd>RootDir<cr>", desc = "Set Root Directory" },
 
 	-- Diff Suite (<leader>d)
 	{ "<leader>d", group = " Diff" },
@@ -548,11 +578,34 @@ which_key.add({
 	},
 	{ "<leader>en", "<cmd>enew<cr>", desc = "New File" },
 	{ "<leader>es", "<cmd>w<cr>", desc = "Save File" },
+	{
+		"<leader>em",
+		function()
+			require("rvim.utils.editor").pick_markdown_files()
+		end,
+		desc = "Markdown Files (Repo)",
+	},
+	{
+		"<leader>ez",
+		function()
+			require("rvim.utils.editor").pick_z_drive()
+		end,
+		desc = "Browse /z/ Drive",
+	},
+	{
+		"<leader>eh",
+		function()
+			require("rvim.utils.editor").pick_home_dir()
+		end,
+		desc = "Browse Home (~/)",
+	},
+	{ "<leader>er", "<cmd>RangerPicker<cr>", desc = "Ranger Picker" },
 
 	-- Split / Window Suite (<leader>s)
 	{ "<leader>s", group = " Split / Window" },
 	{ "<leader>se", "<C-w>=", desc = "Equalize Splits" },
 	{ "<leader>sx", "<cmd>close<cr>", desc = "Close Current Split" },
+	{ "<leader>sa", "<cmd>AutoTile<cr>", desc = "AutoTile Split" },
 	{ "<leader>ss", "<cmd>split<cr>", desc = "Horizontal Split" },
 	{ "<leader>sv", "<cmd>vsplit<cr>", desc = "Vertical Split" },
 	{ "<leader>sh", "<C-w>h", desc = "Focus Left" },
@@ -604,6 +657,7 @@ which_key.add({
 		end,
 		desc = "Copy as Codeblock",
 	},
+	{ "<leader>ce", ":'<,'>Runner<cr>", desc = "Execute Selection" },
 	-- Safe Registers - Visual Mode
 	{ "<leader>c", '"_c', desc = "Change (No Yank)" },
 	{ "<leader>C", '"_C', desc = "Change to End of Line" },

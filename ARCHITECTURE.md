@@ -51,7 +51,7 @@ rvim/
     ├── utils/                        # 🧰 LAYER 2: UTILITIES & SERVICES TOOLKIT
     │   ├── init.lua                  # Aggregator exporting _G.Rvim singleton
     │   ├── icons.lua                 # Centralized Nerd Font glyphs catalog
-    │   ├── editor.lua                # Root detection, package.json popup, codeblock copy, yank & path clipboard utilities
+    │   ├── editor.lua                # Root detection, multi-scope file & dir pickers (Oil float), package.json popup, clipboard utilities
     │   ├── lazygit.lua               # RPC-aware Lazygit terminal wrapper preserving origin pane
     │   ├── lualine.lua               # Reactive statusline components (pretty_path, root_dir, macro)
     │   └── tabline.lua               # Headless tabline renderer with powerline arrow glyphs
@@ -64,6 +64,8 @@ rvim/
         ├── lsp.lua                   # Mason tool installer, Blink LSP capability bridge, lsp.enable
         ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
         ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
+        ├── seeker.lua                # Seeker.nvim bidirectional file & grep search bridge (Snacks picker)
+        ├── homegrown.lua             # Homegrown.nvim suite (live MD preview, code runner, autotiling, bracket nav, replace)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
         └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x) & 9 unified suites (b, c, d, e, g, s, t, y, ;)
 ```
@@ -188,6 +190,10 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `octohub.nvim`: Manages and explores GitHub repositories directly inside Neovim, caching repositories, stats, and contribution graphs.
   - `pickme.nvim`: Bridges picker requests directly to `snacks.picker` for unified fuzzy search and selection.
   - `utils.nvim`: Provides asynchronous shell execution, caching, and notification utilities.
+- **`seeker.lua`**:
+  - `seeker.nvim`: Bidirectional search bridge between file lists and ripgrep queries in `snacks.picker`. Pressing `<Ctrl> + e` switches between matched files and a ripgrep search restricted to those exact files.
+- **`homegrown.lua`**:
+  - `homegrown.nvim`: Lightweight, zero-dependency suite providing real-time browser markdown preview without external servers (`:MDPreview`), asynchronous code runner (`:Runner`), aspect-ratio window autotiling (`:AutoTile`), project-wide search and replace (`:Replace`), git root switcher (`:RootDir`), and conflict/line bracket motions (`[x`/`]x`, `[<space>`/`]<space>`).
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
