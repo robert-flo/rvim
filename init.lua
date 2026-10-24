@@ -1,3 +1,5 @@
+_G._rvim_start_time = vim.uv.hrtime()
+
 if vim.loader then
 	vim.loader.enable()
 end

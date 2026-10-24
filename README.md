@@ -131,7 +131,23 @@ rvim
 
 ---
 
-### 🔍 5. Inside Pickers (`Snacks.picker`)
+### 🏠 5. Startup Dashboard (`Snacks.dashboard`)
+
+When launched with an empty buffer (`rvim`), an interactive dashboard opens with one-key quick actions, recent files, and projects:
+
+| Key | Action |
+| :---: | :--- |
+| **`f`** | **Find files** in project (`;f`) |
+| **`n`** | **New file** in clean buffer and enter insert mode |
+| **`r`** | **Live Grep** across project text (`;r`) |
+| **`o`** | **Recent files** picker (`;o`) |
+| **`g`** | **Open Lazygit** in integrated floating terminal (`;g`) |
+| **`c`** | **Browse configuration** files (`~/.config/rvim`) |
+| **`q`** | **Quit** Neovim |
+
+---
+
+### 🔍 6. Inside Pickers (`Snacks.picker`)
 
 | Keymap | Action |
 | :--- | :--- |
@@ -147,7 +163,7 @@ rvim
 
 ---
 
-### 📂 6. Inside File Explorer (`Oil.nvim` with `sf`)
+### 📂 7. Inside File Explorer (`Oil.nvim` with `sf`)
 
 | Keymap | Action |
 | :--- | :--- |
@@ -158,7 +174,7 @@ rvim
 
 ---
 
-### 🤖 7. GitHub Copilot & Autocomplete (`blink.cmp`)
+### 🤖 8. GitHub Copilot & Autocomplete (`blink.cmp`)
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
@@ -171,7 +187,7 @@ rvim
 
 ---
 
-### 🪟 8. Windows, Tabs & Buffers
+### 🪟 9. Windows, Tabs & Buffers
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
@@ -187,7 +203,7 @@ rvim
 
 ---
 
-### 📱 9. Language Support & Toolchains
+### 📱 10. Language Support & Toolchains
 
 rvim provides an out-of-the-box development environment for modern Android applications, native systems programming, and scripting:
 
