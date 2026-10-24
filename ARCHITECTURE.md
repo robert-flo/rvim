@@ -67,8 +67,9 @@ rvim/
         ├── seeker.lua                # Seeker.nvim bidirectional file & grep search bridge (Snacks picker)
         ├── homegrown.lua             # Homegrown.nvim suite (live MD preview, code runner, autotiling, bracket nav, replace)
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
-        ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x) & 9 unified suites (b, c, d, e, g, s, t, y, ;)
+        ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
+        ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x, z) & 10 unified suites (b, c, d, e, g, m, s, t, y, ;)
 ```
 
 ---
@@ -85,21 +86,25 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> 25 native keymaps & safe registers ("0, "_)
+    │  • rvim.config.keymaps   ---> 26 native keymaps & safe registers ("0, "_), <leader>z force quit
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
     ▼
 [Layer 3: Plugins Ecosystem (vim.pack.add)]
     │  Resolves git repositories from ~/.local/share/rvim/site/pack/core/opt/
-    │  • ui         ---> Theme, Lualine, Incline, Snacks setup
+    │  • ui         ---> Theme, Lualine, Incline, Snacks setup (RVIM banner, 98% edge-to-edge modals)
     │  • treesitter ---> AST grammars & dynamic syntax start
     │  • editor     ---> Blink.cmp engine, Conform formatter, Gitsigns, Mini.pairs
     │  • lsp        ---> Mason package installer, Blink LSP capability injection
-    │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
+    │  • util       ---> Oil.nvim editable directory buffers (edge-to-edge float), GitHub Copilot
     │  • octohub    ---> GitHub repository manager, stats & pickme bridge to snacks
-    │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
-    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x) & 9 interactive suites (b, c, d, e, g, s, t, y, ;)
+    │  • seeker     ---> Seeker.nvim bidirectional file & grep search bridge (Snacks picker)
+    │  • homegrown  ---> Homegrown.nvim utility suite (runner, md preview, autotile, replace)
+    │  • render-markdown -> Render-markdown.nvim aesthetic callouts, tables, and badge decorations
+    │  • tfm        ---> Terminal File Manager bridge configuring elio with edge-to-edge floating modal
+    │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit, TFM
+    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x, z) & 10 interactive suites (b, c, d, e, g, m, s, t, y, ;)
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
@@ -145,7 +150,7 @@ Reusable service layer decoupled from plugins:
 - **`icons.lua`**: Comprehensive Nerd Font glyph catalog (UI, documents, types, LSP kinds, diagnostics, and git changes) integrated from nvim2k.
 - **`editor.lua`**:
   - Project root detection via upward directory traversal looking for markers (`.git`, `lua`, `package.json`, `Makefile`, etc.).
-  - `open_package_json()`: Opens project `package.json` in a centered floating window taking up 80% of screen dimensions, with buffer-local `<Esc>` / `q` close handlers.
+  - `open_package_json()`: Opens project `package.json` in an edge-to-edge full width and 98% height floating modal anchored at row 0, with buffer-local `<Esc>` / `q` close handlers.
   - `copy_as_codeblock()`: Formats visual selections into GitHub-ready Markdown blocks with language metadata and line numbers (` ```tsx filename="src/App.tsx" line=42 `).
   - `delete_hidden_buffers()`: Iterates `vim.api.nvim_list_bufs()`, checks visibility against `vim.api.nvim_list_wins()`, and safely closes inactive unedited buffers.
   - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat`.
@@ -160,7 +165,7 @@ Reusable service layer decoupled from plugins:
 
 ### Layer 3: Plugins Ecosystem (`lua/rvim/plugins/`)
 Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`:
-- **`init.lua`**: Declaratively registers all 24 plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
+- **`init.lua`**: Declaratively registers all 31 core plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
 - **`ui.lua`**:
   - `solarized-osaka.nvim`: Vivid, transparent color scheme.
   - `mini.icons`: Lightweight icons library with `mock_nvim_web_devicons()`.
@@ -197,7 +202,9 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `homegrown.nvim`: Lightweight, zero-dependency suite providing real-time browser markdown preview without external servers (`:MDPreview`), asynchronous code runner (`:Runner`), aspect-ratio window autotiling (`:AutoTile`), project-wide search and replace (`:Replace`), git root switcher (`:RootDir`), and conflict/line bracket motions (`[x`/`]x`, `[<space>`/`]<space>`).
 - **`render-markdown.lua`**:
   - `render-markdown.nvim`: In-buffer and Snacks picker preview document renderer. Formats callouts, boxes, checkboxes, Unicode tables, and headers with live concealment and no line numbers in picker previews.
-- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
+- **`tfm.lua`**:
+  - `tfm.nvim`: Integrates the high-speed terminal file manager `/usr/bin/elio` via `--chooser-file`. Automatically configures `:Tfm`, `:TfmSplit`, `:TfmVsplit`, `:TfmTabedit` commands, interactive in-buffer split overrides (`<C-v>`, `<C-x>`, `<C-t>`), and full-width 98% height floating modal matching the editor design language.
+- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`, TFM `;t`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
   - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with 22 top-level actions, GitHub issue/PR submenus, Octohub repository browsing, and Gitsigns visual toggles.
@@ -219,6 +226,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
 
 1. **Space Leader (`<Space>`)**:
    - Reserved for major actions, formatting, diagnostics, safe destructive operations, and git commands:
+   - `<Space> + z`: Force quit all buffers immediately without saving (`:qa!<CR>`)
    - `<Space> + f`: Format code
    - `<Space> + ca`: Code actions
    - `<Space> + cr`: Rename symbol
@@ -226,7 +234,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
    - `<Space> + gb` / `gs` / `gh`: Git blame and staging
 2. **Direct Prefix Keys (No Space)**:
    - Reserved for ultra-fast, high-frequency navigation:
-   - `;f` (files), `;r` (live grep), `\\` (open buffers), `;;` (resume search), `;g` (lazygit)
+   - `;f` (files), `;r` (live grep), `\\` (open buffers), `;;` (resume search), `;g` (lazygit), `;t` (elio terminal file manager)
    - `sf` (oil file explorer)
    - `ss` / `sv` (horizontal/vertical split), `sh`/`sj`/`sk`/`sl` (focus navigation)
    - `te` (new tab), `<Tab>` / `<S-Tab>` (cycle tabs)
