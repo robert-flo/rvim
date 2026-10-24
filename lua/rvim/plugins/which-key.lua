@@ -40,7 +40,7 @@ local setup = {
 		width = 0.5,
 		height = { min = 5, max = 25 },
 		padding = { 1, 2 },
-		title = true,
+		title = " 󰊢 rvim ",
 		title_pos = "center",
 		zindex = 1000,
 		wo = {
@@ -139,6 +139,8 @@ which_key.add({
 		end,
 		desc = "Open package.json",
 	},
+	{ "<leader>C", '"_C', desc = "Change to End of Line" },
+	{ "<leader>D", '"_D', desc = "Delete to End of Line" },
 	{ "<leader>p", '"0p', desc = "Paste Last Yank" },
 	{ "<leader>P", '"0P', desc = "Paste Before Cursor" },
 	{ "<leader>o", "o<Esc>^Da", desc = "Clean Line Below" },
@@ -553,4 +555,10 @@ which_key.add({
 		end,
 		desc = "Copy as Codeblock",
 	},
+	-- Safe Registers - Visual Mode
+	{ "<leader>c", '"_c', desc = "Change (No Yank)" },
+	{ "<leader>C", '"_C', desc = "Change to End of Line" },
+	{ "<leader>d", '"_d', desc = "Delete (No Yank)" },
+	{ "<leader>D", '"_D', desc = "Delete to End of Line" },
+	{ "<leader>p", '"0p', desc = "Paste Last Yank" },
 })

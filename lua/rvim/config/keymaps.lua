@@ -6,12 +6,12 @@ keymap.set("n", "x", '"_x')
 keymap.set("n", "<Leader>p", '"0p')
 keymap.set("n", "<Leader>P", '"0P')
 keymap.set("v", "<Leader>p", '"0p')
-keymap.set("n", "<Leader>C", '"_C')
-keymap.set("v", "<Leader>c", '"_c')
-keymap.set("v", "<Leader>C", '"_C')
-keymap.set("n", "<Leader>D", '"_D')
-keymap.set("v", "<Leader>d", '"_d')
-keymap.set("v", "<Leader>D", '"_D')
+keymap.set("n", "<Leader>C", '"_C', { desc = "Change to End of Line" })
+keymap.set("v", "<Leader>c", '"_c', { desc = "Change (No Yank)" })
+keymap.set("v", "<Leader>C", '"_C', { desc = "Change to End of Line" })
+keymap.set("n", "<Leader>D", '"_D', { desc = "Delete to End of Line" })
+keymap.set("v", "<Leader>d", '"_d', { desc = "Delete (No Yank)" })
+keymap.set("v", "<Leader>D", '"_D', { desc = "Delete to End of Line" })
 
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
@@ -54,11 +54,6 @@ keymap.set("n", "sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
-
--- Toggle inlay hints
-keymap.set("n", "<leader>i", function()
-	-- require("rvim.lsp").toggleInlayHints()
-end)
 
 
 
