@@ -227,6 +227,22 @@ function M.copy_file_name()
 	copy_to_clipboard(name)
 end
 
+--- Copy current buffer file directory to clipboard (with trailing slash)
+function M.copy_file_directory()
+	local full_path = vim.fn.expand("%:p")
+	local dir
+	if full_path ~= "" then
+		dir = vim.fn.expand("%:p:h")
+	else
+		dir = vim.fn.getcwd()
+	end
+	if dir ~= "" and dir:sub(-1) ~= "/" then
+		dir = dir .. "/"
+	end
+	copy_to_clipboard(dir)
+end
+M.copy_directory = M.copy_file_directory
+
 --- Copy entire buffer contents to clipboard
 function M.copy_whole_file()
 	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)

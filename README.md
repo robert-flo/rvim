@@ -89,6 +89,7 @@ Comprehensive clipboard operations integrated with WhichKey and user commands:
 | Space? | Keymap | Mode | User Command | Description |
 | :---: | :--- | :---: | :--- | :--- |
 | ✅ **YES** | **`<Space> + ya`** | Normal | `:%y+` | **Copy Whole File** into clipboard register `+` |
+| ✅ **YES** | **`<Space> + yd`** | Normal | `:CopyFileDirectory` | **File Directory** path with trailing slash (e.g. `/z/repo/`) |
 | ✅ **YES** | **`<Space> + yf`** | Normal | `:CopyFileName` | **File Name** (e.g. `which-key.lua`) |
 | ✅ **YES** | **`<Space> + yg`** | Normal / Visual | `:CopyGitUrl` | **Copy Git URL** with remote, branch, relative path, and `#L<line>` or `#L<start>-L<end>` |
 | ✅ **YES** | **`<Space> + yl`** | Normal | `:CopyRelativePathWithLine` | **Relative Path with Line** (e.g. `lua/rvim/plugins/which-key.lua:42`) |

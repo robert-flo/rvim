@@ -235,6 +235,7 @@ which_key.add({
 	-- Yank Suite (<leader>y) - Normal Mode
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>ya", ":%y+<cr>", desc = "Copy Whole File" },
+	{ "<leader>yd", "<cmd>CopyFileDirectory<cr>", desc = "File Directory" },
 	{ "<leader>yf", "<cmd>CopyFileName<cr>", desc = "File Name" },
 	{ "<leader>yg", "<cmd>CopyGitUrl<cr>", desc = "Copy Git URL" },
 	{ "<leader>yl", "<cmd>CopyRelativePathWithLine<cr>", desc = "Relative Path with Line" },
