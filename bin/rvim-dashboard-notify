@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Sanitizes gh-notify output for Solarized Osaka background
+# 1. Strips OSC 11 background query (\x1b]11;?...\x1b\) and cursor query (\x1b[6n)
+# 2. Replaces dark gray (\x1b[90m) with Solarized base1 (\x1b[38;2;147;161;161m)
+# 3. Replaces bright white (\x1b[1;37m) with Solarized base3 (\x1b[38;2;253;246;227m)
+gh notify -s -a -n 6 2>/dev/null | perl -pe '
+    s/\x1b\]11;\?.*?\x1b\\//g;
+    s/\x1b\[6n//g;
+    s/\x1b\[(0;)?90m/\x1b[38;2;147;161;161m/g;
+    s/\x1b\[1;37m/\x1b[38;2;253;246;227m/g;
+'
