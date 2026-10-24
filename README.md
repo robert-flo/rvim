@@ -165,6 +165,7 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ca`** | Normal / Visual | **Code Actions** (Quick fixes, refactors) |
 | ✅ **YES** | **`<Space> + cf`** *(or `<Space> + f`)* | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
+| — | **`:ToggleFormatter`** | Command | Toggle automatic code formatting on save for active buffer |
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
 | ✅ **YES** | **`<Space> + cc`** | Normal | Run CodeLens under cursor |
@@ -216,9 +217,6 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gu`** | Normal / Visual | **Undo Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gv`** | Normal | **Select Hunk** visual range (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gw`** | Normal | **Git Browse** repository / file on web (`Snacks.gitbrowse`) |
-| ✅ **YES** | **`<Space> + dv`** | Normal | Interactive code comparison (`CodeDiff`) |
-| ✅ **YES** | **`<Space> + dh`** | Normal | Git commit history for current file |
-| ✅ **YES** | **`<Space> + dH`** | Normal | Git commit history for entire repository |
 | ❌ **NO** | **`;g`** | Normal | Direct shortcut to launch Lazygit |
 | ❌ **NO** | **`;h`** | Normal | Direct shortcut to interactive Git hunks picker |
 | ❌ **NO** | **`]c`** / **`[c`** | Normal | Jump to next / previous git diff hunk in file |
@@ -240,6 +238,18 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | **`<Space> + gtn`** | Toggle number highlight |
 | **`<Space> + gts`** | Toggle signs in signcolumn |
 | **`<Space> + gtw`** | Toggle word diff |
+
+---
+
+###  4.1 Diff Suite (`<Space> + d`)
+
+Full two-pane code comparison and commit history explorer powered by `codediff.nvim`:
+
+| Space? | Keymap | Mode | User Command | Description |
+| :---: | :--- | :---: | :--- | :--- |
+| ✅ **YES** | **`<Space> + dv`** | Normal | `:CodeDiff` | **Toggle CodeDiff** interactive two-pane diff viewer |
+| ✅ **YES** | **`<Space> + dh`** | Normal | `:CodeDiff history %` | **File History** Git commit revisions for current file |
+| ✅ **YES** | **`<Space> + dH`** | Normal | `:CodeDiff history` | **Repo History** Git commit revisions across repository |
 
 ---
 
