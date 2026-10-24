@@ -114,7 +114,7 @@ Provides a zero-plugin vanilla editing environment:
   - Indentation: 2 spaces (`tabstop = 2`, `shiftwidth = 2`, `expandtab = true`, `smartindent = true`).
   - Persistent undo: `undofile = true`, storing history across reboots in `~/.cache/nvim/undodir`.
   - Native Floating UI (`vim._core.ui2`): Neovim 0.12+ experimental UI capturing command line, messages, and pagers into floating dialogs.
-  - Viewports: `scrolloff = 10`, `sidescrolloff = 8`, `cursorline = true`, `termguicolors = true`.
+  - Viewports: `scrolloff = 10`, `sidescrolloff = 8`, `cursorline = true`, `termguicolors = true`, clean end-of-buffer (`eob = " "`).
 - **`keymaps.lua`**:
   - **Register Isolation**: Remaps destructive deletions (`d`, `x`, `c`) to the black hole register (`"_`), preventing clipboard pollution.
   - **Prioritized Pasting**: `<Space> + p` pastes from register `"0` (the last deliberate yank).
