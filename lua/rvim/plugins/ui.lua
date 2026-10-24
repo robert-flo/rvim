@@ -246,82 +246,69 @@ Snacks.setup({
 					return Snacks.git.get_root() ~= nil
 				end,
 			},
-			function()
-				local in_git = Snacks.git.get_root() ~= nil
-				local cmds = {
-					{
-						title = "Open Issues",
-						cmd = "gh issue list -L 5",
-						key = "i",
-						action = function()
-							vim.fn.jobstart("gh issue list --web", { detach = true })
-						end,
-						icon = " ",
-						height = 7,
-					},
-					{
-						icon = " ",
-						title = "Open PRs",
-						cmd = "gh pr list -L 5",
-						key = "P",
-						action = function()
-							vim.fn.jobstart("gh pr list --web", { detach = true })
-						end,
-						height = 7,
-					},
-					{
-						icon = " ",
-						title = "Git Status",
-						cmd = "git --no-pager diff --stat -B -M -C",
-						height = 8,
-					},
-				}
-				return vim.tbl_map(function(cmd)
-					return vim.tbl_extend("force", {
-						pane = 2,
-						section = "terminal",
-						enabled = in_git,
-						padding = 1,
-						ttl = 5 * 60,
-						indent = 2,
-					}, cmd)
-				end, cmds)
-			end,
 			{
 				pane = 2,
-				icon = icons.documents.File,
-				title = "Recent Files",
-				section = "recent_files",
-				limit = 5,
-				indent = 2,
+				title = "Open Issues",
+				icon = " ",
+				key = "i",
+				section = "terminal",
+				cmd = vim.fn.stdpath("config") .. "/bin/rvim-dashboard-issues",
+				height = 8,
 				padding = 1,
-				enabled = function()
-					return Snacks.git.get_root() ~= nil
+				indent = 2,
+				ttl = 5 * 60,
+				enabled = true,
+				action = function()
+					vim.fn.jobstart("gh issue list --web", { detach = true })
 				end,
+			},
+			{
+				pane = 2,
+				icon = " ",
+				title = "Open PRs",
+				key = "P",
+				section = "terminal",
+				cmd = vim.fn.stdpath("config") .. "/bin/rvim-dashboard-prs",
+				height = 8,
+				padding = 1,
+				indent = 2,
+				ttl = 5 * 60,
+				enabled = true,
+				action = function()
+					vim.fn.jobstart("gh pr list --web", { detach = true })
+				end,
+			},
+			{
+				pane = 2,
+				icon = " ",
+				title = "Git Status & Workspace",
+				section = "terminal",
+				cmd = vim.fn.stdpath("config") .. "/bin/rvim-dashboard-status",
+				height = 6,
+				padding = 1,
+				indent = 2,
+				ttl = 60,
+				enabled = true,
 			},
 			{
 				pane = 2,
 				icon = icons.documents.File,
 				title = "Recent Files",
 				section = "recent_files",
-				limit = 10,
+				limit = 8,
 				indent = 2,
 				padding = 1,
-				enabled = function()
-					return Snacks.git.get_root() == nil
-				end,
+				enabled = true,
 			},
 			{
 				pane = 2,
 				icon = icons.documents.OpenFolder,
 				title = "Projects",
 				section = "projects",
-				limit = 8,
+				limit = 6,
 				indent = 2,
 				padding = 1,
-				enabled = function()
-					return Snacks.git.get_root() == nil
-				end,
+				enabled = true,
 			},
 			function(self)
 				local pane_w = self.opts.width or 60

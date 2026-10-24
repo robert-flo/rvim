@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Universal & Intelligent Issues Widget for RVIM Dashboard
+# Shows local repo issues if in git; fallbacks to global user assigned issues.
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    out=$(gh issue list -L 6 --template '{{range .}}{{tablerow (printf "\033[33m#%v\033[0m" .number) (printf "\033[38;2;147;161;161m%s\033[0m" (.title | truncate 65)) (printf "\033[35m%s\033[0m" (timeago .updatedAt))}}{{end}}' 2>/dev/null)
+    if [ -n "$out" ]; then
+        echo -e "\033[36mRepository Issues\033[0m"
+        echo "$out"
+        exit 0
+    fi
+fi
+
+# Fallback to user assigned issues across GitHub
+out=$(gh search issues --state=open --assignee=@me -L 6 --json repository,number,title,updatedAt --template '{{range .}}{{tablerow (printf "\033[1;36m%s\033[0m" .repository.name) (printf "\033[33m#%v\033[0m" .number) (printf "\033[38;2;147;161;161m%s\033[0m" (.title | truncate 55)) (printf "\033[35m%s\033[0m" (timeago .updatedAt))}}{{end}}' 2>/dev/null)
+
+if [ -n "$out" ]; then
+    echo -e "\033[33mAssigned Issues (Global Priority)\033[0m"
+    echo "$out"
+else
+    echo -e "\033[32m✔ No open issues assigned\033[0m"
+fi

@@ -31,7 +31,10 @@ rvim/
 ├── install.sh                        # 📦 Automated installer (symlinks config & pack directories)
 ├── bin/
 │   ├── rvim                          # 🚀 Shell wrapper enforcing NVIM_APPNAME="rvim"
-│   └── rvim-dashboard-notify         # 🔔 High-contrast GitHub notification sanitizer for dashboard
+│   ├── rvim-dashboard-notify         # 🔔 High-contrast GitHub notification sanitizer for dashboard
+│   ├── rvim-dashboard-issues         # 🐛 Universal GitHub issues widget (repo / global assigned fallback)
+│   ├── rvim-dashboard-prs            # 🔀 Universal GitHub pull requests widget (repo / global authored fallback)
+│   └── rvim-dashboard-status         # 📊 Universal Git working tree diff & system overview widget
 ├── nvim-pack-lock.json               # 🔒 Pinned git commit hashes for all vim.pack plugins
 │
 ├── after/                            # ⏱️ LAYER 4: LATE RUNTIME OVERRIDES
