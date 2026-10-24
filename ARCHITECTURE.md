@@ -65,7 +65,7 @@ rvim/
         ├── util.lua                  # Oil.nvim (editable directory buffers) and Copilot ghost text
         ├── octohub.lua               # GitHub repository explorer & stats engine (Pickme + Snacks)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git)
-        └── which-key.lua             # Keymap visual popup guide & unified Git (<Space>g), Yank (<Space>y), and Pickers (<Space>;) suites
+        └── which-key.lua             # Keymap visual popup guide & unified suites: Git (g), Yank (y), Pickers (;), Buffers (b), Code (c), Diff (d), Explorer (e), Splits (s), Tabs (t)
 ```
 
 ---
@@ -82,7 +82,7 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> 27 native keymaps & safe registers ("0, "_)
+    │  • rvim.config.keymaps   ---> 25 native keymaps & safe registers ("0, "_)
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
@@ -96,7 +96,7 @@ rvim/
     │  • util       ---> Oil.nvim editable directory buffers, GitHub Copilot
     │  • octohub    ---> GitHub repository manager, stats & pickme bridge to snacks
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit
-    │  • which-key  ---> WhichKey visual menu, Git (<Space>g), Yank (<Space>y), Pickers (<Space>;) suites
+    │  • which-key  ---> WhichKey visual menu & 9 interactive suites (b, c, d, e, g, s, t, y, ;)
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
