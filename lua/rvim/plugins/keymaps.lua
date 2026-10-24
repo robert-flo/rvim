@@ -124,8 +124,6 @@ map({
 	{ ";r", Snacks.picker.grep, desc = "Live grep" },
 	{ ";s", Snacks.picker.lsp_symbols, desc = "LSP Document Symbols" },
 	{ ";o", Snacks.picker.recent, desc = "Recent files" },
-	{ "<leader>fs", Snacks.picker.lsp_symbols, desc = "LSP Document Symbols" },
-	{ "<leader>fr", Snacks.picker.recent, desc = "Recent files" },
 	{ ";;", Snacks.picker.resume, desc = "Resume picker" },
 	{
 		"\\\\",
