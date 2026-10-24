@@ -118,7 +118,15 @@ require("conform").setup({
 		["markdown.mdx"] = oxfmtFormatter,
 		lua = { "stylua" },
 		sh = { "shfmt" },
+		bash = { "shfmt" },
 		fish = { "fish_indent" },
+		c = { "clang-format" },
+		cpp = { "clang-format" },
+		kotlin = { "ktlint" },
+		java = { "google-java-format", "clang-format", stop_after_first = true },
+		xml = { "xmlformatter", "prettierd", "prettier", stop_after_first = true },
+		groovy = { "npm-groovy-lint" },
+		python = { "black", "ruff_format", stop_after_first = true },
 	},
 	formatters = {
 		oxfmt = {
