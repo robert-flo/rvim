@@ -118,7 +118,10 @@ Provides a zero-plugin vanilla editing environment:
 - **`keymaps.lua`**:
   - **Register Isolation**: Remaps destructive deletions (`d`, `x`, `c`) to the black hole register (`"_`), preventing clipboard pollution.
   - **Prioritized Pasting**: `<Space> + p` pastes from register `"0` (the last deliberate yank).
-  - **Window Splits**: `ss` (horizontal), `sv` (vertical), navigation via `sh`, `sj`, `sk`, `sl`.
+  - **Universal Quick Save**: `<Ctrl> + s` saves the current buffer immediately from any mode (`n`, `i`, `x`, `s`).
+  - **Search Highlight Reset**: `<Esc>` in normal mode clears search highlights (`nohlsearch`).
+  - **Visual Block Bubble**: `J` and `K` in visual mode slide highlighted blocks up and down with dynamic reindentation (`:m '>+1<CR>gv=gv`).
+  - **Window Splits**: `ss` (horizontal), `sv` (vertical), equalization via `<Space> + se` (`<C-w>=`), fast close via `<Space> + sx` (`:close`), navigation via `sh`, `sj`, `sk`, `sl`.
   - **Tabs**: `te` (`:tabedit`), `<Tab>` (next), `<S-Tab>` (previous).
 - **`autocmds.lua`**:
   - `TextYankPost`: High-visibility flash on copied text (`vim.highlight.on_yank()`).
@@ -177,7 +180,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`util.lua`**:
   - `oil.nvim`: File manager that lets you edit filesystem directories just like normal text buffers (`sf`).
   - `copilot.lua`: Inline AI code completion suggestions with `<C-l>` accept.
-- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
+- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`/`<Leader>fs`, recent files `;o`/`<Leader>fr`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`).
 
 ---
 
