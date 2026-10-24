@@ -39,8 +39,9 @@ rvim
 | ❌ **NO** | **`;s`** | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
 | ❌ **NO** | **`;o`** | **Recent files** picker (`Snacks.picker.recent`) |
 | ❌ **NO** | **`sf`** | **Floating file explorer** (`Oil.nvim`) |
-| ❌ **NO** | **`\\`** | **List open buffers** (`Snacks.picker.buffers`) |
+| ❌ **NO** | **`\\`** / **`;b`** | **List open buffers** (`Snacks.picker.buffers`) |
 | ❌ **NO** | **`;;`** | **Resume** last closed search picker |
+| ❌ **NO** | **`;w`** | **Grep word** under cursor (`Snacks.picker.grep_word`) |
 | ❌ **NO** | **`;g`** | **Open Lazygit** in integrated floating terminal |
 | ❌ **NO** | **`<Ctrl> + s`** | **Quick save** file from any mode (Normal, Insert, Visual) |
 | ❌ **NO** | **`<Esc>`** | **Clear search highlights** (`nohlsearch`) |
@@ -54,6 +55,27 @@ rvim
 | ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Focus window Left / Down / Up / Right |
 | ❌ **NO** | **`te`** | Open new clean tab (`:tabedit`) |
 | ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Switch to next / previous tab |
+
+---
+
+### 🔍 1.1 Pickers Suite (`<Space> + ;`) & Express Shortcuts (`;*`)
+
+Two-tier interaction model: WhichKey serves as the **interactive single source of truth** under `<Space> + ;`, while direct `;*` bindings act as **express muscle-memory shortcuts** without touching Space:
+
+| WhichKey (`<Space> + ;`) | Express Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + ;;`** | **`;;`** | **Resume Picker** | Reopens last closed search picker session |
+| **`<Space> + ;b`** | **`;b`** / **`\\`** | **List Buffers** | Fuzzy search open buffers (jumps to existing window) |
+| **`<Space> + ;c`** | **`;c`** | **Incoming Calls** | LSP incoming call hierarchy |
+| **`<Space> + ;e`** | **`;e`** | **Diagnostics** | Project diagnostic errors and warnings |
+| **`<Space> + ;f`** | **`;f`** | **Find Files** | Fuzzy find project files (`Snacks.picker.files`) |
+| **`<Space> + ;g`** | **`;g`** | **Lazygit** | Launch integrated floating Lazygit terminal |
+| **`<Space> + ;h`** | **`;h`** | **Git Diff Hunks** | Interactive Git diff hunks picker |
+| **`<Space> + ;n`** | **`;n`** | **Notifications** | View Snacks notification history |
+| **`<Space> + ;o`** | **`;o`** | **Recent Files** | Search recently opened files |
+| **`<Space> + ;r`** | **`;r`** | **Live Grep** | Search project text with ripgrep (`Snacks.picker.grep`) |
+| **`<Space> + ;s`** | **`;s`** | **Document Symbols** | Fuzzy search functions, variables, classes |
+| **`<Space> + ;w`** | **`;w`** | **Grep Word** | Grep word under cursor across repository |
 
 ---
 
