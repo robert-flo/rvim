@@ -47,7 +47,11 @@ rvim
 | ❌ **NO** | **`\\`** / **`;b`** | **List open buffers** (`Snacks.picker.buffers`) |
 | ❌ **NO** | **`;;`** | **Resume** last closed search picker |
 | ❌ **NO** | **`;w`** | **Grep word** under cursor (`Snacks.picker.grep_word`) |
+| ❌ **NO** | **`;l`** | **Buffer Lines** search in active file (`Snacks.picker.lines`) |
+| ❌ **NO** | **`;m`** | **Git Status** modified files picker (`Snacks.picker.git_status`) |
 | ❌ **NO** | **`;g`** | **Open Lazygit** in integrated floating terminal |
+| ✅ **YES** | **`<Space> + u`** | **Undo History** visual tree picker (`Snacks.picker.undo`) |
+| ✅ **YES** | **`<Space> + ?`** | **Help Documentation** tags picker (`Snacks.picker.help`) |
 | ❌ **NO** | **`<Ctrl> + s`** | **Quick save** file from any mode (Normal, Insert, Visual) |
 | ❌ **NO** | **`<Esc>`** | **Clear search highlights** (`nohlsearch`) |
 | ✅ **YES** | **`<Space> + f`** | **Format code** with Conform (Prettier / Ktlint / Clang / Stylua) |
@@ -99,6 +103,11 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 | **`<Space> + ;r`** | **`;r`** | **Live Grep** | Search project text with ripgrep (`Snacks.picker.grep`) |
 | **`<Space> + ;s`** | **`;s`** | **Document Symbols** | Fuzzy search functions, variables, classes |
 | **`<Space> + ;w`** | **`;w`** | **Grep Word** | Grep word under cursor across repository |
+| **`<Space> + ;l`** | **`;l`** | **Buffer Lines** | Fuzzy search text within current file |
+| **`<Space> + ;m`** | **`;m`** | **Git Status** | List modified/staged files with live diff preview |
+| **`<Space> + ;C`** | **`;C`** | **Commands** | Fuzzy search and run Neovim & plugin commands |
+| **`<Space> + ;u`** | **`;u`** | **Undo History** | Visual interactive undo tree explorer |
+| **`<Space> + ;?`** | **`;?`** | **Help Tags** | Fuzzy search official Neovim documentation |
 
 #### 🎨 Visual Layout in Which-Key
 
@@ -107,15 +116,20 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 ; → Resume Picker
 b → List Buffers
 c → Incoming Calls
+C → Commands
 e → Diagnostics
 f → Find Files
 g → Lazygit
 h → Git Diff Hunks
+l → Buffer Lines
+m → Git Status
 n → Notifications
 o → Recent Files
 r → Live Grep
 s → Document Symbols
+u → Undo History
 w → Grep Word
+? → Help Tags
 ```
 
 ---
@@ -136,6 +150,8 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
 | **`<Space> + p`** / **`P`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
+| **`<Space> + u`** | `u Undo History` | **Undo Tree** | Visual interactive undo tree history (`Snacks.picker.undo`) |
+| **`<Space> + ?`** | `? Help Tags` | **Help Docs** | Search Neovim documentation tags (`Snacks.picker.help`) |
 
 ---
 
@@ -222,8 +238,8 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ga`** | Normal / Visual | **Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gA`** | Normal | **Stage Buffer** (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame** line with full author and commit info |
-| ✅ **YES** | **`<Space> + gB`** | Normal | **Detailed Blame** line popup (`Snacks.git`) |
+| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame Line** with full author and commit info |
+| ✅ **YES** | **`<Space> + gB`** | Normal | **Git Branches** picker & checkout (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gc`** | Normal | **Commit Staged** in floating terminal |
 | ✅ **YES** | **`<Space> + gC`** | Normal | **Co-Authors** picker (`co-author.nvim` + `Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gd`** | Normal | **Git Diff** against HEAD (`Gitsigns`) |
@@ -236,11 +252,12 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gL`** | Normal | **Git Commit Log** repository history (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gr`** | Normal / Visual | **Reset Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gR`** | Normal | **Reset Buffer** (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gs`** | Normal | **Git Branches** picker & checkout (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gs`** | Normal | **Git Status** modified/staged files picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gS`** | Normal | **Git Stash** picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gu`** | Normal / Visual | **Undo Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gv`** | Normal | **Select Hunk** visual range (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gw`** | Normal | **Git Browse** repository / file on web (`Snacks.gitbrowse`) |
+| ❌ **NO** | **`;m`** | Normal | Direct shortcut to modified files picker (`git_status`) |
 | ❌ **NO** | **`;g`** | Normal | Direct shortcut to launch Lazygit |
 | ❌ **NO** | **`;h`** | Normal | Direct shortcut to interactive Git hunks picker |
 | ❌ **NO** | **`]c`** / **`[c`** | Normal | Jump to next / previous git diff hunk in file |
