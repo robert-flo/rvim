@@ -203,7 +203,7 @@ map({
 		desc = "Blame buffer",
 	},
 	{
-		"<leader>go",
+		"<leader>gO",
 		function()
 			local async = require("gitsigns.async")
 			local cache = require("gitsigns.cache").cache
@@ -237,7 +237,7 @@ map({
 				pcall(vim.api.nvim_win_set_cursor, 0, { info.orig_lnum or lnum, 0 })
 			end)
 		end,
-		desc = "Open file from blamed commit",
+		desc = "Open file from blamed commit (Gitsigns)",
 	},
 	{
 		"<leader>gs",
