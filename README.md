@@ -36,15 +36,21 @@ rvim
 | :---: | :--- | :--- |
 | ❌ **NO** | **`;f`** | **Find files** in project (`Snacks.picker.files`) |
 | ❌ **NO** | **`;r`** | **Live Grep** across project text (`Snacks.picker.grep`) |
+| ❌ **NO** | **`;s`** *(or `<Space> + fs`)* | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
+| ❌ **NO** | **`;o`** *(or `<Space> + fr`)* | **Recent files** picker (`Snacks.picker.recent`) |
 | ❌ **NO** | **`sf`** | **Floating file explorer** (`Oil.nvim`) |
 | ❌ **NO** | **`\\`** | **List open buffers** (`Snacks.picker.buffers`) |
 | ❌ **NO** | **`;;`** | **Resume** last closed search picker |
 | ❌ **NO** | **`;g`** | **Open Lazygit** in integrated floating terminal |
-| ✅ **YES** | **`<Space> + f`** | **Format code** with Prettier / Oxlint / Stylua |
+| ❌ **NO** | **`<Ctrl> + s`** | **Quick save** file from any mode (Normal, Insert, Visual) |
+| ❌ **NO** | **`<Esc>`** | **Clear search highlights** (`nohlsearch`) |
+| ✅ **YES** | **`<Space> + f`** | **Format code** with Conform (Prettier / Ktlint / Clang / Stylua) |
 | ❌ **NO** | **`gcc`** | Toggle line comment |
 | ❌ **NO** | **`gc`** *(Visual)* | Toggle block comment |
 | ❌ **NO** | **`ss`** | Split window horizontally (`:split`) |
 | ❌ **NO** | **`sv`** | Split window vertically (`:vsplit`) |
+| ✅ **YES** | **`<Space> + se`** | Equalize all split window dimensions (`<C-w>=`) |
+| ✅ **YES** | **`<Space> + sx`** | Close current split window (`:close`) |
 | ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Focus window Left / Down / Up / Right |
 | ❌ **NO** | **`te`** | Open new clean tab (`:tabedit`) |
 | ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Switch to next / previous tab |
@@ -70,6 +76,9 @@ rvim
 | ❌ **NO** | **`x`** | Normal | Delete single character into black hole register (`"_x`) |
 | ❌ **NO** | **`dw`** | Normal | Delete word backward without polluting clipboard (`vb"_d`) |
 | ❌ **NO** | **`<Ctrl> + a`** | Normal | Select entire buffer (`gg<S-v>G`) |
+| ❌ **NO** | **`<Ctrl> + s`** | Any | Save file immediately (`:w<CR>`) and return to normal mode |
+| ❌ **NO** | **`J`** | Visual | Move selected block down 1 line maintaining indentation (`:m '>+1<CR>gv=gv`) |
+| ❌ **NO** | **`K`** | Visual | Move selected block up 1 line maintaining indentation (`:m '<-2<CR>gv=gv`) |
 | ❌ **NO** | **`+`** / **`-`** | Normal | Increment / decrement number under cursor |
 | ❌ **NO** | **`<Ctrl> + m`** | Normal | Jump forward in jumplist |
 
@@ -95,6 +104,8 @@ rvim
 | ❌ **NO** | **`gK`** | Normal | Display signature help |
 | ❌ **NO** | **`<Ctrl> + k`** | Insert | Show function arguments popup while typing |
 | ❌ **NO** | **`<Ctrl> + j`** | Normal | Jump to next error or diagnostic in buffer |
+| ❌ **NO** | **`;s`** *(or `<Space> + fs`)* | Normal | **Document Symbols** picker (functions, classes, methods via `Snacks.picker.lsp_symbols`) |
+| ❌ **NO** | **`;o`** *(or `<Space> + fr`)* | Normal | **Recent files** picker (`Snacks.picker.recent`) |
 | ❌ **NO** | **`;e`** | Normal | List all diagnostics across project (`Snacks.picker.diagnostics`) |
 | ❌ **NO** | **`;c`** | Normal | List incoming calls to function under cursor |
 | ❌ **NO** | **`]]`** / **`[[`** | Normal | Jump to next / previous reference of symbol under cursor |
@@ -166,6 +177,8 @@ rvim
 | :---: | :--- | :---: | :--- |
 | ❌ **NO** | **`ss`** | Normal | Split window horizontally (`:split`) |
 | ❌ **NO** | **`sv`** | Normal | Split window vertically (`:vsplit`) |
+| ✅ **YES** | **`<Space> + se`** | Normal | Equalize all split window dimensions (`<C-w>=`) |
+| ✅ **YES** | **`<Space> + sx`** | Normal | Close current split window (`:close`) |
 | ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Normal | Move focus Left / Down / Up / Right |
 | ❌ **NO** | **`te`** | Normal | Open clean tab (`:tabedit`) |
 | ❌ **NO** | **`<Tab>`** / **`<S-Tab>`** | Normal | Navigate next / previous tab |

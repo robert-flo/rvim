@@ -25,6 +25,16 @@ keymap.set("n", "dw", 'vb"_d')
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
+-- Quick save
+keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+-- Clear search highlights
+keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", opts)
+
+-- Move selected block vertically
+keymap.set("x", "J", ":m '>+1<CR>gv=gv", { desc = "Move block down", silent = true })
+keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Move block up", silent = true })
+
 -- Disable continuations
 keymap.set("n", "<Leader>o", "o<Esc>^Da", opts)
 keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
@@ -39,6 +49,8 @@ keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
+keymap.set("n", "<Leader>se", "<C-w>=", { desc = "Equalize window splits" })
+keymap.set("n", "<Leader>sx", "<cmd>close<CR>", { desc = "Close current split window" })
 -- Move window
 keymap.set("n", "sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
