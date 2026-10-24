@@ -120,7 +120,7 @@ rvim
 | ❌ **NO** | **`;h`** | Normal | Interactive Git hunks picker (`Snacks.picker.git_diff`) |
 | ✅ **YES** | **`<Space> + gb`** | Normal | Blame current line |
 | ✅ **YES** | **`<Space> + gB`** | Normal | Blame entire buffer |
-| ✅ **YES** | **`<Space> + go`** | Normal | Open file in new tab at commit of line blame |
+| ✅ **YES** | **`<Space> + gO`** | Normal | Open file in new tab at commit of line blame (Gitsigns) |
 | ✅ **YES** | **`<Space> + gs`** | Normal | Toggle stage / unstage for entire file |
 | ✅ **YES** | **`<Space> + gh`** | Normal | Toggle stage / unstage for current hunk |
 | ✅ **YES** | **`<Space> + gd`** | Normal | Toggle overlay diff view (`MiniDiff`) |
@@ -220,4 +220,37 @@ rvim provides an out-of-the-box development environment for modern Android appli
 | **Web & TypeScript** | `.ts`, `.tsx`, `.js`, `.jsx`, `.json` | `typescript`, `tsx`, `javascript`, `json` | `vtsls`, `eslint` | `oxfmt` / `prettierd` / `prettier` |
 | **Styling & Markup** | `.css`, `.scss`, `.html`, `.md`, `.mdx` | `css`, `scss`, `html`, `markdown` | `cssls`, `tailwindcss` | `oxfmt` / `prettier` |
 | **Systems & Config** | `.rs`, `.lua`, `.toml`, `.yaml` | `rust`, `lua`, `toml`, `yaml` | `rust_analyzer`, `lua_ls` | `stylua` |
+
+---
+
+### 🐙 11. GitHub & Repositories (`Octohub.nvim`)
+
+rvim integrates [`octohub.nvim`](https://github.com/2kabhishek/octohub.nvim) alongside [`utils.nvim`](https://github.com/2kabhishek/utils.nvim) and [`pickme.nvim`](https://github.com/2kabhishek/pickme.nvim), delegating UI picker queries directly to `Snacks.picker`:
+
+> 🔑 **Requirement**: Requires the GitHub CLI tool (`gh`) authenticated with `gh auth login`.
+
+| Space? | Keymap | Action |
+| :---: | :--- | :--- |
+| ✅ **YES** | **`<Space> + goo`** | **Browse & clone all repositories** in interactive fuzzy picker |
+| ✅ **YES** | **`<Space> + gos`** | Repositories sorted by **stars** |
+| ✅ **YES** | **`<Space> + gou`** | Repositories sorted by **last updated** |
+| ✅ **YES** | **`<Space> + goU`** | Repositories sorted by **last pushed** |
+| ✅ **YES** | **`<Space> + goc`** | Repositories sorted by **creation date** |
+| ✅ **YES** | **`<Space> + gof`** | Repositories sorted by **forks** |
+| ✅ **YES** | **`<Space> + goi`** | Repositories sorted by **open issues** |
+| ✅ **YES** | **`<Space> + gol`** | Repositories sorted by **language** |
+| ✅ **YES** | **`<Space> + gob`** | Repositories sorted by **size** |
+| ✅ **YES** | **`<Space> + goA`** | Show only **archived** repositories |
+| ✅ **YES** | **`<Space> + goF`** | Show only **forked** repositories |
+| ✅ **YES** | **`<Space> + goP`** | Show only **private** repositories |
+| ✅ **YES** | **`<Space> + goS`** | Show only **starred** repositories |
+| ✅ **YES** | **`<Space> + goT`** | Show only **template** repositories |
+| ✅ **YES** | **`<Space> + goL`** | Interactive **language filter picker** |
+| ✅ **YES** | **`<Space> + gog`** | View **GitHub contribution graph** popup |
+| ✅ **YES** | **`<Space> + goa`** | View **recent GitHub activity** |
+| ✅ **YES** | **`<Space> + gor`** | View **current repository statistics** |
+| ✅ **YES** | **`<Space> + got`** | View **complete profile & repository stats** |
+| ✅ **YES** | **`<Space> + gow`** | Open current repository on GitHub in web browser |
+| ✅ **YES** | **`<Space> + gop`** | Open authenticated user's profile in web browser |
+
 
