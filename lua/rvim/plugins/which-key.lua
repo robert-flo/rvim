@@ -477,6 +477,34 @@ which_key.add({
 		"<cmd>Tfm<cr>",
 		desc = "Terminal File Manager (Elio)",
 	},
+	{
+		"<leader>;T",
+		function()
+			Snacks.picker.todo_comments()
+		end,
+		desc = "Todo Comments",
+	},
+	{
+		";T",
+		function()
+			Snacks.picker.todo_comments()
+		end,
+		desc = "Todo Comments",
+	},
+	{
+		"]t",
+		function()
+			require("todo-comments").jump_next()
+		end,
+		desc = "Next Todo Comment",
+	},
+	{
+		"[t",
+		function()
+			require("todo-comments").jump_prev()
+		end,
+		desc = "Prev Todo Comment",
+	},
 	-- Buffers Suite (<leader>b)
 	{ "<leader>b", group = "󰈔 Buffers" },
 	{

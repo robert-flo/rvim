@@ -208,6 +208,34 @@ map({
 	{ ";u", Snacks.picker.undo, desc = "Undo History" },
 	{ ";?", Snacks.picker.help, desc = "Help Tags" },
 	{
+		";T",
+		function()
+			Snacks.picker.todo_comments()
+		end,
+		desc = "Todo Comments",
+	},
+	{
+		"<leader>;T",
+		function()
+			Snacks.picker.todo_comments()
+		end,
+		desc = "Todo Comments",
+	},
+	{
+		"]t",
+		function()
+			require("todo-comments").jump_next()
+		end,
+		desc = "Next Todo Comment",
+	},
+	{
+		"[t",
+		function()
+			require("todo-comments").jump_prev()
+		end,
+		desc = "Prev Todo Comment",
+	},
+	{
 		"]]",
 		function()
 			Snacks.words.jump(vim.v.count1)
