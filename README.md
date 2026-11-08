@@ -169,7 +169,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + :`** | `: Command History` | **Command History** | Interactive fuzzy search of recent `:` commands (`Snacks.picker.command_history`) |
 | **`<Space> + x`** | `x  Save and Quit` | **Save & Quit** | Write all modified buffers and exit Neovim (`:xa<CR>`) |
 | **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
-| **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in full-width floating modal |
+| **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
 | **`<Space> + p`** / **`P`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
@@ -191,7 +191,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | ✅ **YES** | **`<Space> + o`** | Normal | Insert clean line below without auto-continuing comments |
 | ✅ **YES** | **`<Space> + O`** | Normal | Insert clean line above without auto-continuing comments |
 | ✅ **YES** | **`<Space> + cc`** | Visual | Copy selection formatted as Markdown code block |
-| ✅ **YES** | **`<Space> + j`** | Normal | Open project `package.json` in full-width floating modal |
+| ✅ **YES** | **`<Space> + j`** | Normal | Open project `package.json` in centered 80% floating modal |
 | ❌ **NO** | **`x`** | Normal | Delete single character into black hole register (`"_x`) |
 | ❌ **NO** | **`dw`** | Normal | Delete word backward without polluting clipboard (`vb"_d`) |
 | ❌ **NO** | **`<Ctrl> + a`** | Normal | Select entire buffer (`gg<S-v>G`) |
@@ -207,16 +207,19 @@ High-productivity single-stroke actions accessible directly at the root of Which
 
 Comprehensive clipboard operations integrated with WhichKey and user commands:
 
-| Space? | Keymap | Mode | User Command | Description |
+| Space? | Keymap | Mode | User Command / Helper | Description |
 | :---: | :--- | :---: | :--- | :--- |
-| ✅ **YES** | **`<Space> + ya`** | Normal | `:%y+` | **Copy Whole File** into clipboard register `+` |
+| ✅ **YES** | **`<Space> + yf`** | Normal | `yank_relative_path_with_line()` | **Relative Path (`#L<line>`)** for AI agents (e.g. `lua/rvim/config/options.lua#L12`) |
+| ✅ **YES** | **`<Space> + yp`** | Normal | `yank_absolute_path_with_line()` | **Absolute Path (`#L<line>`)** for AI agents (e.g. `/home/.../options.lua#L12`) |
+| ✅ **YES** | **`<Space> + yl`** | Normal | `:CopyRelativePathWithLine` | **Relative Path (`:line`)** (e.g. `lua/rvim/plugins/which-key.lua:42`) |
+| ✅ **YES** | **`<Space> + yL`** | Normal | `:CopyAbsolutePathWithLine` | **Absolute Path (`:line`)** (e.g. `/path/to/project/file.lua:42`) |
+| ✅ **YES** | **`<Space> + yr`** | Normal | `:CopyRelativePath` | **Relative Path** (without line number) |
+| ✅ **YES** | **`<Space> + yP`** | Normal | `:CopyAbsolutePath` | **Absolute Path** (without line number) |
+| ✅ **YES** | **`<Space> + yn`** / **`yF`** | Normal | `:CopyFileName` | **File Name** (e.g. `which-key.lua`) |
 | ✅ **YES** | **`<Space> + yd`** | Normal | `:CopyFileDirectory` | **File Directory** path with trailing slash (e.g. `/z/repo/`) |
-| ✅ **YES** | **`<Space> + yf`** | Normal | `:CopyFileName` | **File Name** (e.g. `which-key.lua`) |
+| ✅ **YES** | **`<Space> + ya`** | Normal | `:%y+` | **Copy Whole File** into clipboard register `+` |
 | ✅ **YES** | **`<Space> + yg`** | Normal / Visual | `:GitLink` | **Copy Git URL** (`gitlinker.nvim`) for current line or visual range |
-| ✅ **YES** | **`<Space> + yl`** | Normal | `:CopyRelativePathWithLine` | **Relative Path with Line** (e.g. `lua/rvim/plugins/which-key.lua:42`) |
-| ✅ **YES** | **`<Space> + yL`** | Normal | `:CopyAbsolutePathWithLine` | **Absolute Path with Line** (e.g. `/path/to/project/file.lua:42`) |
-| ✅ **YES** | **`<Space> + yp`** | Normal | `:CopyRelativePath` | **Relative Path** |
-| ✅ **YES** | **`<Space> + yP`** | Normal | `:CopyAbsolutePath` | **Absolute Path** |
+| ✅ **YES** | **`<Space> + yG`** | Normal / Visual | `:CopyGitUrl` | **Copy Git URL** (`rvim` custom helper with remote, branch, and `#L<line>`) |
 
 ---
 
@@ -276,6 +279,7 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gg`** | Normal | **Launch Lazygit** |
 | ✅ **YES** | **`<Space> + gh`** | Normal | **Toggle stage hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gi`** | Normal | **Hunk Info** / preview floating window |
+| ✅ **YES** | **`<Space> + gI`** | Normal | **Detailed Blame** (`Snacks.git.blame_line`) |
 | ✅ **YES** | **`<Space> + gj`** | Normal | Jump to **Next Hunk** |
 | ✅ **YES** | **`<Space> + gk`** | Normal | Jump to **Prev Hunk** |
 | ✅ **YES** | **`<Space> + gl`** | Normal | **Line Commits** history picker (`Snacks.picker`) |
@@ -458,7 +462,7 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
 | **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
 | **`<Space> + er`** | — | **Ranger Picker** | Open floating Ranger file manager (`:RangerPicker`) |
-| **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in full-width floating modal |
+| **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + en`** | — | **New File** | Open a new empty buffer (`:enew`) |
 | **`<Space> + es`** | **`<Ctrl> + s`** | **Save File** | Save active buffer immediately (`:w`) |
 

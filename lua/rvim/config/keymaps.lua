@@ -55,6 +55,15 @@ keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
 
+-- Yank current file path (Agentic coding #L<line>)
+keymap.set("n", "<leader>yf", function()
+	require("rvim.utils.editor").yank_relative_path_with_line()
+end, { desc = "Yank relative path with line number" })
+
+keymap.set("n", "<leader>yp", function()
+	require("rvim.utils.editor").yank_absolute_path_with_line()
+end, { desc = "Yank absolute path with line number" })
+
 keymap.set("v", "<leader>cc", ":<C-u>lua require('rvim.utils.editor').copy_as_codeblock()<CR>")
 
 keymap.set("n", "<leader>j", function()
