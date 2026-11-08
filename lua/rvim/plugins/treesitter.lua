@@ -47,6 +47,8 @@ local ensure_installed = {
 
 TS.install(ensure_installed)
 
+require("treesitter-autoinstall").setup()
+
 -- Filetype and Treesitter parser registrations
 vim.filetype.add({
 	extension = {
