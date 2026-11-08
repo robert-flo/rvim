@@ -60,6 +60,8 @@ rvim
 | ❌ **NO** | **`;w`** | **Grep word** under cursor (`Snacks.picker.grep_word`) |
 | ❌ **NO** | **`;l`** | **Buffer Lines** search in active file (`Snacks.picker.lines`) |
 | ❌ **NO** | **`;m`** | **Git Status** modified files picker (`Snacks.picker.git_status`) |
+| ❌ **NO** | **`;T`** | **Todo Comments** project picker (`Snacks.picker.todo_comments`) |
+| ❌ **NO** | **`]t`** / **`[t`** | Jump to next / previous **TODO / FIXME comment** in buffer |
 | ❌ **NO** | **`;g`** | **Open Lazygit** in integrated floating terminal |
 | ✅ **YES** | **`<Space> + u`** | **Undo History** visual tree picker (`Snacks.picker.undo`) |
 | ✅ **YES** | **`<Space> + ?`** | **Help Documentation** tags picker (`Snacks.picker.help`) |
@@ -130,6 +132,7 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 | **`<Space> + ;C`** | **`;C`** | **Commands** | Fuzzy search and run Neovim & plugin commands |
 | **`<Space> + ;u`** | **`;u`** | **Undo History** | Visual interactive undo tree explorer |
 | **`<Space> + ;t`** | **`;t`** | **Terminal File Manager** | Launch integrated floating Elio file manager (`:Tfm`) |
+| **`<Space> + ;T`** | **`;T`** | **Todo Comments** | Search `TODO`, `FIXME`, `HACK`, `WARN`, `NOTE` across project (`Snacks.picker.todo_comments`) |
 | **`<Space> + ;?`** | **`;?`** | **Help Tags** | Fuzzy search official Neovim documentation |
 
 #### 🎨 Visual Layout in Which-Key
@@ -148,7 +151,7 @@ g → Lazygit             z → Drive /z/ (Files & Dirs)
 G → Seeker Grep         H → Home ~/ (Files & Dirs)
 h → Git Diff Hunks      ? → Help Tags
 l → Buffer Lines        t → Terminal File Manager (Elio)
-m → Git Status
+m → Git Status          T → Todo Comments
 n → Notifications
 ```
 
