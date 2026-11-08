@@ -1,5 +1,9 @@
 local TS = require("nvim-treesitter")
 
+if vim.fn.has("win32") == 1 and vim.fn.executable("cl.exe") == 0 then
+	vim.env.CC = "gcc"
+end
+
 local ensure_installed = {
 	"astro",
 	"bash",
@@ -45,7 +49,20 @@ local ensure_installed = {
 	"yaml",
 }
 
-TS.install(ensure_installed)
+local function install_parsers()
+	TS.install(ensure_installed)
+end
+
+-- Wait for mason-tool-installer to finish before compiling parsers
+if vim.fn.executable("tree-sitter") == 1 then
+	install_parsers()
+else
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MasonToolsUpdateCompleted",
+		once = true,
+		callback = install_parsers,
+	})
+end
 
 require("treesitter-autoinstall").setup()
 
