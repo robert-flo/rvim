@@ -52,7 +52,15 @@ function M.edit_command(opts)
 		inside_neovim[#inside_neovim + 1] = nvim_server .. ' --remote-send ":{{line}}<CR>"'
 	end
 
-	return ('begin; if test -z "$NVIM"; %s; else; %s; end; end'):format(
+	local shell = vim.env.SHELL or vim.o.shell or ""
+	if shell:match("fish$") then
+		return ('begin; if test -z "$NVIM"; %s; else; %s; end; end'):format(
+			outside_neovim,
+			table.concat(inside_neovim, "; ")
+		)
+	end
+
+	return ('if [ -z "$NVIM" ]; then %s; else %s; fi'):format(
 		outside_neovim,
 		table.concat(inside_neovim, "; ")
 	)
