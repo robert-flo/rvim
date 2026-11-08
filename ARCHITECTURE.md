@@ -187,7 +187,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `blink.cmp`: High-performance completion engine written in Rust, configured with auto-brackets, cmdline completion, and `Rvim.icons.kinds`.
   - `conform.nvim`: Format-on-save pipeline with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, `fish_indent`, `clang-format` (C/C++), `ktlint` (Kotlin), `google-java-format` (Java), `xmlformatter` (XML / Android layouts), `npm-groovy-lint` (Gradle / Groovy), and `black` / `ruff_format` (Python).
   - `mini.pairs`: Autocloses parentheses, quotes, and markdown backticks, with Treesitter string node awareness.
-  - `gitsigns.nvim` & `mini.diff`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb`), and hunk staging.
+  - `gitsigns.nvim`, `mini.diff` & `gitlinker.nvim`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb` / `<Space> + gB`), blamed commit diff view (`<Space> + go`), hunk/buffer staging (`<Space> + gh` / `<Space> + gs`), and GitHub URL copying (`:GitLink` / `<Space> + yg`).
   - `nvim-highlight-colors`: Real-time color preview (hex, rgb, hsl).
   - `todo-comments.nvim`: Highlights and searches `TODO:`, `FIXME:`, `NOTE:` tags.
 - **`lsp.lua`**:
@@ -238,7 +238,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
    - `<Space> + ca`: Code actions
    - `<Space> + cr`: Rename symbol
    - `<Space> + p`: Safe paste from register `"0`
-   - `<Space> + gb` / `gs` / `gh`: Git blame and staging
+   - `<Space> + gb` / `gB` / `go` / `gs` / `gh` / `gd`: Git blame, blamed commit view, staging, and MiniDiff overlay
 2. **Direct Prefix Keys (No Space)**:
    - Reserved for ultra-fast, high-frequency navigation:
    - `;f` (files), `;r` (live grep), `\\` (open buffers), `;;` (resume search), `;g` (lazygit), `;t` (elio terminal file manager)

@@ -169,16 +169,16 @@ which_key.add({
 	{
 		"<leader>gb",
 		function()
-			require("gitsigns").blame_line({ full = true })
+			require("gitsigns").blame_line()
 		end,
-		desc = "Blame Line",
+		desc = "Blame current line",
 	},
 	{
 		"<leader>gB",
 		function()
-			Snacks.picker.git_branches()
+			require("gitsigns").blame()
 		end,
-		desc = "Git Branches",
+		desc = "Blame buffer",
 	},
 	{
 		"<leader>gc",
@@ -188,7 +188,14 @@ which_key.add({
 		desc = "Commit Staged",
 	},
 	{ "<leader>gC", "<cmd>CoAuthor<cr>", desc = "Co-Authors" },
-	{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
+	{
+		"<leader>gd",
+		function()
+			require("mini.diff").toggle_overlay()
+		end,
+		desc = "Toggle MiniDiff overlay",
+	},
+	{ "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Gitsigns Diff HEAD" },
 	{
 		"<leader>gf",
 		function()
@@ -202,6 +209,13 @@ which_key.add({
 			require("rvim.utils.lazygit").open()
 		end,
 		desc = "Lazygit",
+	},
+	{
+		"<leader>gh",
+		function()
+			require("gitsigns").stage_hunk()
+		end,
+		desc = "Toggle stage hunk",
 	},
 	{ "<leader>gi", "<cmd>Gitsigns preview_hunk<cr>", desc = "Hunk Info" },
 	{ "<leader>gj", "<cmd>Gitsigns next_hunk<cr>", desc = "Next Hunk" },
@@ -220,14 +234,69 @@ which_key.add({
 		end,
 		desc = "Git Commit Log",
 	},
+	{
+		"<leader>gm",
+		function()
+			Snacks.picker.git_status()
+		end,
+		desc = "Git Status",
+	},
+	{
+		"<leader>go",
+		function()
+			local async = require("gitsigns.async")
+			local cache = require("gitsigns.cache").cache
+
+			async.run(function()
+				local bufnr = vim.api.nvim_get_current_buf()
+				local lnum = vim.api.nvim_win_get_cursor(0)[1]
+				local bcache = cache[bufnr]
+				if not bcache then
+					return
+				end
+
+				bcache:get_blame(lnum)
+				local blame = bcache.blame
+				if not blame or not blame.entries or not blame.entries[lnum] then
+					return
+				end
+
+				local info = blame.entries[lnum]
+				local sha = info.commit.sha
+
+				if tonumber("0x" .. sha:sub(1, 8)) == 0 then
+					vim.notify("Line not committed yet", vim.log.levels.WARN)
+					return
+				end
+
+				vim.cmd.tabnew()
+				require("gitsigns.actions.diffthis").show(bufnr, sha, info.filename)
+				async.schedule()
+				pcall(vim.api.nvim_win_set_cursor, 0, { info.orig_lnum or lnum, 0 })
+			end)
+		end,
+		desc = "Open file from blamed commit",
+	},
+	{
+		"<leader>gp",
+		function()
+			Snacks.picker.git_branches()
+		end,
+		desc = "Git Branches",
+	},
 	{ "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
 	{ "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer" },
 	{
 		"<leader>gs",
 		function()
-			Snacks.picker.git_status()
+			local gs = require("gitsigns")
+			if #(gs.get_hunks() or {}) > 0 then
+				gs.stage_buffer()
+			else
+				gs.reset_buffer_index()
+			end
 		end,
-		desc = "Git Status",
+		desc = "Toggle stage buffer",
 	},
 	{
 		"<leader>gS",
@@ -246,60 +315,60 @@ which_key.add({
 		desc = "Git Browse",
 	},
 
-	-- GitHub subgroup (<leader>gh)
-	{ "<leader>gh", group = "GitHub" },
+	-- GitHub subgroup (<leader>gH)
+	{ "<leader>gH", group = "GitHub" },
 	{
-		"<leader>ghi",
+		"<leader>gHi",
 		function()
 			Snacks.picker.gh_issue()
 		end,
 		desc = "GitHub Issues (open)",
 	},
 	{
-		"<leader>ghI",
+		"<leader>gHI",
 		function()
 			Snacks.picker.gh_issue({ state = "all" })
 		end,
 		desc = "GitHub Issues (all)",
 	},
 	{
-		"<leader>ghp",
+		"<leader>gHp",
 		function()
 			Snacks.picker.gh_pr()
 		end,
 		desc = "GitHub Pull Requests (open)",
 	},
 	{
-		"<leader>ghP",
+		"<leader>gHP",
 		function()
 			Snacks.picker.gh_pr({ state = "all" })
 		end,
 		desc = "GitHub Pull Requests (all)",
 	},
 
-	-- Octohub subgroup (<leader>go)
-	{ "<leader>go", group = "Octohub" },
-	{ "<leader>goo", "<cmd>Octohub repos<cr>", desc = "All Repos" },
-	{ "<leader>gob", "<cmd>Octohub repos sort:size<cr>", desc = "Repos by Size" },
-	{ "<leader>goc", "<cmd>Octohub repos sort:created<cr>", desc = "Repos by Created" },
-	{ "<leader>gof", "<cmd>Octohub repos sort:forks<cr>", desc = "Repos by Forks" },
-	{ "<leader>goi", "<cmd>Octohub repos sort:issues<cr>", desc = "Repos by Issues" },
-	{ "<leader>gol", "<cmd>Octohub repos sort:language<cr>", desc = "Repos by Language" },
-	{ "<leader>gos", "<cmd>Octohub repos sort:stars<cr>", desc = "Repos by Stars" },
-	{ "<leader>gou", "<cmd>Octohub repos sort:updated<cr>", desc = "Repos by Updated" },
-	{ "<leader>goU", "<cmd>Octohub repos sort:pushed<cr>", desc = "Repos by Pushed" },
-	{ "<leader>goA", "<cmd>Octohub repos type:archived<cr>", desc = "Archived Repos" },
-	{ "<leader>goF", "<cmd>Octohub repos type:forked<cr>", desc = "Forked Repos" },
-	{ "<leader>goP", "<cmd>Octohub repos type:private<cr>", desc = "Private Repos" },
-	{ "<leader>goS", "<cmd>Octohub repos type:starred<cr>", desc = "Starred Repos" },
-	{ "<leader>goT", "<cmd>Octohub repos type:template<cr>", desc = "Template Repos" },
-	{ "<leader>goL", "<cmd>Octohub repos languages<cr>", desc = "Filter by Language" },
-	{ "<leader>goa", "<cmd>Octohub stats activity<cr>", desc = "Activity Stats" },
-	{ "<leader>gog", "<cmd>Octohub stats contributions<cr>", desc = "Contribution Graph" },
-	{ "<leader>gor", "<cmd>Octohub stats repo<cr>", desc = "Repo Stats" },
-	{ "<leader>got", "<cmd>Octohub stats<cr>", desc = "All Stats" },
-	{ "<leader>gop", "<cmd>Octohub web profile<cr>", desc = "Open GitHub Profile" },
-	{ "<leader>gow", "<cmd>Octohub web repo<cr>", desc = "Open Repo in Browser" },
+	-- Octohub subgroup (<leader>gO)
+	{ "<leader>gO", group = "Octohub" },
+	{ "<leader>gOo", "<cmd>Octohub repos<cr>", desc = "All Repos" },
+	{ "<leader>gOb", "<cmd>Octohub repos sort:size<cr>", desc = "Repos by Size" },
+	{ "<leader>gOc", "<cmd>Octohub repos sort:created<cr>", desc = "Repos by Created" },
+	{ "<leader>gOf", "<cmd>Octohub repos sort:forks<cr>", desc = "Repos by Forks" },
+	{ "<leader>gOi", "<cmd>Octohub repos sort:issues<cr>", desc = "Repos by Issues" },
+	{ "<leader>gOl", "<cmd>Octohub repos sort:language<cr>", desc = "Repos by Language" },
+	{ "<leader>gOs", "<cmd>Octohub repos sort:stars<cr>", desc = "Repos by Stars" },
+	{ "<leader>gOu", "<cmd>Octohub repos sort:updated<cr>", desc = "Repos by Updated" },
+	{ "<leader>gOU", "<cmd>Octohub repos sort:pushed<cr>", desc = "Repos by Pushed" },
+	{ "<leader>gOA", "<cmd>Octohub repos type:archived<cr>", desc = "Archived Repos" },
+	{ "<leader>gOF", "<cmd>Octohub repos type:forked<cr>", desc = "Forked Repos" },
+	{ "<leader>gOP", "<cmd>Octohub repos type:private<cr>", desc = "Private Repos" },
+	{ "<leader>gOS", "<cmd>Octohub repos type:starred<cr>", desc = "Starred Repos" },
+	{ "<leader>gOT", "<cmd>Octohub repos type:template<cr>", desc = "Template Repos" },
+	{ "<leader>gOL", "<cmd>Octohub repos languages<cr>", desc = "Filter by Language" },
+	{ "<leader>gOa", "<cmd>Octohub stats activity<cr>", desc = "Activity Stats" },
+	{ "<leader>gOg", "<cmd>Octohub stats contributions<cr>", desc = "Contribution Graph" },
+	{ "<leader>gOr", "<cmd>Octohub stats repo<cr>", desc = "Repo Stats" },
+	{ "<leader>gOt", "<cmd>Octohub stats<cr>", desc = "All Stats" },
+	{ "<leader>gOp", "<cmd>Octohub web profile<cr>", desc = "Open GitHub Profile" },
+	{ "<leader>gOw", "<cmd>Octohub web repo<cr>", desc = "Open Repo in Browser" },
 
 	-- Toggle subgroup (<leader>gt)
 	{ "<leader>gt", group = "Toggle" },
@@ -314,7 +383,7 @@ which_key.add({
 	{ "<leader>ya", ":%y+<cr>", desc = "Copy Whole File" },
 	{ "<leader>yd", "<cmd>CopyFileDirectory<cr>", desc = "File Directory" },
 	{ "<leader>yf", "<cmd>CopyFileName<cr>", desc = "File Name" },
-	{ "<leader>yg", "<cmd>CopyGitUrl<cr>", desc = "Copy Git URL" },
+	{ "<leader>yg", "<cmd>GitLink<cr>", desc = "Copy Git URL (GitLink)" },
 	{ "<leader>yl", "<cmd>CopyRelativePathWithLine<cr>", desc = "Relative Path with Line" },
 	{ "<leader>yL", "<cmd>CopyAbsolutePathWithLine<cr>", desc = "Absolute Path with Line" },
 	{ "<leader>yp", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
@@ -598,8 +667,8 @@ which_key.add({
 	-- Diff Suite (<leader>d)
 	{ "<leader>d", group = " Diff" },
 	{ "<leader>dv", "<cmd>CodeDiff<cr>", desc = "Toggle CodeDiff" },
-	{ "<leader>dh", "<cmd>CodeDiff history %<cr>", desc = "File History" },
-	{ "<leader>dH", "<cmd>CodeDiff history<cr>", desc = "Repo History" },
+	{ "<leader>dh", "<cmd>CodeDiff history %<cr>", desc = "File history (current file)" },
+	{ "<leader>dH", "<cmd>CodeDiff history<cr>", desc = "File history (repo)" },
 
 	-- Explorer & Files Suite (<leader>e)
 	{ "<leader>e", group = "󰉋 Explorer & Files" },
@@ -690,7 +759,7 @@ which_key.add({
 
 	-- Yank Suite (<leader>y) - Visual Mode
 	{ "<leader>y", group = " Yank" },
-	{ "<leader>yg", ":CopyGitUrl<cr>", desc = "Copy Git URL" },
+	{ "<leader>yg", ":GitLink<cr>", desc = "Copy Git URL (GitLink)" },
 
 	-- Code Suite (<leader>c) - Visual Mode
 	{ "<leader>c", group = "󰘦 Code" },
