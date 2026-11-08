@@ -65,4 +65,8 @@ keymap.set("n", "<leader>bd", function()
 	require("rvim.utils.editor").delete_hidden_buffers()
 end, { desc = "Delete hidden buffers" })
 
-keymap.set("n", "<Leader>z", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })
+-- Session / Restart & Quit
+keymap.set("n", "ZR", "<cmd>restart<CR>", { desc = "Reload / Restart Neovim" })
+keymap.set("n", "<Leader>za", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })
+keymap.set("n", "<Leader>zr", "<cmd>restart<CR>", { desc = "Reload / Restart Neovim" })
+keymap.set("n", "<Leader>zR", "<cmd>restart +qall!<CR>", { desc = "Force Restart (Discard Unsaved)" })
