@@ -218,6 +218,13 @@ which_key.add({
 		desc = "Toggle stage hunk",
 	},
 	{ "<leader>gi", "<cmd>Gitsigns preview_hunk<cr>", desc = "Hunk Info" },
+	{
+		"<leader>gI",
+		function()
+			Snacks.git.blame_line()
+		end,
+		desc = "Detailed Blame (Snacks)",
+	},
 	{ "<leader>gj", "<cmd>Gitsigns next_hunk<cr>", desc = "Next Hunk" },
 	{ "<leader>gk", "<cmd>Gitsigns prev_hunk<cr>", desc = "Prev Hunk" },
 	{
@@ -382,12 +389,28 @@ which_key.add({
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>ya", ":%y+<cr>", desc = "Copy Whole File" },
 	{ "<leader>yd", "<cmd>CopyFileDirectory<cr>", desc = "File Directory" },
-	{ "<leader>yf", "<cmd>CopyFileName<cr>", desc = "File Name" },
+	{
+		"<leader>yf",
+		function()
+			require("rvim.utils.editor").yank_relative_path_with_line()
+		end,
+		desc = "Relative Path (#L<line>)",
+	},
+	{ "<leader>yF", "<cmd>CopyFileName<cr>", desc = "File Name" },
 	{ "<leader>yg", "<cmd>GitLink<cr>", desc = "Copy Git URL (GitLink)" },
-	{ "<leader>yl", "<cmd>CopyRelativePathWithLine<cr>", desc = "Relative Path with Line" },
-	{ "<leader>yL", "<cmd>CopyAbsolutePathWithLine<cr>", desc = "Absolute Path with Line" },
-	{ "<leader>yp", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
+	{ "<leader>yG", "<cmd>CopyGitUrl<cr>", desc = "Copy Git URL (Custom)" },
+	{ "<leader>yl", "<cmd>CopyRelativePathWithLine<cr>", desc = "Relative Path (:line)" },
+	{ "<leader>yL", "<cmd>CopyAbsolutePathWithLine<cr>", desc = "Absolute Path (:line)" },
+	{ "<leader>yn", "<cmd>CopyFileName<cr>", desc = "File Name" },
+	{
+		"<leader>yp",
+		function()
+			require("rvim.utils.editor").yank_absolute_path_with_line()
+		end,
+		desc = "Absolute Path (#L<line>)",
+	},
 	{ "<leader>yP", "<cmd>CopyAbsolutePath<cr>", desc = "Absolute Path" },
+	{ "<leader>yr", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
 
 	-- Pickers Suite (<leader>;) - Normal Mode
 	{ "<leader>;", group = " Pickers" },
@@ -760,6 +783,7 @@ which_key.add({
 	-- Yank Suite (<leader>y) - Visual Mode
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>yg", ":GitLink<cr>", desc = "Copy Git URL (GitLink)" },
+	{ "<leader>yG", ":CopyGitUrl<cr>", desc = "Copy Git URL (Custom)" },
 
 	-- Code Suite (<leader>c) - Visual Mode
 	{ "<leader>c", group = "󰘦 Code" },

@@ -37,6 +37,6 @@ octohub.setup({
 		username = 3600 * 24 * 7,
 		user = 3600 * 24 * 7,
 	},
-	add_default_keybindings = true,
+	add_default_keybindings = false,
 	use_new_command = true,
 })

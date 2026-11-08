@@ -56,12 +56,13 @@ function M.open_package_json()
 		return
 	end
 
-	-- Calculate dimensions (full width edge-to-edge, 98% height)
-	local width = vim.o.columns - 2
-	local height = math.floor(vim.o.lines * 0.98)
+	-- Calculate 80% dimensions
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
 
-	local col = 0
-	local row = 0
+	-- Center the window
+	local col = math.floor((vim.o.columns - width) / 2)
+	local row = math.floor((vim.o.lines - height) / 2)
 
 	-- Create buffer and load file
 	local buf = vim.fn.bufadd(package_json)
@@ -306,13 +307,17 @@ function M.copy_git_url(mode, line1, line2)
 	copy_to_clipboard(url)
 end
 
--- Backward compatibility aliases
+-- Agentic path helpers (#L<line> format from craftzdog)
 function M.yank_relative_path_with_line()
-	M.copy_relative_path_with_line()
+	local path = vim.fn.expand("%:.") .. "#L" .. vim.fn.line(".")
+	vim.fn.setreg("+", path)
+	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
 end
 
 function M.yank_absolute_path_with_line()
-	M.copy_absolute_path_with_line()
+	local path = vim.fn.expand("%:p") .. "#L" .. vim.fn.line(".")
+	vim.fn.setreg("+", path)
+	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
 end
 
 --- Open Snacks buffer picker jumping to existing window if buffer is already visible

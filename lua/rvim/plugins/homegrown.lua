@@ -6,7 +6,7 @@ end
 homegrown.setup({
 	bracket_nav = true,
 	highlighter = false, -- rvim uses nvim-highlight-colors for virtual color text
-	copy = true,
+	copy = false, -- rvim defines enhanced Copy* commands in config/commands.lua
 	dir = true,
 	md_preview = true,
 	pairs = false, -- rvim uses mini.pairs to avoid closing tag collisions
