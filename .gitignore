@@ -4,6 +4,8 @@
 *~
 .DS_Store
 
+# Local plugin overrides (untracked)
+lua/rvim/plugins/local.lua
+
 # Package lock files
-# lazy-lock.json
-# nvim-pack-lock.json
+nvim-pack-lock.json

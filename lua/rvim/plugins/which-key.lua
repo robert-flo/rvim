@@ -26,21 +26,21 @@ local setup = {
 		},
 	},
 	icons = {
-		breadcrumb = "",
+		breadcrumb = icons.ui.ArrowOpen,
 		separator = icons.ui.Arrow,
 		group = "",
 		keys = {
-			Space = "🚀 ",
+			Space = icons.ui.Rocket,
 		},
 		rules = false,
 	},
 	win = {
 		no_overlap = true,
 		border = "rounded",
-		width = 0.5,
+		width = 0.9,
 		height = { min = 5, max = 25 },
 		padding = { 1, 2 },
-		title = " 󰊢 rvim ",
+		title = true,
 		title_pos = "center",
 		zindex = 1000,
 		wo = {
@@ -48,7 +48,7 @@ local setup = {
 		},
 	},
 	layout = {
-		width = { min = 20 },
+		width = { min = 20, max = 30 },
 		spacing = 6,
 		align = "center",
 	},
@@ -87,6 +87,7 @@ which_key.add({
 	{ "<leader>s", group = " Split / Window" },
 	{ "<leader>t", group = "󰓩 Tabs" },
 	{ "<leader>y", group = " Yank" },
+	{ "<leader>z", group = "󰐥 Session / Quit" },
 	{ "<leader>;", group = " Pickers" },
 
 	-- Normal Mode
@@ -124,12 +125,7 @@ which_key.add({
 	{
 		"<leader>x",
 		"<cmd>xa<cr>",
-		desc = "Save and Quit",
-	},
-	{
-		"<leader>z",
-		"<cmd>qa!<cr>",
-		desc = "Force Quit (Without Saving)",
+		desc = " Save and Quit",
 	},
 	{
 		"<leader>f",
@@ -145,10 +141,10 @@ which_key.add({
 		end,
 		desc = "Open package.json",
 	},
-	{ "<leader>C", '"_C', desc = "Change to End of Line" },
-	{ "<leader>D", '"_D', desc = "Delete to End of Line" },
+	{ "<leader>C", '"_C', desc = "Change to EOL" },
+	{ "<leader>D", '"_D', desc = "Delete to EOL" },
 	{ "<leader>p", '"0p', desc = "Paste Last Yank" },
-	{ "<leader>P", '"0P', desc = "Paste Before Cursor" },
+	{ "<leader>P", '"0P', desc = "Paste Before" },
 	{ "<leader>o", "o<Esc>^Da", desc = "Clean Line Below" },
 	{ "<leader>O", "O<Esc>^Da", desc = "Clean Line Above" },
 	{
@@ -647,6 +643,13 @@ which_key.add({
 	{ "<leader>tx", "<cmd>tabclose<cr>", desc = "Close Tab" },
 	{ "<leader>tl", "<cmd>tabnext<cr>", desc = "Next Tab" },
 	{ "<leader>th", "<cmd>tabprev<cr>", desc = "Previous Tab" },
+
+	-- Session / Quit Suite (<leader>z & Z)
+	{ "<leader>z", group = "󰐥 Session / Quit" },
+	{ "<leader>za", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
+	{ "<leader>zr", "<cmd>restart<cr>", desc = "Reload / Restart Neovim" },
+	{ "<leader>zR", "<cmd>restart +qall!<cr>", desc = "Force Restart (Discard Unsaved)" },
+	{ "ZR", "<cmd>restart<cr>", desc = "Reload / Restart Neovim" },
 })
 
 -- Visual Mode

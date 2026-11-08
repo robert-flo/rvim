@@ -74,7 +74,7 @@ rvim/
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x, z) & 10 unified suites (b, c, d, e, g, m, s, t, y, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x) & 11 unified suites (b, c, d, e, g, m, s, t, y, z, ;)
 ```
 
 ---
@@ -91,7 +91,7 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> 26 native keymaps & safe registers ("0, "_), <leader>z force quit
+    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR & <leader>z session/restart/quit
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
@@ -231,7 +231,9 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
 
 1. **Space Leader (`<Space>`)**:
    - Reserved for major actions, formatting, diagnostics, safe destructive operations, and git commands:
-   - `<Space> + z`: Force quit all buffers immediately without saving (`:qa!<CR>`)
+   - `<Space> + za`: Force quit all buffers immediately without saving (`:qa!<CR>`)
+   - `<Space> + zr` (and `ZR`): Reload / restart Neovim session (`:restart<CR>`)
+   - `<Space> + zR`: Force restart Neovim discarding unsaved buffers (`:restart +qall!<CR>`)
    - `<Space> + f`: Format code
    - `<Space> + ca`: Code actions
    - `<Space> + cr`: Rename symbol

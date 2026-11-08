@@ -39,6 +39,9 @@ rvim
 | ✅ **YES** | **`<Space> + /`** | **Search History** fuzzy picker (`Snacks.picker.search_history`) |
 | ✅ **YES** | **`<Space> + :`** | **Command History** fuzzy picker (`Snacks.picker.command_history`) |
 | ✅ **YES** | **`<Space> + x`** | **Save & Quit** all modified buffers (`:xa`) |
+| ✅ **YES** | **`<Space> + za`** | **Force Quit** all buffers without saving (`:qa!`) |
+| ✅ **YES** | **`<Space> + zr`** / **`ZR`** | **Reload / Restart** Neovim restoring session (`:restart`) |
+| ✅ **YES** | **`<Space> + zR`** | **Force Restart** Neovim discarding unsaved buffers (`:restart +qall!`) |
 | ❌ **NO** | **`;f`** | **Repo Files & Dirs** anchored to repo root (`editor.pick_repo_files_and_dirs`) |
 | ❌ **NO** | **`;M`** | **Repo Markdown Files** (`editor.pick_markdown_files`) |
 | ❌ **NO** | **`;z`** | **Drive /z/** files & directories (`editor.pick_z_drive`) |
@@ -161,8 +164,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + ,`** | `, Buffers` | **Open Buffers** | Ergonomic right-hand buffer picker (`Snacks.picker.buffers`) |
 | **`<Space> + /`** | `/ Search History` | **Search History** | Interactive fuzzy search of past search patterns (`Snacks.picker.search_history`) |
 | **`<Space> + :`** | `: Command History` | **Command History** | Interactive fuzzy search of recent `:` commands (`Snacks.picker.command_history`) |
-| **`<Space> + x`** | `x Save and Quit` | **Save & Quit** | Write all modified buffers and exit Neovim (`:xa<CR>`) |
-| **`<Space> + z`** | `z Force Quit` | **Force Quit All** | Close all buffers and exit immediately without saving (`:qa!<CR>`) |
+| **`<Space> + x`** | `x  Save and Quit` | **Save & Quit** | Write all modified buffers and exit Neovim (`:xa<CR>`) |
 | **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
 | **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in full-width floating modal |
 | **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
@@ -431,6 +433,13 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + tx`** | — | **Close Tab** | Close active tab (`:tabclose`) |
 | **`<Space> + tl`** | **`<Tab>`** | **Next Tab** | Switch to next tab (`:tabnext`) |
 | **`<Space> + th`** | **`<S-Tab>`** | **Previous Tab** | Switch to previous tab (`:tabprev`) |
+
+#### 󰐥 Session / Quit Suite (`<Space> + z`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + za`** | — | **Force Quit All** | Close all buffers and exit immediately without saving (`:qa!`) |
+| **`<Space> + zr`** | **`ZR`** | **Reload / Restart** | Reload Neovim and restore windows, tabs, and buffers (`:restart`) |
+| **`<Space> + zR`** | — | **Force Restart** | Discard unsaved changes in all buffers and restart Neovim (`:restart +qall!`) |
 
 #### 󰉋 Explorer & Files Suite (`<Space> + e`)
 | Keymap | Direct Shortcut | Action | Description |
