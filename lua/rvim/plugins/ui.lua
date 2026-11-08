@@ -148,8 +148,8 @@ end
 local elapsed_ms = math.floor((vim.uv.hrtime() - (_G._rvim_start_time or vim.uv.hrtime())) / 1e6 * 100 + 0.5) / 100
 Snacks.dashboard.lazy_stats = {
 	startuptime = math.max(elapsed_ms, 3.5),
-	count = 31,
-	loaded = 31,
+	count = 32,
+	loaded = 32,
 }
 
 local function make_key_item(icon, key, desc, action)
@@ -187,7 +187,7 @@ Snacks.setup({
 				make_key_item(icons.ui.NewFile, "e", "New File", ":ene | startinsert"),
 				make_key_item(icons.ui.List, "r", "Live Grep (;r)", ":lua Snacks.dashboard.pick('live_grep')"),
 				make_key_item(icons.documents.Files, "o", "Recent Files (;o)", ":lua Snacks.dashboard.pick('oldfiles')"),
-				make_key_item(icons.documents.OpenFolder, "t", "File Manager (elio / ;e)", ":lua require('tfm').open()"),
+				make_key_item(icons.documents.OpenFolder, "t", "File Manager (elio / ;t)", ":lua require('tfm').open()"),
 				make_key_item(icons.documents.File, "b", "Buffers (;b)", ":lua Snacks.dashboard.pick('buffers')"),
 				make_key_item(icons.git.Branch, "g", "Lazygit (;g)", ":lua require('rvim.utils.lazygit').open()"),
 				make_key_item(icons.git.Diff, "d", "Code Diff", ":CodeDiff"),

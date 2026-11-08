@@ -597,6 +597,14 @@ which_key.add({
 		end,
 		desc = "Prev Todo Comment",
 	},
+	{ "]c", desc = "Next Git Hunk" },
+	{ "[c", desc = "Prev Git Hunk" },
+	{ "]x", desc = "Next Conflict Marker" },
+	{ "[x", desc = "Prev Conflict Marker" },
+	{ "]<space>", desc = "Blank Line Below" },
+	{ "[<space>", desc = "Blank Line Above" },
+	{ "]]", desc = "Next Reference" },
+	{ "[[", desc = "Prev Reference" },
 	-- Buffers Suite (<leader>b)
 	{ "<leader>b", group = "󰈔 Buffers" },
 	{

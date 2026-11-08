@@ -155,7 +155,7 @@ Reusable service layer decoupled from plugins:
 - **`icons.lua`**: Comprehensive Nerd Font glyph catalog (UI, documents, types, LSP kinds, diagnostics, and git changes) integrated from nvim2k.
 - **`editor.lua`**:
   - Project root detection via upward directory traversal looking for markers (`.git`, `lua`, `package.json`, `Makefile`, etc.).
-  - `open_package_json()`: Opens project `package.json` in an edge-to-edge full width and 98% height floating modal anchored at row 0, with buffer-local `<Esc>` / `q` close handlers.
+  - `open_package_json()`: Opens project `package.json` in a centered 80% width and height floating modal, with buffer-local `<Esc>` / `q` close handlers.
   - `copy_as_codeblock()`: Formats visual selections into GitHub-ready Markdown blocks with language metadata and line numbers (` ```tsx filename="src/App.tsx" line=42 `).
   - `delete_hidden_buffers()`: Iterates `vim.api.nvim_list_bufs()`, checks visibility against `vim.api.nvim_list_wins()`, and safely closes inactive unedited buffers.
   - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat`.
@@ -170,7 +170,7 @@ Reusable service layer decoupled from plugins:
 
 ### Layer 3: Plugins Ecosystem (`lua/rvim/plugins/`)
 Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`:
-- **`init.lua`**: Declaratively registers all 31 core plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
+- **`init.lua`**: Declaratively registers all 32 core plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
 - **`ui.lua`**:
   - `solarized-osaka.nvim`: Vivid, transparent color scheme.
   - `mini.icons`: Lightweight icons library with `mock_nvim_web_devicons()`.
@@ -179,7 +179,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `codediff.nvim`: Two-way interactive diff comparison viewer.
   - `lualine.nvim`: Statusline configured with mode, branch, root directory, pretty path, macro status, diagnostics, and git hunks.
 - **`treesitter.lua`**:
-  - Installs 45+ grammars (`astro`, `bash`, `c`, `cmake`, `cpp`, `css`, `diff`, `fish`, `gitignore`, `go`, `graphql`, `groovy`, `html`, `http`, `java`, `javascript`, `jsdoc`, `json`, `kotlin`, `lua`, `luadoc`, `luap`, `markdown`, `markdown_inline`, `php`, `printf`, `properties`, `python`, `qmljs`, `query`, `regex`, `rust`, `scss`, `sql`, `svelte`, `toml`, `tsx`, `typescript`, `vim`, `vimdoc`, `xml`, `yaml`).
+  - Installs 45+ grammars (`astro`, `bash`, `c`, `cmake`, `cpp`, `css`, `diff`, `fish`, `gitignore`, `go`, `graphql`, `groovy`, `html`, `http`, `java`, `javascript`, `jsdoc`, `json`, `kotlin`, `lua`, `luadoc`, `luap`, `markdown`, `markdown_inline`, `php`, `printf`, `properties`, `python`, `qmljs`, `query`, `regex`, `rust`, `scss`, `sql`, `svelte`, `toml`, `tsx`, `typescript`, `vim`, `vimdoc`, `xml`, `yaml`) when `tree-sitter` CLI is available (with automatic Mason deferred fallback and `treesitter-autoinstall.nvim` for unknown filetypes).
   - Registers filetype and language mappings for MDX (`markdown`) and QML (`qmljs`).
   - Automatically starts highlighter and indentation expression on `FileType` events.
   - Binds `PackChanged` event to run `TSUpdate`.
@@ -212,7 +212,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`, TFM `;t`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
-  - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with 22 top-level actions, GitHub issue/PR submenus, Octohub repository browsing, and Gitsigns visual toggles.
+  - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with top-level actions (`gb`, `gB`, `go`, `gs`, `gh`, `gd`, `gD`, `gg`, `gp`, `gm`, `gS`, `gI`, etc.), GitHub issue/PR submenus (`<Space> + gH`), Octohub repository browsing (`<Space> + gO`), and Gitsigns visual toggles (`<Space> + gt`).
   - `co-author.nvim`: Fuzzy picker integrating with `snacks.picker` to insert co-authors from repository commit history (`<Space> + gC`).
 
 ---

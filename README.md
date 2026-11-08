@@ -348,7 +348,7 @@ When launched with an empty buffer (`rvim`), an advanced multi-pane interactive 
 | **`e`** | **New file** | Open clean buffer and enter insert mode (`:ene \| startinsert`) |
 | **`r`** | **Live Grep** (`;r`) | Search project text with ripgrep (`Snacks.picker.grep`) |
 | **`o`** | **Recent files** (`;o`) | Fuzzy search recently edited files (`Snacks.picker.oldfiles`) |
-| **`t`** | **File Manager** (`;e`) | Open integrated Elio terminal file manager (`:lua require('tfm').open()`) |
+| **`t`** | **File Manager** (`;t`) | Open integrated Elio terminal file manager (`:lua require('tfm').open()`) |
 | **`b`** | **Buffers** (`;b`) | Fuzzy search open buffers (`Snacks.picker.buffers`) |
 | **`g`** | **Open Lazygit** (`;g`) | Launch integrated floating Lazygit terminal |
 | **`d`** | **Code Diff** | Open 2-way / 3-way visual code diff split (`:CodeDiff`) |
