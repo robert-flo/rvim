@@ -772,6 +772,9 @@ which_key.add({
 	{ "<leader>tl", "<cmd>tabnext<cr>", desc = "Next Tab" },
 	{ "<leader>th", "<cmd>tabprev<cr>", desc = "Previous Tab" },
 
+	-- Theme Toggle (<leader>T)
+	{ "<leader>T", desc = "Toggle Theme (Light / Dark)" },
+
 	-- Session / Quit Suite (<leader>z & Z)
 	{ "<leader>z", group = "󰐥 Session / Quit" },
 	{ "<leader>za", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },

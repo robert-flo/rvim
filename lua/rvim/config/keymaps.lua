@@ -74,6 +74,11 @@ keymap.set("n", "<leader>bd", function()
 	require("rvim.utils.editor").delete_hidden_buffers()
 end, { desc = "Delete hidden buffers" })
 
+-- Theme Switcher (Clavis Light / Solarized Osaka Dark)
+keymap.set("n", "<Leader>T", function()
+	require("rvim.utils.theme").toggle()
+end, { desc = "Toggle Theme (Light / Dark)", noremap = true, silent = true })
+
 -- Session / Restart & Quit
 keymap.set("n", "ZR", "<cmd>restart<CR>", { desc = "Reload / Restart Neovim" })
 keymap.set("n", "<Leader>za", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })
