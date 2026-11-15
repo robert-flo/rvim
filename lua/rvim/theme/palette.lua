@@ -4,6 +4,7 @@ local M = {}
 M.light = {
 	bg = "#eff1f5", -- Fondo papel reposado anti-fatiga
 	bg_alt = "#e6e9ef", -- Superficie secundaria / panels
+	bg_float = "#d5dae5", -- Superficie más oscura y contrastada para ventanas flotantes (WhichKey, popups)
 	bg_subtle = "#ccd0da", -- Selección y estados activos suaves
 	bg_highlight = "#dce0e8", -- Separadores y bordes inactivos
 	fg = "#3a3d52", -- Texto base carbón pizarra anti-halo
