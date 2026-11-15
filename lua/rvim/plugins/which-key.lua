@@ -63,11 +63,24 @@ local setup = {
 which_key.setup(setup)
 
 local function set_which_key_highlights()
-	vim.api.nvim_set_hl(0, "WhichKey", { fg = "#e06c75", bold = true })
-	vim.api.nvim_set_hl(0, "WhichKeyDesc", { fg = "#70b0ff" })
-	vim.api.nvim_set_hl(0, "WhichKeyGroup", { fg = "#e5c07b", bold = true })
-	vim.api.nvim_set_hl(0, "WhichKeySeparator", { fg = "#586e75" })
-	vim.api.nvim_set_hl(0, "WhichKeyTitle", { fg = "#2aa198", bold = true })
+	local theme_utils = require("rvim.utils.theme")
+	local mode = theme_utils.get_current_mode()
+	if mode == "light" then
+		local p = require("rvim.theme.palette").light
+		vim.api.nvim_set_hl(0, "WhichKey", { fg = p.blue, bold = true })
+		vim.api.nvim_set_hl(0, "WhichKeyDesc", { fg = p.fg })
+		vim.api.nvim_set_hl(0, "WhichKeyGroup", { fg = p.blue_deep, bold = true })
+		vim.api.nvim_set_hl(0, "WhichKeySeparator", { fg = p.fg_dim })
+		vim.api.nvim_set_hl(0, "WhichKeyNormal", { fg = p.fg, bg = p.bg_float })
+		vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = p.blue, bg = p.bg_float })
+		vim.api.nvim_set_hl(0, "WhichKeyTitle", { fg = p.blue_deep, bg = p.bg_float, bold = true })
+	else
+		vim.api.nvim_set_hl(0, "WhichKey", { fg = "#e06c75", bold = true })
+		vim.api.nvim_set_hl(0, "WhichKeyDesc", { fg = "#70b0ff" })
+		vim.api.nvim_set_hl(0, "WhichKeyGroup", { fg = "#e5c07b", bold = true })
+		vim.api.nvim_set_hl(0, "WhichKeySeparator", { fg = "#586e75" })
+		vim.api.nvim_set_hl(0, "WhichKeyTitle", { fg = "#2aa198", bold = true })
+	end
 end
 
 set_which_key_highlights()
