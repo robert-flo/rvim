@@ -2,11 +2,8 @@ local icons = Rvim.icons
 local lualine_utils = require("rvim.utils.lualine")
 local lazygit_utils = require("rvim.utils.lazygit")
 
-require("solarized-osaka").setup({
-	style = "vivid",
-	transparent = true,
-})
-vim.cmd([[colorscheme solarized-osaka]])
+local theme_utils = require("rvim.utils.theme")
+theme_utils.init()
 
 require("mini.icons").setup()
 require("mini.icons").mock_nvim_web_devicons()
@@ -18,31 +15,38 @@ vim.o.tabline = "%!v:lua.require('rvim.utils.tabline').render()"
 
 local Snacks = require("snacks")
 
-local function set_dashboard_highlights()
-	local colors = {
-		blue = "#268bd2",
-		cyan = "#2aa198",
-		green = "#859900",
-		yellow = "#b58900",
-		orange = "#cb4b16",
-		magenta = "#d33682",
-		violet = "#6c71c4",
-		base0 = "#839496",
-		base1 = "#93a1a1",
-	}
-
-	vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = colors.cyan, bold = true })
-	vim.api.nvim_set_hl(0, "SnacksDashboardTitle", { fg = colors.violet, bold = true })
-	vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = colors.orange, bold = true })
-	vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.blue, bold = false })
-	vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = colors.base1 })
-	vim.api.nvim_set_hl(0, "SnacksDashboardSpecial", { fg = colors.green, italic = true, bold = true })
-end
-
-set_dashboard_highlights()
 vim.api.nvim_create_autocmd("ColorScheme", {
 	pattern = "*",
-	callback = set_dashboard_highlights,
+	callback = function()
+		local mode = theme_utils.get_current_mode()
+		if mode == "light" then
+			local p = require("rvim.theme.palette").light
+			vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = p.blue_deep, bold = true })
+			vim.api.nvim_set_hl(0, "SnacksDashboardTitle", { fg = p.violet, bold = true })
+			vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = p.amber, bold = true })
+			vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = p.blue, bold = false })
+			vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = p.fg_dim })
+			vim.api.nvim_set_hl(0, "SnacksDashboardSpecial", { fg = p.green, italic = true, bold = true })
+		else
+			local colors = {
+				blue = "#268bd2",
+				cyan = "#2aa198",
+				green = "#859900",
+				yellow = "#b58900",
+				orange = "#cb4b16",
+				magenta = "#d33682",
+				violet = "#6c71c4",
+				base0 = "#839496",
+				base1 = "#93a1a1",
+			}
+			vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = colors.cyan, bold = true })
+			vim.api.nvim_set_hl(0, "SnacksDashboardTitle", { fg = colors.violet, bold = true })
+			vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = colors.orange, bold = true })
+			vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = colors.blue, bold = false })
+			vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = colors.base1 })
+			vim.api.nvim_set_hl(0, "SnacksDashboardSpecial", { fg = colors.green, italic = true, bold = true })
+		end
+	end,
 })
 
 -- Dashboard cursor hiding and clean empty lines (eob: " ")
@@ -488,6 +492,10 @@ require("incline").setup({
 	window = {
 		margin = { vertical = 0, horizontal = 1 },
 		zindex = 10,
+		winhighlight = {
+			active = { Normal = "InclineNormal" },
+			inactive = { Normal = "InclineNormalNC" },
+		},
 	},
 	hide = {
 		cursorline = "smart",
