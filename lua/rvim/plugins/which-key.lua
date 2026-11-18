@@ -98,6 +98,7 @@ which_key.add({
 	{ "<leader>e", group = "󰉋 Explorer & Files" },
 	{ "<leader>r", group = "󰛖 Refactor" },
 	{ "<leader>m", group = "󰉋 TFM (Elio)" },
+	{ "<leader>p", group = "󰏗 Packages" },
 	{ "<leader>s", group = " Split / Window" },
 	{ "<leader>t", group = "󰓩 Tabs" },
 	{ "<leader>y", group = " Yank" },
@@ -167,8 +168,8 @@ which_key.add({
 	},
 	{ "<leader>C", '"_C', desc = "Change to EOL" },
 	{ "<leader>D", '"_D', desc = "Delete to EOL" },
-	{ "<leader>p", '"0p', desc = "Paste Last Yank" },
-	{ "<leader>P", '"0P', desc = "Paste Before" },
+	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
+	{ "<leader>pY", '"0P', desc = "Paste Before" },
 	{ "<leader>o", "o<Esc>^Da", desc = "Clean Line Below" },
 	{ "<leader>O", "O<Esc>^Da", desc = "Clean Line Above" },
 	{
@@ -869,6 +870,15 @@ which_key.add({
 	{ "<leader>mv", "<cmd>TfmVsplit<cr>", desc = "TFM - Vertical Split" },
 	{ "<leader>mt", "<cmd>TfmTabedit<cr>", desc = "TFM - New Tab" },
 
+	-- Packages Suite (<leader>p)
+	{ "<leader>p", group = "󰏗 Packages" },
+	{ "<leader>pe", function() require("snacks").profiler.scratch() end, desc = "Profiler Scratch" },
+	{ "<leader>pf", function() require("snacks").profiler.pick() end, desc = "Profiler Pick" },
+	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason" },
+	{ "<leader>pt", function() require("snacks").profiler.toggle() end, desc = "Profiler Toggle" },
+	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
+	{ "<leader>pY", '"0P', desc = "Paste Before" },
+
 	-- Refactor Suite (<leader>r)
 	{ "<leader>r", group = "󰛖 Refactor" },
 	{ "<leader>ra", "<cmd>Replace<cr>", desc = "Project Search & Replace" },
@@ -1041,5 +1051,5 @@ which_key.add({
 	{ "<leader>C", '"_C', desc = "Change to End of Line" },
 	{ "<leader>d", '"_d', desc = "Delete (No Yank)" },
 	{ "<leader>D", '"_D', desc = "Delete to End of Line" },
-	{ "<leader>p", '"0p', desc = "Paste Last Yank" },
+	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
 })
