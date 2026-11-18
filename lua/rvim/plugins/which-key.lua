@@ -888,10 +888,24 @@ which_key.add({
 	{ "<leader>m", group = " Bookmarks" },
 	{ "<leader>ma", "<cmd>BookmarkAdd<cr>", desc = "Add Bookmark" },
 	{ "<leader>md", "<cmd>BookmarkRemove<cr>", desc = "Delete Bookmark" },
-	{ "<leader>ml", function() require("telescope").extensions.bookmarks.list() end, desc = "List Bookmarks" },
+	{
+		"<leader>ml",
+		function()
+			require("rvim.plugins.bookmarks").load()
+			require("telescope").extensions.bookmarks.list()
+		end,
+		desc = "List Bookmarks",
+	},
 	{ "<leader>mj", function() require("bookmarks.navigation").jump_to_next() end, desc = "Next Bookmark" },
 	{ "<leader>mk", function() require("bookmarks.navigation").jump_to_prev() end, desc = "Previous Bookmark" },
-	{ "<leader>ms", function() require("telescope").extensions.bookmarks.lists() end, desc = "Switch List" },
+	{
+		"<leader>ms",
+		function()
+			require("rvim.plugins.bookmarks").load()
+			require("telescope").extensions.bookmarks.lists()
+		end,
+		desc = "Switch List",
+	},
 	{ "<leader>mL", "<cmd>BookmarkListShow<cr>", desc = "Show Lists" },
 	{ "<leader>mB", "<cmd>BookmarksToggleBranchScope<cr>", desc = "Toggle Branch Scope" },
 

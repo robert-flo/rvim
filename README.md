@@ -617,7 +617,7 @@ Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the 
 
 #### 🔖 Bookmarks Suite (`<Space> + m`)
 
-Persistent, project-aware line bookmarks backed by SQLite ([heilgar/bookmarks.nvim](https://github.com/heilgar/bookmarks.nvim)): bookmarks anchor to the project root, survive restarts, carry the line's content and timestamp, and can be isolated per Git branch at runtime. Named lists organize bookmarks per project, feature, or workflow. The plugin's pickers are Telescope-based, so rvim ships a minimal dedicated Telescope setup for this suite only (rvim's own pickers stay on Snacks).
+Persistent, project-aware line bookmarks backed by SQLite ([heilgar/bookmarks.nvim](https://github.com/heilgar/bookmarks.nvim)): bookmarks anchor to the project root, survive restarts, carry the line's content and timestamp, and can be isolated per Git branch at runtime. Named lists organize bookmarks per project, feature, or workflow. The plugin's pickers are Telescope-based, so rvim ships a minimal dedicated Telescope setup for this suite only, loaded lazily on first use (rvim's own pickers stay on Snacks).
 
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
