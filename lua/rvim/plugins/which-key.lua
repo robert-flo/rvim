@@ -831,6 +831,68 @@ which_key.add({
 	{ "<leader>ce", "<cmd>%Runner<cr>", desc = "Execute Buffer / File" },
 	{ "<leader>cD", "<cmd>RootDir<cr>", desc = "Set Root Directory" },
 
+	-- LSP Suite (<leader>l)
+	{ "<leader>l", group = "󰿘 LSP" },
+	{
+		"<leader>la",
+		function()
+			vim.lsp.buf.code_action()
+		end,
+		desc = "Code Action",
+		mode = { "n", "x" },
+	},
+	{
+		"<leader>lc",
+		function()
+			require("conform").format()
+		end,
+		desc = "Format Code",
+		mode = { "n", "x" },
+	},
+	{
+		"<leader>lg",
+		function()
+			vim.lsp.buf.hover()
+		end,
+		desc = "Hover Documentation",
+	},
+	{
+		"<leader>lh",
+		function()
+			require("snacks").toggle.inlay_hints():toggle()
+		end,
+		desc = "Toggle Inlay Hints",
+	},
+	{
+		"<leader>lj",
+		function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end,
+		desc = "Next Diagnostic",
+	},
+	{
+		"<leader>lk",
+		function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end,
+		desc = "Prev Diagnostic",
+	},
+	{
+		"<leader>lr",
+		function()
+			vim.lsp.buf.rename()
+		end,
+		desc = "Rename Symbol",
+		mode = { "n", "x" },
+	},
+	{
+		"<leader>lw",
+		function()
+			require("snacks").toggle.words():toggle()
+		end,
+		desc = "Toggle Word References",
+	},
+
 	-- Diff Suite (<leader>d)
 	{ "<leader>d", group = " Diff" },
 	{ "<leader>dv", "<cmd>CodeDiff<cr>", desc = "Toggle CodeDiff" },
