@@ -316,6 +316,23 @@ which_key.add({
 		end,
 		desc = "Git Branches",
 	},
+	{
+		"<leader>gP",
+		function()
+			local root = vim.fs.root(0, ".git")
+			if not root then
+				vim.notify("Not inside a git repository", vim.log.levels.WARN, { title = "Git Pull" })
+				return
+			end
+			local out = vim.fn.system({ "git", "-C", root, "pull", "--ff-only" })
+			if vim.v.shell_error ~= 0 then
+				vim.notify("git pull failed: " .. vim.trim(out), vim.log.levels.ERROR, { title = "Git Pull" })
+			else
+				vim.notify(vim.trim(out), vim.log.levels.INFO, { title = "Git Pull" })
+			end
+		end,
+		desc = "Git Pull",
+	},
 	{ "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
 	{ "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer" },
 	{
