@@ -889,6 +889,17 @@ which_key.add({
 	{ "<leader>tx", "<cmd>tabclose<cr>", desc = "Close Tab" },
 	{ "<leader>tl", "<cmd>tabnext<cr>", desc = "Next Tab" },
 	{ "<leader>th", "<cmd>tabprev<cr>", desc = "Previous Tab" },
+	{ "<leader>td", "<cmd>tab split<cr>", desc = "Duplicate Current Buffer" },
+	{ "<leader>to", "<cmd>tabonly<cr>", desc = "Close Other Tabs" },
+	{ "<leader>tH", ":-tabmove<cr>", desc = "Move Tab Left" },
+	{ "<leader>tL", ":+tabmove<cr>", desc = "Move Tab Right" },
+	{
+		"<leader>tp",
+		function()
+			require("rvim.utils.editor").pick_tabs()
+		end,
+		desc = "Tab Picker",
+	},
 
 	-- Theme Toggle (<leader>T)
 	{ "<leader>T", desc = "Toggle Theme (Light / Dark)" },

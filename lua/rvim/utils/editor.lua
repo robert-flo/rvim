@@ -366,6 +366,55 @@ function M.copy_word_under_cursor()
 	copy_to_clipboard(word)
 end
 
+--- Open Snacks picker listing all tabpages, jumping to the selected one
+function M.pick_tabs()
+	local ok, snacks = pcall(require, "snacks")
+	if not ok then
+		return
+	end
+
+	local items = {}
+	for _, tab in ipairs(vim.fn.gettabinfo()) do
+		local names = {}
+		for _, win in ipairs(tab.tablist) do
+			local bufnr = win.bufnr
+			if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted then
+				local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t")
+				if name == "" then
+					name = "[No Name]"
+				end
+				names[#names + 1] = name
+			end
+		end
+		local text = string.format("Tab %d: %s", tab.tabnr, table.concat(names, ", "))
+		if tab.tabnr == vim.fn.tabpagenr() then
+			text = text .. " (current)"
+		end
+		items[#items + 1] = { text = text, tabnr = tab.tabnr }
+	end
+	table.sort(items, function(a, b)
+		return a.tabnr < b.tabnr
+	end)
+
+	snacks.picker.pick({
+		title = "Tabs",
+		items = items,
+		format = "text",
+		preview = "none",
+		confirm = function(picker, item)
+			picker:close()
+			if item then
+				for _, tp in ipairs(vim.api.nvim_list_tabpages()) do
+					if vim.api.nvim_tabpage_get_number(tp) == item.tabnr then
+						vim.api.nvim_set_current_tabpage(tp)
+						break
+					end
+				end
+			end
+		end,
+	})
+end
+
 --- Open Snacks buffer picker jumping to existing window if buffer is already visible
 function M.pick_buffers()
 	local ok, snacks = pcall(require, "snacks")
