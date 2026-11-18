@@ -51,7 +51,6 @@ rvim
 | ❌ **NO** | **`;F`** | **Seeker Git Files** (`:Seeker git_files`) |
 | ❌ **NO** | **`;G`** | **Seeker Grep** (`:Seeker grep`) |
 | ❌ **NO** | **`;W`** | **Seeker Grep Word** under cursor / selection (`:Seeker grep_word`) |
-| ❌ **NO** | **`;R`** | **Project Search & Replace** via ripgrep & quickfix (`:Replace`) |
 | ❌ **NO** | **`;r`** | **Live Grep** across project text (`Snacks.picker.grep`) |
 | ❌ **NO** | **`;s`** | **Document Symbols** / outline fuzzy picker (`Snacks.picker.lsp_symbols`) |
 | ❌ **NO** | **`;o`** | **Recent files** picker (`Snacks.picker.recent`) |
@@ -120,7 +119,6 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 | **`<Space> + ;F`** | **`;F`** | **Seeker Git Files** | Git-tracked file search with Seeker mode toggling |
 | **`<Space> + ;G`** | **`;G`** | **Seeker Grep** | Ripgrep search with instant `<C-e>` toggle back to file list |
 | **`<Space> + ;W`** | **`;W`** | **Seeker Grep Word** | Seeker search for word under cursor or visual selection |
-| **`<Space> + ;R`** | **`;R`** | **Search & Replace** | Interactive project-wide find and replace (`:Replace`) |
 | **`<Space> + ;g`** | **`;g`** | **Lazygit** | Launch integrated floating Lazygit terminal |
 | **`<Space> + ;h`** | **`;h`** | **Git Diff Hunks** | Interactive Git diff hunks picker |
 | **`<Space> + ;n`** | **`;n`** | **Notifications** | View Snacks notification history |
@@ -143,7 +141,7 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 ; → Resume Picker       M → Repo Markdown Files
 a → Seeker Files        o → Recent Files
 b → List Buffers        r → Live Grep
-c → Incoming Calls      R → Project Search & Replace
+c → Incoming Calls
 C → Commands            s → Document Symbols
 e → Diagnostics         u → Undo History
 f → Repo Files & Dirs   w → Grep Word
@@ -244,7 +242,6 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | ✅ **YES** | **`<Space> + cm`** | Normal | **Markdown Live Preview** in web browser without external server (`:MDPreview`) |
 | ✅ **YES** | **`<Space> + cM`** | Normal | **Toggle Markdown Render** in active buffer (`:RenderMarkdown toggle`) |
 | ✅ **YES** | **`<Space> + ce`** | Normal / Visual | **Execute Code** buffer or visual selection (`:Runner`) |
-| ✅ **YES** | **`<Space> + cp`** | Normal | **Project Search & Replace** with Ripgrep & Quickfix (`:Replace`) |
 | ✅ **YES** | **`<Space> + cD`** | Normal | **Set Root Directory** to detected Git root (`:RootDir`) |
 | ✅ **YES** | **`<Space> + cc`** | Normal | Run CodeLens under cursor |
 | ✅ **YES** | **`<Space> + cC`** | Normal | Refresh CodeLens in buffer |
@@ -431,6 +428,14 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + bx`** | — | **Close Current Buffer** | Close active buffer (`:bdelete`) |
 | **`<Space> + bo`** | — | **Close Other Buffers** | Close all buffers except current (`:%bd\|e#\|bd#`) |
 
+#### 🔎 Refactor Suite (`<Space> + r`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + ra`** | — | **Project Search & Replace** | Interactive project-wide find and replace (`:Replace`) |
+| **`<Space> + rw`** | — | **Replace Word Everywhere** | Open project replace prefilled with word under cursor (`:Replace <cword>`) |
+| **`<Space> + rb`** | — | **Replace Buffer** | Start confirmed search and replace within buffer (`:%s///gc`) |
+| **`<Space> + rs`** | — | **Replace Word Buffer** | Replace word under cursor across buffer (`:%s/\<cword\>/<cword>/gI`) |
+
 ####  Split / Window Suite (`<Space> + s`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
@@ -605,7 +610,7 @@ rvim integrates [`seeker.nvim`](https://github.com/2kabhishek/seeker.nvim) and [
 - **`:MDPreview` (`<Space> + cm`)**: Browser-based real-time markdown preview without Node.js or external servers. Automatically creates a standalone bundle in `/tmp/nvim_md/` and live-syncs on `TextChanged` and `TextChangedI`.
 - **`:Runner` (`<Space> + ce`)**: Asynchronous code execution for active buffer or visual selection (`lua`, `vim`, `python`, `node`, `ts-node`, `bash`, `go`, `ruby`, `elixir`, `java`).
 - **`:AutoTile` (`<Space> + sa`)**: Smart autotiling split that evaluates the active window's aspect ratio (`width >= height * 2.0` $\to$ vertical split, otherwise horizontal split).
-- **`:Replace` (`<Space> + cp` / `;R`)**: Project-wide search and replace using Ripgrep and Quickfix with interactive confirmation modes (`cfdo %s/.../.../g | update`).
+- **`:Replace` (`<Space> + ra`)**: Project-wide search and replace using Ripgrep and Quickfix with interactive confirmation modes (`cfdo %s/.../.../g | update`).
 - **`:RootDir` (`<Space> + cD`)**: Automatically changes the current buffer window directory (`lcd`) to the Git repository root.
 - **`:RangerPicker` (`<Space> + er`)**: Opens the Ranger file manager in a centered floating window powered by `Snacks.terminal`.
 - **Conflict & Line Motions**:
