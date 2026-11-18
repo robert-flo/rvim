@@ -40,6 +40,11 @@ vim.pack.add({
 	{ src = gh("2kabhishek/homegrown.nvim") },
 	{ src = gh("MeanderingProgrammer/render-markdown.nvim") },
 	{ src = gh("rolv-apneseth/tfm.nvim") },
+	-- Bookmarks
+	{ src = gh("kkharji/sqlite.lua") },
+	{ src = gh("nvim-lua/plenary.nvim") },
+	{ src = gh("nvim-telescope/telescope.nvim") },
+	{ src = gh("heilgar/bookmarks.nvim") },
 })
 
 if #vim.api.nvim_get_runtime_file("lua/rvim/plugins/local.lua", false) > 0 then
@@ -56,5 +61,6 @@ require("rvim.plugins.seeker")
 require("rvim.plugins.homegrown")
 require("rvim.plugins.render-markdown")
 require("rvim.plugins.tfm")
+require("rvim.plugins.bookmarks")
 require("rvim.plugins.keymaps")
 require("rvim.plugins.which-key")

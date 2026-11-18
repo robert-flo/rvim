@@ -884,6 +884,17 @@ which_key.add({
 	{ "<leader>e.", function() require("rvim.utils.elio").last() end, desc = "Elio Last Dir" },
 
 
+	-- Bookmarks Suite (<leader>m)
+	{ "<leader>m", group = " Bookmarks" },
+	{ "<leader>ma", "<cmd>BookmarkAdd<cr>", desc = "Add Bookmark" },
+	{ "<leader>md", "<cmd>BookmarkRemove<cr>", desc = "Delete Bookmark" },
+	{ "<leader>ml", function() require("telescope").extensions.bookmarks.list() end, desc = "List Bookmarks" },
+	{ "<leader>mj", function() require("bookmarks.navigation").jump_to_next() end, desc = "Next Bookmark" },
+	{ "<leader>mk", function() require("bookmarks.navigation").jump_to_prev() end, desc = "Previous Bookmark" },
+	{ "<leader>ms", function() require("telescope").extensions.bookmarks.lists() end, desc = "Switch List" },
+	{ "<leader>mL", "<cmd>BookmarkListShow<cr>", desc = "Show Lists" },
+	{ "<leader>mB", "<cmd>BookmarksToggleBranchScope<cr>", desc = "Toggle Branch Scope" },
+
 	-- Packages Suite (<leader>p)
 	{ "<leader>p", group = "󰏗 Packages" },
 	{ "<leader>pe", function() require("snacks").profiler.scratch() end, desc = "Profiler Scratch" },
