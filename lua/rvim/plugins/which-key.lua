@@ -328,6 +328,7 @@ which_key.add({
 			if vim.v.shell_error ~= 0 then
 				vim.notify("git pull failed: " .. vim.trim(out), vim.log.levels.ERROR, { title = "Git Pull" })
 			else
+				vim.cmd("silent! checktime")
 				vim.notify(vim.trim(out), vim.log.levels.INFO, { title = "Git Pull" })
 			end
 		end,

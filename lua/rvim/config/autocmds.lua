@@ -29,6 +29,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Auto-reload buffers when files change outside Neovim (e.g. after a git pull)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+	group = augroup,
+	callback = function()
+		vim.cmd("silent! checktime")
+	end,
+})
+
 -- Custom filetypes
 vim.filetype.add({
 	extension = {
