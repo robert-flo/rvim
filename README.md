@@ -171,7 +171,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
 | **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
-| **`<Space> + p`** / **`P`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
+| **`<Space> + py`** / **`pY`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
 | **`<Space> + u`** | `u Undo History` | **Undo Tree** | Visual interactive undo tree history (`Snacks.picker.undo`) |
 | **`<Space> + ?`** | `? Help Tags` | **Help Docs** | Search Neovim documentation tags (`Snacks.picker.help`) |
@@ -182,8 +182,8 @@ High-productivity single-stroke actions accessible directly at the root of Which
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
-| ✅ **YES** | **`<Space> + p`** | Normal / Visual | **Paste last yank**: uses register `0`, ignoring deletions with `d` or `x` |
-| ✅ **YES** | **`<Space> + P`** | Normal | Paste before cursor from register `0` |
+| ✅ **YES** | **`<Space> + py`** | Normal / Visual | **Paste last yank**: uses register `0`, ignoring deletions with `d` or `x` |
+| ✅ **YES** | **`<Space> + pY`** | Normal | Paste before cursor from register `0` |
 | ✅ **YES** | **`<Space> + C`** | Normal / Visual | Change to end of line into black hole register (`"_C`) |
 | ✅ **YES** | **`<Space> + D`** | Normal / Visual | Delete to end of line into black hole register (`"_D`) |
 | ✅ **YES** | **`<Space> + c`** | Visual | Change text into black hole register (`"_c`) without overwriting clipboard |
@@ -437,6 +437,16 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + rs`** | — | **Replace Word Buffer** | Replace word under cursor across buffer (`:%s/\<cword\>/<cword>/gI`) |
 | **`<Space> + rc`** | — | **Replace Word Buffer (Confirm)** | Replace word under cursor across buffer, confirming each match (`:%s/\<cword\>/<cword>/gcI`) |
 | **`<Space> + rv`** *(Visual)* | — | **Replace Selection in Buffer** | Yank visual selection and start confirmed replace with it as literal pattern (`:%s/\V<cword>//gc`) |
+
+#### 📦 Packages Suite (`<Space> + p`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + pm`** | — | **Mason** | Open Mason tool manager UI (`:Mason`) |
+| **`<Space> + pe`** | — | **Profiler Scratch** | Record/stop profiler samples on a scratch buffer (`Snacks.profiler.scratch()`) |
+| **`<Space> + pf`** | — | **Profiler Pick** | Pick recorded profiler samples (`Snacks.profiler.pick()`) |
+| **`<Space> + pt`** | — | **Profiler Toggle** | Toggle Snacks profiler recording (`Snacks.profiler.toggle()`) |
+| **`<Space> + py`** *(Normal / Visual)* | — | **Paste Last Yank** | Paste from register `0`, immune to deletions with `d` or `x` (`"0p`) |
+| **`<Space> + pY`** | — | **Paste Before** | Paste before cursor from register `0` (`"0P`) |
 
 ####  Split / Window Suite (`<Space> + s`)
 | Keymap | Direct Shortcut | Action | Description |

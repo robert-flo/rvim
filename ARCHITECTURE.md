@@ -74,7 +74,7 @@ rvim/
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 11 unified suites (b, c, d, e, g, m, s, t, y, U, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 13 unified suites (b, c, d, e, g, m, p, r, s, t, y, U, ;)
 ```
 
 ---
