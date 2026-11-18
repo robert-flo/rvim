@@ -40,7 +40,7 @@ rvim
 | ✅ **YES** | **`<Space> + :`** | **Command History** fuzzy picker (`Snacks.picker.command_history`) |
 | ✅ **YES** | **`<Space> + w`** | **Format & Save** active buffer (Conform + `:w`) |
 | ✅ **YES** | **`<Space> + x`** | **Format, Save & Quit** all modified buffers (Conform + `:xa`) |
-| ✅ **YES** | **`<Space> + z`** | **Force Quit** all buffers without saving (`:qa!`) |
+| ✅ **YES** | **`<Space> + za`** | **Force Quit** all buffers without saving (`:qa!`) |
 | ✅ **YES** | **`<Space> + ;x`** / **`ZR`** | **Reload / Restart** Neovim restoring session (`:restart`) |
 | ✅ **YES** | **`<Space> + ;X`** | **Force Restart** Neovim discarding unsaved buffers (`:restart +qall!`) |
 | ❌ **NO** | **`;f`** | **Repo Files & Dirs** anchored to repo root (`editor.pick_repo_files_and_dirs`) |
@@ -448,10 +448,22 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + tl`** | **`<Tab>`** | **Next Tab** | Switch to next tab (`:tabnext`) |
 | **`<Space> + th`** | **`<S-Tab>`** | **Previous Tab** | Switch to previous tab (`:tabprev`) |
 
-####  Session / Quit & Restarts
+####  Writing Suite (`<Space> + z`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
-| **`<Space> + z`** | — | **Force Quit All** | Close all buffers and exit immediately without saving (`:qa!`) |
+| **`<Space> + za`** | — | **Force Quit All** | Close all buffers and exit immediately without saving (`:qa!`) |
+| **`<Space> + zc`** | — | **Spellcheck** | Toggle spellchecking (`Snacks.toggle.option("spell")`) |
+| **`<Space> + zd`** | — | **Dim** | Toggle dimmed inactive code (`Snacks.toggle.dim`) |
+| **`<Space> + zf`** | — | **Force Write (sudo)** | Write the file with elevated permissions (`:w !sudo tee % >/dev/null`) |
+| **`<Space> + zj`** | **`]s`** | **Next Misspell** | Jump to the next misspelled word (`]s`) |
+| **`<Space> + zk`** | **`[s`** | **Previous Misspell** | Jump to the previous misspelled word (`[s`) |
+| **`<Space> + zn`** | — | **Write Without Formatting** | Write the buffer with the formatter skipped (`disable_autoformat`) |
+| **`<Space> + zw`** | — | **Zen** | Toggle zen (distraction-free) mode |
+| **`<Space> + zW`** | — | **Zoom** | Toggle zoom of the current window (`Snacks.zen.zoom`) |
+
+####  Restarts
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
 | **`<Space> + ;x`** | **`ZR`** | **Reload / Restart** | Restart Neovim and restore windows, tabs, and buffers (`:restart`) |
 | **`<Space> + ;X`** | — | **Force Restart** | Discard unsaved changes in all buffers and restart Neovim (`:restart +qall!`) |
 

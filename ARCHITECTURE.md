@@ -91,7 +91,7 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR restart, <leader>w format & save, <leader>z force quit
+    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR restart, <leader>w format & save, <leader>z writing suite (za force quit)
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
