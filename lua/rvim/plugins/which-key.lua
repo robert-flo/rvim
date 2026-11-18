@@ -100,7 +100,6 @@ which_key.add({
 	{ "<leader>s", group = " Split / Window" },
 	{ "<leader>t", group = "󰓩 Tabs" },
 	{ "<leader>y", group = " Yank" },
-	{ "<leader>z", group = "󰐥 Session / Quit" },
 	{ "<leader>;", group = " Pickers" },
 
 	-- Normal Mode
@@ -137,8 +136,19 @@ which_key.add({
 	},
 	{
 		"<leader>x",
-		"<cmd>xa<cr>",
-		desc = " Save and Quit",
+		function()
+			require("conform").format()
+			vim.cmd("xa")
+		end,
+		desc = " Format, Save & Quit",
+	},
+	{
+		"<leader>w",
+		function()
+			require("conform").format()
+			vim.cmd("write")
+		end,
+		desc = "Format & Save",
 	},
 	{
 		"<leader>f",
@@ -573,6 +583,16 @@ which_key.add({
 		desc = "Help Tags",
 	},
 	{
+		"<leader>;x",
+		"<cmd>restart<cr>",
+		desc = "Reload / Restart Neovim",
+	},
+	{
+		"<leader>;X",
+		"<cmd>restart +qall!<cr>",
+		desc = "Force Restart (Discard Unsaved)",
+	},
+	{
 		"<leader>;t",
 		"<cmd>Tfm<cr>",
 		desc = "Terminal File Manager (Elio)",
@@ -731,7 +751,6 @@ which_key.add({
 		desc = "Open package.json",
 	},
 	{ "<leader>en", "<cmd>enew<cr>", desc = "New File" },
-	{ "<leader>es", "<cmd>w<cr>", desc = "Save File" },
 	{
 		"<leader>em",
 		function()
@@ -788,11 +807,7 @@ which_key.add({
 	-- Theme Toggle (<leader>T)
 	{ "<leader>T", desc = "Toggle Theme (Light / Dark)" },
 
-	-- Session / Quit Suite (<leader>z & Z)
-	{ "<leader>z", group = "󰐥 Session / Quit" },
-	{ "<leader>za", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
-	{ "<leader>zr", "<cmd>restart<cr>", desc = "Reload / Restart Neovim" },
-	{ "<leader>zR", "<cmd>restart +qall!<cr>", desc = "Force Restart (Discard Unsaved)" },
+	{ "<leader>z", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
 	{ "ZR", "<cmd>restart<cr>", desc = "Reload / Restart Neovim" },
 })
 

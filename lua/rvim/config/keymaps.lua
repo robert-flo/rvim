@@ -81,6 +81,8 @@ end, { desc = "Toggle Theme (Light / Dark)", noremap = true, silent = true })
 
 -- Session / Restart & Quit
 keymap.set("n", "ZR", "<cmd>restart<CR>", { desc = "Reload / Restart Neovim" })
-keymap.set("n", "<Leader>za", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })
-keymap.set("n", "<Leader>zr", "<cmd>restart<CR>", { desc = "Reload / Restart Neovim" })
-keymap.set("n", "<Leader>zR", "<cmd>restart +qall!<CR>", { desc = "Force Restart (Discard Unsaved)" })
+keymap.set("n", "<Leader>w", function()
+	require("conform").format()
+	vim.cmd("write")
+end, { desc = "Format & Save" })
+keymap.set("n", "<Leader>z", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })
