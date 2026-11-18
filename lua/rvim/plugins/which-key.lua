@@ -807,7 +807,51 @@ which_key.add({
 	-- Theme Toggle (<leader>T)
 	{ "<leader>T", desc = "Toggle Theme (Light / Dark)" },
 
-	{ "<leader>z", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
+	-- Writing Suite (<leader>z)
+	{ "<leader>z", group = "Writing" },
+	{ "<leader>za", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
+	{
+		"<leader>zc",
+		function()
+			require("snacks").toggle.option("spell", { name = "Spellcheck" }):toggle()
+		end,
+		desc = "Toggle Spellcheck",
+	},
+	{
+		"<leader>zd",
+		function()
+			require("snacks").toggle.dim():toggle()
+		end,
+		desc = "Toggle Dim",
+	},
+	{ "<leader>zf", "<cmd>w !sudo tee % >/dev/null<cr>", desc = "Force Write (sudo)" },
+	{ "<leader>zj", "]s", desc = "Next Misspell" },
+	{ "<leader>zk", "[s", desc = "Previous Misspell" },
+	{
+		"<leader>zn",
+		function()
+			local buf = vim.api.nvim_get_current_buf()
+			local prev = vim.b[buf].disable_autoformat
+			vim.b[buf].disable_autoformat = true
+			pcall(vim.cmd, "write")
+			vim.b[buf].disable_autoformat = prev
+		end,
+		desc = "Write Without Formatting",
+	},
+	{
+		"<leader>zw",
+		function()
+			require("snacks").toggle.zen():toggle()
+		end,
+		desc = "Toggle Zen",
+	},
+	{
+		"<leader>zW",
+		function()
+			require("snacks").zen.zoom()
+		end,
+		desc = "Zoom",
+	},
 	{ "ZR", "<cmd>restart<cr>", desc = "Reload / Restart Neovim" },
 })
 

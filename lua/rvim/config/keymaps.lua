@@ -85,4 +85,4 @@ keymap.set("n", "<Leader>w", function()
 	require("conform").format()
 	vim.cmd("write")
 end, { desc = "Format & Save" })
-keymap.set("n", "<Leader>z", "<cmd>qa!<CR>", { desc = "Force quit all without saving" })
+-- Writing suite (<Leader>z) lives in which-key.lua; <Leader>za keeps force quit
