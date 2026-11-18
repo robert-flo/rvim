@@ -291,6 +291,7 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gm`** | Normal | **Git Status** modified/staged files picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + go`** | Normal | **Open file from blamed commit** in a new tab (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gp`** | Normal | **Git Branches** picker & checkout (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + gP`** | Normal | **Git Pull** fast-forward only in the repository of the current buffer |
 | ✅ **YES** | **`<Space> + gr`** | Normal / Visual | **Reset Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gR`** | Normal | **Reset Buffer** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gs`** | Normal | **Toggle stage buffer** (`Gitsigns`) |
