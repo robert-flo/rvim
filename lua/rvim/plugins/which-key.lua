@@ -994,9 +994,30 @@ which_key.add({
 	{
 		"<leader>vx",
 		function()
+			require("rvim.utils.vaults").toggle_todo()
+		end,
+		desc = "Toggle Todo",
+	},
+	{
+		"<leader>vX",
+		function()
 			require("rvim.utils.vaults").mark_all_todos()
 		end,
 		desc = "Mark All Todos Done",
+	},
+	{
+		"<leader>v]",
+		function()
+			require("rvim.utils.vaults").jump_todo(1)
+		end,
+		desc = "Next Incomplete Todo",
+	},
+	{
+		"<leader>v[",
+		function()
+			require("rvim.utils.vaults").jump_todo(-1)
+		end,
+		desc = "Previous Incomplete Todo",
 	},
 	{
 		"<leader>vs",

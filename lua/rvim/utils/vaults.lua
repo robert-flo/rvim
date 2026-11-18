@@ -135,6 +135,31 @@ M.create_note = function()
 	end)
 end
 
+--- Toggle the markdown todo on the current line
+M.toggle_todo = function()
+	local line = vim.api.nvim_get_current_line()
+	local new = nil
+	if line:find("%- %[ %]") then
+		new = line:gsub("%- %[ %]", "- [x]", 1)
+	elseif line:find("%- %[x%]") then
+		new = line:gsub("%- %[x%]", "- [ ]", 1)
+	end
+	if not new then
+		vim.notify("No todo on the current line", vim.log.levels.WARN, { title = "Vaults" })
+		return
+	end
+	vim.api.nvim_set_current_line(new)
+end
+
+--- Jump to the next or previous incomplete markdown todo
+---@param direction integer 1 for next, -1 for previous
+M.jump_todo = function(direction)
+	local flags = direction == 1 and "W" or "Wb"
+	if vim.fn.search("\\- \\[ \\]", flags) == 0 then
+		vim.notify("No more incomplete todos", vim.log.levels.INFO, { title = "Vaults" })
+	end
+end
+
 --- Mark every incomplete markdown todo in the current buffer as done
 M.mark_all_todos = function()
 	local view = vim.fn.winsaveview()
