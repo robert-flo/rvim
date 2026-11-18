@@ -40,7 +40,7 @@ rvim
 | ✅ **YES** | **`<Space> + :`** | **Command History** fuzzy picker (`Snacks.picker.command_history`) |
 | ✅ **YES** | **`<Space> + w`** | **Format & Save** active buffer (Conform + `:w`) |
 | ✅ **YES** | **`<Space> + x`** | **Format, Save & Quit** all modified buffers (Conform + `:xa`) |
-| ✅ **YES** | **`<Space> + za`** | **Force Quit** all buffers without saving (`:qa!`) |
+| ✅ **YES** | **`<Space> + q`** | **Force Quit** all buffers without saving (`:qa!`) |
 | ✅ **YES** | **`<Space> + ;x`** / **`ZR`** | **Reload / Restart** Neovim restoring session (`:restart`) |
 | ✅ **YES** | **`<Space> + ;X`** | **Force Restart** Neovim discarding unsaved buffers (`:restart +qall!`) |
 | ❌ **NO** | **`;f`** | **Repo Files & Dirs** anchored to repo root (`editor.pick_repo_files_and_dirs`) |
@@ -488,7 +488,6 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 ####  Writing Suite (`<Space> + z`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
-| **`<Space> + za`** | — | **Force Quit All** | Close all buffers and exit immediately without saving (`:qa!`) |
 | **`<Space> + zc`** | — | **Spellcheck** | Toggle spellchecking (`Snacks.toggle.option("spell")`) |
 | **`<Space> + zd`** | — | **Dim** | Toggle dimmed inactive code (`Snacks.toggle.dim`) |
 | **`<Space> + zf`** | — | **Force Write (sudo)** | Write the file with elevated permissions (`:w !sudo tee % >/dev/null`) |
@@ -518,6 +517,28 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + UZ`** | — | **Zen** | Toggle zen mode (duplicated from `<Space> + zw`) |
 
 ---
+#### 🧩 Q Pickers Suite (`<Space> + Q`)
+
+Snacks pickers for Neovim's own state. Force quit now lives at `<Space> + q` (moved from `<Space> + za`).
+
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + Qa`** | — | **Autocmds** | Fuzzy search all autocmds (`Snacks.picker.autocmds`) |
+| **`<Space> + Qc`** | — | **Command History** | Fuzzy search command history (`Snacks.picker.command_history`) |
+| **`<Space> + QC`** | — | **Colorschemes** | Preview and switch colorschemes live (`Snacks.picker.colorschemes`) |
+| **`<Space> + Qd`** | — | **Docs** | Search Neovim help tags (`Snacks.picker.help`) |
+| **`<Space> + Qg`** | — | **Commands** | Browse all Ex commands (`Snacks.picker.commands`) |
+| **`<Space> + Qh`** | — | **Highlights** | Browse and preview highlight groups (`Snacks.picker.highlights`) |
+| **`<Space> + Qj`** | — | **Jump List** | Browse the jump list (`Snacks.picker.jumps`) |
+| **`<Space> + Qk`** | — | **Keymaps** | Browse all keymaps (`Snacks.picker.keymaps`) |
+| **`<Space> + Qm`** | — | **Marks** | Browse marks (`Snacks.picker.marks`) |
+| **`<Space> + QM`** | — | **Man Pages** | Search man pages (`Snacks.picker.man`) |
+| **`<Space> + Qn`** | — | **Notifications** | Browse notification history (`Snacks.picker.notifications`) |
+| **`<Space> + Qs`** | — | **Search History** | Fuzzy search search history (`Snacks.picker.search_history`) |
+| **`<Space> + Qt`** | — | **Treesitter Find** | Treesitter symbol search (`Snacks.picker.treesitter`) |
+
+---
+
 #### 󰉋 Explorer & Files Suite (`<Space> + e`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
