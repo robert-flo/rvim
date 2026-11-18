@@ -872,16 +872,22 @@ which_key.add({
 
 	-- Split / Window Suite (<leader>s)
 	{ "<leader>s", group = " Split / Window" },
+	{ "<leader>s/", "<cmd>split<cr>", desc = "Horizontal Split" },
+	{ "<leader>sv", "<cmd>vsplit<cr>", desc = "Vertical Split" },
+	{ "<leader>sa", "<cmd>vsplit<cr>", desc = "Vertical Split" },
+	{ "<leader>ss", "<cmd>AutoTile<cr>", desc = "AutoTile Split" },
 	{ "<leader>se", "<C-w>=", desc = "Equalize Splits" },
 	{ "<leader>sx", "<cmd>close<cr>", desc = "Close Current Split" },
-	{ "<leader>sa", "<cmd>AutoTile<cr>", desc = "AutoTile Split" },
-	{ "<leader>ss", "<cmd>split<cr>", desc = "Horizontal Split" },
-	{ "<leader>sv", "<cmd>vsplit<cr>", desc = "Vertical Split" },
+	{ "<leader>so", "<C-w>o", desc = "Close Other Splits" },
 	{ "<leader>sh", "<C-w>h", desc = "Focus Left" },
 	{ "<leader>sj", "<C-w>j", desc = "Focus Down" },
 	{ "<leader>sk", "<C-w>k", desc = "Focus Up" },
 	{ "<leader>sl", "<C-w>l", desc = "Focus Right" },
-	{ "<leader>so", "<C-w>o", desc = "Close Other Splits" },
+	{ "<leader>sH", "<cmd>vertical resize -10<cr>", desc = "Decrease Width" },
+	{ "<leader>sL", "<cmd>vertical resize +10<cr>", desc = "Increase Width" },
+	{ "<leader>sJ", "<cmd>resize -5<cr>", desc = "Decrease Height" },
+	{ "<leader>sK", "<cmd>resize +5<cr>", desc = "Increase Height" },
+	{ "<leader>s`", "<C-w>p", desc = "Previous Window" },
 
 	-- Tabs Suite (<leader>t)
 	{ "<leader>t", group = "󰓩 Tabs" },
