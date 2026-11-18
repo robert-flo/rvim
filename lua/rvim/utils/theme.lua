@@ -1,24 +1,7 @@
 ---@class rvim.utils.theme
 local M = {}
 
---- Read active mode from Clavis system configuration
----@return string "light"|"dark"
-function M.get_clavis_mode()
-	local cfg_path = vim.fn.expand("~/.config/clavis/config.json")
-	if vim.fn.filereadable(cfg_path) == 1 then
-		local ok, content = pcall(vim.fn.readfile, cfg_path)
-		if ok and #content > 0 then
-			local json_str = table.concat(content, "\n")
-			local parsed_ok, data = pcall(vim.fn.json_decode, json_str)
-			if parsed_ok and data and data.theme and data.theme.mode then
-				if data.theme.mode == "light" or data.theme.mode == "dark" then
-					return data.theme.mode
-				end
-			end
-		end
-	end
-	return "dark"
-end
+local current_theme ---@type "light"|"osaka"|"onedark"|nil
 
 --- Get current mode in active Neovim session
 ---@return string "light"|"dark"
@@ -58,11 +41,11 @@ local function update_dashboard_highlights(mode)
 	end
 end
 
---- Apply theme (light or dark)
----@param mode "light"|"dark"
+--- Apply one of the three rvim themes
+---@param theme "light"|"osaka"|"onedark"
 ---@param notify? boolean
-function M.set_theme(mode, notify)
-	if mode == "light" then
+function M.set_theme(theme, notify)
+	if theme == "light" then
 		vim.o.background = "light"
 		require("rvim.theme.clavis_light").setup()
 
@@ -73,6 +56,24 @@ function M.set_theme(mode, notify)
 			pcall(lualine.setup, {
 				options = {
 					theme = light_lualine,
+				},
+			})
+			pcall(lualine.refresh)
+		end
+	elseif theme == "onedark" then
+		vim.o.background = "dark"
+		local onedark_ok, onedark = pcall(require, "onedark")
+		if onedark_ok then
+			onedark.setup({ style = "dark", transparent = true })
+		end
+		vim.cmd([[colorscheme onedark]])
+
+		-- Restaurar Lualine a tema auto / onedark
+		local lualine_ok, lualine = pcall(require, "lualine")
+		if lualine_ok then
+			pcall(lualine.setup, {
+				options = {
+					theme = "auto",
 				},
 			})
 			pcall(lualine.refresh)
@@ -100,27 +101,33 @@ function M.set_theme(mode, notify)
 		end
 	end
 
-	update_dashboard_highlights(mode)
+	current_theme = theme
+	update_dashboard_highlights(theme == "light" and "light" or "dark")
 
 	if notify then
-		vim.notify("rvim theme: " .. mode:upper(), vim.log.levels.INFO, {
-			title = "Theme Switcher",
-			icon = mode == "light" and "☀️" or "🌙",
+		vim.notify("rvim theme: " .. theme:upper(), vim.log.levels.INFO, {
+			title = "Theme Cycle",
+			icon = theme == "light" and "☀️" or "🌙",
 		})
 	end
 end
 
---- Toggle between light and dark theme
-function M.toggle()
-	local current = M.get_current_mode()
-	local target = current == "light" and "dark" or "light"
+--- Cycle Clavis Light -> Solarized Osaka -> Onedark -> Clavis Light
+function M.cycle()
+	local order = { "light", "osaka", "onedark" }
+	local target = "light"
+	for i, name in ipairs(order) do
+		if current_theme == name then
+			target = order[(i % #order) + 1]
+			break
+		end
+	end
 	M.set_theme(target, true)
 end
 
---- Initialize theme on startup based on Clavis preference
+--- Initialize theme on startup: Solarized Osaka dark, no Clavis dependency
 function M.init()
-	local initial_mode = M.get_clavis_mode()
-	M.set_theme(initial_mode, false)
+	M.set_theme("osaka", false)
 end
 
 return M

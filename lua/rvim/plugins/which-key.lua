@@ -928,8 +928,8 @@ which_key.add({
 		desc = "Tab Picker",
 	},
 
-	-- Theme Toggle (<leader>T)
-	{ "<leader>T", desc = "Toggle Theme (Light / Dark)" },
+	-- Theme Cycle (<leader>oT)
+	{ "<leader>oT", desc = "Cycle Theme (Light / Osaka / Onedark)" },
 
 	-- Quit (<leader>q)
 	{ "<leader>q", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },

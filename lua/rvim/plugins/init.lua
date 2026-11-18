@@ -5,6 +5,7 @@ end
 vim.pack.add({
 	-- UI
 	{ src = gh("craftzdog/solarized-osaka.nvim") },
+	{ src = gh("navarasu/onedark.nvim") },
 	{ src = gh("nvim-mini/mini.icons") },
 	{ src = gh("folke/which-key.nvim") },
 	{ src = gh("folke/snacks.nvim") },
