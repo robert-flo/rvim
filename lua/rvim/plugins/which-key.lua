@@ -953,6 +953,79 @@ which_key.add({
 	{ "<leader>Qi", "<cmd>lua vim.show_pos()<cr>", desc = "Inspect Position" },
 	{ "<leader>QT", desc = "Cycle Theme (Light / Osaka / Onedark)" },
 
+
+	-- Vaults Suite (<leader>v)
+	{ "<leader>v", group = "Vaults" },
+	{
+		"<leader>vv",
+		function()
+			require("rvim.utils.vaults").open_vault()
+		end,
+		desc = "Open Vault",
+	},
+	{
+		"<leader>vf",
+		function()
+			require("rvim.utils.vaults").files_all()
+		end,
+		desc = "All Vault Files",
+	},
+	{
+		"<leader>vg",
+		function()
+			require("rvim.utils.vaults").grep_all()
+		end,
+		desc = "Grep Vaults",
+	},
+	{
+		"<leader>vt",
+		function()
+			require("rvim.utils.vaults").todos()
+		end,
+		desc = "Incomplete Todos",
+	},
+	{
+		"<leader>vc",
+		function()
+			require("rvim.utils.vaults").create_note()
+		end,
+		desc = "Create Note",
+	},
+	{
+		"<leader>vx",
+		function()
+			require("rvim.utils.vaults").mark_all_todos()
+		end,
+		desc = "Mark All Todos Done",
+	},
+	{
+		"<leader>vs",
+		function()
+			require("rvim.utils.vaults").commit_note()
+		end,
+		desc = "Commit Note",
+	},
+	{
+		"<leader>vn",
+		function()
+			require("rvim.utils.vaults").today()
+		end,
+		desc = "Today's Note",
+	},
+	{
+		"<leader>vh",
+		function()
+			require("rvim.utils.vaults").daybook_offset("days", 1, -1)
+		end,
+		desc = "Yesterday's Note",
+	},
+	{
+		"<leader>vl",
+		function()
+			require("rvim.utils.vaults").daybook_offset("days", 1, 1)
+		end,
+		desc = "Tomorrow's Note",
+	},
 	-- Writing Suite (<leader>z)
 	{ "<leader>z", group = "Writing" },
 	{
@@ -1076,3 +1149,6 @@ which_key.add({
 	{ "<leader>D", '"_D', desc = "Delete to End of Line" },
 	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
 })
+
+-- Vaults Suite (<leader>v): daybook date offsets are generated in bulk
+which_key.add(require("rvim.utils.vaults").offset_specs())
