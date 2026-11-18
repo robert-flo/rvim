@@ -578,6 +578,9 @@ Obsidian vault workflows without leaving Neovim. The suite scans the vault root 
 | :--- | :---: | :--- | :--- |
 | **`<Space> + ee`** | **`sf`** | **File Explorer** | Open Oil floating file explorer with preview |
 | **`<Space> + et`** / **`el`** | **`;t`** | **TFM (Elio)** | Launch integrated full-width Elio terminal file manager (`:Tfm`) |
+| **`<Space> + es`** | — | **Elio Split** | Open Elio in a horizontal split (`:TfmSplit`) |
+| **`<Space> + ev`** | — | **Elio Vsplit** | Open Elio in a vertical split (`:TfmVsplit`) |
+| **`<Space> + eT`** | — | **Elio Tab** | Open Elio in a new tab (`:TfmTabedit`) |
 | **`<Space> + em`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
 | **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
 | **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
@@ -593,10 +596,10 @@ rvim integrates [`tfm.nvim`](https://github.com/rolv-apneseth/tfm.nvim) natively
 
 | Space? | Keymap | User Command | Description |
 | :---: | :--- | :--- | :--- |
-| ✅ **YES** | **`<Space> + mm`** / **`<Space> + me`** | `:Tfm` | **Open Elio** at current file or directory |
-| ✅ **YES** | **`<Space> + mh`** | `:TfmSplit` | **Open in Horizontal Split** |
-| ✅ **YES** | **`<Space> + mv`** | `:TfmVsplit` | **Open in Vertical Split** |
-| ✅ **YES** | **`<Space> + mt`** | `:TfmTabedit` | **Open in New Tab** |
+| ✅ **YES** | **`<Space> + et`** / **`el`** | `:Tfm` | **Open Elio** at current file or directory |
+| ✅ **YES** | **`<Space> + es`** | `:TfmSplit` | **Open in Horizontal Split** |
+| ✅ **YES** | **`<Space> + ev`** | `:TfmVsplit` | **Open in Vertical Split** |
+| ✅ **YES** | **`<Space> + eT`** | `:TfmTabedit` | **Open in New Tab** |
 | ✅ **YES** | **`<Space> + et`** / **`<Space> + el`** | `:Tfm` | **TFM (Elio)** from Explorer suite |
 | ❌ **NO** | **`;t`** / **`<Space> + ;t`** | `:Tfm` | **Direct Express Shortcut** |
 
