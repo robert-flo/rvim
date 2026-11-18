@@ -435,6 +435,71 @@ which_key.add({
 	{ "<leader>yP", "<cmd>CopyAbsolutePath<cr>", desc = "Absolute Path" },
 	{ "<leader>yr", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
 
+	-- Toggle Suite (<leader>U) - Normal Mode
+	{ "<leader>U", group = "Toggle" },
+	{
+		"<leader>UB",
+		function()
+			require("snacks").toggle.dim():toggle()
+		end,
+		desc = "Toggle Dim",
+	},
+	{
+		"<leader>UD",
+		function()
+			require("snacks").toggle.diagnostics():toggle()
+		end,
+		desc = "Toggle Diagnostics",
+	},
+	{
+		"<leader>UH",
+		function()
+			require("snacks").toggle.inlay_hints():toggle()
+		end,
+		desc = "Toggle Inlay Hints",
+	},
+	{
+		"<leader>UL",
+		function()
+			require("snacks").toggle.line_number():toggle()
+		end,
+		desc = "Toggle Line Numbers",
+	},
+	{
+		"<leader>UN",
+		function()
+			require("snacks").toggle.option("wrap", { name = "Wrap" }):toggle()
+		end,
+		desc = "Toggle Line Wrap",
+	},
+	{
+		"<leader>UR",
+		function()
+			require("snacks").toggle.option("relativenumber", { name = "Relative Numbers" }):toggle()
+		end,
+		desc = "Toggle Relative Numbers",
+	},
+	{
+		"<leader>US",
+		function()
+			require("snacks").toggle.option("spell", { name = "Spellcheck" }):toggle()
+		end,
+		desc = "Toggle Spellcheck",
+	},
+	{
+		"<leader>UW",
+		function()
+			require("snacks").toggle.words():toggle()
+		end,
+		desc = "Toggle Word References",
+	},
+	{
+		"<leader>UZ",
+		function()
+			require("snacks").toggle.zen():toggle()
+		end,
+		desc = "Toggle Zen",
+	},
 	-- Pickers Suite (<leader>;) - Normal Mode
 	{ "<leader>;", group = " Pickers" },
 	{
