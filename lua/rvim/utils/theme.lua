@@ -41,6 +41,25 @@ local function update_dashboard_highlights(mode)
 	end
 end
 
+local function theme_state_path()
+	return vim.fn.stdpath("state") .. "/rvim_theme"
+end
+
+local function load_persisted_theme()
+	local ok, lines = pcall(vim.fn.readfile, theme_state_path())
+	if ok and #lines > 0 then
+		local t = vim.trim(lines[1])
+		if t == "light" or t == "osaka" or t == "onedark" then
+			return t
+		end
+	end
+	return nil
+end
+
+local function persist_theme(theme)
+	pcall(vim.fn.writefile, { theme }, theme_state_path())
+end
+
 --- Apply one of the three rvim themes
 ---@param theme "light"|"osaka"|"onedark"
 ---@param notify? boolean
@@ -123,11 +142,12 @@ function M.cycle()
 		end
 	end
 	M.set_theme(target, true)
+	persist_theme(target)
 end
 
---- Initialize theme on startup: Solarized Osaka dark, no Clavis dependency
+--- Initialize theme on startup: restore the last chosen theme, defaulting to Solarized Osaka dark
 function M.init()
-	M.set_theme("osaka", false)
+	M.set_theme(load_persisted_theme() or "osaka", false)
 end
 
 return M
