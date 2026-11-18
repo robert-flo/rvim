@@ -234,7 +234,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
 1. **Space Leader (`<Space>`)**:
    - Reserved for major actions, formatting, diagnostics, safe destructive operations, and git commands:
    - `<Space> + q`: Force quit all buffers immediately without saving (`:qa!<CR>`)
-   - `<Space> + QT`: Cycle theme (Clavis Light -> Solarized Osaka -> Onedark); startup theme is Solarized Osaka, chosen manually, no Clavis dependency
+   - `<Space> + QT`: Cycle theme (Clavis Light -> Solarized Osaka -> Onedark); the last chosen theme persists across restarts (falls back to Solarized Osaka), chosen manually, no Clavis dependency
    - `<Space> + Q*`: Snacks pickers suite (autocmds, colorschemes, keymaps, marks, man, treesitter, ...)
    - `<Space> + zr` (and `ZR`): Reload / restart Neovim session (`:restart<CR>`)
    - `<Space> + zR`: Force restart Neovim discarding unsaved buffers (`:restart +qall!<CR>`)
