@@ -32,7 +32,10 @@ local light_themes = { ["clavis-light"] = true }
 
 --- Dark mode is decided by the active theme identity; for unknown themes
 --- (colorscheme picker previews, ad-hoc :colorscheme) fall back to background.
-local function is_dark()
+--- Whether the active theme is dark, decided by theme identity; for unknown
+--- themes (colorscheme picker previews, ad-hoc :colorscheme) fall back to
+--- background. Public so other modules style against the theme, not the flag.
+function M.is_dark()
 	local name = vim.g.colors_name
 	if dark_themes[name] then
 		return true
@@ -46,7 +49,16 @@ end
 --- Apply refinements for the active theme.
 --- Dark: full nvim2k block, verbatim. Light: no-op (see file comment).
 function M.apply()
-	if not is_dark() then
+	-- Keep background in step with the theme identity. Switching themes through
+	-- the colorscheme picker never updates it, which leaves the whole session
+	-- reading the previous theme's mode.
+	if dark_themes[vim.g.colors_name] then
+		vim.o.background = "dark"
+	elseif light_themes[vim.g.colors_name] then
+		vim.o.background = "light"
+	end
+
+	if not M.is_dark() then
 		return
 	end
 

@@ -6,7 +6,7 @@ local current_theme ---@type "light"|"osaka"|"onedark"|nil
 --- Get current mode in active Neovim session
 ---@return string "light"|"dark"
 function M.get_current_mode()
-	return vim.o.background == "light" and "light" or "dark"
+	return require("rvim.theme.highlights").is_dark() and "dark" or "light"
 end
 
 --- Update Snacks dashboard highlights according to active mode
