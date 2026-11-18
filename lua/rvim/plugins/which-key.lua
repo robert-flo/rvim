@@ -96,6 +96,7 @@ which_key.add({
 	{ "<leader>c", group = "󰘦 Code" },
 	{ "<leader>d", group = " Diff" },
 	{ "<leader>e", group = "󰉋 Explorer & Files" },
+	{ "<leader>r", group = "󰛖 Refactor" },
 	{ "<leader>m", group = "󰉋 TFM (Elio)" },
 	{ "<leader>s", group = " Split / Window" },
 	{ "<leader>t", group = "󰓩 Tabs" },
@@ -583,7 +584,6 @@ which_key.add({
 	{ "<leader>;F", "<cmd>Seeker git_files<cr>", desc = "Seeker Git Files" },
 	{ "<leader>;G", "<cmd>Seeker grep<cr>", desc = "Seeker Grep" },
 	{ "<leader>;W", "<cmd>Seeker grep_word<cr>", desc = "Seeker Grep Word" },
-	{ "<leader>;R", "<cmd>Replace<cr>", desc = "Project Search & Replace" },
 	{
 		"<leader>;g",
 		function()
@@ -811,7 +811,6 @@ which_key.add({
 	{ "<leader>cm", "<cmd>MDPreview<cr>", desc = "Markdown Live Preview" },
 	{ "<leader>cM", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
 	{ "<leader>ce", "<cmd>%Runner<cr>", desc = "Execute Buffer / File" },
-	{ "<leader>cp", "<cmd>Replace<cr>", desc = "Search & Replace All" },
 	{ "<leader>cD", "<cmd>RootDir<cr>", desc = "Set Root Directory" },
 
 	-- Diff Suite (<leader>d)
@@ -869,6 +868,13 @@ which_key.add({
 	{ "<leader>mh", "<cmd>TfmSplit<cr>", desc = "TFM - Horizontal Split" },
 	{ "<leader>mv", "<cmd>TfmVsplit<cr>", desc = "TFM - Vertical Split" },
 	{ "<leader>mt", "<cmd>TfmTabedit<cr>", desc = "TFM - New Tab" },
+
+	-- Refactor Suite (<leader>r)
+	{ "<leader>r", group = "󰛖 Refactor" },
+	{ "<leader>ra", "<cmd>Replace<cr>", desc = "Project Search & Replace" },
+	{ "<leader>rw", ":Replace <C-r><C-w><cr>", desc = "Replace Word Everywhere" },
+	{ "<leader>rb", ":%s///gc<Left><Left><Left><Left>", desc = "Replace Buffer" },
+	{ "<leader>rs", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", desc = "Replace Word Buffer" },
 
 	-- Split / Window Suite (<leader>s)
 	{ "<leader>s", group = " Split / Window" },

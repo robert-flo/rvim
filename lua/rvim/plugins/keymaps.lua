@@ -160,7 +160,6 @@ map({
 	{ ";F", "<cmd>Seeker git_files<cr>", desc = "Seeker git files" },
 	{ ";G", "<cmd>Seeker grep<cr>", desc = "Seeker grep" },
 	{ ";W", "<cmd>Seeker grep_word<cr>", desc = "Seeker grep word" },
-	{ ";R", "<cmd>Replace<cr>", desc = "Project search & replace" },
 	{ ";r", Snacks.picker.grep, desc = "Live grep" },
 	{ ";s", Snacks.picker.lsp_symbols, desc = "LSP Document Symbols" },
 	{ ";o", Snacks.picker.recent, desc = "Recent files" },
