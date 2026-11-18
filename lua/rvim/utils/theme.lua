@@ -122,6 +122,7 @@ function M.set_theme(theme, notify)
 
 	current_theme = theme
 	update_dashboard_highlights(theme == "light" and "light" or "dark")
+	require("rvim.theme.highlights").apply()
 
 	if notify then
 		vim.notify("rvim theme: " .. theme:upper(), vim.log.levels.INFO, {
