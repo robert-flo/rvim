@@ -876,11 +876,12 @@ which_key.add({
 		desc = "Browse Home (~/)",
 	},
 	{ "<leader>er", "<cmd>RangerPicker<cr>", desc = "Ranger Picker" },
-	{ "<leader>et", "<cmd>Tfm<cr>", desc = "TFM (Elio)" },
-	{ "<leader>el", "<cmd>Tfm<cr>", desc = "Elio File Manager" },
-	{ "<leader>es", "<cmd>TfmSplit<cr>", desc = "Elio Split" },
-	{ "<leader>ev", "<cmd>TfmVsplit<cr>", desc = "Elio Vsplit" },
-	{ "<leader>eT", "<cmd>TfmTabedit<cr>", desc = "Elio Tab" },
+	{ "<leader>et", function() require("rvim.utils.elio").open() end, desc = "TFM (Elio)" },
+	{ "<leader>el", function() require("rvim.utils.elio").open() end, desc = "Elio File Manager" },
+	{ "<leader>es", function() require("rvim.utils.elio").open(nil, "split") end, desc = "Elio Split" },
+	{ "<leader>ev", function() require("rvim.utils.elio").open(nil, "vsplit") end, desc = "Elio Vsplit" },
+	{ "<leader>eT", function() require("rvim.utils.elio").open(nil, "tabedit") end, desc = "Elio Tab" },
+	{ "<leader>e.", function() require("rvim.utils.elio").last() end, desc = "Elio Last Dir" },
 
 
 	-- Packages Suite (<leader>p)
@@ -1017,6 +1018,13 @@ which_key.add({
 			require("rvim.utils.vaults").mark_all_todos()
 		end,
 		desc = "Mark All Todos Done",
+	},
+	{
+		"<leader>vE",
+		function()
+			require("rvim.utils.elio").vaults()
+		end,
+		desc = "Elio in Vaults",
 	},
 	{
 		"<leader>v]",
