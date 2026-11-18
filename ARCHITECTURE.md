@@ -74,7 +74,7 @@ rvim/
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, x) & 11 unified suites (b, c, d, e, g, m, s, t, y, z, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 10 unified suites (b, c, d, e, g, m, s, t, y, ;)
 ```
 
 ---
@@ -91,7 +91,7 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR & <leader>z session/restart/quit
+    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR restart, <leader>w format & save, <leader>z force quit
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
