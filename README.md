@@ -467,6 +467,20 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + ;x`** | **`ZR`** | **Reload / Restart** | Restart Neovim and restore windows, tabs, and buffers (`:restart`) |
 | **`<Space> + ;X`** | — | **Force Restart** | Discard unsaved changes in all buffers and restart Neovim (`:restart +qall!`) |
 
+#### Toggle Suite (`<Space> + U`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + UB`** | — | **Dim** | Toggle dimmed inactive code (`Snacks.toggle.dim`) |
+| **`<Space> + UD`** | — | **Diagnostics** | Toggle LSP diagnostics display |
+| **`<Space> + UH`** | — | **Inlay Hints** | Toggle inlay hints (duplicated from `<Space> + ci` for convenience) |
+| **`<Space> + UL`** | — | **Line Numbers** | Toggle absolute & relative line numbers |
+| **`<Space> + UN`** | — | **Line Wrap** | Toggle line wrapping (`wrap`) |
+| **`<Space> + UR`** | — | **Relative Numbers** | Toggle relative line numbers (`relativenumber`) |
+| **`<Space> + US`** | — | **Spellcheck** | Toggle spellchecking (duplicated from `<Space> + zc`) |
+| **`<Space> + UW`** | — | **Word References** | Toggle LSP word reference highlighting |
+| **`<Space> + UZ`** | — | **Zen** | Toggle zen mode (duplicated from `<Space> + zw`) |
+
+---
 #### 󰉋 Explorer & Files Suite (`<Space> + e`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
