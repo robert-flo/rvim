@@ -536,6 +536,8 @@ Snacks pickers for Neovim's own state. Force quit now lives at `<Space> + q` (mo
 | **`<Space> + Qn`** | — | **Notifications** | Browse notification history (`Snacks.picker.notifications`) |
 | **`<Space> + Qs`** | — | **Search History** | Fuzzy search search history (`Snacks.picker.search_history`) |
 | **`<Space> + Qt`** | — | **Treesitter Find** | Treesitter symbol search (`Snacks.picker.treesitter`) |
+| **`<Space> + Qf`** | — | **Change Filetype** | Pick a filetype for the active buffer (`vim.ui.select` over all filetypes) |
+| **`<Space> + Qi`** | — | **Inspect Position** | Inspect syntax, treesitter and extmarks under the cursor (`vim.show_pos`) |
 
 ---
 
