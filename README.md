@@ -402,6 +402,15 @@ When launched with an empty buffer (`rvim`), an advanced multi-pane interactive 
 
 ---
 
+### 🎨 5.1 Theme Refinements (`rvim.theme.highlights`)
+
+Ported from nvim2k's `plugin/after/highlights.lua` and re-applied on **every** colorscheme load (startup, `<Space> + QT` cycle, colorscheme picker previews) through a `ColorScheme` autocmd (`lua/rvim/config/autocmds.lua` -> `lua/rvim/theme/highlights.lua`):
+
+- **Dark themes (Solarized Osaka, Onedark)**: full nvim2k block, verbatim. Backgrounds cleared to `none` on `Normal`, `NormalFloat`, `FloatBorder`, `Pmenu`, `Terminal`, `EndOfBuffer`, `FoldColumn`, `Folded`, `SignColumn`; fixed colors for `Search` (`#8BCD5B`), `CurSearch` (`#EFBD5D`), `IncSearch` (`#F15664`), `CursorLine`/`CursorColumn` (`#1A1A1F`) and `Visual` (`#103070`).
+- **Clavis Light**: untouched. Without changing the terminal (niri) background, clearing backgrounds in light mode would put light text over the terminal's dark background, so the light theme keeps its own opaque values.
+
+---
+
 ### 🔍 6. Inside Pickers (`Snacks.picker`)
 
 | Keymap | Action |
