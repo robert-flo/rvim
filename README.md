@@ -541,6 +541,34 @@ Snacks pickers for Neovim's own state. Force quit now lives at `<Space> + q` (mo
 
 ---
 
+#### 🗂️ Vaults Suite (`<Space> + v`)
+
+Obsidian vault workflows without leaving Neovim. The suite scans the vault root (`/z/vaults/`) at runtime, so new vaults appear in the pickers automatically. Obsidian internals (`.obsidian/`, `.trash/`, `.smart-env/`) are excluded from every picker. Daybook notes are created as `<daybook>/<YYYY-MM-DD>.md` (path and format configurable via `M.cfg` in `lua/rvim/utils/vaults.lua`).
+
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + vv`** | — | **Open Vault** | Pick a vault, then browse its files (`Snacks.picker.files`) |
+| **`<Space> + vf`** | — | **All Vault Files** | File search across every vault |
+| **`<Space> + vg`** | — | **Grep Vaults** | Live grep across every vault |
+| **`<Space> + vt`** | — | **Incomplete Todos** | Picker over `- [ ]` items in all vaults |
+| **`<Space> + vc`** | — | **Create Note** | Pick a vault and path, creates folders and the file |
+| **`<Space> + vx`** | — | **Mark All Todos Done** | Marks every `- [ ]` in the current buffer as `- [x]` |
+| **`<Space> + vs`** | — | **Commit Note** | `git add` + commit of the current note inside its vault |
+| **`<Space> + vn`** | — | **Today's Note** | Open or create today's note in the daybook vault |
+| **`<Space> + vh`** | — | **Yesterday's Note** | Daybook note shifted one day back |
+| **`<Space> + vl`** | — | **Tomorrow's Note** | Daybook note shifted one day forward |
+| **`<Space> + vd1-9`** | — | **Daybook +Days** | Daybook note N days later (1-9) |
+| **`<Space> + vD1-9`** | — | **Daybook -Days** | Daybook note N days ago (1-9) |
+| **`<Space> + vw1-9`** | — | **Daybook +Weeks** | Daybook note N weeks later (1-9) |
+| **`<Space> + vW1-9`** | — | **Daybook -Weeks** | Daybook note N weeks ago (1-9) |
+| **`<Space> + vm1-9`** | — | **Daybook +Months** | Daybook note N months later (1-9) |
+| **`<Space> + vM1-9`** | — | **Daybook -Months** | Daybook note N months ago (1-9) |
+| **`<Space> + vy1-9`** | — | **Daybook +Years** | Daybook note N years later (1-9) |
+| **`<Space> + vY1-9`** | — | **Daybook -Years** | Daybook note N years ago (1-9) |
+
+---
+
+
 #### 󰉋 Explorer & Files Suite (`<Space> + e`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |

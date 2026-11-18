@@ -74,7 +74,7 @@ rvim/
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 14 unified suites (b, c, d, e, g, m, p, Q, r, s, t, y, U, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 15 unified suites (b, c, d, e, g, m, p, Q, r, s, t, v, y, U, ;)
 ```
 
 ---
@@ -236,6 +236,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
    - `<Space> + q`: Force quit all buffers immediately without saving (`:qa!<CR>`)
    - `<Space> + QT`: Cycle theme (Clavis Light -> Solarized Osaka -> Onedark); the last chosen theme persists across restarts (falls back to Solarized Osaka), chosen manually, no Clavis dependency
    - `<Space> + Q*`: Snacks pickers suite (autocmds, colorschemes, keymaps, marks, man, treesitter, ...)
+   - `<Space> + v*`: Vaults suite over the Obsidian vaults in `/z/vaults/` (vault pickers, daybook daily notes with date offsets, todo marking, note commit)
    - `<Space> + zr` (and `ZR`): Reload / restart Neovim session (`:restart<CR>`)
    - `<Space> + zR`: Force restart Neovim discarding unsaved buffers (`:restart +qall!<CR>`)
    - `<Space> + f`: Format code
