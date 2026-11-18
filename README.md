@@ -434,9 +434,10 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 ####  Split / Window Suite (`<Space> + s`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
-| **`<Space> + ss`** | **`ss`** | **Horizontal Split** | Split window horizontally (`:split`) |
+| **`<Space> + s/`** | **`ss`** | **Horizontal Split** | Split window horizontally (`:split`) |
 | **`<Space> + sv`** | **`sv`** | **Vertical Split** | Split window vertically (`:vsplit`) |
-| **`<Space> + sa`** | — | **AutoTile Split** | Dynamically split window horizontally/vertically by aspect ratio (`:AutoTile`) |
+| **`<Space> + sa`** | — | **Vertical Split** | Split window vertically (`:vsplit`, nvim2k-style duplicate of `sv`) |
+| **`<Space> + ss`** | — | **AutoTile Split** | Dynamically split window horizontally/vertically by aspect ratio (`:AutoTile`, nvim2k-style) |
 | **`<Space> + se`** | — | **Equalize Splits** | Equalize all split dimensions (`<C-w>=`) |
 | **`<Space> + sx`** | — | **Close Split** | Close current split window (`:close`) |
 | **`<Space> + sh`** | **`sh`** | **Focus Left** | Move focus to left split (`<C-w>h`) |
@@ -444,6 +445,11 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + sk`** | **`sk`** | **Focus Up** | Move focus to upper split (`<C-w>k`) |
 | **`<Space> + sl`** | **`sl`** | **Focus Right** | Move focus to right split (`<C-w>l`) |
 | **`<Space> + so`** | — | **Close Others** | Close all other split windows (`<C-w>o`) |
+| **`<Space> + sH`** | — | **Decrease Width** | Shrink current split by 10 columns (`:vertical resize -10`) |
+| **`<Space> + sL`** | — | **Increase Width** | Grow current split by 10 columns (`:vertical resize +10`) |
+| **`<Space> + sJ`** | — | **Decrease Height** | Shrink current split by 5 lines (`:resize -5`) |
+| **`<Space> + sK`** | — | **Increase Height** | Grow current split by 5 lines (`:resize +5`) |
+| **`<Space> + s\``** | — | **Previous Window** | Jump to previously used window (`<C-w>p`) |
 
 #### 󰓩 Tabs Suite (`<Space> + t`)
 | Keymap | Direct Shortcut | Action | Description |
