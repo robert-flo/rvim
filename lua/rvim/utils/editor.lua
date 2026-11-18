@@ -540,4 +540,14 @@ function M.pick_home_dir()
 	M.pick_files_and_dirs({ cwd = vim.env.HOME, title = "Home ~/ (Files & Dirs)" })
 end
 
+--- Pick a filetype for the current buffer
+function M.pick_filetype()
+	local fts = vim.fn.getcompletion("", "filetype")
+	vim.ui.select(fts, { prompt = "Select Filetype:" }, function(choice)
+		if choice and choice ~= "" then
+			vim.bo.filetype = choice
+		end
+	end)
+end
+
 return M

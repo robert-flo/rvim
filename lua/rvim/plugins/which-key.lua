@@ -949,6 +949,10 @@ which_key.add({
 	{ "<leader>Qn", "<cmd>lua Snacks.picker.notifications()<cr>", desc = "Notifications" },
 	{ "<leader>Qs", "<cmd>lua Snacks.picker.search_history()<cr>", desc = "Search History" },
 	{ "<leader>Qt", "<cmd>lua Snacks.picker.treesitter()<cr>", desc = "Treesitter Find" },
+	{ "<leader>Qf", function()
+		require("rvim.utils.editor").pick_filetype()
+	end, desc = "Change Filetype" },
+	{ "<leader>Qi", "<cmd>lua vim.show_pos()<cr>", desc = "Inspect Position" },
 
 	-- Writing Suite (<leader>z)
 	{ "<leader>z", group = "Writing" },
