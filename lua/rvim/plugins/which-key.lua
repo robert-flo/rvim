@@ -893,6 +893,17 @@ which_key.add({
 		desc = "Toggle Word References",
 	},
 
+	{ "<leader>ld", function() Snacks.picker.lsp_definitions() end, desc = "Definitions" },
+	{ "<leader>lD", function() Snacks.picker.lsp_declarations() end, desc = "Declarations" },
+	{ "<leader>lf", function() Snacks.picker.lsp_references() end, desc = "References" },
+	{ "<leader>li", function() Snacks.picker.lsp_implementations() end, desc = "Implementations" },
+	{ "<leader>lI", function() Snacks.picker.lsp_config() end, desc = "LSP Info" },
+	{ "<leader>ll", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+	{ "<leader>lL", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+	{ "<leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Document Symbols" },
+	{ "<leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+	{ "<leader>lt", function() Snacks.picker.lsp_type_definitions() end, desc = "Type Definitions" },
+
 	-- Diff Suite (<leader>d)
 	{ "<leader>d", group = " Diff" },
 	{ "<leader>dv", "<cmd>CodeDiff<cr>", desc = "Toggle CodeDiff" },
