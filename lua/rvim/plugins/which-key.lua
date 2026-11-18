@@ -411,6 +411,13 @@ which_key.add({
 	-- Yank Suite (<leader>y) - Normal Mode
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>ya", ":%y+<cr>", desc = "Copy Whole File" },
+	{
+		"<leader>yb",
+		function()
+			require("rvim.utils.editor").copy_branch_name()
+		end,
+		desc = "Branch Name",
+	},
 	{ "<leader>yd", "<cmd>CopyFileDirectory<cr>", desc = "File Directory" },
 	{
 		"<leader>yf",
@@ -422,6 +429,13 @@ which_key.add({
 	{ "<leader>yF", "<cmd>CopyFileName<cr>", desc = "File Name" },
 	{ "<leader>yg", "<cmd>GitLink<cr>", desc = "Copy Git URL (GitLink)" },
 	{ "<leader>yG", "<cmd>CopyGitUrl<cr>", desc = "Copy Git URL (Custom)" },
+	{
+		"<leader>yh",
+		function()
+			require("rvim.utils.editor").copy_commit_hash()
+		end,
+		desc = "Commit Hash",
+	},
 	{ "<leader>yl", "<cmd>CopyRelativePathWithLine<cr>", desc = "Relative Path (:line)" },
 	{ "<leader>yL", "<cmd>CopyAbsolutePathWithLine<cr>", desc = "Absolute Path (:line)" },
 	{ "<leader>yn", "<cmd>CopyFileName<cr>", desc = "File Name" },
@@ -434,6 +448,13 @@ which_key.add({
 	},
 	{ "<leader>yP", "<cmd>CopyAbsolutePath<cr>", desc = "Absolute Path" },
 	{ "<leader>yr", "<cmd>CopyRelativePath<cr>", desc = "Relative Path" },
+	{
+		"<leader>yw",
+		function()
+			require("rvim.utils.editor").copy_word_under_cursor()
+		end,
+		desc = "Word Under Cursor",
+	},
 
 	-- Toggle Suite (<leader>U) - Normal Mode
 	{ "<leader>U", group = "Toggle" },
@@ -932,6 +953,34 @@ which_key.add({
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>yg", ":GitLink<cr>", desc = "Copy Git URL (GitLink)" },
 	{ "<leader>yG", ":CopyGitUrl<cr>", desc = "Copy Git URL (Custom)" },
+	{
+		"<leader>yf",
+		function()
+			require("rvim.utils.editor").yank_relative_path_with_line(vim.fn.line("'<"), vim.fn.line("'>"))
+		end,
+		desc = "Relative Path (#L<start>-L<end>)",
+	},
+	{
+		"<leader>yp",
+		function()
+			require("rvim.utils.editor").yank_absolute_path_with_line(vim.fn.line("'<"), vim.fn.line("'>"))
+		end,
+		desc = "Absolute Path (#L<start>-L<end>)",
+	},
+	{
+		"<leader>yl",
+		function()
+			require("rvim.utils.editor").copy_relative_path_with_line(vim.fn.line("'<"), vim.fn.line("'>"))
+		end,
+		desc = "Relative Path (:start-end)",
+	},
+	{
+		"<leader>yL",
+		function()
+			require("rvim.utils.editor").copy_absolute_path_with_line(vim.fn.line("'<"), vim.fn.line("'>"))
+		end,
+		desc = "Absolute Path (:start-end)",
+	},
 
 	-- Code Suite (<leader>c) - Visual Mode
 	{ "<leader>c", group = "󰘦 Code" },

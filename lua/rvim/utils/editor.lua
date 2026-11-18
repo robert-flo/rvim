@@ -198,23 +198,33 @@ function M.copy_absolute_path()
 end
 
 --- Copy relative path with current line number to clipboard
-function M.copy_relative_path_with_line()
+function M.copy_relative_path_with_line(start_line, end_line)
 	local path = vim.fn.expand("%")
 	if path == "" then
 		vim.notify("No file name for current buffer", vim.log.levels.WARN)
 		return
 	end
-	copy_to_clipboard(path .. ":" .. vim.fn.line("."))
+	local line = start_line or vim.fn.line(".")
+	local text = path .. ":" .. line
+	if start_line and end_line and start_line ~= end_line then
+		text = text .. "-" .. end_line
+	end
+	copy_to_clipboard(text)
 end
 
 --- Copy absolute path with current line number to clipboard
-function M.copy_absolute_path_with_line()
+function M.copy_absolute_path_with_line(start_line, end_line)
 	local path = vim.fn.expand("%:p")
 	if path == "" then
 		vim.notify("No file name for current buffer", vim.log.levels.WARN)
 		return
 	end
-	copy_to_clipboard(path .. ":" .. vim.fn.line("."))
+	local line = start_line or vim.fn.line(".")
+	local text = path .. ":" .. line
+	if start_line and end_line and start_line ~= end_line then
+		text = text .. "-" .. end_line
+	end
+	copy_to_clipboard(text)
 end
 
 --- Copy current buffer file name to clipboard
@@ -308,16 +318,52 @@ function M.copy_git_url(mode, line1, line2)
 end
 
 -- Agentic path helpers (#L<line> format from craftzdog)
-function M.yank_relative_path_with_line()
-	local path = vim.fn.expand("%:.") .. "#L" .. vim.fn.line(".")
+function M.yank_relative_path_with_line(start_line, end_line)
+	local path = vim.fn.expand("%:.") .. "#L" .. (start_line or vim.fn.line("."))
+	if start_line and end_line and start_line ~= end_line then
+		path = path .. "-L" .. end_line
+	end
 	vim.fn.setreg("+", path)
 	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
 end
 
-function M.yank_absolute_path_with_line()
-	local path = vim.fn.expand("%:p") .. "#L" .. vim.fn.line(".")
+function M.yank_absolute_path_with_line(start_line, end_line)
+	local path = vim.fn.expand("%:p") .. "#L" .. (start_line or vim.fn.line("."))
+	if start_line and end_line and start_line ~= end_line then
+		path = path .. "-L" .. end_line
+	end
 	vim.fn.setreg("+", path)
 	vim.notify("Yanked: " .. path, vim.log.levels.INFO)
+end
+
+--- Copy the current git branch name to clipboard
+function M.copy_branch_name()
+	local branch = vim.fn.system("git branch --show-current"):gsub("\n", "")
+	if branch == "" then
+		vim.notify("Not a git repository", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(branch)
+end
+
+--- Copy the current git commit hash (short) to clipboard
+function M.copy_commit_hash()
+	local hash = vim.fn.system("git rev-parse --short HEAD"):gsub("\n", "")
+	if hash == "" then
+		vim.notify("Not a git repository", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(hash)
+end
+
+--- Copy the word under the cursor to clipboard
+function M.copy_word_under_cursor()
+	local word = vim.fn.expand("<cword>")
+	if word == "" then
+		vim.notify("No word under cursor", vim.log.levels.WARN)
+		return
+	end
+	copy_to_clipboard(word)
 end
 
 --- Open Snacks buffer picker jumping to existing window if buffer is already visible
