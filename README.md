@@ -265,7 +265,7 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 
 #### 🔬 LSP Suite (`<Space> + l`)
 
-Fast LSP and diagnostics shortcuts, parallel to the `c` suite. `la`, `lh`, `lj`, `lr` and `lw` duplicate `ca`, `ci`, `<Ctrl> + j`, `cr` and `UW` on purpose (same convenience pattern as the Toggle suite); `lk` has no other previous-diagnostic binding, and `lc` formats with Conform like every other formatter in rvim.
+Fast LSP and diagnostics shortcuts, parallel to the `c` suite. `la`, `lh`, `lj`, `lr` and `lw` duplicate `ca`, `ci`, `<Ctrl> + j`, `cr` and `UW` on purpose (same convenience pattern as the Toggle suite); `lk` has no other previous-diagnostic binding, and `lc` formats with Conform like every other formatter in rvim. The picker entries (`ld`, `lD`, `lf`, `li`, `lI`, `ll`, `lL`, `ls`, `lS`, `lt`) open the matching `Snacks.picker` source directly.
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
@@ -277,6 +277,16 @@ Fast LSP and diagnostics shortcuts, parallel to the `c` suite. `la`, `lh`, `lj`,
 | ✅ **YES** | **`<Space> + lk`** | Normal | Jump to previous diagnostic |
 | ✅ **YES** | **`<Space> + lr`** | Normal / Visual | **Rename symbol** (same as `cr`) |
 | ✅ **YES** | **`<Space> + lw`** | Normal | Toggle word references (same as `UW`) |
+| ✅ **YES** | **`<Space> + ld`** | Normal | **Definitions** picker (`Snacks.picker.lsp_definitions`) |
+| ✅ **YES** | **`<Space> + lD`** | Normal | **Declarations** picker (`lsp_declarations`) |
+| ✅ **YES** | **`<Space> + lf`** | Normal | **References** picker (`lsp_references`) |
+| ✅ **YES** | **`<Space> + li`** | Normal | **Implementations** picker (`lsp_implementations`) |
+| ✅ **YES** | **`<Space> + lI`** | Normal | **LSP Info**: active servers configuration (`lsp_config`, same as `cl`) |
+| ✅ **YES** | **`<Space> + ll`** | Normal | **Buffer Diagnostics** picker (`diagnostics_buffer`) |
+| ✅ **YES** | **`<Space> + lL`** | Normal | **Diagnostics** across workspace (`diagnostics`, same as `;e`) |
+| ✅ **YES** | **`<Space> + ls`** | Normal | **Document Symbols** picker (`lsp_symbols`, same as `;s`) |
+| ✅ **YES** | **`<Space> + lS`** | Normal | **Workspace Symbols** picker (`lsp_workspace_symbols`) |
+| ✅ **YES** | **`<Space> + lt`** | Normal | **Type Definitions** picker (`lsp_type_definitions`) |
 
 ---
 
