@@ -449,6 +449,8 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + sL`** | — | **Increase Width** | Grow current split by 10 columns (`:vertical resize +10`) |
 | **`<Space> + sJ`** | — | **Decrease Height** | Shrink current split by 5 lines (`:resize -5`) |
 | **`<Space> + sK`** | — | **Increase Height** | Grow current split by 5 lines (`:resize +5`) |
+| **`<Space> + sT`** | — | **Split to Tab** | Move current split to its own tab (`<C-w>T`) |
+| **`<Space> + sZ`** | — | **Zoom Split** | Toggle maximize of current split (`Snacks.zen.zoom()`, duplicate of `zW`/`UZ`) |
 | **`<Space> + s\``** | — | **Previous Window** | Jump to previously used window (`<C-w>p`) |
 
 #### 󰓩 Tabs Suite (`<Space> + t`)

@@ -887,6 +887,8 @@ which_key.add({
 	{ "<leader>sL", "<cmd>vertical resize +10<cr>", desc = "Increase Width" },
 	{ "<leader>sJ", "<cmd>resize -5<cr>", desc = "Decrease Height" },
 	{ "<leader>sK", "<cmd>resize +5<cr>", desc = "Increase Height" },
+	{ "<leader>sT", "<C-w>T", desc = "Split to Tab" },
+	{ "<leader>sZ", function() Snacks.zen.zoom() end, desc = "Zoom Split" },
 	{ "<leader>s`", "<C-w>p", desc = "Previous Window" },
 
 	-- Tabs Suite (<leader>t)
