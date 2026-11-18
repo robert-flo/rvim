@@ -91,7 +91,7 @@ rvim/
     ▼
 [Layer 1: Native Core]
     │  • rvim.config.options   ---> vim.opt, vim.g, experimental UI2
-    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR restart, <leader>w format & save, <leader>z writing suite, <leader>q force quit, <leader>Q pickers, <leader>oT theme cycle, <leader>U toggles
+    │  • rvim.config.keymaps   ---> Native keymaps & safe registers ("0, "_), ZR restart, <leader>w format & save, <leader>z writing suite, <leader>q force quit, <leader>Q pickers, <leader>QT theme cycle, <leader>U toggles
     │  • rvim.config.autocmds  ---> TextYankPost, reactive CursorLine
     │  • rvim.config.commands  ---> User commands (:ToggleFormatter, :Copy* suite)
     │  • rvim.config.workarounds -> Upstream patches
@@ -234,7 +234,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
 1. **Space Leader (`<Space>`)**:
    - Reserved for major actions, formatting, diagnostics, safe destructive operations, and git commands:
    - `<Space> + q`: Force quit all buffers immediately without saving (`:qa!<CR>`)
-   - `<Space> + oT`: Cycle theme (Clavis Light -> Solarized Osaka -> Onedark); startup theme is Solarized Osaka, chosen manually, no Clavis dependency
+   - `<Space> + QT`: Cycle theme (Clavis Light -> Solarized Osaka -> Onedark); startup theme is Solarized Osaka, chosen manually, no Clavis dependency
    - `<Space> + Q*`: Snacks pickers suite (autocmds, colorschemes, keymaps, marks, man, treesitter, ...)
    - `<Space> + zr` (and `ZR`): Reload / restart Neovim session (`:restart<CR>`)
    - `<Space> + zR`: Force restart Neovim discarding unsaved buffers (`:restart +qall!<CR>`)

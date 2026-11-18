@@ -928,8 +928,6 @@ which_key.add({
 		desc = "Tab Picker",
 	},
 
-	-- Theme Cycle (<leader>oT)
-	{ "<leader>oT", desc = "Cycle Theme (Light / Osaka / Onedark)" },
 
 	-- Quit (<leader>q)
 	{ "<leader>q", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
@@ -953,6 +951,7 @@ which_key.add({
 		require("rvim.utils.editor").pick_filetype()
 	end, desc = "Change Filetype" },
 	{ "<leader>Qi", "<cmd>lua vim.show_pos()<cr>", desc = "Inspect Position" },
+	{ "<leader>QT", desc = "Cycle Theme (Light / Osaka / Onedark)" },
 
 	-- Writing Suite (<leader>z)
 	{ "<leader>z", group = "Writing" },

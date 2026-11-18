@@ -75,7 +75,7 @@ keymap.set("n", "<leader>bd", function()
 end, { desc = "Delete hidden buffers" })
 
 -- Theme Cycle (Clavis Light / Solarized Osaka / Onedark)
-keymap.set("n", "<Leader>oT", function()
+keymap.set("n", "<Leader>QT", function()
 	require("rvim.utils.theme").cycle()
 end, { desc = "Cycle Theme (Light / Osaka / Onedark)", noremap = true, silent = true })
 
