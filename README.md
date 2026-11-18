@@ -452,6 +452,11 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + tx`** | — | **Close Tab** | Close active tab (`:tabclose`) |
 | **`<Space> + tl`** | **`<Tab>`** | **Next Tab** | Switch to next tab (`:tabnext`) |
 | **`<Space> + th`** | **`<S-Tab>`** | **Previous Tab** | Switch to previous tab (`:tabprev`) |
+| **`<Space> + td`** | — | **Duplicate Buffer** | Open current buffer in a new tab (`:tab split`) |
+| **`<Space> + to`** | — | **Close Others** | Close all other tabs (`:tabonly`) |
+| **`<Space> + tH`** | — | **Move Tab Left** | Reorder tab one position left (`:-tabmove`) |
+| **`<Space> + tL`** | — | **Move Tab Right** | Reorder tab one position right (`:+tabmove`) |
+| **`<Space> + tp`** | — | **Tab Picker** | Browse all tabs (with their buffers) and jump (`pick_tabs()`) |
 
 ####  Writing Suite (`<Space> + z`)
 | Keymap | Direct Shortcut | Action | Description |

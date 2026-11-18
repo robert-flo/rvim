@@ -161,6 +161,7 @@ Reusable service layer decoupled from plugins:
   - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat`.
   - Path permalinks: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes; both accept optional `start_line`/`end_line` to emit ranges (`#L12-L19`), and `copy_relative_path_with_line()` / `copy_absolute_path_with_line()` do the same for `:line` paths (`path:12-19`).
   - Git clipboard helpers: `copy_branch_name()`, `copy_commit_hash()` (short `HEAD`), and `copy_word_under_cursor()` copy to the system clipboard.
+  - `pick_tabs()`: Snacks picker listing every tabpage with its listed buffers, marked current tab, confirming jumps to the selected tab (Snacks core has no tabs source).
 - **`lazygit.lua`**:
   - Preserves `origin_win` before opening LazyGit in a floating terminal.
   - Implements an IPC mechanism using Neovim's active socket (`nvim --server "$NVIM"`). When a file is selected inside LazyGit (`e`), it signals Neovim to refocus `origin_win` and open the file in the existing pane.
