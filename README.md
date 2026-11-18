@@ -220,8 +220,13 @@ Comprehensive clipboard operations integrated with WhichKey and user commands:
 | ✅ **YES** | **`<Space> + yn`** / **`yF`** | Normal | `:CopyFileName` | **File Name** (e.g. `which-key.lua`) |
 | ✅ **YES** | **`<Space> + yd`** | Normal | `:CopyFileDirectory` | **File Directory** path with trailing slash (e.g. `/z/repo/`) |
 | ✅ **YES** | **`<Space> + ya`** | Normal | `:%y+` | **Copy Whole File** into clipboard register `+` |
+| ✅ **YES** | **`<Space> + yb`** | Normal | `copy_branch_name()` | **Branch Name** (e.g. `feat/yank-suite-gems`) |
+| ✅ **YES** | **`<Space> + yw`** | Normal | `copy_word_under_cursor()` | **Word Under Cursor** to clipboard |
 | ✅ **YES** | **`<Space> + yg`** | Normal / Visual | `:GitLink` | **Copy Git URL** (`gitlinker.nvim`) for current line or visual range |
 | ✅ **YES** | **`<Space> + yG`** | Normal / Visual | `:CopyGitUrl` | **Copy Git URL** (`rvim` custom helper with remote, branch, and `#L<line>`) |
+| ✅ **YES** | **`<Space> + yh`** | Normal | `copy_commit_hash()` | **Commit Hash** (short, current `HEAD`) |
+| ✅ **YES** | **`<Space> + yf`** / **`yp`** | Visual | `yank_*_path_with_line()` | **Relative / Absolute Path with range** (`path#L12-L19`) |
+| ✅ **YES** | **`<Space> + yl`** / **`yL`** | Visual | `copy_*_path_with_line()` | **Relative / Absolute Path with range** (`path:12-19`) |
 
 ---
 

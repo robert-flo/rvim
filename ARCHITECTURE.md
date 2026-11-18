@@ -159,7 +159,8 @@ Reusable service layer decoupled from plugins:
   - `copy_as_codeblock()`: Formats visual selections into GitHub-ready Markdown blocks with language metadata and line numbers (` ```tsx filename="src/App.tsx" line=42 `).
   - `delete_hidden_buffers()`: Iterates `vim.api.nvim_list_bufs()`, checks visibility against `vim.api.nvim_list_wins()`, and safely closes inactive unedited buffers.
   - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat`.
-  - Path permalinks: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes.
+  - Path permalinks: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes; both accept optional `start_line`/`end_line` to emit ranges (`#L12-L19`), and `copy_relative_path_with_line()` / `copy_absolute_path_with_line()` do the same for `:line` paths (`path:12-19`).
+  - Git clipboard helpers: `copy_branch_name()`, `copy_commit_hash()` (short `HEAD`), and `copy_word_under_cursor()` copy to the system clipboard.
 - **`lazygit.lua`**:
   - Preserves `origin_win` before opening LazyGit in a floating terminal.
   - Implements an IPC mechanism using Neovim's active socket (`nvim --server "$NVIM"`). When a file is selected inside LazyGit (`e`), it signals Neovim to refocus `origin_win` and open the file in the existing pane.
