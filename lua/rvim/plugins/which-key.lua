@@ -875,7 +875,9 @@ which_key.add({
 	{ "<leader>pe", function() require("snacks").profiler.scratch() end, desc = "Profiler Scratch" },
 	{ "<leader>pf", function() require("snacks").profiler.pick() end, desc = "Profiler Pick" },
 	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason" },
+	{ "<leader>pmt", "<cmd>MasonToolsUpdate<cr>", desc = "Mason Tools Update" },
 	{ "<leader>pt", function() require("snacks").profiler.toggle() end, desc = "Profiler Toggle" },
+	{ "<leader>pu", "<cmd>lua vim.pack.update()<cr>", desc = "Update Plugins (vim.pack)" },
 	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
 	{ "<leader>pY", '"0P', desc = "Paste Before" },
 

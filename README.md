@@ -442,9 +442,11 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
 | **`<Space> + pm`** | — | **Mason** | Open Mason tool manager UI (`:Mason`) |
+| **`<Space> + pmt`** | — | **Mason Tools Update** | Install missing / update Mason tools (`:MasonToolsUpdate`) |
 | **`<Space> + pe`** | — | **Profiler Scratch** | Record/stop profiler samples on a scratch buffer (`Snacks.profiler.scratch()`) |
 | **`<Space> + pf`** | — | **Profiler Pick** | Pick recorded profiler samples (`Snacks.profiler.pick()`) |
 | **`<Space> + pt`** | — | **Profiler Toggle** | Toggle Snacks profiler recording (`Snacks.profiler.toggle()`) |
+| **`<Space> + pu`** | — | **Update Plugins** | Update all plugins via the built-in manager (`vim.pack.update()`) |
 | **`<Space> + py`** *(Normal / Visual)* | — | **Paste Last Yank** | Paste from register `0`, immune to deletions with `d` or `x` (`"0p`) |
 | **`<Space> + pY`** | — | **Paste Before** | Paste before cursor from register `0` (`"0P`) |
 
