@@ -552,7 +552,10 @@ Obsidian vault workflows without leaving Neovim. The suite scans the vault root 
 | **`<Space> + vg`** | — | **Grep Vaults** | Live grep across every vault |
 | **`<Space> + vt`** | — | **Incomplete Todos** | Picker over `- [ ]` items in all vaults |
 | **`<Space> + vc`** | — | **Create Note** | Pick a vault and path, creates folders and the file |
-| **`<Space> + vx`** | — | **Mark All Todos Done** | Marks every `- [ ]` in the current buffer as `- [x]` |
+| **`<Space> + vx`** | — | **Toggle Todo** | Toggles the `- [ ]` / `- [x]` todo on the current line |
+| **`<Space> + vX`** | — | **Mark All Todos Done** | Marks every `- [ ]` in the current buffer as `- [x]` |
+| **`<Space> + v]`** | — | **Next Incomplete Todo** | Jump to the next `- [ ]` in the buffer |
+| **`<Space> + v[`** | — | **Previous Incomplete Todo** | Jump to the previous `- [ ]` in the buffer |
 | **`<Space> + vs`** | — | **Commit Note** | `git add` + commit of the current note inside its vault |
 | **`<Space> + vn`** | — | **Today's Note** | Open or create today's note in the daybook vault |
 | **`<Space> + vh`** | — | **Yesterday's Note** | Daybook note shifted one day back |
