@@ -43,3 +43,6 @@ vim.filetype.add({
 		mjml = "html",
 	},
 })
+
+-- Theme refinements (nvim2k-style highlights), re-applied on every colorscheme load
+require("rvim.theme.highlights").setup()

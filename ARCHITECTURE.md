@@ -244,6 +244,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
    - Reserved for major actions, formatting, diagnostics, safe destructive operations, and git commands:
    - `<Space> + q`: Force quit all buffers immediately without saving (`:qa!<CR>`)
    - `<Space> + QT`: Cycle theme (Clavis Light -> Solarized Osaka -> Onedark); the last chosen theme persists across restarts (falls back to Solarized Osaka), chosen manually, no Clavis dependency
+   - Theme refinements (`rvim.theme.highlights`): nvim2k-ported highlight block (transparent backgrounds + fixed Search/Cursor/Visual colors) re-applied via `ColorScheme` autocmd on dark themes only; Clavis Light keeps its own values
    - `<Space> + Q*`: Snacks pickers suite (autocmds, colorschemes, keymaps, marks, man, treesitter, ...)
    - `<Space> + v*`: Vaults suite over the Obsidian vaults in `/z/vaults/` (vault pickers, daybook daily notes with date offsets, todo navigation and marking, note commit)
    - `<Space> + zr` (and `ZR`): Reload / restart Neovim session (`:restart<CR>`)
