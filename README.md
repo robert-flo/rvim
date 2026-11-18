@@ -555,6 +555,7 @@ Obsidian vault workflows without leaving Neovim. The suite scans the vault root 
 | **`<Space> + vc`** | — | **Create Note** | Pick a vault and path, creates folders and the file |
 | **`<Space> + vx`** | — | **Toggle Todo** | Toggles the `- [ ]` / `- [x]` todo on the current line |
 | **`<Space> + vX`** | — | **Mark All Todos Done** | Marks every `- [ ]` in the current buffer as `- [x]` |
+| **`<Space> + vE`** | — | **Elio in Vaults** | Open elio directly at the vaults root (`/z/vaults`) |
 | **`<Space> + v]`** | — | **Next Incomplete Todo** | Jump to the next `- [ ]` in the buffer |
 | **`<Space> + v[`** | — | **Previous Incomplete Todo** | Jump to the previous `- [ ]` in the buffer |
 | **`<Space> + vs`** | — | **Commit Note** | `git add` + commit of the current note inside its vault |
@@ -581,6 +582,7 @@ Obsidian vault workflows without leaving Neovim. The suite scans the vault root 
 | **`<Space> + es`** | — | **Elio Split** | Open Elio in a horizontal split (`:TfmSplit`) |
 | **`<Space> + ev`** | — | **Elio Vsplit** | Open Elio in a vertical split (`:TfmVsplit`) |
 | **`<Space> + eT`** | — | **Elio Tab** | Open Elio in a new tab (`:TfmTabedit`) |
+| **`<Space> + e.`** | — | **Elio Last Dir** | Reopen Elio in the last directory it opened in |
 | **`<Space> + em`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
 | **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
 | **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
@@ -608,6 +610,8 @@ rvim integrates [`tfm.nvim`](https://github.com/rolv-apneseth/tfm.nvim) natively
 - **`<C-x>`**: Force opening selected file in horizontal split
 - **`<C-t>`**: Force opening selected file in new tab
 - **`<Esc>`**: Exit Elio (`q`)
+
+Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the wrapper, so the floating window gets a border title showing the directory you opened it in, the statusline hides while elio is on screen and returns on exit, and the last directory is remembered across sessions (state file `stdpath("state")/rvim_elio_dir`). **`<Space> + e.`** reopens elio there; **`<Space> + vE`** jumps straight to the vaults root.
 
 ---
 

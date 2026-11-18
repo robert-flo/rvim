@@ -57,6 +57,7 @@ rvim/
     │   ├── init.lua                  # Aggregator exporting _G.Rvim singleton
     │   ├── icons.lua                 # Centralized Nerd Font glyphs catalog
     │   ├── editor.lua                # Root detection, multi-scope file & dir pickers (Oil float), package.json popup, clipboard utilities
+    │   ├── elio.lua                  # elio TFM integration: contextual opens, titled float, last-directory memory
     │   ├── lazygit.lua               # RPC-aware Lazygit terminal wrapper preserving origin pane
     │   ├── lualine.lua               # Reactive statusline components (pretty_path, root_dir, macro)
     │   └── tabline.lua               # Headless tabline renderer with powerline arrow glyphs
@@ -162,6 +163,11 @@ Reusable service layer decoupled from plugins:
   - Path permalinks: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes; both accept optional `start_line`/`end_line` to emit ranges (`#L12-L19`), and `copy_relative_path_with_line()` / `copy_absolute_path_with_line()` do the same for `:line` paths (`path:12-19`).
   - Git clipboard helpers: `copy_branch_name()`, `copy_commit_hash()` (short `HEAD`), and `copy_word_under_cursor()` copy to the system clipboard.
   - `pick_tabs()`: Snacks picker listing every tabpage with its listed buffers, marked current tab, confirming jumps to the selected tab (Snacks core has no tabs source).
+- **`elio.lua`**: elio integration layer over `tfm.nvim` (`plugins/tfm.lua` holds the binary registration and window geometry):
+  - `open(dir, open_mode)`: resolves the open directory (explicit dir, else the current file's directory, else `cwd`), remembers it, delegates to `tfm.open`, then polishes the float.
+  - Float polish: border title with the resolved directory (`title_pos = "center"`) and `laststatus = 0` while elio is on screen, restored on `TermClose`/`BufWipeout`.
+  - Last-directory memory: persisted in `stdpath("state")/rvim_elio_dir`; `last()` reopens it, stale or deleted paths are ignored.
+  - `vaults()`: opens elio directly at the vaults root (`/z/vaults`), the daily companion of the vaults suite.
 - **`lazygit.lua`**:
   - Preserves `origin_win` before opening LazyGit in a floating terminal.
   - Implements an IPC mechanism using Neovim's active socket (`nvim --server "$NVIM"`). When a file is selected inside LazyGit (`e`), it signals Neovim to refocus `origin_win` and open the file in the existing pane.
