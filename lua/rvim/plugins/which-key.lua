@@ -931,9 +931,27 @@ which_key.add({
 	-- Theme Toggle (<leader>T)
 	{ "<leader>T", desc = "Toggle Theme (Light / Dark)" },
 
+	-- Quit (<leader>q)
+	{ "<leader>q", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
+
+	-- Q Pickers Suite (<leader>Q)
+	{ "<leader>Q", group = "Pickers" },
+	{ "<leader>Qa", "<cmd>lua Snacks.picker.autocmds()<cr>", desc = "Autocmds" },
+	{ "<leader>Qc", "<cmd>lua Snacks.picker.command_history()<cr>", desc = "Command History" },
+	{ "<leader>QC", "<cmd>lua Snacks.picker.colorschemes()<cr>", desc = "Colorschemes" },
+	{ "<leader>Qd", "<cmd>lua Snacks.picker.help()<cr>", desc = "Docs" },
+	{ "<leader>Qg", "<cmd>lua Snacks.picker.commands()<cr>", desc = "Commands" },
+	{ "<leader>Qh", "<cmd>lua Snacks.picker.highlights()<cr>", desc = "Highlights" },
+	{ "<leader>Qj", "<cmd>lua Snacks.picker.jumps()<cr>", desc = "Jump List" },
+	{ "<leader>Qk", "<cmd>lua Snacks.picker.keymaps()<cr>", desc = "Keymaps" },
+	{ "<leader>Qm", "<cmd>lua Snacks.picker.marks()<cr>", desc = "Marks" },
+	{ "<leader>QM", "<cmd>lua Snacks.picker.man()<cr>", desc = "Man Pages" },
+	{ "<leader>Qn", "<cmd>lua Snacks.picker.notifications()<cr>", desc = "Notifications" },
+	{ "<leader>Qs", "<cmd>lua Snacks.picker.search_history()<cr>", desc = "Search History" },
+	{ "<leader>Qt", "<cmd>lua Snacks.picker.treesitter()<cr>", desc = "Treesitter Find" },
+
 	-- Writing Suite (<leader>z)
 	{ "<leader>z", group = "Writing" },
-	{ "<leader>za", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
 	{
 		"<leader>zc",
 		function()
