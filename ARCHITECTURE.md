@@ -74,8 +74,9 @@ rvim/
         ├── homegrown.lua             # Homegrown.nvim suite (live MD preview, code runner, autotiling, bracket nav, replace)
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
+        ├── bookmarks.lua             # Bookmarks.nvim: SQLite persistent bookmarks + minimal Telescope bridge
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 14 unified suites (b, c, d, e, g, p, Q, r, s, t, v, y, U, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 15 unified suites (b, c, d, e, g, m, p, Q, r, s, t, v, y, U, ;)
 ```
 
 ---
@@ -110,7 +111,7 @@ rvim/
     │  • render-markdown -> Render-markdown.nvim aesthetic callouts, tables, and badge decorations
     │  • tfm        ---> Terminal File Manager bridge configuring elio with edge-to-edge floating modal
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit, TFM
-    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x, z) & 10 interactive suites (b, c, d, e, g, s, t, v, y, ;)
+    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x, z) & 11 interactive suites (b, c, d, e, g, m, s, t, v, y, ;)
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
@@ -178,7 +179,7 @@ Reusable service layer decoupled from plugins:
 
 ### Layer 3: Plugins Ecosystem (`lua/rvim/plugins/`)
 Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`:
-- **`init.lua`**: Declaratively registers all 32 core plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
+- **`init.lua`**: Declaratively registers all 36 core plugins via GitHub URLs and executes plugin setup modules in strict sequential order.
 - **`ui.lua`**:
   - `solarized-osaka.nvim`: Vivid, transparent color scheme.
   - `mini.icons`: Lightweight icons library with `mock_nvim_web_devicons()`.
@@ -217,6 +218,8 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `render-markdown.nvim`: In-buffer and Snacks picker preview document renderer. Formats callouts, boxes, checkboxes, Unicode tables, and headers with live concealment and no line numbers in picker previews.
 - **`tfm.lua`**:
   - `tfm.nvim`: Integrates the high-speed terminal file manager `/usr/bin/elio` via `--chooser-file`. Automatically configures `:Tfm`, `:TfmSplit`, `:TfmVsplit`, `:TfmTabedit` commands, interactive in-buffer split overrides (`<C-v>`, `<C-x>`, `<C-t>`), and full-width 98% height floating modal matching the editor design language.
+- **`bookmarks.lua`**: Persistent line bookmarks via `heilgar/bookmarks.nvim` with SQLite storage (`stdpath("data")/rvim_bookmarks.db`, `default_mappings = false`), project-root anchoring, runtime branch-scope toggle (`BookmarksToggleBranchScope`), named bookmark lists, and a minimal dedicated Telescope setup (`load_extension("bookmarks")`) powering the suite's pickers. Dependencies added alongside: `sqlite.lua`, `plenary.nvim`, `telescope.nvim`.
+
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`, TFM `;t`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.

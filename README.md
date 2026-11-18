@@ -615,6 +615,23 @@ Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the 
 
 ---
 
+#### 🔖 Bookmarks Suite (`<Space> + m`)
+
+Persistent, project-aware line bookmarks backed by SQLite ([heilgar/bookmarks.nvim](https://github.com/heilgar/bookmarks.nvim)): bookmarks anchor to the project root, survive restarts, carry the line's content and timestamp, and can be isolated per Git branch at runtime. Named lists organize bookmarks per project, feature, or workflow. The plugin's pickers are Telescope-based, so rvim ships a minimal dedicated Telescope setup for this suite only (rvim's own pickers stay on Snacks).
+
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + ma`** | — | **Add Bookmark** | Add a bookmark on the current line (sign column + line highlight) |
+| **`<Space> + md`** | — | **Delete Bookmark** | Remove the bookmark on the current line |
+| **`<Space> + ml`** | — | **List Bookmarks** | Telescope picker over the active list's bookmarks, fuzzy search + async preview |
+| **`<Space> + mj`** | — | **Next Bookmark** | Jump to the next bookmark in the file |
+| **`<Space> + mk`** | — | **Previous Bookmark** | Jump to the previous bookmark in the file |
+| **`<Space> + ms`** | — | **Switch List** | Telescope picker to switch, create (`<C-n>`), rename (`<C-r>`) or delete (`<C-d>`) lists |
+| **`<Space> + mL`** | — | **Show Lists** | Show all bookmark lists, the active one marked |
+| **`<Space> + mB`** | — | **Toggle Branch Scope** | Switch between project-wide and branch-specific bookmarks |
+
+Storage lives in `stdpath("data")/rvim_bookmarks.db`. Plugin default keymaps are disabled (`default_mappings = false`); every binding is rvim-owned, and Neovim's native marks (`ma`, `'a`) remain untouched.
+
 ### 📱 10. Language Support & Toolchains
 
 rvim provides an out-of-the-box development environment for modern Android applications, native systems programming, and scripting:
