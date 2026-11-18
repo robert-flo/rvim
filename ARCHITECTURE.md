@@ -76,7 +76,7 @@ rvim/
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
         ├── bookmarks.lua             # Bookmarks.nvim: SQLite persistent bookmarks + minimal Telescope bridge
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 15 unified suites (b, c, d, e, g, m, p, Q, r, s, t, v, y, U, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 16 unified suites (b, c, d, e, g, l, m, p, Q, r, s, t, v, y, U, ;)
 ```
 
 ---

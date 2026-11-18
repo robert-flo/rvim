@@ -263,6 +263,21 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | ❌ **NO** | **`;c`** / **`<Space> + ;c`** | Normal | List incoming calls to function under cursor |
 | ❌ **NO** | **`]]`** / **`[[`** | Normal | Jump to next / previous reference of symbol under cursor |
 
+#### 🔬 LSP Suite (`<Space> + l`)
+
+Fast LSP and diagnostics shortcuts, parallel to the `c` suite. `la`, `lh`, `lj`, `lr` and `lw` duplicate `ca`, `ci`, `<Ctrl> + j`, `cr` and `UW` on purpose (same convenience pattern as the Toggle suite); `lk` has no other previous-diagnostic binding, and `lc` formats with Conform like every other formatter in rvim.
+
+| Space? | Keymap | Mode | Action |
+| :---: | :--- | :---: | :--- |
+| ✅ **YES** | **`<Space> + la`** | Normal / Visual | **Code Actions** (same as `ca`) |
+| ✅ **YES** | **`<Space> + lc`** | Normal / Visual | **Format Code** with Conform (same as `cf` / `f`) |
+| ✅ **YES** | **`<Space> + lg`** | Normal | **Hover Documentation** (same as `K`) |
+| ✅ **YES** | **`<Space> + lh`** | Normal | Toggle LSP inlay hints (same as `ci` / `UH`) |
+| ✅ **YES** | **`<Space> + lj`** | Normal | Jump to next diagnostic (same as `<Ctrl> + j`) |
+| ✅ **YES** | **`<Space> + lk`** | Normal | Jump to previous diagnostic |
+| ✅ **YES** | **`<Space> + lr`** | Normal / Visual | **Rename symbol** (same as `cr`) |
+| ✅ **YES** | **`<Space> + lw`** | Normal | Toggle word references (same as `UW`) |
+
 ---
 
 ### 🌿 4. Git & Version Control (`which-key` `<Space> + g`)
