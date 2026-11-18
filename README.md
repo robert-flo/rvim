@@ -435,6 +435,8 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + rw`** | — | **Replace Word Everywhere** | Open project replace prefilled with word under cursor (`:Replace <cword>`) |
 | **`<Space> + rb`** | — | **Replace Buffer** | Start confirmed search and replace within buffer (`:%s///gc`) |
 | **`<Space> + rs`** | — | **Replace Word Buffer** | Replace word under cursor across buffer (`:%s/\<cword\>/<cword>/gI`) |
+| **`<Space> + rc`** | — | **Replace Word Buffer (Confirm)** | Replace word under cursor across buffer, confirming each match (`:%s/\<cword\>/<cword>/gcI`) |
+| **`<Space> + rv`** *(Visual)* | — | **Replace Selection in Buffer** | Yank visual selection and start confirmed replace with it as literal pattern (`:%s/\V<cword>//gc`) |
 
 ####  Split / Window Suite (`<Space> + s`)
 | Keymap | Direct Shortcut | Action | Description |

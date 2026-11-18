@@ -875,6 +875,7 @@ which_key.add({
 	{ "<leader>rw", ":Replace <C-r><C-w><cr>", desc = "Replace Word Everywhere" },
 	{ "<leader>rb", ":%s///gc<Left><Left><Left><Left>", desc = "Replace Buffer" },
 	{ "<leader>rs", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", desc = "Replace Word Buffer" },
+	{ "<leader>rc", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gcI<Left><Left><Left>", desc = "Replace Word Buffer (Confirm)" },
 
 	-- Split / Window Suite (<leader>s)
 	{ "<leader>s", group = " Split / Window" },
@@ -973,6 +974,10 @@ which_key.add({
 	{ "<leader>ga", ":'<,'>Gitsigns stage_hunk<cr>", desc = "Stage Hunk" },
 	{ "<leader>gr", ":'<,'>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
 	{ "<leader>gu", ":'<,'>Gitsigns undo_stage_hunk<cr>", desc = "Undo Stage Hunk" },
+
+	-- Refactor Suite (<leader>r) - Visual Mode
+	{ "<leader>r", group = "󰛖 Refactor" },
+	{ "<leader>rv", '"y:%s/\\V<C-r>"//gc<Left><Left><Left>', desc = "Replace Selection in Buffer" },
 
 	-- Yank Suite (<leader>y) - Visual Mode
 	{ "<leader>y", group = " Yank" },
