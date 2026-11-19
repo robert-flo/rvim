@@ -30,6 +30,19 @@ local dark_colors = {
 local dark_themes = { ["solarized-osaka"] = true, ["onedark"] = true }
 local light_themes = { ["clavis-light"] = true }
 
+-- Groups the light theme paints with an opaque light float background and that
+-- no dark theme defines. A stale light value can survive a theme switch through
+-- Neovim's default-highlight restoration, so in dark mode they are re-linked to
+-- their float parents instead of being left behind.
+local relink_to_float = {
+	{ "FloatTitle", "FloatBorder" },
+	{ "WhichKeyNormal", "NormalFloat" },
+	{ "WhichKeyBorder", "FloatBorder" },
+	{ "WhichKeyTitle", "FloatTitle" },
+	{ "SnacksPickerBorder", "FloatBorder" },
+	{ "SnacksPickerTitle", "FloatBorder" },
+}
+
 --- Dark mode is decided by the active theme identity; for unknown themes
 --- (colorscheme picker previews, ad-hoc :colorscheme) fall back to background.
 --- Whether the active theme is dark, decided by theme identity; for unknown
@@ -67,6 +80,9 @@ function M.apply()
 	end
 	for group, opts in pairs(dark_colors) do
 		vim.api.nvim_set_hl(0, group, opts)
+	end
+	for _, pair in ipairs(relink_to_float) do
+		vim.api.nvim_set_hl(0, pair[1], { link = pair[2] })
 	end
 end
 
