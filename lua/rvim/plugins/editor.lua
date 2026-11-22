@@ -95,7 +95,19 @@ require("mini.diff").setup({
 require("todo-comments").setup()
 
 -- Git integration
-require("gitsigns").setup()
+require("gitsigns").setup({
+	signs = {
+		add = { text = "▍" },
+		change = { text = "▍" },
+		delete = { text = "▍" },
+		topdelete = { text = "‾" },
+		changedelete = { text = "▍" },
+		untracked = { text = "┆" },
+	},
+	watch_gitdir = { interval = 1000, follow_files = true },
+	sign_priority = 6,
+	preview_config = { border = "rounded", style = "minimal", relative = "cursor", row = 0, col = 1 },
+})
 require("gitlinker").setup()
 
 -- Formatting
