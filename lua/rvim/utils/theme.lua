@@ -83,7 +83,7 @@ function M.set_theme(theme, notify)
 		vim.o.background = "dark"
 		local onedark_ok, onedark = pcall(require, "onedark")
 		if onedark_ok then
-			onedark.setup({ style = "dark", transparent = true })
+			onedark.setup({ style = "deep", transparent = true })
 		end
 		vim.cmd([[colorscheme onedark]])
 
