@@ -39,7 +39,7 @@ local setup = {
 		border = "rounded",
 		width = 0.5,
 		height = { min = 5, max = 45 },
-		padding = { 1, 2 },
+		padding = { 0, 2 },
 		title = true,
 		title_pos = "center",
 		zindex = 1000,
