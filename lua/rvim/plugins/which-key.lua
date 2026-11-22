@@ -158,13 +158,6 @@ which_key.add({
 		end,
 		desc = "Format Code",
 	},
-	{
-		"<leader>j",
-		function()
-			require("rvim.utils.editor").open_package_json()
-		end,
-		desc = "Open package.json",
-	},
 	{ "<leader>C", '"_C', desc = "Change to EOL" },
 	{ "<leader>D", '"_D', desc = "Delete to EOL" },
 	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
