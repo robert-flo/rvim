@@ -216,7 +216,7 @@ which_key.add({
 		function()
 			require("gitsigns").blame_line()
 		end,
-		desc = "Blame current line",
+		desc = "Blame",
 	},
 	{
 		"<leader>gB",
@@ -268,7 +268,7 @@ which_key.add({
 		function()
 			Snacks.git.blame_line()
 		end,
-		desc = "Detailed Blame (Snacks)",
+		desc = "Detailed Blame",
 	},
 	{ "<leader>gj", "<cmd>Gitsigns next_hunk<cr>", desc = "Next Hunk" },
 	{ "<leader>gk", "<cmd>Gitsigns prev_hunk<cr>", desc = "Prev Hunk" },

@@ -302,7 +302,7 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ga`** | Normal / Visual | **Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gA`** | Normal | **Stage Buffer** (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame current line** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gB`** | Normal | **Blame buffer** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gc`** | Normal | **Commit Staged** in floating terminal |
 | ✅ **YES** | **`<Space> + gC`** | Normal | **Co-Authors** picker (`co-author.nvim` + `Snacks.picker`) |
