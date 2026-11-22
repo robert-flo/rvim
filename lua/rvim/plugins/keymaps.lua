@@ -126,7 +126,7 @@ map({
 
 -- Snacks
 map({
-	{ "<leader>cl", Snacks.picker.lsp_config, desc = "Lsp Info" },
+	{ "<leader>cI", Snacks.picker.lsp_config, desc = "Lsp Info" },
 	{ "<leader>cR", Snacks.rename.rename_file, desc = "Rename File" },
 	{
 		";f",
