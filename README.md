@@ -442,6 +442,8 @@ Ported from nvim2k's `plugin/after/highlights.lua` and re-applied on **every** c
 
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
+| ✅ **YES** | **`<Ctrl> + g`** | Insert | Manually trigger the autocomplete menu: show, show documentation or hide it (`blink.cmp`) |
+| ❌ **NO** | **`<Ctrl> + Space`** | Insert | Auto-trigger of the autocomplete menu, disabled in the blink.cmp keymap | 
 | ❌ **NO** | **`<Enter>`** or **`<Ctrl> + y`** | Insert | Accept autocomplete popup suggestion (`blink.cmp`) |
 | ❌ **NO** | **`<Ctrl> + l`** | Insert | Accept full Copilot ghost text suggestion |
 | ❌ **NO** | **`<Alt> + l`** | Insert | Accept next word from Copilot suggestion |
