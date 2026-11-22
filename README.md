@@ -302,15 +302,16 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ga`** | Normal / Visual | **Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gA`** | Normal | **Stage Buffer** (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gb`** | Normal | **Blame** (`Gitsigns`, full commit message) |
 | ✅ **YES** | **`<Space> + gB`** | Normal | **Blame buffer** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gc`** | Normal | **Commit Staged** in floating terminal |
 | ✅ **YES** | **`<Space> + gC`** | Normal | **Co-Authors** picker (`co-author.nvim` + `Snacks.picker`) |
-| ✅ **YES** | **`<Space> + gd`** | Normal | **Toggle MiniDiff overlay** (`mini.diff`) |
-| ✅ **YES** | **`<Space> + gD`** | Normal | **Gitsigns Diff HEAD** (`Gitsigns diffthis HEAD`) |
+| ✅ **YES** | **`<Space> + gd`** | Normal | **Git Diff** (`Gitsigns diffthis HEAD`) |
+| ✅ **YES** | **`<Space> + gD`** | Normal | **Toggle MiniDiff overlay** (`mini.diff`) |
 | ✅ **YES** | **`<Space> + gf`** | Normal | **File Commits** history picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gg`** | Normal | **Launch Lazygit** |
-| ✅ **YES** | **`<Space> + gh`** | Normal | **Toggle stage hunk** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gh`** | Normal | **GitHub Submenu** (see below) |
+| ✅ **YES** | **`<Space> + gH`** | Normal | **Toggle stage hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gi`** | Normal | **Hunk Info** / preview floating window |
 | ✅ **YES** | **`<Space> + gI`** | Normal | **Detailed Blame** (`Snacks.git.blame_line`) |
 | ✅ **YES** | **`<Space> + gj`** | Normal | Jump to **Next Hunk** |
@@ -318,12 +319,13 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ✅ **YES** | **`<Space> + gl`** | Normal | **Line Commits** history picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gL`** | Normal | **Git Commit Log** repository history (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gm`** | Normal | **Git Status** modified/staged files picker (`Snacks.picker`) |
-| ✅ **YES** | **`<Space> + go`** | Normal | **Open file from blamed commit** in a new tab (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gp`** | Normal | **Git Branches** picker & checkout (`Snacks.picker`) |
+| ✅ **YES** | **`<Space> + go`** | Normal | **Octohub Submenu** (see section 11) |
+| ✅ **YES** | **`<Space> + gO`** | Normal | **Open file from blamed commit** in a new tab (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gp`** | Normal | **Toggle stage buffer** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gP`** | Normal | **Git Pull** fast-forward only in the repository of the current buffer (open buffers reload automatically) |
 | ✅ **YES** | **`<Space> + gr`** | Normal / Visual | **Reset Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gR`** | Normal | **Reset Buffer** (`Gitsigns`) |
-| ✅ **YES** | **`<Space> + gs`** | Normal | **Toggle stage buffer** (`Gitsigns`) |
+| ✅ **YES** | **`<Space> + gs`** | Normal | **Git Branches** picker & checkout (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gS`** | Normal | **Git Stash** picker (`Snacks.picker`) |
 | ✅ **YES** | **`<Space> + gu`** | Normal / Visual | **Undo Stage Hunk** (`Gitsigns`) |
 | ✅ **YES** | **`<Space> + gv`** | Normal | **Select Hunk** visual range (`Gitsigns`) |
@@ -334,13 +336,13 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ❌ **NO** | **`]c`** / **`[c`** | Normal | Jump to next / previous git diff hunk in file |
 | ✅ **YES** | **`]e`** / **`[e`** | Normal | Jump to next / previous git hunk (`Gitsigns` `next_hunk`/`prev_hunk`, respetando diff mode) |
 
-#### 🌐 GitHub Submenu (`<Space> + gH`)
+#### 🌐 GitHub Submenu (`<Space> + gh`)
 | Keymap | Action |
 | :--- | :--- |
-| **`<Space> + gHi`** | GitHub Issues (open) fuzzy picker |
-| **`<Space> + gHI`** | GitHub Issues (all) fuzzy picker |
-| **`<Space> + gHp`** | GitHub Pull Requests (open) fuzzy picker |
-| **`<Space> + gHP`** | GitHub Pull Requests (all) fuzzy picker |
+| **`<Space> + ghi`** | GitHub Issues (open) fuzzy picker |
+| **`<Space> + ghI`** | GitHub Issues (all) fuzzy picker |
+| **`<Space> + ghp`** | GitHub Pull Requests (open) fuzzy picker |
+| **`<Space> + ghP`** | GitHub Pull Requests (all) fuzzy picker |
 
 #### 🎚️ Git Toggles Submenu (`<Space> + gt`)
 | Keymap | Action |
@@ -749,27 +751,27 @@ rvim integrates [`octohub.nvim`](https://github.com/2kabhishek/octohub.nvim) alo
 
 | Space? | Keymap | Action |
 | :---: | :--- | :--- |
-| ✅ **YES** | **`<Space> + gOo`** | **Browse & clone all repositories** in interactive fuzzy picker |
-| ✅ **YES** | **`<Space> + gOs`** | Repositories sorted by **stars** |
-| ✅ **YES** | **`<Space> + gOu`** | Repositories sorted by **last updated** |
-| ✅ **YES** | **`<Space> + gOU`** | Repositories sorted by **last pushed** |
-| ✅ **YES** | **`<Space> + gOc`** | Repositories sorted by **creation date** |
-| ✅ **YES** | **`<Space> + gOf`** | Repositories sorted by **forks** |
-| ✅ **YES** | **`<Space> + gOi`** | Repositories sorted by **open issues** |
-| ✅ **YES** | **`<Space> + gOl`** | Repositories sorted by **language** |
-| ✅ **YES** | **`<Space> + gOb`** | Repositories sorted by **size** |
-| ✅ **YES** | **`<Space> + gOA`** | Show only **archived** repositories |
-| ✅ **YES** | **`<Space> + gOF`** | Show only **forked** repositories |
-| ✅ **YES** | **`<Space> + gOP`** | Show only **private** repositories |
-| ✅ **YES** | **`<Space> + gOS`** | Show only **starred** repositories |
-| ✅ **YES** | **`<Space> + gOT`** | Show only **template** repositories |
-| ✅ **YES** | **`<Space> + gOL`** | Interactive **language filter picker** |
-| ✅ **YES** | **`<Space> + gOg`** | View **GitHub contribution graph** popup |
-| ✅ **YES** | **`<Space> + gOa`** | View **recent GitHub activity** |
-| ✅ **YES** | **`<Space> + gOr`** | View **current repository statistics** |
-| ✅ **YES** | **`<Space> + gOt`** | View **complete profile & repository stats** |
-| ✅ **YES** | **`<Space> + gOw`** | Open current repository on GitHub in web browser |
-| ✅ **YES** | **`<Space> + gOp`** | Open authenticated user's profile in web browser |
+| ✅ **YES** | **`<Space> + goo`** | **Browse & clone all repositories** in interactive fuzzy picker |
+| ✅ **YES** | **`<Space> + gos`** | Repositories sorted by **stars** |
+| ✅ **YES** | **`<Space> + gou`** | Repositories sorted by **last updated** |
+| ✅ **YES** | **`<Space> + goU`** | Repositories sorted by **last pushed** |
+| ✅ **YES** | **`<Space> + goc`** | Repositories sorted by **creation date** |
+| ✅ **YES** | **`<Space> + gof`** | Repositories sorted by **forks** |
+| ✅ **YES** | **`<Space> + goi`** | Repositories sorted by **open issues** |
+| ✅ **YES** | **`<Space> + gol`** | Repositories sorted by **language** |
+| ✅ **YES** | **`<Space> + gob`** | Repositories sorted by **size** |
+| ✅ **YES** | **`<Space> + goA`** | Show only **archived** repositories |
+| ✅ **YES** | **`<Space> + goF`** | Show only **forked** repositories |
+| ✅ **YES** | **`<Space> + goP`** | Show only **private** repositories |
+| ✅ **YES** | **`<Space> + goS`** | Show only **starred** repositories |
+| ✅ **YES** | **`<Space> + goT`** | Show only **template** repositories |
+| ✅ **YES** | **`<Space> + goL`** | Interactive **language filter picker** |
+| ✅ **YES** | **`<Space> + gog`** | View **GitHub contribution graph** popup |
+| ✅ **YES** | **`<Space> + goa`** | View **recent GitHub activity** |
+| ✅ **YES** | **`<Space> + gor`** | View **current repository statistics** |
+| ✅ **YES** | **`<Space> + got`** | View **complete profile & repository stats** |
+| ✅ **YES** | **`<Space> + gow`** | Open current repository on GitHub in web browser |
+| ✅ **YES** | **`<Space> + gop`** | Open authenticated user's profile in web browser |
 
 ---
 
