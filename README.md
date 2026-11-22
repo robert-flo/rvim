@@ -253,11 +253,20 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | ✅ **YES** | **`<Space> + cM`** | Normal | **Toggle Markdown Render** in active buffer (`:RenderMarkdown toggle`) |
 | ✅ **YES** | **`<Space> + ce`** | Normal / Visual | **Execute Code** buffer or visual selection (`:Runner`) |
 | ✅ **YES** | **`<Space> + cD`** | Normal | **Set Root Directory** to detected Git root (`:RootDir`) |
-| ✅ **YES** | **`<Space> + cc`** | Normal | Run CodeLens under cursor |
+| ✅ **YES** | **`<Space> + cc`** | Normal | **Highlight Colors** toggle in buffer (`:HighlightColors toggle`, nvim-highlight-colors) |
+| ✅ **YES** | **`<Space> + cL`** | Normal | Run CodeLens under cursor |
+| ✅ **YES** | **`<Space> + cF`** | Normal | **Fix Tabs** (`:retab`) |
+| ✅ **YES** | **`<Space> + cs`** | Normal | **Source File** (`:source %`) |
 | ✅ **YES** | **`<Space> + cC`** | Normal | Refresh CodeLens in buffer |
 | ✅ **YES** | **`<Space> + cd`** | Normal | Show line diagnostics floating window |
 | ✅ **YES** | **`<Space> + ci`** | Normal | Toggle LSP inlay hints |
-| ✅ **YES** | **`<Space> + cl`** | Normal | Show active LSP servers information |
+| ✅ **YES** | **`<Space> + cl`** | Normal | **Clean Empty Lines** (`:g/^\s*$/d`) |
+| ✅ **YES** | **`<Space> + cI`** | Normal | Show active LSP servers information |
+| ✅ **YES** | **`<Space> + cS`** | Visual | **Sort Desc** selection (`:sort!`) |
+| ✅ **YES** | **`<Space> + ci`** | Visual | **Sort Case Insensitive** selection (`:sort i`) |
+| ✅ **YES** | **`<Space> + cs`** | Visual | **Sort Asc** selection (`:sort`) |
+| ✅ **YES** | **`<Space> + cu`** | Visual | **Unique** selection through the `uniq` filter |
+| ✅ **YES** | **`<Space> + cx`** | Visual | **Execute Lua** on the selection range (`:'<,'>lua`) |
 | ❌ **NO** | **`gd`** | Normal | **Goto definition** under cursor (`Snacks.picker.lsp_definitions`) |
 | ❌ **NO** | **`gD`** | Normal | Goto declaration |
 | ❌ **NO** | **`gy`** | Normal | Goto type definition |

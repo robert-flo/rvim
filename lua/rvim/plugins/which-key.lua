@@ -848,10 +848,8 @@ which_key.add({
 	},
 	{
 		"<leader>cc",
-		function()
-			vim.lsp.codelens.run()
-		end,
-		desc = "Run CodeLens",
+		"<cmd>HighlightColors toggle<cr>",
+		desc = "Highlight Colors",
 	},
 	{
 		"<leader>cC",
@@ -861,11 +859,23 @@ which_key.add({
 		desc = "Refresh CodeLens",
 	},
 	{
+		"<leader>cL",
+		function()
+			vim.lsp.codelens.run()
+		end,
+		desc = "Run CodeLens",
+	},
+	{
 		"<leader>cd",
 		function()
 			vim.diagnostic.open_float()
 		end,
 		desc = "Line Diagnostics",
+	},
+	{
+		"<leader>cF",
+		"<cmd>retab<cr>",
+		desc = "Fix Tabs",
 	},
 	{
 		"<leader>cf",
@@ -882,11 +892,16 @@ which_key.add({
 		desc = "Toggle Inlay Hints",
 	},
 	{
-		"<leader>cl",
+		"<leader>cI",
 		function()
 			Snacks.picker.lsp_config()
 		end,
 		desc = "LSP Info",
+	},
+	{
+		"<leader>cl",
+		"<cmd>g/^\\s*$/d<cr>",
+		desc = "Clean Empty Lines",
 	},
 	{
 		"<leader>cr",
@@ -901,6 +916,11 @@ which_key.add({
 			Snacks.rename.rename_file()
 		end,
 		desc = "Rename File",
+	},
+	{
+		"<leader>cs",
+		"<cmd>source %<cr>",
+		desc = "Source File",
 	},
 	{ "<leader>cm", "<cmd>MDPreview<cr>", desc = "Markdown Live Preview" },
 	{ "<leader>cM", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
@@ -1423,6 +1443,11 @@ which_key.add({
 		desc = "Copy as Codeblock",
 	},
 	{ "<leader>ce", ":'<,'>Runner<cr>", desc = "Execute Selection" },
+	{ "<leader>cS", ":'<,'>sort!<cr>", desc = "Sort Desc" },
+	{ "<leader>ci", ":'<,'>sort i<cr>", desc = "Sort Case Insensitive" },
+	{ "<leader>cs", ":'<,'>sort<cr>", desc = "Sort Asc" },
+	{ "<leader>cu", ":'<,'>!uniq<cr>", desc = "Unique" },
+	{ "<leader>cx", ":'<,'>lua<cr>", desc = "Execute Lua" },
 	-- Safe Registers - Visual Mode
 	{ "<leader>c", '"_c', desc = "Change (No Yank)" },
 	{ "<leader>C", '"_C', desc = "Change to End of Line" },
