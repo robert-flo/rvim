@@ -41,6 +41,8 @@ require("blink.cmp").setup({
 			preset = "cmdline",
 			["<Right>"] = false,
 			["<Left>"] = false,
+			["<C-space>"] = false, -- quitar el disparo automatico del preset
+			["<C-g>"] = { "show", "show_documentation", "hide_documentation" },
 		},
 		completion = {
 			list = { selection = { preselect = false } },
@@ -56,6 +58,8 @@ require("blink.cmp").setup({
 	keymap = {
 		preset = "enter",
 		["c-y"] = { "select_and_accept" },
+		["<C-space>"] = false, -- quitar el disparo automatico del preset
+		["<C-g>"] = { "show", "show_documentation", "hide_documentation" },
 	},
 
 	appearance = {
