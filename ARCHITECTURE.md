@@ -78,7 +78,7 @@ rvim/
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
         ├── bookmarks.lua             # Bookmarks.nvim: SQLite persistent bookmarks + minimal Telescope bridge
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
-        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 16 unified suites (b, c, d, e, g, l, m, p, Q, r, s, t, v, y, U, ;)
+        └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 17 unified suites (b, c, d, e, g, i, l, m, p, Q, r, s, t, v, y, U, ;)
 ```
 
 ---
@@ -113,7 +113,7 @@ rvim/
     │  • render-markdown -> Render-markdown.nvim aesthetic callouts, tables, and badge decorations
     │  • tfm        ---> Terminal File Manager bridge configuring elio with edge-to-edge floating modal
     │  • keymaps    ---> Binds Snacks pickers, LSP definitions, CodeDiff, Lazygit, TFM
-    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x, z) & 11 interactive suites (b, c, d, e, g, m, s, t, v, y, ;)
+    │  • which-key  ---> WhichKey visual menu, express root actions (<space>, ,, /, :, x, z) & 12 interactive suites (b, c, d, e, g, i, m, s, t, v, y, ;)
     ▼
 [Layer 4: Late Runtime Overrides (&rtp: after/lsp/)]
        • Loads after/lsp/<server>.lua after lspconfig initializes
