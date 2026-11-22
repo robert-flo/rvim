@@ -37,18 +37,18 @@ local setup = {
 	win = {
 		no_overlap = true,
 		border = "rounded",
-		width = 0.9,
+		width = 0.5,
 		height = { min = 5, max = 25 },
 		padding = { 1, 2 },
 		title = true,
 		title_pos = "center",
 		zindex = 1000,
 		wo = {
-			winblend = 0,
+			winblend = 10,
 		},
 	},
 	layout = {
-		width = { min = 20, max = 30 },
+		width = { min = 20 },
 		spacing = 6,
 		align = "center",
 	},
