@@ -200,7 +200,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `blink.cmp`: High-performance completion engine written in Rust, configured with auto-brackets, cmdline completion, and `Rvim.icons.kinds`. Manual trigger via `<C-g>` (`show` / `show_documentation` / `hide_documentation`); the preset's `<C-space>` auto-trigger is disabled.
   - `conform.nvim`: Explicit-only formatting pipeline (no format-on-save; `:w` writes without formatting) with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, `fish_indent`, `clang-format` (C/C++), `ktlint` (Kotlin), `google-java-format` (Java), `xmlformatter` (XML / Android layouts), `npm-groovy-lint` (Gradle / Groovy), and `black` / `ruff_format` (Python).
   - `mini.pairs`: Autocloses parentheses, quotes, and markdown backticks, with Treesitter string node awareness.
-  - `gitsigns.nvim`, `mini.diff` & `gitlinker.nvim`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb` / `<Space> + gB`), blamed commit diff view (`<Space> + go`), hunk/buffer staging (`<Space> + gh` / `<Space> + gs`), and GitHub URL copying (`:GitLink` / `<Space> + yg`).
+  - `gitsigns.nvim`, `mini.diff` & `gitlinker.nvim`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb` / `<Space> + gB`), blamed commit diff view (`<Space> + go`), hunk/buffer staging (`<Space> + gh` / `<Space> + gs`), GitHub URL copying (`:GitLink` / `<Space> + yg`), and diff-mode-aware hunk jumps (`]e` / `[e` via Gitsigns on_attach).
   - `nvim-highlight-colors`: Real-time color preview (hex, rgb, hsl).
   - `todo-comments.nvim`: Highlights and searches `TODO:`, `FIXME:`, `NOTE:` tags.
 - **`lsp.lua`**:
