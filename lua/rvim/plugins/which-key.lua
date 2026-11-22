@@ -214,7 +214,7 @@ which_key.add({
 	{
 		"<leader>gb",
 		function()
-			require("gitsigns").blame_line()
+			require("gitsigns").blame_line({ full = true })
 		end,
 		desc = "Blame",
 	},
@@ -233,14 +233,14 @@ which_key.add({
 		desc = "Commit Staged",
 	},
 	{ "<leader>gC", "<cmd>CoAuthor<cr>", desc = "Co-Authors" },
+	{ "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
 	{
-		"<leader>gd",
+		"<leader>gD",
 		function()
 			require("mini.diff").toggle_overlay()
 		end,
 		desc = "Toggle MiniDiff overlay",
 	},
-	{ "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Gitsigns Diff HEAD" },
 	{
 		"<leader>gf",
 		function()
@@ -256,7 +256,7 @@ which_key.add({
 		desc = "Lazygit",
 	},
 	{
-		"<leader>gh",
+		"<leader>gH",
 		function()
 			require("gitsigns").stage_hunk()
 		end,
@@ -294,7 +294,7 @@ which_key.add({
 		desc = "Git Status",
 	},
 	{
-		"<leader>go",
+		"<leader>gO",
 		function()
 			local async = require("gitsigns.async")
 			local cache = require("gitsigns.cache").cache
@@ -330,7 +330,7 @@ which_key.add({
 		desc = "Open file from blamed commit",
 	},
 	{
-		"<leader>gp",
+		"<leader>gs",
 		function()
 			Snacks.picker.git_branches()
 		end,
@@ -357,7 +357,7 @@ which_key.add({
 	{ "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk" },
 	{ "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>", desc = "Reset Buffer" },
 	{
-		"<leader>gs",
+		"<leader>gp",
 		function()
 			local gs = require("gitsigns")
 			if #(gs.get_hunks() or {}) > 0 then
@@ -386,30 +386,30 @@ which_key.add({
 	},
 
 	-- GitHub subgroup (<leader>gH)
-	{ "<leader>gH", group = "GitHub" },
+	{ "<leader>gh", group = "GitHub" },
 	{
-		"<leader>gHi",
+		"<leader>ghi",
 		function()
 			Snacks.picker.gh_issue()
 		end,
 		desc = "GitHub Issues (open)",
 	},
 	{
-		"<leader>gHI",
+		"<leader>ghI",
 		function()
 			Snacks.picker.gh_issue({ state = "all" })
 		end,
 		desc = "GitHub Issues (all)",
 	},
 	{
-		"<leader>gHp",
+		"<leader>ghp",
 		function()
 			Snacks.picker.gh_pr()
 		end,
 		desc = "GitHub Pull Requests (open)",
 	},
 	{
-		"<leader>gHP",
+		"<leader>ghP",
 		function()
 			Snacks.picker.gh_pr({ state = "all" })
 		end,
@@ -417,28 +417,28 @@ which_key.add({
 	},
 
 	-- Octohub subgroup (<leader>gO)
-	{ "<leader>gO", group = "Octohub" },
-	{ "<leader>gOo", "<cmd>Octohub repos<cr>", desc = "All Repos" },
-	{ "<leader>gOb", "<cmd>Octohub repos sort:size<cr>", desc = "Repos by Size" },
-	{ "<leader>gOc", "<cmd>Octohub repos sort:created<cr>", desc = "Repos by Created" },
-	{ "<leader>gOf", "<cmd>Octohub repos sort:forks<cr>", desc = "Repos by Forks" },
-	{ "<leader>gOi", "<cmd>Octohub repos sort:issues<cr>", desc = "Repos by Issues" },
-	{ "<leader>gOl", "<cmd>Octohub repos sort:language<cr>", desc = "Repos by Language" },
-	{ "<leader>gOs", "<cmd>Octohub repos sort:stars<cr>", desc = "Repos by Stars" },
-	{ "<leader>gOu", "<cmd>Octohub repos sort:updated<cr>", desc = "Repos by Updated" },
-	{ "<leader>gOU", "<cmd>Octohub repos sort:pushed<cr>", desc = "Repos by Pushed" },
-	{ "<leader>gOA", "<cmd>Octohub repos type:archived<cr>", desc = "Archived Repos" },
-	{ "<leader>gOF", "<cmd>Octohub repos type:forked<cr>", desc = "Forked Repos" },
-	{ "<leader>gOP", "<cmd>Octohub repos type:private<cr>", desc = "Private Repos" },
-	{ "<leader>gOS", "<cmd>Octohub repos type:starred<cr>", desc = "Starred Repos" },
-	{ "<leader>gOT", "<cmd>Octohub repos type:template<cr>", desc = "Template Repos" },
-	{ "<leader>gOL", "<cmd>Octohub repos languages<cr>", desc = "Filter by Language" },
-	{ "<leader>gOa", "<cmd>Octohub stats activity<cr>", desc = "Activity Stats" },
-	{ "<leader>gOg", "<cmd>Octohub stats contributions<cr>", desc = "Contribution Graph" },
-	{ "<leader>gOr", "<cmd>Octohub stats repo<cr>", desc = "Repo Stats" },
-	{ "<leader>gOt", "<cmd>Octohub stats<cr>", desc = "All Stats" },
-	{ "<leader>gOp", "<cmd>Octohub web profile<cr>", desc = "Open GitHub Profile" },
-	{ "<leader>gOw", "<cmd>Octohub web repo<cr>", desc = "Open Repo in Browser" },
+	{ "<leader>go", group = "Octohub" },
+	{ "<leader>goo", "<cmd>Octohub repos<cr>", desc = "All Repos" },
+	{ "<leader>gob", "<cmd>Octohub repos sort:size<cr>", desc = "Repos by Size" },
+	{ "<leader>goc", "<cmd>Octohub repos sort:created<cr>", desc = "Repos by Created" },
+	{ "<leader>gof", "<cmd>Octohub repos sort:forks<cr>", desc = "Repos by Forks" },
+	{ "<leader>goi", "<cmd>Octohub repos sort:issues<cr>", desc = "Repos by Issues" },
+	{ "<leader>gol", "<cmd>Octohub repos sort:language<cr>", desc = "Repos by Language" },
+	{ "<leader>gos", "<cmd>Octohub repos sort:stars<cr>", desc = "Repos by Stars" },
+	{ "<leader>gou", "<cmd>Octohub repos sort:updated<cr>", desc = "Repos by Updated" },
+	{ "<leader>goU", "<cmd>Octohub repos sort:pushed<cr>", desc = "Repos by Pushed" },
+	{ "<leader>goA", "<cmd>Octohub repos type:archived<cr>", desc = "Archived Repos" },
+	{ "<leader>goF", "<cmd>Octohub repos type:forked<cr>", desc = "Forked Repos" },
+	{ "<leader>goP", "<cmd>Octohub repos type:private<cr>", desc = "Private Repos" },
+	{ "<leader>goS", "<cmd>Octohub repos type:starred<cr>", desc = "Starred Repos" },
+	{ "<leader>goT", "<cmd>Octohub repos type:template<cr>", desc = "Template Repos" },
+	{ "<leader>goL", "<cmd>Octohub repos languages<cr>", desc = "Filter by Language" },
+	{ "<leader>goa", "<cmd>Octohub stats activity<cr>", desc = "Activity Stats" },
+	{ "<leader>gog", "<cmd>Octohub stats contributions<cr>", desc = "Contribution Graph" },
+	{ "<leader>gor", "<cmd>Octohub stats repo<cr>", desc = "Repo Stats" },
+	{ "<leader>got", "<cmd>Octohub stats<cr>", desc = "All Stats" },
+	{ "<leader>gop", "<cmd>Octohub web profile<cr>", desc = "Open GitHub Profile" },
+	{ "<leader>gow", "<cmd>Octohub web repo<cr>", desc = "Open Repo in Browser" },
 
 	-- Toggle subgroup (<leader>gt)
 	{ "<leader>gt", group = "Toggle" },

@@ -229,7 +229,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`, TFM `;t`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
-  - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with top-level actions (`gb`, `gB`, `go`, `gs`, `gh`, `gd`, `gD`, `gg`, `gp`, `gP` git pull with hot buffer reload, `gm`, `gS`, `gI`, etc.), GitHub issue/PR submenus (`<Space> + gH`), Octohub repository browsing (`<Space> + gO`), and Gitsigns visual toggles (`<Space> + gt`).
+  - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with top-level actions (`gb`, `gB`, `gO`, `gs`, `gH`, `gd`, `gD`, `gg`, `gp`, `gP` git pull with hot buffer reload, `gm`, `gS`, `gI`, etc.), GitHub issue/PR submenus (`<Space> + gh`), Octohub repository browsing (`<Space> + go`), and Gitsigns visual toggles (`<Space> + gt`).
   - `co-author.nvim`: Fuzzy picker integrating with `snacks.picker` to insert co-authors from repository commit history (`<Space> + gC`).
 
 ---
