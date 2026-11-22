@@ -37,6 +37,7 @@ vim.pack.add({
 	{ src = gh("2kabhishek/pickme.nvim") },
 	{ src = gh("2kabhishek/octohub.nvim") },
 	{ src = gh("2kabhishek/seeker.nvim") },
+	{ src = gh("2kabhishek/nerdy.nvim") },
 	{ src = gh("2kabhishek/homegrown.nvim") },
 	{ src = gh("MeanderingProgrammer/render-markdown.nvim") },
 	{ src = gh("rolv-apneseth/tfm.nvim") },
@@ -58,6 +59,7 @@ require("rvim.plugins.lsp")
 require("rvim.plugins.util")
 require("rvim.plugins.octohub")
 require("rvim.plugins.seeker")
+require("rvim.plugins.nerdy")
 require("rvim.plugins.homegrown")
 require("rvim.plugins.render-markdown")
 require("rvim.plugins.tfm")

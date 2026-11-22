@@ -76,6 +76,7 @@ rvim/
         ├── homegrown.lua             # Homegrown.nvim suite (live MD preview, code runner, autotiling, bracket nav, replace)
         ├── render-markdown.lua       # Render-markdown.nvim (Obsidian & GitHub callouts, tables, checkboxes, headers)
         ├── tfm.lua                   # Terminal File Manager integration with elio (/usr/bin/elio)
+        ├── nerdy.lua                 # Nerdy.nvim: Nerd Font icon browser over snacks.picker
         ├── bookmarks.lua             # Bookmarks.nvim: SQLite persistent bookmarks + minimal Telescope bridge
         ├── keymaps.lua               # Plugin-dependent keymaps (Snacks pickers, LSP navigation, Git, TFM)
         └── which-key.lua             # Keymap visual popup guide, express root actions (<space>, ,, /, :, w, x, z) & 17 unified suites (b, c, d, e, g, i, l, m, p, Q, r, s, t, v, y, U, ;)
@@ -213,6 +214,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`octohub.lua`**:
   - `octohub.nvim`: Manages and explores GitHub repositories directly inside Neovim, caching repositories, stats, and contribution graphs.
   - `pickme.nvim`: Bridges picker requests directly to `snacks.picker` for unified fuzzy search and selection.
+  - `nerdy.nvim`: Nerd Font icon browser (`:Nerdy list` / `:Nerdy recents`) rendered through the auto-detected `snacks.picker` provider; keeps up to 80 recently used icons.
   - `utils.nvim`: Provides asynchronous shell execution, caching, and notification utilities.
 - **`seeker.lua`**:
   - `seeker.nvim`: Bidirectional search bridge between file lists and ripgrep queries in `snacks.picker`. Pressing `<Ctrl> + e` switches between matched files and a ripgrep search restricted to those exact files.
