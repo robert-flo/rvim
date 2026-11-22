@@ -108,6 +108,8 @@ which_key.add({
 	{ "<leader>id", ":put =strftime('## %a, %d %b, %Y, %r')<cr>", desc = "Date" },
 	{ "<leader>if", ":put =expand('%:t')<cr>", desc = "File Name" },
 	{ "<leader>ii", ":PickMe icons<cr>", desc = "Icons" },
+	{ "<leader>in", ":Nerdy list<cr>", desc = "Browse nerd icons" },
+	{ "<leader>iN", ":Nerdy recents<cr>", desc = "Browse recent nerd icons" },
 	{ "<leader>ip", ":put %<cr>", desc = "Relative Path" },
 	{ "<leader>iP", ":put %:p<cr>", desc = "Absolute Path" },
 	{ "<leader>ir", ":PickMe registers<cr>", desc = "Registers" },

@@ -688,7 +688,7 @@ Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the 
 
 ####  Insert Suite (`<Space> + i`)
 
-Utility insertions ported from nvim2k's `i` group plus the PickMe pickers (which stay off their default keybindings in rvim, so the suite lives entirely in `which-key.lua`).
+Utility insertions ported from nvim2k's `i` group plus the PickMe pickers and the Nerdy icon browser (which stay off their default keybindings in rvim, so the suite lives entirely in `which-key.lua`).
 
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
@@ -698,6 +698,8 @@ Utility insertions ported from nvim2k's `i` group plus the PickMe pickers (which
 | **`<Space> + iP`** | — | **Absolute Path** | Inserts the full path (`%:p`) below the cursor |
 | **`<Space> + it`** | — | **Time** | Inserts `## <hh:mm:ss AM/PM>` below the cursor |
 | **`<Space> + ii`** | — | **Icons** | Browse Nerd Font icons and yank the picked glyph (`PickMe`) |
+| **`<Space> + in`** | — | **Browse Nerd Icons** | Browse every Nerd Font glyph by name (`nerdy.nvim`) |
+| **`<Space> + iN`** | — | **Recent Nerd Icons** | Browse the recently used icons (`nerdy.nvim`) |
 | **`<Space> + ir`** | — | **Registers** | Browse and paste from registers (`PickMe`) |
 | **`<Space> + is`** | — | **Spell Suggestions** | Spelling suggestions for the word under the cursor (`PickMe`, needs `spell`) |
 | **`<Space> + iv`** | — | **Clipboard** | Pick from Wayland clipboard history (`PickMe`, needs `cliphist`) |
