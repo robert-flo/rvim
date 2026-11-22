@@ -44,7 +44,7 @@ local setup = {
 		title_pos = "center",
 		zindex = 1000,
 		wo = {
-			winblend = 10,
+			winblend = 0,
 		},
 	},
 	layout = {
