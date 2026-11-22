@@ -119,13 +119,14 @@ require("vim._core.ui2").enable({
 if vim.g.neovide then
 	-- Modo VFX: uno al azar en cada arranque
 	-- "railgun"   -> estela de fuego/plasma (la más agresiva y vistosa)
-	-- "torpedo"   -> cohete rápido
 	-- "pixiedust" -> chispas mágicas constantes al escribir
 	-- "sonicboom" -> onda de choque expansiva al saltar de línea
+	-- Opciones sin activar:
+	-- "torpedo"   -> cohete rápido
 	-- "ripple"    -> onda en el agua
 	-- "wireframe" -> rejilla alámbrica
 	math.randomseed(vim.uv.hrtime() % 2147483647)
-	local vfx_modes = { "railgun", "torpedo", "pixiedust", "sonicboom", "ripple", "wireframe" }
+	local vfx_modes = { "railgun", "pixiedust", "sonicboom" }
 	vim.g.neovide_cursor_vfx_mode = vfx_modes[math.random(#vfx_modes)]
 
 	-- Parámetros exagerados para máximo impacto visual
