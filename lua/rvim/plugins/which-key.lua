@@ -1041,6 +1041,44 @@ which_key.add({
 	},
 
 
+	-- Tareas Suite (<leader>T)
+	{ "<leader>T", group = " Tareas" },
+	{
+		"<leader>Tn",
+		function()
+			require("rvim.utils.tareas").new()
+		end,
+		desc = "New TAREA",
+	},
+	{
+		"<leader>Tt",
+		function()
+			require("rvim.utils.tareas").list("all")
+		end,
+		desc = "Tareas: All",
+	},
+	{
+		"<leader>To",
+		function()
+			require("rvim.utils.tareas").list("open")
+		end,
+		desc = "Tareas: Open (idea/plan)",
+	},
+	{
+		"<leader>Tc",
+		function()
+			require("rvim.utils.tareas").list("closed")
+		end,
+		desc = "Tareas: Closed (done/no)",
+	},
+	{
+		"<leader>Te",
+		function()
+			require("rvim.utils.tareas").cycle()
+		end,
+		desc = "TAREA: Cycle Status",
+	},
+
 	-- Quit (<leader>q)
 	{ "<leader>q", "<cmd>qa!<cr>", desc = "Force Quit (Without Saving)" },
 

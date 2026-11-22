@@ -61,6 +61,7 @@ rvim/
     │   ├── lazygit.lua               # RPC-aware Lazygit terminal wrapper preserving origin pane
     │   ├── lualine.lua               # Reactive statusline components (pretty_path, root_dir, macro)
     │   └── tabline.lua               # Headless tabline renderer with powerline arrow glyphs
+    │   ├── tareas.lua                # TAREA-NNN task notes per repo: status cycle (idea/plan/hecha/no) and Snacks pickers (all/open/closed)
     │
     └── plugins/                      # 📦 LAYER 3: PLUGINS ECOSYSTEM
         ├── init.lua                  # vim.pack.add declaration and submodule orchestrator
@@ -170,6 +171,7 @@ Reusable service layer decoupled from plugins:
   - Float polish: border title with the resolved directory (`title_pos = "center"`) and `laststatus = 0` while elio is on screen, restored on `TermClose`/`BufWipeout`.
   - Last-directory memory: persisted in `stdpath("state")/rvim_elio_dir`; `last()` reopens it, stale or deleted paths are ignored.
   - `vaults()`: opens elio directly at the vaults root (`/z/vaults`), the daily companion of the vaults suite.
+- **`tareas.lua`**: TAREA-NNN task notes under a central root with one subfolder per repository; first line `Estado: idea|plan|hecha|no` cycled from the buffer, and three Snacks pickers (all/open/closed) listing `repo · TAREA-NNN · status · title`.
 - **`lazygit.lua`**:
   - Preserves `origin_win` before opening LazyGit in a floating terminal.
   - Implements an IPC mechanism using Neovim's active socket (`nvim --server "$NVIM"`). When a file is selected inside LazyGit (`e`), it signals Neovim to refocus `origin_win` and open the file in the existing pane.

@@ -43,6 +43,7 @@ rvim
 | ✅ **YES** | **`<Space> + q`** | **Force Quit** all buffers without saving (`:qa!`) |
 | ✅ **YES** | **`<Space> + ;x`** / **`ZR`** | **Reload / Restart** Neovim restoring session (`:restart`) |
 | ✅ **YES** | **`<Space> + ;X`** | **Force Restart** Neovim discarding unsaved buffers (`:restart +qall!`) |
+| ✅ **YES** | **`<Space> + T`** | **Tareas** suite: new TAREA per repo, pickers all/open/closed, cycle status (`utils.tareas`) |
 | ❌ **NO** | **`;f`** | **Repo Files & Dirs** anchored to repo root (`editor.pick_repo_files_and_dirs`) |
 | ❌ **NO** | **`;M`** | **Repo Markdown Files** (`editor.pick_markdown_files`) |
 | ❌ **NO** | **`;z`** | **Drive /z/** files & directories (`editor.pick_z_drive`) |
@@ -166,6 +167,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + ,`** | `, Buffers` | **Open Buffers** | Ergonomic right-hand buffer picker (`Snacks.picker.buffers`) |
 | **`<Space> + /`** | `/ Search History` | **Search History** | Interactive fuzzy search of past search patterns (`Snacks.picker.search_history`) |
 | **`<Space> + :`** | `: Command History` | **Command History** | Interactive fuzzy search of recent `:` commands (`Snacks.picker.command_history`) |
+| **`<Space> + T`** | `T Tareas` | **Tareas** | Central TAREA-NNN task notes per repo (`utils.tareas`): `Tn` new, `Tt` all, `To` open, `Tc` closed, `Te` cycle status |
 | **`<Space> + w`** | `w Format & Save` | **Format & Save** | Format active buffer with Conform and write it (`conform.format()` + `:w<CR>`) |
 | **`<Space> + x`** | `x  Format, Save & Quit` | **Format, Save & Quit** | Format active buffer, write all modified buffers and exit Neovim (`:xa<CR>`) |
 | **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
