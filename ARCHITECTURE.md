@@ -227,11 +227,12 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - `tfm.nvim`: Integrates the high-speed terminal file manager `/usr/bin/elio` via `--chooser-file`. Automatically configures `:Tfm`, `:TfmSplit`, `:TfmVsplit`, `:TfmTabedit` commands, interactive in-buffer split overrides (`<C-v>`, `<C-x>`, `<C-t>`), and full-width 98% height floating modal matching the editor design language.
 - **`bookmarks.lua`**: Persistent line bookmarks via `heilgar/bookmarks.nvim` with SQLite storage (`stdpath("data")/rvim_bookmarks.db`, `default_mappings = false`), project-root anchoring, runtime branch-scope toggle (`BookmarksToggleBranchScope`), named bookmark lists, and a minimal dedicated Telescope setup (`load_extension("bookmarks")`) loaded lazily on first picker use. Dependencies added alongside: `sqlite.lua`, `plenary.nvim`, `telescope.nvim`.
 
-- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + f`, TFM `;t`).
+- **`keymaps.lua`**: Binds all plugin-dependent keys (Snacks file/grep pickers `;f`/`;r`, document symbols `;s`, recent files `;o`, buffers `\\`, LSP navigation `gd`/`gr`/`K`, CodeLens, formatting `<Space> + F`, TFM `;t`).
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
   - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with top-level actions (`gb`, `gB`, `gO`, `gs`, `gH`, `gd`, `gD`, `gg`, `gp`, `gP` git pull with hot buffer reload, `gm`, `gS`, `gI`, etc.), GitHub issue/PR submenus (`<Space> + gh`), Octohub repository browsing (`<Space> + go`), and Gitsigns visual toggles (`<Space> + gt`).
-  - Complete Explorer & Files Suite (`<Space> + e`): Oil floating explorer (`ee`), elio/TFM routes (`et`/`el`, `es`, `ev`, `eT`, `e.`, and `eR` opening elio at the repos root `/z-home-repos`), alternate buffer jump (`ea` via `:b#`), the Edit Configs submenu (`ec`: fish, git, Ghostty, niri, herdr, Neovim init, rvim plugin list and keymaps) with three pickme file pickers (`ecc` Neovim config dir, `eccP` `stdpath("data")/site/pack`, `eccL` `stdpath("state")`), README (`em`), repo Markdown search (`eM`), `/z/` and `$HOME` pickers (`ez`, `eh`), Ranger (`er`), `package.json` (`ep`), and `:enew` (`en`).
+  - Complete Explorer & Files Suite (`<Space> + e`)  - Pickers Suite (`<Space> + ;`): absorbs nvim2k's f-suite gaps as direct Snacks.picker calls: `;d` Project Dirs (`projects`), `;L` Location List (`loclist`), `;O` Grep Open Buffers (`grep_buffers`), `;P` All Pickers (`pickers`), `;q` Quickfix List (`qflist`), and `;Z` Zoxide (`zoxide`; requires the zoxide binary on PATH). nvim2k's `fx` Close except current is not ported because rvim already ships the identical command (`%bd|e#|bd#`) as `<Space> + bo` (Close Other Buffers). Format Code moved from `<Space> + f` to `<Space> + F` (the `<Space> + cf` duplicate stays), freeing the f root; nvim2k's f1-f9 `:LualineBuffersJump` buffer jumps are not integrated since rvim's lualine/tabline do not include the buffers component.
+: Oil floating explorer (`ee`), elio/TFM routes (`et`/`el`, `es`, `ev`, `eT`, `e.`, and `eR` opening elio at the repos root `/z-home-repos`), alternate buffer jump (`ea` via `:b#`), the Edit Configs submenu (`ec`: fish, git, Ghostty, niri, herdr, Neovim init, rvim plugin list and keymaps) with three pickme file pickers (`ecc` Neovim config dir, `eccP` `stdpath("data")/site/pack`, `eccL` `stdpath("state")`), README (`em`), repo Markdown search (`eM`), `/z/` and `$HOME` pickers (`ez`, `eh`), Ranger (`er`), `package.json` (`ep`), and `:enew` (`en`).
   - `co-author.nvim`: Fuzzy picker integrating with `snacks.picker` to insert co-authors from repository commit history (`<Space> + gC`).
 
 ---
@@ -257,7 +258,7 @@ Neovim automatically evaluates the `after/` directory at the end of its startup 
    - `<Space> + v*`: Vaults suite over the Obsidian vaults in `/z/vaults/` (vault pickers, daybook daily notes with date offsets, todo navigation and marking, note commit)
    - `<Space> + zr` (and `ZR`): Reload / restart Neovim session (`:restart<CR>`)
    - `<Space> + zR`: Force restart Neovim discarding unsaved buffers (`:restart +qall!<CR>`)
-   - `<Space> + f`: Format code
+   - `<Space> + F`: Format code
    - `<Space> + ca`: Code actions
    - `<Space> + cr`: Rename symbol
    - `<Space> + p`: Safe paste from register `"0`

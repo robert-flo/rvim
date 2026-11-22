@@ -166,7 +166,7 @@ which_key.add({
 		desc = "Format & Save",
 	},
 	{
-		"<leader>f",
+		"<leader>F",
 		function()
 			require("conform").format()
 		end,
@@ -712,6 +712,48 @@ which_key.add({
 			Snacks.picker.undo()
 		end,
 		desc = "Undo History",
+	},
+	{
+		"<leader>;d",
+		function()
+			Snacks.picker.projects()
+		end,
+		desc = "Project Dirs",
+	},
+	{
+		"<leader>;L",
+		function()
+			Snacks.picker.loclist()
+		end,
+		desc = "Location List",
+	},
+	{
+		"<leader>;O",
+		function()
+			Snacks.picker.grep_buffers()
+		end,
+		desc = "Grep Open Buffers",
+	},
+	{
+		"<leader>;P",
+		function()
+			Snacks.picker.pickers()
+		end,
+		desc = "All Pickers",
+	},
+	{
+		"<leader>;q",
+		function()
+			Snacks.picker.qflist()
+		end,
+		desc = "Quickfix List",
+	},
+	{
+		"<leader>;Z",
+		function()
+			Snacks.picker.zoxide()
+		end,
+		desc = "Zoxide",
 	},
 	{
 		"<leader>;?",
