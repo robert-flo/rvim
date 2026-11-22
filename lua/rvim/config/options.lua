@@ -117,9 +117,34 @@ require("vim._core.ui2").enable({
 
 -- Neovide cursor effects: a random VFX mode on every startup
 if vim.g.neovide then
+	-- Modo VFX: uno al azar en cada arranque
+	-- "railgun"   -> estela de fuego/plasma (la más agresiva y vistosa)
+	-- "torpedo"   -> cohete rápido
+	-- "pixiedust" -> chispas mágicas constantes al escribir
+	-- "sonicboom" -> onda de choque expansiva al saltar de línea
+	-- "ripple"    -> onda en el agua
+	-- "wireframe" -> rejilla alámbrica
 	math.randomseed(vim.uv.hrtime() % 2147483647)
 	local vfx_modes = { "railgun", "torpedo", "pixiedust", "sonicboom", "ripple", "wireframe" }
 	vim.g.neovide_cursor_vfx_mode = vfx_modes[math.random(#vfx_modes)]
-	vim.g.neovide_cursor_vfx_particle_density = 10.0
-	vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+
+	-- Parámetros exagerados para máximo impacto visual
+	vim.g.neovide_cursor_vfx_particle_density = 20.0 -- cantidad de partículas (defecto: 7.0)
+	vim.g.neovide_cursor_vfx_particle_lifetime = 1.5 -- duración en segundos (defecto: 0.5)
+	vim.g.neovide_cursor_vfx_particle_speed = 15.0 -- velocidad de dispersión (defecto: 10.0)
+	vim.g.neovide_cursor_vfx_particle_phase = 1.5 -- turbulencia tipo llama (solo railgun)
+	vim.g.neovide_cursor_vfx_particle_curl = 1.0 -- remolino de partículas (solo railgun)
+
+	-- Estela elástica pronunciada
+	vim.g.neovide_cursor_animation_length = 0.13
+	vim.g.neovide_cursor_trail_size = 0.8
+
+	-- Transparencia y ventanas flotantes
+	vim.g.neovide_opacity = 0.88 -- ligera transparencia en toda la ventana
+	vim.g.neovide_floating_blur_amount_x = 4.0 -- desenfoque horizontal en popups (Telescope, etc.)
+	vim.g.neovide_floating_blur_amount_y = 4.0 -- desenfoque vertical en popups
+	vim.g.neovide_floating_shadow = true -- sombra 3D bajo las ventanas flotantes
+
+	-- Desplazamiento (scroll) fluido
+	vim.g.neovide_scroll_animation_length = 0.3
 end
