@@ -134,7 +134,7 @@ Provides a zero-plugin vanilla editing environment:
   - Persistent undo: `undofile = true`, storing history across reboots in `~/.cache/nvim/undodir`.
   - Native Floating UI (`vim._core.ui2`): Neovim 0.12+ experimental UI capturing command line, messages, and pagers into floating dialogs.
   - Viewports: `scrolloff = 10`, `sidescrolloff = 8`, `cursorline = true`, `termguicolors = true`, clean end-of-buffer (`eob = " "`).
-  - Neovide: when running inside Neovide, a random cursor VFX mode per startup (railgun, torpedo, pixiedust, sonicboom, ripple, wireframe), particle density 10.0 and lifetime 1.2.
+  - Neovide: when running inside Neovide, a random cursor VFX mode per startup (railgun, torpedo, pixiedust, sonicboom, ripple, wireframe) with exaggerated particle params (density 20.0, lifetime 1.5, speed 15.0, phase 1.5 and curl 1.0 for railgun), pronounced cursor trail (animation 0.13, trail 0.8), window opacity 0.88 with blurred, shadowed floating windows, and smooth scroll (0.3).
 - **`keymaps.lua`**:
   - **Register Isolation**: Remaps destructive deletions (`d`, `x`, `c`) to the black hole register (`"_`), preventing clipboard pollution.
   - **Prioritized Pasting**: `<Space> + p` pastes from register `"0` (the last deliberate yank).
