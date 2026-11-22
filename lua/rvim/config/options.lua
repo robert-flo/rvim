@@ -114,3 +114,12 @@ require("vim._core.ui2").enable({
 		pager = { height = 0.5 },
 	},
 })
+
+-- Neovide cursor effects: a random VFX mode on every startup
+if vim.g.neovide then
+	math.randomseed(vim.uv.hrtime() % 2147483647)
+	local vfx_modes = { "railgun", "torpedo", "pixiedust", "sonicboom", "ripple", "wireframe" }
+	vim.g.neovide_cursor_vfx_mode = vfx_modes[math.random(#vfx_modes)]
+	vim.g.neovide_cursor_vfx_particle_density = 10.0
+	vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+end
