@@ -236,7 +236,7 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ca`** | Normal / Visual | **Code Actions** (Quick fixes, refactors) |
 | ✅ **YES** | **`<Space> + cf`** *(or `<Space> + f`)* | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
-| — | **`:ToggleFormatter`** | Command | Toggle automatic code formatting on save for active buffer |
+| — | **`:ToggleFormatter`** | Command | Toggle `disable_autoformat` for active buffer (no-op since format-on-save was removed) |
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
 | ✅ **YES** | **`<Space> + cm`** | Normal | **Markdown Live Preview** in web browser without external server (`:MDPreview`) |
@@ -528,7 +528,7 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + zf`** | — | **Force Write (sudo)** | Write the file with elevated permissions (`:w !sudo tee % >/dev/null`) |
 | **`<Space> + zj`** | **`]s`** | **Next Misspell** | Jump to the next misspelled word (`]s`) |
 | **`<Space> + zk`** | **`[s`** | **Previous Misspell** | Jump to the previous misspelled word (`[s`) |
-| **`<Space> + zn`** | — | **Write Without Formatting** | Write the buffer with the formatter skipped (`disable_autoformat`) |
+| **`<Space> + zn`** | — | **Write Without Formatting** | Write the buffer with the formatter skipped (`disable_autoformat`); same as `:w` since format-on-save is off |
 | **`<Space> + zw`** | — | **Zen** | Toggle zen (distraction-free) mode |
 | **`<Space> + zW`** | — | **Zoom** | Toggle zoom of the current window (`Snacks.zen.zoom`) |
 

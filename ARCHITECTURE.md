@@ -161,7 +161,7 @@ Reusable service layer decoupled from plugins:
   - `open_package_json()`: Opens project `package.json` in a centered 80% width and height floating modal, with buffer-local `<Esc>` / `q` close handlers.
   - `copy_as_codeblock()`: Formats visual selections into GitHub-ready Markdown blocks with language metadata and line numbers (` ```tsx filename="src/App.tsx" line=42 `).
   - `delete_hidden_buffers()`: Iterates `vim.api.nvim_list_bufs()`, checks visibility against `vim.api.nvim_list_wins()`, and safely closes inactive unedited buffers.
-  - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat`.
+  - `toggle_formatter()`: Toggles buffer-local variable `vim.b[bufnr].disable_autoformat` (vestigial since format-on-save was removed in 2026-11; kept for `:ToggleFormatter` compatibility).
   - Path permalinks: `yank_relative_path_with_line()` and `yank_absolute_path_with_line()` format paths with standard `#L{line}` suffixes; both accept optional `start_line`/`end_line` to emit ranges (`#L12-L19`), and `copy_relative_path_with_line()` / `copy_absolute_path_with_line()` do the same for `:line` paths (`path:12-19`).
   - Git clipboard helpers: `copy_branch_name()`, `copy_commit_hash()` (short `HEAD`), and `copy_word_under_cursor()` copy to the system clipboard.
   - `pick_tabs()`: Snacks picker listing every tabpage with its listed buffers, marked current tab, confirming jumps to the selected tab (Snacks core has no tabs source).
@@ -195,7 +195,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
   - Binds `PackChanged` event to run `TSUpdate`.
 - **`editor.lua`**:
   - `blink.cmp`: High-performance completion engine written in Rust, configured with auto-brackets, cmdline completion, and `Rvim.icons.kinds`.
-  - `conform.nvim`: Format-on-save pipeline with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, `fish_indent`, `clang-format` (C/C++), `ktlint` (Kotlin), `google-java-format` (Java), `xmlformatter` (XML / Android layouts), `npm-groovy-lint` (Gradle / Groovy), and `black` / `ruff_format` (Python).
+  - `conform.nvim`: Explicit-only formatting pipeline (no format-on-save; `:w` writes without formatting) with `oxfmt` (falls back to `prettierd` and `prettier`), `stylua`, `shfmt`, `fish_indent`, `clang-format` (C/C++), `ktlint` (Kotlin), `google-java-format` (Java), `xmlformatter` (XML / Android layouts), `npm-groovy-lint` (Gradle / Groovy), and `black` / `ruff_format` (Python).
   - `mini.pairs`: Autocloses parentheses, quotes, and markdown backticks, with Treesitter string node awareness.
   - `gitsigns.nvim`, `mini.diff` & `gitlinker.nvim`: Git hunk indicators in the signcolumn, inline diff overlays (`<Space> + gd`), line/buffer blame (`<Space> + gb` / `<Space> + gB`), blamed commit diff view (`<Space> + go`), hunk/buffer staging (`<Space> + gh` / `<Space> + gs`), and GitHub URL copying (`:GitLink` / `<Space> + yg`).
   - `nvim-highlight-colors`: Real-time color preview (hex, rgb, hsl).
