@@ -185,6 +185,20 @@ which_key.add({
 		end,
 		desc = "Help Tags",
 	},
+	{
+		"<leader>.",
+		function()
+			Snacks.scratch()
+		end,
+		desc = "Toggle Scratch",
+	},
+	{
+		"<leader>S",
+		function()
+			Snacks.scratch.select()
+		end,
+		desc = "Select Scratch",
+	},
 
 	-- Git Suite (<leader>g) - Normal Mode
 	{ "<leader>g", group = "󰊢 Git" },
