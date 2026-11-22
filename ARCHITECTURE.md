@@ -65,7 +65,7 @@ rvim/
     │
     └── plugins/                      # 📦 LAYER 3: PLUGINS ECOSYSTEM
         ├── init.lua                  # vim.pack.add declaration and submodule orchestrator
-        ├── ui.lua                    # Solarized Osaka, mini.icons, snacks (98% dashboard, picker), incline, codediff
+        ├── ui.lua                    # Solarized Osaka, mini.icons, snacks (dashboard, picker, dim, indent, notifier, scope, zen, scratch, terminal), incline, codediff
         ├── treesitter.lua            # 40+ AST parsers, MDX support, syntax highlighter autocommands
         ├── editor.lua                # Blink.cmp, Conform formatting, mini.pairs, Gitsigns, mini.diff
         ├── lsp.lua                   # Mason tool installer, Blink LSP capability bridge, lsp.enable
@@ -186,7 +186,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`ui.lua`**:
   - `solarized-osaka.nvim`: Vivid, transparent color scheme.
   - `mini.icons`: Lightweight icons library with `mock_nvim_web_devicons()`.
-  - `snacks.nvim`: Notifier, statuscolumn, smooth indent guides, word highlight, and declarative multi-pane startup dashboard (RVIM ANSI shadow banner, dynamic time greeting, cursor hiding/virgulillas suppression, Solarized Osaka theme synchronization, fast navigation/maintenance keys, terminal color scripts, wttr.in weather telemetry, GitHub CLI notifications, issues, PRs, and live git status).
+  - `snacks.nvim`: Notifier (compact style: 2s timeout, per-level icons, level/age sort), statuscolumn, rainbow indent guides (`SnacksIndent1..8` + `▍`), Treesitter-scope dim (5-20 lines, siblings), word highlight, scope textobjects and jumps (`ii`/`ai`, `[a`/`]a`), zen mode (hides statusline/tabline; zoom without backdrop), scratch buffers (120×40 float, `<CR>` executes Lua via `Snacks.debug.run` or a filetype runner), terminal module (floating, rounded border), prompt-in-title input and picker with per-source layouts (horizontal files/buffers/git with 60% preview, compact palette for commands/notifications/history, `ivy_split` help/man), and declarative multi-pane startup dashboard (RVIM ANSI shadow banner, dynamic time greeting, cursor hiding/virgulillas suppression, Solarized Osaka theme synchronization, fast navigation/maintenance keys, terminal color scripts, wttr.in weather telemetry, GitHub CLI notifications, issues, PRs, and live git status).
   - `incline.nvim`: Subtle floating pill in the top-right corner of each window displaying filename and modified status.
   - `codediff.nvim`: Two-way interactive diff comparison viewer.
   - `lualine.nvim`: Statusline configured with mode, branch, root directory, pretty path, macro status, diagnostics, and git hunks.

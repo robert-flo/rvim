@@ -177,6 +177,8 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
 | **`<Space> + u`** | `u Undo History` | **Undo Tree** | Visual interactive undo tree history (`Snacks.picker.undo`) |
 | **`<Space> + ?`** | `? Help Tags` | **Help Docs** | Search Neovim documentation tags (`Snacks.picker.help`) |
+| **`<Space> + .`** | `. Toggle Scratch` | **Toggle Scratch** | Toggle a 120×40 floating scratch buffer; `<CR>` executes it as Lua (`Snacks.debug.run`) or with its filetype runner (python/node/bash) |
+| **`<Space> + S`** | `S Select Scratch` | **Select Scratch** | Pick among saved scratch buffers (`Snacks.scratch.select`) |
 
 ---
 
@@ -413,11 +415,27 @@ Ported from nvim2k's `plugin/after/highlights.lua` and re-applied on **every** c
 
 ---
 
+### ✨ 5.2 Snacks UX Upgrades (dim, indent, notifier, prompt, layouts)
+
+| Feature | Behavior |
+| :--- | :--- |
+| **`Snacks.dim`** | Dims code outside the current Treesitter scope (5-20 lines, siblings included). Toggle with `UB` |
+| **`Snacks.indent`** | Rainbow indent guides: 8 colors (`SnacksIndent1..8`) with the `▍` separator character |
+| **`Snacks.notifier`** | Compact style: 2s timeout, width 40/0.4, sorted by level then age, per-level icons, `HH:MM` timestamps |
+| **Prompt in title** | `Snacks.input` and `Snacks.picker` render the prompt as the window title with a left icon and auto-expand to content |
+| **Per-source layouts** | `files/buffers/git_files/git_status/recent/smart`: horizontal with 60% preview; `zoxide` 70%, `projects` 80%; `commands/command_history/notifications/search_history/icons`: compact palette; `help/man`: `ivy_split`; `git_branches`: vertical; `undo`: ivy |
+| **`Snacks.scope`** | Textobjects `ii` (inner Treesitter scope) / `ai` (full scope) and jumps `[a` / `]a` to the top/bottom scope edge |
+| **`Snacks.zen`** | Zen mode (`UZ` / `zw`) hides statusline & tabline and dims with the dim toggle; zoom (`zW` / `sZ`) without backdrop and full width |
+| **`Snacks.terminal`** | Floating terminal module enabled with rounded border (90% float style); dedicated keymap suite pending placement |
+| **`Snacks.util.blend` guard** | Blend wrapper + dynamic `SnacksPickerDimmed` so dimming never crashes on transparent themes (DiffAdd nil-fg) |
+
+---
+
 ### 🔍 6. Inside Pickers (`Snacks.picker`)
 
 | Keymap | Action |
 | :--- | :--- |
-| **`<Esc>`** or **`q`** | Close picker |
+| **`<Esc>`** or **`q`** | Close picker (`<Esc>` also closes from insert mode) |
 | **`<Enter>`** | Open selected file / item |
 | **`<Ctrl> + n`** / **`<Ctrl> + p`** | Navigate down / up in results |
 | **`<Ctrl> + u`** / **`<Ctrl> + d`** | Scroll preview pane up / down |
