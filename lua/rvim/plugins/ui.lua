@@ -172,6 +172,76 @@ end
 
 local dashboard_pane_width = calc_dashboard_width()
 
+-- Wrapper de Snacks.util.blend: evita nil-fg en DiffAdd con temas transparentes
+local original_blend = Snacks.util.blend
+Snacks.util.blend = function(fg, bg, alpha)
+	local d = vim.o.background == "dark"
+	local fix = function(c, def)
+		return (type(c) == "string" and #c == 7 and c:sub(1, 1) == "#") and c or def
+	end
+	return original_blend(fix(fg, d and "#ffffff" or "#000000"), fix(bg, d and "#000000" or "#ffffff"), alpha)
+end
+
+-- SnacksPickerDimmed dinamico (mezcla Normal/Comment) para fondos transparentes
+local function set_dimmed_hl()
+	local fg = Snacks.util.blend(Snacks.util.color("Normal") or "#abb2bf", Snacks.util.color("Comment") or "#5c6370", 1)
+	vim.api.nvim_set_hl(0, "SnacksPickerDimmed", { fg = fg })
+end
+set_dimmed_hl()
+vim.api.nvim_create_autocmd("ColorScheme", {
+	pattern = "*",
+	callback = set_dimmed_hl,
+})
+
+-- Layouts por fuente para el picker
+local function files_layout(preview_width, height, width)
+	preview_width = preview_width or 0.6
+	height = height or 0.8
+	width = width or 0.9
+	return {
+		layout = {
+			box = "horizontal",
+			width = width,
+			min_width = 120,
+			height = height,
+			{
+				box = "vertical",
+				border = "rounded",
+				title = "{title} {live} {flags}",
+				{ win = "input", height = 1, border = "bottom" },
+				{ win = "list", border = "none" },
+			},
+			{ win = "preview", title = "{preview}", border = "rounded", width = preview_width },
+		},
+	}
+end
+
+local function palette_layout(height, width)
+	height = height or 0.4
+	width = width or 0.6
+	return {
+		preview = false,
+		layout = {
+			backdrop = false,
+			row = 1,
+			width = width,
+			min_width = 80,
+			height = height,
+			border = "rounded",
+			box = "vertical",
+			{
+				win = "input",
+				height = 1,
+				border = "rounded",
+				title = "{title} {live} {flags}",
+				title_pos = "center",
+			},
+			{ win = "list", border = "hpad" },
+			{ win = "preview", title = "{preview}", border = "rounded" },
+		},
+	}
+end
+
 Snacks.setup({
 	dashboard = {
 		enabled = true,
@@ -326,13 +396,198 @@ Snacks.setup({
 			{ section = "startup" },
 		},
 	},
-	indent = { enabled = true },
+	indent = {
+		enabled = true,
+		priority = 1,
+		char = icons.ui.SeparatorLight,
+		only_scope = false,
+		only_current = false,
+		hl = {
+			"SnacksIndent1",
+			"SnacksIndent2",
+			"SnacksIndent3",
+			"SnacksIndent4",
+			"SnacksIndent5",
+			"SnacksIndent6",
+			"SnacksIndent7",
+			"SnacksIndent8",
+		},
+	},
+	dim = {
+		enabled = true,
+		scope = {
+			min_size = 5,
+			max_size = 20,
+			siblings = true,
+		},
+	},
+	input = {
+		enabled = true,
+		icon = icons.ui.Edit,
+		icon_hl = "SnacksInputIcon",
+		icon_pos = "left",
+		prompt_pos = "title",
+		win = { style = "input" },
+		expand = true,
+	},
+	scope = {
+		enabled = true,
+		keys = {
+			textobject = {
+				ii = {
+					min_size = 2, -- tamano minimo del scope
+					edge = false, -- scope interior
+					cursor = false,
+					treesitter = { blocks = { enabled = false } },
+					desc = "inner scope",
+				},
+				ai = {
+					cursor = false,
+					min_size = 2,
+					treesitter = { blocks = { enabled = false } },
+					desc = "full scope",
+				},
+			},
+			jump = {
+				["[a"] = {
+					min_size = 1, -- permite scopes de una linea
+					bottom = false,
+					cursor = false,
+					edge = true,
+					treesitter = { blocks = { enabled = false } },
+					desc = "jump to top edge of scope",
+				},
+				["]a"] = {
+					min_size = 1,
+					bottom = true,
+					cursor = false,
+					edge = true,
+					treesitter = { blocks = { enabled = false } },
+					desc = "jump to bottom edge of scope",
+				},
+			},
+		},
+	},
+	scratch = {
+		enabled = true,
+		name = "Scratch",
+		ft = "markdown",
+		root = vim.fn.stdpath("data") .. "/scratch",
+		autowrite = true,
+		filekey = {
+			cwd = true,
+			branch = true,
+			count = true,
+		},
+		win = {
+			width = 120,
+			height = 40,
+			bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
+			minimal = false,
+			noautocmd = false,
+			zindex = 20,
+			wo = { winhighlight = "NormalFloat:Normal" },
+			border = "rounded",
+			title_pos = "center",
+			footer_pos = "center",
+			keys = {
+				["execute"] = {
+					"<cr>",
+					function(self)
+						local ft = vim.bo[self.buf].filetype
+						if ft == "lua" then
+							return Snacks.debug.run({ buf = self.buf })
+						end
+						local runners = { python = "python3", javascript = "node", sh = "bash", bash = "bash" }
+						local runner = runners[ft]
+						if not runner then
+							Snacks.notify.warn("Sin runner para filetype " .. ft)
+							return
+						end
+						vim.cmd("silent! write")
+						Snacks.terminal({ runner, vim.api.nvim_buf_get_name(self.buf) }, {
+							win = { position = "bottom" },
+							interactive = false,
+						})
+					end,
+					desc = "Execute buffer",
+					mode = { "n", "x" },
+				},
+			},
+		},
+		win_by_ft = {
+			lua = {
+				keys = {
+					["source"] = {
+						"<leader>cr",
+						function(self)
+							local name = "scratch." .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(self.buf), ":e")
+							Snacks.debug.run({ buf = self.buf, name = name })
+						end,
+						desc = "Source buffer",
+						mode = { "n", "x" },
+					},
+				},
+			},
+		},
+	},
+	terminal = {
+		enabled = true,
+		win = {
+			border = "rounded",
+		},
+	},
+	zen = {
+		enabled = true,
+		toggles = {
+			dim = true,
+			git_signs = false,
+			mini_diff_signs = false,
+		},
+		show = {
+			statusline = false,
+			tabline = false,
+		},
+		win = { style = "zen" },
+		zoom = {
+			toggles = {},
+			show = { statusline = true, tabline = true },
+			win = {
+				backdrop = false,
+				width = 0,
+			},
+		},
+	},
 	scroll = { enabled = false },
 	picker = {
 		enabled = true,
+		icon = icons.ui.Search,
+		icon_hl = "SnacksPickerIcon",
+		icon_pos = "left",
+		prompt_pos = "title",
+		expand = true,
 		sources = {
-			files = { hidden = true },
+			files = { hidden = true, layout = files_layout() },
 			grep = { hidden = true },
+			buffers = { layout = files_layout() },
+			commands = { layout = palette_layout() },
+			command_history = { layout = palette_layout() },
+			git_files = { layout = files_layout() },
+			git_branches = { layout = { preset = "vertical" } },
+			git_status = { layout = files_layout() },
+			help = { layout = { preset = "ivy_split" } },
+			man = { layout = { preset = "ivy_split" } },
+			icons = {
+				icon_sources = { "nerd_fonts", "emoji" },
+				layout = palette_layout(),
+			},
+			notifications = { layout = palette_layout() },
+			projects = { layout = files_layout(0.8) },
+			recent = { layout = files_layout() },
+			search_history = { layout = palette_layout() },
+			smart = { layout = files_layout() },
+			undo = { layout = { preset = "ivy" } },
+			zoxide = { layout = files_layout(0.7) },
 		},
 		layouts = {
 			default = {
@@ -361,6 +616,13 @@ Snacks.setup({
 			},
 		},
 		win = {
+			input = {
+				keys = {
+					["<Esc>"] = { "close", mode = { "n", "i" } },
+					["<C-d>"] = { "preview_scroll_down", mode = { "n", "i" } },
+					["<C-u>"] = { "preview_scroll_up", mode = { "n", "i" } },
+				},
+			},
 			preview = {
 				wo = {
 					number = false,
@@ -375,13 +637,33 @@ Snacks.setup({
 	},
 	styles = {
 		terminal = {
-			width = 0,
-			height = 0.98,
-			col = 0,
-			row = 0,
+			width = 0.9,
+			height = 0.9,
+			border = "rounded",
 		},
 	},
-	notifier = { enabled = true },
+	notifier = {
+		enabled = true,
+		timeout = 2000,
+		width = { min = 40, max = 0.4 },
+		height = { min = 1, max = 0.6 },
+		margin = { top = 0, right = 1, bottom = 0 },
+		padding = true,
+		sort = { "level", "added" },
+		level = vim.log.levels.TRACE,
+		icons = {
+			debug = icons.ui.Bug,
+			error = icons.diagnostics.Error,
+			info = icons.diagnostics.Information,
+			trace = icons.ui.Bookmark,
+			warn = icons.diagnostics.Warning,
+		},
+		style = "compact",
+		top_down = true,
+		date_format = "%R",
+		more_format = " ↓ %d lines ",
+		refresh = 50,
+	},
 	statuscolumn = { enabled = true },
 	words = { enabled = true },
 	lazygit = {
