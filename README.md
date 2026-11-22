@@ -686,6 +686,22 @@ Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the 
 
 ---
 
+####  Insert Suite (`<Space> + i`)
+
+Utility insertions ported from nvim2k's `i` group plus the PickMe pickers (which stay off their default keybindings in rvim, so the suite lives entirely in `which-key.lua`).
+
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + id`** | — | **Date** | Inserts `## <weekday>, <d Mon, YYYY, hh:mm:ss AM/PM>` below the cursor |
+| **`<Space> + if`** | — | **File Name** | Inserts the current file's name (`%:t`) below the cursor |
+| **`<Space> + ip`** | — | **Relative Path** | Inserts the buffer path (`%`) below the cursor |
+| **`<Space> + iP`** | — | **Absolute Path** | Inserts the full path (`%:p`) below the cursor |
+| **`<Space> + it`** | — | **Time** | Inserts `## <hh:mm:ss AM/PM>` below the cursor |
+| **`<Space> + ii`** | — | **Icons** | Browse Nerd Font icons and yank the picked glyph (`PickMe`) |
+| **`<Space> + ir`** | — | **Registers** | Browse and paste from registers (`PickMe`) |
+| **`<Space> + is`** | — | **Spell Suggestions** | Spelling suggestions for the word under the cursor (`PickMe`, needs `spell`) |
+| **`<Space> + iv`** | — | **Clipboard** | Pick from Wayland clipboard history (`PickMe`, needs `cliphist`) |
+
 #### 🔖 Bookmarks Suite (`<Space> + m`)
 
 Persistent, project-aware line bookmarks backed by SQLite ([heilgar/bookmarks.nvim](https://github.com/heilgar/bookmarks.nvim)): bookmarks anchor to the project root, survive restarts, carry the line's content and timestamp, and can be isolated per Git branch at runtime. Named lists organize bookmarks per project, feature, or workflow. The plugin's pickers are Telescope-based, so rvim ships a minimal dedicated Telescope setup for this suite only, loaded lazily on first use (rvim's own pickers stay on Snacks).

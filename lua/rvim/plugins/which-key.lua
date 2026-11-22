@@ -103,6 +103,18 @@ which_key.add({
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>;", group = " Pickers" },
 
+	-- Insert Suite (<leader>i) - Normal Mode
+	{ "<leader>i", group = " Insert" },
+	{ "<leader>id", ":put =strftime('## %a, %d %b, %Y, %r')<cr>", desc = "Date" },
+	{ "<leader>if", ":put =expand('%:t')<cr>", desc = "File Name" },
+	{ "<leader>ii", ":PickMe icons<cr>", desc = "Icons" },
+	{ "<leader>ip", ":put %<cr>", desc = "Relative Path" },
+	{ "<leader>iP", ":put %:p<cr>", desc = "Absolute Path" },
+	{ "<leader>ir", ":PickMe registers<cr>", desc = "Registers" },
+	{ "<leader>is", ":PickMe spell_suggest<cr>", desc = "Spell Suggestions" },
+	{ "<leader>it", ":put =strftime('## %r')<cr>", desc = "Time" },
+	{ "<leader>iv", ":PickMe cliphist<cr>", desc = "Clipboard" },
+
 	-- Normal Mode
 	mode = { "n" },
 
