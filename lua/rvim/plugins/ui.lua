@@ -407,6 +407,59 @@ require("tiny-cmdline").setup({
 	},
 })
 
+-- Colores por modo para el statusline
+local mode_colors = {
+	n = "#51afef", -- azul
+	i = "#98be65", -- verde
+	v = "#c678dd", -- magenta
+	V = "#c678dd",
+	["\22"] = "#c678dd", -- visual block
+	c = "#ECBE7B", -- amarillo
+	R = "#FF8800", -- reemplazo
+	Rv = "#FF8800",
+	t = "#ec5f67", -- terminal
+	no = "#bbc2cf",
+	s = "#a9a1e1", -- select
+	S = "#a9a1e1",
+	["\19"] = "#a9a1e1", -- select block
+	ic = "#ECBE7B",
+	cv = "#ec5f67",
+	ce = "#ec5f67",
+	r = "#008080",
+	rm = "#008080",
+	["r?"] = "#008080",
+	["!"] = "#ec5f67",
+}
+
+local function mode_color()
+	local c = mode_colors[vim.fn.mode()]
+	if not c then
+		return nil
+	end
+	return { fg = c }
+end
+
+-- Clientes LSP activos (maximo 3, excluye typos_lsp)
+local function lsp_clients()
+	local max_lsps = 3
+	local excluded_lsps = { "typos_lsp" }
+
+	local names = {}
+	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+		if not vim.list_contains(excluded_lsps, client.name) then
+			table.insert(names, client.name)
+			if #names >= max_lsps then
+				break
+			end
+		end
+	end
+
+	if #names == 0 then
+		return "No LSP"
+	end
+	return table.concat(names, ", ")
+end
+
 require("lualine").setup({
 	options = {
 		theme = "auto",
@@ -431,7 +484,9 @@ require("lualine").setup({
 		},
 	},
 	sections = {
-		lualine_a = { "mode" },
+		lualine_a = {
+			{ "mode", color = mode_color },
+		},
 		lualine_b = { "branch" },
 
 		lualine_c = {
@@ -461,6 +516,11 @@ require("lualine").setup({
 				},
 			},
 			{
+				lsp_clients,
+				icon = icons.ui.Gear,
+				color = { gui = "bold" },
+			},
+			{
 				"diff",
 				symbols = {
 					added = icons.git.added,
@@ -480,6 +540,8 @@ require("lualine").setup({
 			},
 		},
 		lualine_y = {
+			{ "searchcount", color = { gui = "bold" } },
+			{ "selectioncount", color = { gui = "bold" } },
 			{ "progress", separator = " ", padding = { left = 1, right = 1 } },
 		},
 		lualine_z = {
