@@ -441,6 +441,19 @@ which_key.add({
 	{ "<leader>gtn", "<cmd>Gitsigns toggle_numhl<cr>", desc = "Number HL" },
 	{ "<leader>gts", "<cmd>Gitsigns toggle_signs<cr>", desc = "Signs" },
 	{ "<leader>gtw", "<cmd>Gitsigns toggle_word_diff<cr>", desc = "Word Diff" },
+	-- Terminal Suite (<leader>h) - Normal Mode
+	{ "<leader>h", group = " Terminal" },
+	{ "<leader>h`", "<cmd>Sterm<cr>", desc = "Horizontal Terminal" },
+	{ "<leader>hc", "<cmd>Sterm bundle exec rails console<cr>", desc = "Rails Console" },
+	{ "<leader>hd", "<cmd>Sterm dexe<cr>", desc = "Exe Launcher" },
+	{ "<leader>hf", "<cmd>Tterm<cr>", desc = "Full / Current Terminal" },
+	{ "<leader>hn", "<cmd>Sterm node<cr>", desc = "Node" },
+	{ "<leader>hp", "<cmd>Sterm python<cr>", desc = "Python" },
+	{ "<leader>hr", "<cmd>Sterm irb<cr>", desc = "Ruby" },
+	{ "<leader>hs", "<cmd>Sterm<cr>", desc = "Horizontal Terminal" },
+	{ "<leader>ht", "<cmd>Fterm<cr>", desc = "Floating Terminal" },
+	{ "<leader>hv", "<cmd>Vterm<cr>", desc = "Vertical Terminal" },
+
 	-- Yank Suite (<leader>y) - Normal Mode
 	{ "<leader>y", group = " Yank" },
 	{ "<leader>ya", ":%y+<cr>", desc = "Copy Whole File" },

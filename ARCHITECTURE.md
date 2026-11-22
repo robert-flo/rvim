@@ -50,7 +50,7 @@ rvim/
     │   ├── options.lua               # Global vim.opt settings, vim._core.ui2 floating cmdline
     │   ├── keymaps.lua               # 29 native keymaps with register isolation ("_, "0)
     │   ├── autocmds.lua              # Lifecycle events (UserConfig, CursorLine, TextYankPost)
-    │   ├── commands.lua              # User commands (:ToggleFormatter, :Copy* clipboard suite)
+    │   ├── commands.lua              # User commands (:ToggleFormatter, :Copy* clipboard suite, :Sterm/:Vterm/:Fterm/:Tterm terminal suite)
     │   └── workarounds.lua           # Upstream Neovim bug workarounds (Treesitter fold #40290)
     │
     ├── utils/                        # 🧰 LAYER 2: UTILITIES & SERVICES TOOLKIT
@@ -60,6 +60,7 @@ rvim/
     │   ├── elio.lua                  # elio TFM integration: contextual opens, titled float, last-directory memory
     │   ├── lazygit.lua               # RPC-aware Lazygit terminal wrapper preserving origin pane
     │   ├── lualine.lua               # Reactive statusline components (pretty_path, root_dir, macro)
+    │   ├── terminal.lua               # Snacks.terminal.toggle wrapper defining :Sterm/:Vterm/:Fterm/:Tterm
     │   └── tabline.lua               # Headless tabline renderer with powerline arrow glyphs
     │   ├── tareas.lua                # TAREA-NNN task notes per repo: status cycle (idea/plan/hecha/no) and Snacks pickers (all/open/closed)
     │
@@ -148,7 +149,7 @@ Provides a zero-plugin vanilla editing environment:
   - `TextYankPost`: High-visibility flash on copied text (`vim.highlight.on_yank()`).
   - `CursorLine`: Automatically toggles `cursorline` on only the currently focused window (`WinEnter` / `WinLeave`), eliminating visual clutter.
   - `InsertLeave`: Resets `nopaste` mode upon leaving insert mode.
-- **`commands.lua`**: Defines `:ToggleFormatter` command.
+- **`commands.lua`**: Defines user commands: `:ToggleFormatter`, the `:Copy*` clipboard suite, and registers the terminal commands (`:Sterm`, `:Vterm`, `:Fterm`, `:Tterm`) provided by `utils/terminal.lua`.
 - **`workarounds.lua`**: Intercepts `OptionSet` to delete broken Treesitter fold refresh autocmds triggering upstream bug `#40290`.
 
 ---

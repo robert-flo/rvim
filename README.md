@@ -542,6 +542,20 @@ Comprehensive window management, split controls, tabs, and buffer operations wit
 | **`<Space> + tL`** | — | **Move Tab Right** | Reorder tab one position right (`:+tabmove`) |
 | **`<Space> + tp`** | — | **Tab Picker** | Browse all tabs (with their buffers) and jump (`pick_tabs()`) |
 
+#### 💻 Terminal Suite (`<Space> + h`)
+| Keymap | Direct Shortcut | Action | Description |
+| :--- | :---: | :--- | :--- |
+| **`<Space> + h\``** | — | **Horizontal Terminal** | Toggle a horizontal terminal (`:Sterm`) |
+| **`<Space> + hc`** | — | **Rails Console** | Rails console in a horizontal terminal (`:Sterm bundle exec rails console`) |
+| **`<Space> + hd`** | — | **Exe Launcher** | Run `dexe` in a horizontal terminal (`:Sterm dexe`) |
+| **`<Space> + hf`** | — | **Full / Current Terminal** | Toggle a terminal in the current window (`:Tterm`) |
+| **`<Space> + hn`** | — | **Node** | Node REPL in a horizontal terminal (`:Sterm node`) |
+| **`<Space> + hp`** | — | **Python** | Python REPL in a horizontal terminal (`:Sterm python`) |
+| **`<Space> + hr`** | — | **Ruby** | Ruby REPL in a horizontal terminal (`:Sterm irb`) |
+| **`<Space> + hs`** | — | **Horizontal Terminal** | Same as `h\`` (`:Sterm`) |
+| **`<Space> + ht`** | — | **Floating Terminal** | Toggle a floating terminal (`:Fterm`) |
+| **`<Space> + hv`** | — | **Vertical Terminal** | Toggle a vertical terminal (`:Vterm`) |
+
 ####  Writing Suite (`<Space> + z`)
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
