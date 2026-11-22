@@ -1,3 +1,5 @@
+require("rvim.utils.terminal").setup()
+
 vim.api.nvim_create_user_command("ToggleFormatter", function()
 	require("rvim.utils.editor").toggle_formatter()
 end, { desc = "Toggle formatter for current buffer" })
