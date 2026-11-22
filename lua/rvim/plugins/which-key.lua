@@ -38,7 +38,7 @@ local setup = {
 		no_overlap = true,
 		border = "rounded",
 		width = 0.5,
-		height = { min = 5, max = 25 },
+		height = { min = 5, max = 45 },
 		padding = { 1, 2 },
 		title = true,
 		title_pos = "center",
