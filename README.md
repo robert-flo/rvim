@@ -68,7 +68,7 @@ rvim
 | ✅ **YES** | **`<Space> + ?`** | **Help Documentation** tags picker (`Snacks.picker.help`) |
 | ❌ **NO** | **`<Ctrl> + s`** | **Quick save** file from any mode (Normal, Insert, Visual) |
 | ❌ **NO** | **`<Esc>`** | **Clear search highlights** (`nohlsearch`) |
-| ✅ **YES** | **`<Space> + f`** | **Format code** with Conform (Prettier / Ktlint / Clang / Stylua) |
+| ✅ **YES** | **`<Space> + F`** | **Format code** with Conform (Prettier / Ktlint / Clang / Stylua) |
 | ❌ **NO** | **`gcc`** | Toggle line comment |
 | ❌ **NO** | **`gc`** *(Visual)* | Toggle block comment |
 | ❌ **NO** | **`ss`** | Split window horizontally (`:split`) |
@@ -131,6 +131,12 @@ Every single action in the Pickers suite shares the identical key mnemonic betwe
 | **`<Space> + ;m`** | **`;m`** | **Git Status** | List modified/staged files with live diff preview |
 | **`<Space> + ;C`** | **`;C`** | **Commands** | Fuzzy search and run Neovim & plugin commands |
 | **`<Space> + ;u`** | **`;u`** | **Undo History** | Visual interactive undo tree explorer |
+| **`<Space> + ;d`** | — | **Project Dirs** | Recent projects and directories history (Snacks `projects`) |
+| **`<Space> + ;L`** | — | **Location List** | Navigate the current location list |
+| **`<Space> + ;O`** | — | **Grep Open Buffers** | Grep limited to the currently open buffers |
+| **`<Space> + ;P`** | — | **All Pickers** | Picker of pickers: browse every Snacks source |
+| **`<Space> + ;q`** | — | **Quickfix List** | Navigate the quickfix list |
+| **`<Space> + ;Z`** | — | **Zoxide** | Jump directories via zoxide history (requires the zoxide binary) |
 | **`<Space> + ;t`** | **`;t`** | **Terminal File Manager** | Launch integrated floating Elio file manager (`:Tfm`) |
 | **`<Space> + ;T`** | **`;T`** | **Todo Comments** | Search `TODO`, `FIXME`, `HACK`, `WARN`, `NOTE` across project (`Snacks.picker.todo_comments`) |
 | **`<Space> + ;?`** | **`;?`** | **Help Tags** | Fuzzy search official Neovim documentation |
@@ -170,7 +176,7 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + T`** | `T Tareas` | **Tareas** | Central TAREA-NNN task notes per repo (`utils.tareas`): `Tn` new, `Tt` all, `To` open, `Tc` closed, `Te` cycle status |
 | **`<Space> + w`** | `w Format & Save` | **Format & Save** | Format active buffer with Conform and write it (`conform.format()` + `:w<CR>`) |
 | **`<Space> + x`** | `x  Format, Save & Quit` | **Format, Save & Quit** | Format active buffer, write all modified buffers and exit Neovim (`:xa<CR>`) |
-| **`<Space> + f`** | `f Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
+| **`<Space> + F`** | `F Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
 | **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
 | **`<Space> + py`** / **`pY`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
@@ -239,7 +245,7 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ca`** | Normal / Visual | **Code Actions** (Quick fixes, refactors) |
-| ✅ **YES** | **`<Space> + cf`** *(or `<Space> + f`)* | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
+| ✅ **YES** | **`<Space> + cf`** *(or `<Space> + F`)* | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
 | — | **`:ToggleFormatter`** | Command | Toggle `disable_autoformat` for active buffer (no-op since format-on-save was removed) |
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
