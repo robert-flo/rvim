@@ -651,17 +651,39 @@ Obsidian vault workflows without leaving Neovim. The suite scans the vault root 
 | Keymap | Direct Shortcut | Action | Description |
 | :--- | :---: | :--- | :--- |
 | **`<Space> + ee`** | **`sf`** | **File Explorer** | Open Oil floating file explorer with preview |
+| **`<Space> + ea`** | — | **Alternate File** | Jump to the alternate buffer (`:b#`) |
+| **`<Space> + ec`** | — | **Edit Configs** | Configs submenu, see below |
 | **`<Space> + et`** / **`el`** | **`;t`** | **TFM (Elio)** | Launch integrated full-width Elio terminal file manager (`:Tfm`) |
 | **`<Space> + es`** | — | **Elio Split** | Open Elio in a horizontal split (`:TfmSplit`) |
 | **`<Space> + ev`** | — | **Elio Vsplit** | Open Elio in a vertical split (`:TfmVsplit`) |
 | **`<Space> + eT`** | — | **Elio Tab** | Open Elio in a new tab (`:TfmTabedit`) |
 | **`<Space> + e.`** | — | **Elio Last Dir** | Reopen Elio in the last directory it opened in |
-| **`<Space> + em`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
+| **`<Space> + eR`** | — | **Elio /z-home-repos** | Open Elio directly in the repos root (`/z-home-repos`) |
+| **`<Space> + em`** | — | **Readme** | Open `README.md` in the current repo |
+| **`<Space> + eM`** | **`;M`** | **Repo Markdown** | Search all `.md` and `.markdown` files anchored to repo root |
 | **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
 | **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
 | **`<Space> + er`** | — | **Ranger Picker** | Open floating Ranger file manager (`:RangerPicker`) |
 | **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + en`** | — | **New File** | Open a new empty buffer (`:enew`) |
+
+#### ⚙️ Edit Configs Submenu (`<Space> + ec`)
+
+| Keymap | Action |
+| :--- | :--- |
+| **`<Space> + ecc`** | Neovim Configs: pickme file picker over your Neovim config dir (`stdpath("config")`) |
+| **`<Space> + eccL`** | Neovim Logs: pickme file picker over `stdpath("state")` |
+| **`<Space> + eccP`** | Neovim Plugins: pickme file picker over `stdpath("data")/site/pack` (vim.pack plugins) |
+| **`<Space> + ecf`** | Fish Config: `~/.config/fish/config.fish` |
+| **`<Space> + ecg`** | Git Config: `~/.config/git/config` |
+| **`<Space> + eck`** | Ghostty Config: `~/.config/ghostty/config` |
+| **`<Space> + ecN`** | Niri Config: `~/.config/niri/config.kdl` |
+| **`<Space> + ecn`** | Neovim Init: `$MYVIMRC` |
+| **`<Space> + ecp`** | Plugin List: `lua/rvim/plugins/init.lua` |
+| **`<Space> + ecr`** | Rvim Keymaps: `lua/rvim/plugins/which-key.lua` |
+| **`<Space> + ect`** | Herdr Config: `~/.config/herdr/config.toml` |
+
+---
 
 ---
 
@@ -684,7 +706,7 @@ rvim integrates [`tfm.nvim`](https://github.com/rolv-apneseth/tfm.nvim) natively
 - **`<C-t>`**: Force opening selected file in new tab
 - **`<Esc>`**: Exit Elio (`q`)
 
-Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the wrapper, so the floating window gets a border title showing the directory you opened it in, the statusline hides while elio is on screen and returns on exit, and the last directory is remembered across sessions (state file `stdpath("state")/rvim_elio_dir`). **`<Space> + e.`** reopens elio there; **`<Space> + vE`** jumps straight to the vaults root.
+Integration gems (`lua/rvim/utils/elio.lua`): every elio key routes through the wrapper, so the floating window gets a border title showing the directory you opened it in, the statusline hides while elio is on screen and returns on exit, and the last directory is remembered across sessions (state file `stdpath("state")/rvim_elio_dir`). **`<Space> + e.`** reopens elio there; **`<Space> + vE`** jumps straight to the vaults root. **`<Space> + eR`** opens elio directly in the repos root `/z-home-repos`.
 
 ---
 

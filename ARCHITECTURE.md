@@ -173,6 +173,7 @@ Reusable service layer decoupled from plugins:
   - Float polish: border title with the resolved directory (`title_pos = "center"`) and `laststatus = 0` while elio is on screen, restored on `TermClose`/`BufWipeout`.
   - Last-directory memory: persisted in `stdpath("state")/rvim_elio_dir`; `last()` reopens it, stale or deleted paths are ignored.
   - `vaults()`: opens elio directly at the vaults root (`/z/vaults`), the daily companion of the vaults suite.
+  - Repos: `<Space> + eR` opens elio directly at the repos root (`/z-home-repos`) via `open("/z-home-repos")`.
 - **`tareas.lua`**: TAREA-NNN task notes under a central root with one subfolder per repository; first line `Estado: idea|plan|hecha|no` cycled from the buffer, and three Snacks pickers (all/open/closed) listing `repo · TAREA-NNN · status · title`.
 - **`lazygit.lua`**:
   - Preserves `origin_win` before opening LazyGit in a floating terminal.
@@ -230,6 +231,7 @@ Managed natively via `vim.pack.add` using pinned hashes in `nvim-pack-lock.json`
 - **`which-key.lua`**:
   - `which-key.nvim`: Floating keymap visual guide with modern layout, centered alignment, and Nerd Font icons.
   - Complete Git Suite (`<Space> + g`): Provides the interactive Git dashboard with top-level actions (`gb`, `gB`, `gO`, `gs`, `gH`, `gd`, `gD`, `gg`, `gp`, `gP` git pull with hot buffer reload, `gm`, `gS`, `gI`, etc.), GitHub issue/PR submenus (`<Space> + gh`), Octohub repository browsing (`<Space> + go`), and Gitsigns visual toggles (`<Space> + gt`).
+  - Complete Explorer & Files Suite (`<Space> + e`): Oil floating explorer (`ee`), elio/TFM routes (`et`/`el`, `es`, `ev`, `eT`, `e.`, and `eR` opening elio at the repos root `/z-home-repos`), alternate buffer jump (`ea` via `:b#`), the Edit Configs submenu (`ec`: fish, git, Ghostty, niri, herdr, Neovim init, rvim plugin list and keymaps) with three pickme file pickers (`ecc` Neovim config dir, `eccP` `stdpath("data")/site/pack`, `eccL` `stdpath("state")`), README (`em`), repo Markdown search (`eM`), `/z/` and `$HOME` pickers (`ez`, `eh`), Ranger (`er`), `package.json` (`ep`), and `:enew` (`en`).
   - `co-author.nvim`: Fuzzy picker integrating with `snacks.picker` to insert co-authors from repository commit history (`<Space> + gC`).
 
 ---
