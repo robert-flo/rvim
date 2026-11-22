@@ -946,6 +946,31 @@ which_key.add({
 
 	-- Explorer & Files Suite (<leader>e)
 	{ "<leader>e", group = "󰉋 Explorer & Files" },
+	{ "<leader>ea", "<cmd>b#<cr>", desc = "Alternate File" },
+	{ "<leader>ec", group = "Edit Configs" },
+	{ "<leader>ecc", "<cmd>lua require('pickme').pick('files', { cwd = vim.fn.stdpath('config'), title = 'Neovim Configs' })<cr>", desc = "Neovim Configs" },
+	{ "<leader>eccL", "<cmd>lua require('pickme').pick('files', { cwd = vim.fn.stdpath('state'), title = 'Neovim Logs' })<cr>", desc = "Neovim Logs" },
+	{ "<leader>eccP", "<cmd>lua require('pickme').pick('files', { cwd = vim.fn.stdpath('data') .. '/site/pack', title = 'Neovim Plugins' })<cr>", desc = "Neovim Plugins" },
+	{ "<leader>ecf", "<cmd>edit ~/.config/fish/config.fish<cr>", desc = "Fish Config" },
+	{ "<leader>ecg", "<cmd>edit ~/.config/git/config<cr>", desc = "Git Config" },
+	{ "<leader>eck", "<cmd>edit ~/.config/ghostty/config<cr>", desc = "Ghostty Config" },
+	{ "<leader>ecN", "<cmd>edit ~/.config/niri/config.kdl<cr>", desc = "Niri Config" },
+	{ "<leader>ecn", "<cmd>edit $MYVIMRC<cr>", desc = "Neovim Init" },
+	{
+		"<leader>ecp",
+		function()
+			vim.cmd.edit(vim.fn.stdpath("config") .. "/lua/rvim/plugins/init.lua")
+		end,
+		desc = "Plugin List",
+	},
+	{
+		"<leader>ecr",
+		function()
+			vim.cmd.edit(vim.fn.stdpath("config") .. "/lua/rvim/plugins/which-key.lua")
+		end,
+		desc = "Rvim Keymaps",
+	},
+	{ "<leader>ect", "<cmd>edit ~/.config/herdr/config.toml<cr>", desc = "Herdr Config" },
 	{
 		"<leader>ee",
 		function()
@@ -961,8 +986,9 @@ which_key.add({
 		desc = "Open package.json",
 	},
 	{ "<leader>en", "<cmd>enew<cr>", desc = "New File" },
+	{ "<leader>em", "<cmd>edit README.md<cr>", desc = "Readme" },
 	{
-		"<leader>em",
+		"<leader>eM",
 		function()
 			require("rvim.utils.editor").pick_markdown_files()
 		end,
@@ -989,6 +1015,7 @@ which_key.add({
 	{ "<leader>ev", function() require("rvim.utils.elio").open(nil, "vsplit") end, desc = "Elio Vsplit" },
 	{ "<leader>eT", function() require("rvim.utils.elio").open(nil, "tabedit") end, desc = "Elio Tab" },
 	{ "<leader>e.", function() require("rvim.utils.elio").last() end, desc = "Elio Last Dir" },
+	{ "<leader>eR", function() require("rvim.utils.elio").open("/z-home-repos") end, desc = "Elio /z-home-repos" },
 
 
 	-- Bookmarks Suite (<leader>m)
