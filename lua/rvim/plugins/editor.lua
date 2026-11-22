@@ -107,6 +107,34 @@ require("gitsigns").setup({
 	watch_gitdir = { interval = 1000, follow_files = true },
 	sign_priority = 6,
 	preview_config = { border = "rounded", style = "minimal", relative = "cursor", row = 0, col = 1 },
+	on_attach = function(bufnr)
+		local gs = require("gitsigns")
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
+
+		map("n", "]e", function()
+			if vim.wo.diff then
+				return "]e"
+			end
+			vim.schedule(function()
+				gs.next_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true, desc = "Next Change" })
+
+		map("n", "[e", function()
+			if vim.wo.diff then
+				return "[e"
+			end
+			vim.schedule(function()
+				gs.prev_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true, desc = "Prev Change" })
+	end,
 })
 require("gitlinker").setup()
 

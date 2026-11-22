@@ -332,6 +332,7 @@ Pressing `<Space> + g` opens an interactive centered popup menu powered by `whic
 | ❌ **NO** | **`;g`** | Normal | Direct shortcut to launch Lazygit |
 | ❌ **NO** | **`;h`** | Normal | Direct shortcut to interactive Git hunks picker |
 | ❌ **NO** | **`]c`** / **`[c`** | Normal | Jump to next / previous git diff hunk in file |
+| ✅ **YES** | **`]e`** / **`[e`** | Normal | Jump to next / previous git hunk (`Gitsigns` `next_hunk`/`prev_hunk`, respetando diff mode) |
 
 #### 🌐 GitHub Submenu (`<Space> + gH`)
 | Keymap | Action |
