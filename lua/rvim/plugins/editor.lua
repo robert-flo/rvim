@@ -136,15 +136,6 @@ require("conform").setup({
 			require_cwd = true,
 		},
 	},
-	format_on_save = function(bufnr)
-		if vim.b[bufnr].disable_autoformat then
-			return
-		end
-		return {
-			timeout_ms = 1000,
-			lsp_fallback = true,
-		}
-	end,
 })
 
 -- Colors
