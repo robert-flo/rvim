@@ -5,6 +5,8 @@ local opts = { noremap = true, silent = true }
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<Leader>p", '"0p')
 keymap.set("v", "<Leader>p", '"0p')
+keymap.set("v", "<Leader>c", '"_c', { desc = "Change (No Yank)" })
+keymap.set("v", "<Leader>d", '"_d', { desc = "Delete (No Yank)" })
 
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
