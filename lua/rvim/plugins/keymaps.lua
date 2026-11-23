@@ -107,14 +107,6 @@ map({
 	{ "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
 	{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
 	{
-		"<leader>f",
-		function()
-			require("conform").format()
-		end,
-		desc = "Format code",
-		mode = { "n", "x" },
-	},
-	{
 		"<leader>cf",
 		function()
 			require("conform").format()
