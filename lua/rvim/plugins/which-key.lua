@@ -1433,10 +1433,6 @@ which_key.add({
 	{ "<leader>cu", ":'<,'>!uniq<cr>", desc = "Unique" },
 	{ "<leader>cx", ":'<,'>lua<cr>", desc = "Execute Lua" },
 	-- Safe Registers - Visual Mode
-	{ "<leader>c", '"_c', desc = "Change (No Yank)" },
-	{ "<leader>C", '"_C', desc = "Change to End of Line" },
-	{ "<leader>d", '"_d', desc = "Delete (No Yank)" },
-	{ "<leader>D", '"_D', desc = "Delete to End of Line" },
 	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
 })
 

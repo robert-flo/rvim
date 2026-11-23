@@ -72,7 +72,7 @@ rvim
 | ❌ **NO** | **`gc`** *(Visual)* | Toggle block comment |
 | ❌ **NO** | **`ss`** | Split window horizontally (`:split`) |
 | ❌ **NO** | **`sv`** | Split window vertically (`:vsplit`) |
-| ✅ **YES** | **`<Space> + sa`** | **AutoTile split** window according to aspect ratio (`:AutoTile`) |
+| ✅ **YES** | **`<Space> + ss`** | **AutoTile split** by aspect ratio (`:AutoTile`; nvim2k carries it at `sa`) |
 | ✅ **YES** | **`<Space> + se`** | Equalize all split window dimensions (`<C-w>=`) |
 | ✅ **YES** | **`<Space> + sx`** | Close current split window (`:close`) |
 | ❌ **NO** | **`sh`** / **`sj`** / **`sk`** / **`sl`** | Focus window Left / Down / Up / Right |
@@ -175,7 +175,6 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + T`** | `T Tareas` | **Tareas** | Central TAREA-NNN task notes per repo (`utils.tareas`): `Tn` new, `Tt` all, `To` open, `Tc` closed, `Te` cycle status |
 | **`<Space> + w`** | `w Format & Save` | **Format & Save** | Format active buffer with Conform and write it (`conform.format()` + `:w<CR>`) |
 | **`<Space> + x`** | `x  Format, Save & Quit` | **Format, Save & Quit** | Format active buffer, write all modified buffers and exit Neovim (`:xa<CR>`) |
-| **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + py`** / **`pY`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
 | **`<Space> + u`** | `u Undo History` | **Undo Tree** | Visual interactive undo tree history (`Snacks.picker.undo`) |
@@ -195,7 +194,6 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | ✅ **YES** | **`<Space> + o`** | Normal | Insert clean line below without auto-continuing comments |
 | ✅ **YES** | **`<Space> + O`** | Normal | Insert clean line above without auto-continuing comments |
 | ✅ **YES** | **`<Space> + cc`** | Visual | Copy selection formatted as Markdown code block |
-| ✅ **YES** | **`<Space> + j`** | Normal | Open project `package.json` in centered 80% floating modal |
 | ❌ **NO** | **`x`** | Normal | Delete single character into black hole register (`"_x`) |
 | ❌ **NO** | **`dw`** | Normal | Delete word backward without polluting clipboard (`vb"_d`) |
 | ❌ **NO** | **`<Ctrl> + a`** | Normal | Select entire buffer (`gg<S-v>G`) |
@@ -673,7 +671,7 @@ Obsidian vault workflows without leaving Neovim. The suite scans the vault root 
 | **`<Space> + ez`** | **`;z`** | **Drive /z/** | Search all files and directories across `/z/` with Oil integration |
 | **`<Space> + eh`** | **`;H`** | **Home ~/** | Search all files and directories across `$HOME` with Oil integration |
 | **`<Space> + er`** | — | **Ranger Picker** | Open floating Ranger file manager (`:RangerPicker`) |
-| **`<Space> + ep`** | **`<Space> + j`** | **Package.json** | Open project `package.json` in centered 80% floating modal |
+| **`<Space> + ep`** | — | **Package.json** | Open project `package.json` in centered 80% floating modal |
 | **`<Space> + en`** | — | **New File** | Open a new empty buffer (`:enew`) |
 
 #### ⚙️ Edit Configs Submenu (`<Space> + ec`)
