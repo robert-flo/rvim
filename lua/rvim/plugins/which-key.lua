@@ -165,15 +165,6 @@ which_key.add({
 		end,
 		desc = "Format & Save",
 	},
-	{
-		"<leader>F",
-		function()
-			require("conform").format()
-		end,
-		desc = "Format Code",
-	},
-	{ "<leader>C", '"_C', desc = "Change to EOL" },
-	{ "<leader>D", '"_D', desc = "Delete to EOL" },
 	{ "<leader>py", '"0p', desc = "Paste Last Yank" },
 	{ "<leader>pY", '"0P', desc = "Paste Before" },
 	{ "<leader>o", "o<Esc>^Da", desc = "Clean Line Below" },
@@ -198,13 +189,6 @@ which_key.add({
 			Snacks.scratch()
 		end,
 		desc = "Toggle Scratch",
-	},
-	{
-		"<leader>S",
-		function()
-			Snacks.scratch.select()
-		end,
-		desc = "Select Scratch",
 	},
 
 	-- Git Suite (<leader>g) - Normal Mode

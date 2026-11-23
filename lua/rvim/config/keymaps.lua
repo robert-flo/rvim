@@ -4,7 +4,6 @@ local opts = { noremap = true, silent = true }
 -- Do things without updating the registers
 keymap.set("n", "x", '"_x')
 keymap.set("n", "<Leader>p", '"0p')
-keymap.set("n", "<Leader>P", '"0P')
 keymap.set("v", "<Leader>p", '"0p')
 keymap.set("n", "<Leader>C", '"_C', { desc = "Change to End of Line" })
 keymap.set("v", "<Leader>c", '"_c', { desc = "Change (No Yank)" })

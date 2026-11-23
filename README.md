@@ -68,7 +68,6 @@ rvim
 | ✅ **YES** | **`<Space> + ?`** | **Help Documentation** tags picker (`Snacks.picker.help`) |
 | ❌ **NO** | **`<Ctrl> + s`** | **Quick save** file from any mode (Normal, Insert, Visual) |
 | ❌ **NO** | **`<Esc>`** | **Clear search highlights** (`nohlsearch`) |
-| ✅ **YES** | **`<Space> + F`** | **Format code** with Conform (Prettier / Ktlint / Clang / Stylua) |
 | ❌ **NO** | **`gcc`** | Toggle line comment |
 | ❌ **NO** | **`gc`** *(Visual)* | Toggle block comment |
 | ❌ **NO** | **`ss`** | Split window horizontally (`:split`) |
@@ -176,15 +175,12 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | **`<Space> + T`** | `T Tareas` | **Tareas** | Central TAREA-NNN task notes per repo (`utils.tareas`): `Tn` new, `Tt` all, `To` open, `Tc` closed, `Te` cycle status |
 | **`<Space> + w`** | `w Format & Save` | **Format & Save** | Format active buffer with Conform and write it (`conform.format()` + `:w<CR>`) |
 | **`<Space> + x`** | `x  Format, Save & Quit` | **Format, Save & Quit** | Format active buffer, write all modified buffers and exit Neovim (`:xa<CR>`) |
-| **`<Space> + F`** | `F Format Code` | **Format Buffer** | Format active file with Conform (`require("conform").format()`) |
 | **`<Space> + j`** | `j Open package.json` | **Package.json** | Open project `package.json` in centered 80% floating modal |
-| **`<Space> + C`** / **`D`** | `C / D Change/Delete EOL` | **Change / Delete to EOL** | Modify or delete to end of line into black hole register (`"_`) |
 | **`<Space> + py`** / **`pY`** | `p / P Paste` | **Safe Paste** | Paste from register `0`, immune to deletions |
 | **`<Space> + o`** / **`O`** | `o / O Clean Line` | **Clean Line** | Insert new line above/below without continuing comments |
 | **`<Space> + u`** | `u Undo History` | **Undo Tree** | Visual interactive undo tree history (`Snacks.picker.undo`) |
 | **`<Space> + ?`** | `? Help Tags` | **Help Docs** | Search Neovim documentation tags (`Snacks.picker.help`) |
 | **`<Space> + .`** | `. Toggle Scratch` | **Toggle Scratch** | Toggle a 120×40 floating scratch buffer; `<CR>` executes it as Lua (`Snacks.debug.run`) or with its filetype runner (python/node/bash) |
-| **`<Space> + S`** | `S Select Scratch` | **Select Scratch** | Pick among saved scratch buffers (`Snacks.scratch.select`) |
 
 ---
 
@@ -194,8 +190,6 @@ High-productivity single-stroke actions accessible directly at the root of Which
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + py`** | Normal / Visual | **Paste last yank**: uses register `0`, ignoring deletions with `d` or `x` |
 | ✅ **YES** | **`<Space> + pY`** | Normal | Paste before cursor from register `0` |
-| ✅ **YES** | **`<Space> + C`** | Normal / Visual | Change to end of line into black hole register (`"_C`) |
-| ✅ **YES** | **`<Space> + D`** | Normal / Visual | Delete to end of line into black hole register (`"_D`) |
 | ✅ **YES** | **`<Space> + c`** | Visual | Change text into black hole register (`"_c`) without overwriting clipboard |
 | ✅ **YES** | **`<Space> + d`** | Visual | Delete text into black hole register (`"_d`) |
 | ✅ **YES** | **`<Space> + o`** | Normal | Insert clean line below without auto-continuing comments |
@@ -245,7 +239,7 @@ Complete Code Intelligence suite integrated into Which-Key under `<Space> + c`:
 | Space? | Keymap | Mode | Action |
 | :---: | :--- | :---: | :--- |
 | ✅ **YES** | **`<Space> + ca`** | Normal / Visual | **Code Actions** (Quick fixes, refactors) |
-| ✅ **YES** | **`<Space> + cf`** *(or `<Space> + F`)* | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
+| ✅ **YES** | **`<Space> + cf`** | Normal / Visual | **Format Code** with Conform (Prettier / Ktlint / Clang / Stylua) |
 | — | **`:ToggleFormatter`** | Command | Toggle `disable_autoformat` for active buffer (no-op since format-on-save was removed) |
 | ✅ **YES** | **`<Space> + cr`** | Normal | **Rename symbol** across whole project (*LSP Rename*) |
 | ✅ **YES** | **`<Space> + cR`** | Normal | Rename file on disk and update imports automatically |
