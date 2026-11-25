@@ -172,6 +172,10 @@ end
 
 local dashboard_pane_width = calc_dashboard_width()
 
+-- Use colorscript when installed, otherwise the bundled dependency-free swatch
+local dashboard_colors_cmd = vim.fn.executable("colorscript") == 1 and "colorscript -e square | sed '/^$/d'"
+	or vim.fn.shellescape(vim.fn.stdpath("config") .. "/bin/rvim-dashboard-colors")
+
 -- Wrapper de Snacks.util.blend: evita nil-fg en DiffAdd con temas transparentes
 local original_blend = Snacks.util.blend
 Snacks.util.blend = function(fg, bg, alpha)
@@ -286,7 +290,7 @@ Snacks.setup({
 				return {
 					pane = 2,
 					section = "terminal",
-					cmd = "colorscript -e square | sed '/^$/d'",
+					cmd = dashboard_colors_cmd,
 					height = 3,
 					indent = color_indent,
 					padding = 1,

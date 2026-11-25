@@ -377,9 +377,10 @@ Full two-pane code comparison and commit history explorer powered by `codediff.n
 
 ### 🏠 5. Startup Dashboard (`Snacks.dashboard`)
 
-When launched with an empty buffer (`rvim`), an advanced multi-pane interactive dashboard opens with direct one-key actions, dynamic time-of-day greeting, live weather telemetry, terminal color script decorations, Solarized Osaka theme synchronization, and GitHub CLI integration:
+When launched with an empty buffer (`rvim`), an advanced multi-pane interactive dashboard opens with direct one-key actions, dynamic time-of-day greeting, live weather telemetry, an ANSI color swatch, Solarized Osaka theme synchronization, and GitHub CLI integration:
 
 - **The 98% Space Rule (`width` & `row`)**: Dynamically computes pane width (`math.floor((cols * 0.98 - gap) / 2)`) to take full advantage of wide displays (up to 98% of terminal width) and sets top row margin (`row = 2`) for maximum vertical space utilization. Automatically recalculates on `VimResized`.
+- **Self-Contained Color Swatch (`rvim-dashboard-colors`)**: Renders a 3-row Solarized ANSI bar with no external dependency; uses `colorscript -e square` instead when that command is installed.
 - **High-Contrast Clean Notifications (`rvim-dashboard-notify`)**: Integrates an isolated sanitizer (`bin/rvim-dashboard-notify`) that strips terminal OSC background queries and cursor position requests while mapping illegible dark gray ANSI escape codes to crisp, high-contrast Solarized base1 (`#93a1a1`) and base3 (`#fdf6e3`).
 - **Visual Polishing & Cursor Hiding**: Hides the blinking block cursor on dashboard entry (`cursor_blend = 100`) and removes trailing empty-line tildes (`eob: " "`), automatically restoring them on buffer leave (`cursor_blend = 0`).
 - **Dynamic Greeting & Telemetry**: Time-aware greeting banner (`󰖙 Buenos días` / `󰖚 Buenas tardes` / `󰖝 Buenas noches, <user> • <fecha>`) coupled with live weather telemetry (`󰖐 San Salvador: ...`) cached asynchronously with a 1-hour TTL.

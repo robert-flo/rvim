@@ -20,6 +20,7 @@ readonly PLEMOLJP_VERSION="v3.0.0"
 
 readonly -a RVIM_DASHBOARD_BINS=(
   rvim
+  rvim-dashboard-colors
   rvim-dashboard-issues
   rvim-dashboard-notify
   rvim-dashboard-prs
